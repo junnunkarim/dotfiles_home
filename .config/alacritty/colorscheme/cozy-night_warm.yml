@@ -1,0 +1,35 @@
+#black = "#2B2636"
+#black0 = "#171728"
+#white = "#FEF3C6"
+#white0 = "#FDD08D"
+#purple1 = "#DB9D88"
+#purple2 = "#9A6B80"
+#purple3 = "#514C67"
+
+colors:
+  # Default colors
+  primary:
+    background: '0x171728'
+    foreground: '0xfef3c6'
+
+  # Normal colors
+  normal:
+    black:   '0x171728'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0xdb9d88'
+    magenta: '0x514c67'
+    cyan:    '0x9a6b80'
+    white:   '0xfef3c6'
+
+  # Bright colors
+  bright:
+    black:   '0x2b2636'
+    red:     '0xff7a93'
+    green:   '0xb9f27c'
+    yellow:  '0xff9e64'
+    blue:    '0xc49da3'
+    magenta: '0x484c7d'
+    cyan:    '0x896c9a'
+    white:   '0xfef3c6'

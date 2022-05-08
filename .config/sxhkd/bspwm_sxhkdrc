@@ -1,0 +1,202 @@
+##---------- High Precendence Shortcuts(super) ----------##
+
+# Terminal (alacritty)
+super + Return
+	bspterm
+
+# Terminal (floating)
+super + shift + Return
+	bspterm -f
+
+# Terminal (fullscreen)
+#super + ctrl + Return
+#	bspterm -s	
+
+# Close/Kill App 
+super + {c,k}
+	bspc node -{c,k}
+
+# Lockscreen
+super + ctrl + l
+    /home/dragoonfx/.config/bspwm/bin/bsplock
+
+# Reload Keybindings
+super + delete
+	pkill -USR1 -x sxhkd
+
+# Rofi Network Menu
+super + n
+	nmd
+
+# Rofi Themes Menu
+super + t
+	sh ~/.config/bspwm/rofi/bin/themes
+
+# Rofi Menus/Applets
+super + {w,m,x,r,s,i}
+	sh ~/.config/bspwm/rofi/bin/{windows,mpd,powermenu,asroot,screenshot,network}
+	
+# kill window
+super + shift + Escape
+    xkill
+
+# Quit/Restart bspwm
+super + shift + {q,r}
+	bspc {quit,wm -r}
+
+# Rofi App Launcher
+alt + F1
+	sh ~/.config/bspwm/rofi/bin/launcher
+
+
+##---------- Window Management ----------##
+
+# Split horizontal, vertical or cancel
+#super + {h,v,q}
+#	bspc node -p {east,south,cancel}
+
+# Fullscreen or Monocle
+super + f
+#	bspc desktop -l next
+    bspc node -t "~"fullscreen
+
+# Toggle beetwen floating & tiled
+super + space
+    bspc node -t "~"{floating,tiled}
+
+# Switch to last opened workspace
+super + {Tab,grave}
+	bspc {node,desktop} -f last
+
+# Hide/Unhide Window
+super + shift + i
+	winmask	
+
+# Pseudo Tiled & tiled mode
+super + shift + space
+#super + {p,t}
+    bspc node -t "~"{pseudo_tiled,tiled}
+
+# Send the window to another edge of the screen
+super + {_,shift + }{h,t,n,s}
+	bspc node -{f,s} {west,south,north,east}
+
+# Change focus to next window, including floating window
+alt + {_,shift + }Tab
+	bspc node -f {next.local,prev.local}
+
+# Send focused window to another workspace
+super + {_,shift + }{1-8}
+	bspc {desktop -f,node -d} '^{1-8}'
+    
+# Preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# Set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+# Switch workspace
+super + ctrl + {h,s}
+	bspc desktop -f {prev.local,next.local}
+
+# Expanding windows
+super + ctrl + {Left,Right,Up,Down}
+	bspc node -z {left -20 0,left 20 0,top 0 -20,top 0 20}
+	
+## Shrinking windows
+super + alt + {Left,Right,Up,Down}
+	bspc node -z {right -20 0,right 20 0,bottom 0 -20,bottom 0 20}
+	
+## Move floating windows
+alt + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+##---------- Shortcuts ----------##
+
+# Redshift
+super + ctrl + r
+  redshift -P -O 5000
+
+super + ctrl + e
+	redshift -x
+
+# Color Picker
+super + ctrl + p
+	color-gpick
+
+##---------- System Keys ----------##
+
+# Take a screenshot
+Print
+	takeshot --now
+	
+# Take screenshot in 5 second
+alt + Print	
+	takeshot --in5
+
+# Take screenshot in 10 second
+shift + Print	
+	takeshot --in10
+
+# Take screenshot of active window
+ctrl + Print
+	takeshot --win
+
+# Take screenshot of area
+ctrl + alt + Print
+	takeshot --area
+
+# Brighness control
+XF86MonBrightness{Up,Down}
+	brightness{ --inc, --dec}
+
+F2
+	xbacklight -dec 5
+
+F3
+	xbacklight -inc 5
+	
+# Volume control
+XF86Audio{RaiseVolume,LowerVolume}
+	volume{ --inc, --dec}
+
+XF86AudioMute
+	volume --toggle
+
+F5
+	volume --dec
+F6
+	volume --inc
+F7
+	volume --toggle
+
+# Turn on/off wifi
+F9
+	nmcli radio all on
+
+F10
+	nmcli radio all off	
+
+# Music control
+XF86Audio{Next,Prev,Play,Stop}
+	mpc {next,prev,toggle,stop}
+
+
+##---------- Applications(super + alt) ----------##
+
+# File Manager
+super + alt + p
+	pcmanfm
+
+# Browser
+super + alt + b
+	chromium
+super + alt + f
+	firefox
+
+# Terminal Apps
+super + alt + {v,n,h,b}
+	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {vim,nnn,htop,bashtop}

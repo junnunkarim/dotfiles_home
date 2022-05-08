@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Directory
+dwm_dir="$HOME/.config/dwm"
+dwm_luastatus_dir="$HOME/.config/dwm/luastatus/colorscheme"
+alacritty_dir="$HOME/.config/alacritty"
+kitty_dir="$HOME/.config/kitty"
+
+prompt="dmenu -l 9 "
+#prompt="rofi -dmenu"
+
+# for restarting dwm
+dwm_pid="$(pidof dwm)"
+
+# Theme
+theme1="Cozy-Night"
+theme2="Cozy-Night(Warm Color)"
+theme3="Gruvbox"
+
+# Variable to pass to dmenu or rofi
+option="$theme1\n$theme2\n$theme3"
+
+
+theme_change()
+{
+	cp ${dwm_dir}/theme/$1.h ${dwm_dir}/theme.h
+	cp ${dwm_dir}/dmenu/theme/$1.h ${dwm_dir}/dmenu/theme.h
+	cp ${dwm_luastatus_dir}/$1.lua ${dwm_luastatus_dir}/color.lua
+	
+	cp ${alacritty_dir}/colorscheme/$1.yml ${alacritty_dir}/color.yml
+	cp ${kitty_dir}/colorscheme/$1.conf ${kitty_dir}/color.conf
+
+	make -s -C ${dwm_dir} clean
+	bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir} install
+	make -s -C ${dwm_dir} clean
+	kill -HUP dwmpid $dwm_pid
+
+	make -s -C ${dwm_dir}/dmenu clean
+	bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir}/dmenu install 
+	make -s -C ${dwm_dir}/dmenu clean
+}
+
+select="$(echo -e "$option" | $prompt -p "Choose a theme: " )"
+case $select in
+	$theme1)
+		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas.png
+		theme_change cozy-night
+		;;
+	$theme2)
+		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas_warm-color.png
+		theme_change cozy-night_warm
+		;;
+	$theme3)
+		feh --bg-fill $HOME/.config/wallpaper/pixelart_house_inside_girl_book_dog.png
+		theme_change gruvbox
+esac

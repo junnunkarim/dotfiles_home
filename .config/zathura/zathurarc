@@ -1,0 +1,3 @@
+include theme/gruvbox
+
+set selection-clipboard clipboard
