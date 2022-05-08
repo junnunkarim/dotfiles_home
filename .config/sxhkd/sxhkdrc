@@ -1,0 +1,130 @@
+##---------- System (super / super + shift) ----------##
+# Terminal
+super + Return
+	alacritty
+
+# TDrop (scratchpad)
+super + shift + Return
+	tdrop -ma -A -w 50% -x 25% -s dropdown kitty
+
+# Lockscreen
+super + l
+	slock
+
+# Reload Keybindings
+super + BackSpace
+	pkill -USR1 -x sxhkd
+
+# Dmenu Network Menu
+super + n
+	networkmanager_dmenu
+
+# Linux-notification-center
+super + shift + n
+	kill -s USR1 $(pidof deadd-notification-center)
+
+# kill window
+super + shift + Escape
+    xkil
+
+# change theme
+super + t
+	bash ~/.bin/theme_changer
+
+# powermenu
+super + x
+	bash ~/.bin/powermenu
+
+# dmenu
+super + d
+	dmenu_run -l 9 -p "﩯" 
+
+##---------- Other programs or scripts (super + ctrl) ----------##
+
+# Redshift
+super + ctrl + r
+  redshift -P -O 5000
+
+super + ctrl + e
+	redshift -x
+
+# Color Picker
+super + ctrl + p
+	color-gpick
+
+##---------- Applications (super + alt) ----------##
+
+# File Manager
+super + alt + f
+	thunar
+	#pcmanfm
+
+# Browser
+super + alt + b
+	chromium
+super + alt + e
+	firefox
+
+# Terminal Apps
+super + alt + {v,n,h}
+	alacritty -e {vim,nnn -dHc,btm}
+
+##---------- System Keys ----------##
+
+# Take a screenshot
+Print
+	flameshot full -p $HOME/Pictures/SS/
+	
+# Take screenshot in 5 second
+alt + Print	
+	takeshot --in5
+
+# Take screenshot in 10 second
+shift + Print	
+	takeshot --in10
+
+# Take screenshot of active window
+ctrl + Print
+	takeshot --win
+
+# Take screenshot of area
+ctrl + alt + Print
+	takeshot --area
+
+# Brighness control
+XF86MonBrightness{Up,Down}
+	xbacklight{ -inc 5, -dec 5}
+
+super + F2
+	xbacklight -dec 5
+
+super + F3
+	xbacklight -inc 5
+	
+# Volume control
+XF86AudioRaiseVolume
+	pactl set-sink-volume 0 +5%
+
+XF86AudioLowerVolume
+	pactl set-sink-volume 0 -5%
+
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+
+super + F5
+	pactl set-sink-volume 0 -5%
+super + F6
+	pactl set-sink-volume 0 +5%
+super + F7
+	pactl set-sink-mute 0 toggle
+
+# Turn on/off wifi
+super + F10
+	nmcli radio all on && notify-send "Turned on wifi"
+
+super + F9
+	nmcli radio all off	&& notify-send "Turned off wifi"
+
+# Music control
+XF86Audio{Next,Prev,Play,Stop}
+	mpc {next,prev,toggle,stop}
