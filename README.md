@@ -24,7 +24,7 @@ Here are some details about my setup:
 
 # Setup
 > _Arch users_ first install [paru](https://github.com/Morganamilo/paru)
-will write soon
+- will write soon
 
 # Photos
 ## Gruvbox
@@ -73,5 +73,4 @@ will write soon
 - FIBONACCI_DWINDLE_LAYOUT
 - HORIZGRID_LAYOUT
 - TILE_LAYOUT
-- MONOCLE_LAYOUT  
--
+- MONOCLE_LAYOUT
