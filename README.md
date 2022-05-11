@@ -1,3 +1,5 @@
+![img](/ss/dwm_gruvbox_cozy-night.png)
+
 # Information
 Here are some details about my setup:
 - OS: [Arch Linux](https://archlinux.org/)
@@ -24,18 +26,7 @@ Here are some details about my setup:
 
 # Setup
 > _Arch users_ first install [paru](https://github.com/Morganamilo/paru)
-- will write soon
-
-# Photos
-## Gruvbox
-![img](/ss/dwm_gruvbox_1.png)
-![img](/ss/dwm_gruvbox_2.png)
-![img](/ss/dwm_gruvbox_3.png)
-
-## Cozy-Night
-![img](/ss/dwm_cozy-night_1.png)
-![img](/ss/dwm_cozy-night_2.png)
-![img](/ss/dwm_cozy-night_3.png)
+- will write about it soon
 
 # dwm patches used
 > Todo: remove unused patches
