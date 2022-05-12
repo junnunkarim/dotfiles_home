@@ -50,14 +50,13 @@ super + ctrl + e
 
 # Color Picker
 super + ctrl + p
-	color-gpick
+	gpick
 
 ##---------- Applications (super + alt) ----------##
 
 # File Manager
 super + alt + f
 	thunar
-	#pcmanfm
 
 # Browser
 super + alt + b
@@ -74,32 +73,36 @@ super + alt + {v,n,h}
 # Take a screenshot
 Print
 	flameshot full -p $HOME/Pictures/SS/
+
+# Take a screenshot with gui selection
+super + Print
+	flameshot gui
 	
 # Take screenshot in 5 second
 alt + Print	
-	takeshot --in5
+	flameshot full -d 5000 -p $HOME/Pictures/SS/
 
 # Take screenshot in 10 second
 shift + Print	
-	takeshot --in10
-
-# Take screenshot of active window
-ctrl + Print
-	takeshot --win
-
-# Take screenshot of area
-ctrl + alt + Print
-	takeshot --area
+	flameshot full -d 10000 -p $HOME/Pictures/SS/
 
 # Brighness control
-XF86MonBrightness{Up,Down}
-	xbacklight{ -inc 5, -dec 5}
+#XF86MonBrightness{Up,Down}
+	#xbacklight{ -inc 5, -dec 5}
+
+XF86MonBrightnessUp
+	brightnessctl -d "intel_backlight" set +5%
+
+XF86MonBrightnessDown
+	brightnessctl -d "intel_backlight" set 5%-
 
 super + F2
-	xbacklight -dec 5
+	brightnessctl -d "intel_backlight" set +5%
+	#xbacklight -dec 5
 
 super + F3
-	xbacklight -inc 5
+	brightnessctl -d "intel_backlight" set 5%-
+	#xbacklight -inc 5
 	
 # Volume control
 XF86AudioRaiseVolume
@@ -124,7 +127,3 @@ super + F10
 
 super + F9
 	nmcli radio all off	&& notify-send "Turned off wifi"
-
-# Music control
-XF86Audio{Next,Prev,Play,Stop}
-	mpc {next,prev,toggle,stop}

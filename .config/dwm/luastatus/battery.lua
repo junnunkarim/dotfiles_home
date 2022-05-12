@@ -1,4 +1,4 @@
-package.path = package.path .. ";/home/dragoonfx/.config/dwm/luastatus/colorscheme/?.lua"
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/dwm/luastatus/colorscheme/?.lua"
 local color = require("color")
 
 widget = luastatus.require_plugin('battery-linux').widget{

@@ -1,5 +1,5 @@
 -- Note that this widget only shows backlight level when it changes.
-package.path = package.path .. ";/home/dragoonfx/.config/dwm/luastatus/colorscheme/?.lua"
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/dwm/luastatus/colorscheme/?.lua"
 local color = require("color")
 
 widget = luastatus.require_plugin('backlight-linux').widget{

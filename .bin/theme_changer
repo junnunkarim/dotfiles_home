@@ -13,12 +13,13 @@ prompt="dmenu -l 9 "
 dwm_pid="$(pidof dwm)"
 
 # Theme
-theme1="Cozy-Night"
-theme2="Cozy-Night(Warm Color)"
-theme3="Gruvbox"
+cancel="窱 Cancel"
+theme1=" Cozy-Night"
+theme2=" Cozy-Night(Warm Color)"
+theme3=" Gruvbox"
 
 # Variable to pass to dmenu or rofi
-option="$theme1\n$theme2\n$theme3"
+option="$cancel\n$theme1\n$theme2\n$theme3"
 
 
 theme_change()
@@ -36,7 +37,7 @@ theme_change()
 	kill -HUP dwmpid $dwm_pid
 
 	make -s -C ${dwm_dir}/dmenu clean
-	bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir}/dmenu install 
+	bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir}/dmenu install
 	make -s -C ${dwm_dir}/dmenu clean
 }
 

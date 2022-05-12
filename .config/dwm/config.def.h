@@ -378,7 +378,7 @@ static const char *const autostart[] = {
 	"luastatus", "-b", "dwm", "-B", "separator=", "/home/dragoonfx/.config/dwm/luastatus/backlight.lua", "/home/dragoonfx/.config/dwm/luastatus/alsa.lua", "/home/dragoonfx/.config/dwm/luastatus/battery.lua", "/home/dragoonfx/.config/dwm/luastatus/wifi.lua", "/home/dragoonfx/.config/dwm/luastatus/time-date.lua", NULL,
 	"xfce4-power-manager", NULL,
 	"/usr/lib/xfce-polkit/xfce-polkit", NULL,
-	"picom", "--experimental-backends", NULL,
+	"picom", NULL,
 	NULL /* terminate */
 };
 #endif // COOL_AUTOSTART_PATCH
@@ -470,6 +470,7 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.class = "kitty", .isfloating = 1)
+	RULE(.class = "Gpick", .isfloating = 1, .iscentered = 1)
 
 	/* class      instance title tags mask switchtotag isfloating monitor */
 	//  { "Alacritty", NULL,  NULL, 1 << 0,        0,          1,         -1  },
@@ -489,7 +490,7 @@ static const Rule rules[] = {
 	RULE(.class = "Nyxt", .tags = 1 << 2, .switchtag = 3) // tag-3
 	RULE(.class = "Vieb", .tags = 1 << 2, .switchtag = 3)
 
-	RULE(.class = "Gimp", .tags = 1 << 3, .switchtag = 3) // tag-4
+	RULE(.class = "Gimp", .tags = 1 << 3, .switchtag = 3, .isfloating = 1) // tag-4
 	RULE(.class = "obs", .tags = 1 << 3, .switchtag = 3)
 	RULE(.class = "vlc", .tags = 1 << 3, .switchtag = 3)
 	RULE(.class = "mpv", .tags = 1 << 3, .switchtag = 3)
