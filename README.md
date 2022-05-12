@@ -24,12 +24,23 @@ Here are some details about my setup:
 - Wallpaper Setter: [feh](https://github.com/derf/feh)
 - Compositor: [Picom](https://github.com/yshui/picom)
 
+# TODO
+- [ ] Explain the features of this setup
+- [ ] Throughly explain the installation procedure
+	- [ ] Mention the limit about hardcoded path
+	- [ ] Mention the mandatory and optional dependencies
+	- [ ] Make guides for Arch and debian
+- [ ] Switch to rofi from dmenu
+- [ ] Make new colorschemes
+- [ ] Rice Firefox
+- [ ] Create conky and eww widgets
+- [ ] Remove unused patches
+- [ ] use flexipatch-finalizer
+
 # Setup
-> _Arch users_ first install [paru](https://github.com/Morganamilo/paru)
 - will write about it soon
 
 # dwm patches used
-> Todo: remove unused patches
 - BAR_AWESOMEBAR_PATCH
 - BAR_EWMHTAGS_PATCH
 - BAR_LTSYMBOL_PATCH
