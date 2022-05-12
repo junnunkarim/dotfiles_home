@@ -1,10 +1,11 @@
 call plug#begin('~/.vim')
 	"Tools
 	Plug 'itchyny/lightline.vim'
-	Plug 'cohama/lexima.vim'
 	Plug 'junegunn/goyo.vim'
 	Plug 'preservim/tagbar'
 	Plug 'farmergreg/vim-lastplace'
+	Plug 'jiangmiao/auto-pairs'
+	"Plug 'cohama/lexima.vim'
 	"Plug 'ryanoasis/vim-devicons'
 	"Plug 'preservim/vim-markdown'
 	"Plug 'ap/vim-css-color'
@@ -43,7 +44,7 @@ call plug#end()
 	set laststatus=2
 	set encoding=UTF-8
 	set ttimeoutlen=3
-	
+
 	set mouse=a 
 
 	if (has("termguicolors"))
