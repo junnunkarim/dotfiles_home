@@ -189,6 +189,13 @@ static int (*fstrncmp)(const char *, const char *, size_t) = strncmp;
 static char *(*fstrstr)(const char *, const char *) = strstr;
 #endif // CASEINSENSITIVE_PATCH
 
+static unsigned int
+textw_clamp(const char *str, unsigned int n)
+{
+	unsigned int w = drw_fontset_getwidth_clamp(drw, str, n) + lrpad;
+	return MIN(w, n);
+}
+
 static void appenditem(struct item *item, struct item **list, struct item **last);
 static void calcoffsets(void);
 static void cleanup(void);
@@ -248,18 +255,10 @@ calcoffsets(void)
 		#endif // SYMBOLS_PATCH
 	/* calculate which items will begin the next page and previous page */
 	for (i = 0, next = curr; next; next = next->right)
-		#if PANGO_PATCH
-		if ((i += (lines > 0) ? bh : MIN(TEXTWM(next->text), n)) > n)
-		#else
-		if ((i += (lines > 0) ? bh : MIN(TEXTW(next->text), n)) > n)
-		#endif // PANGO_PATCH
+		if ((i += (lines > 0) ? bh : textw_clamp(next->text, n)) > n)
 			break;
 	for (i = 0, prev = curr; prev && prev->left; prev = prev->left)
-		#if PANGO_PATCH
-		if ((i += (lines > 0) ? bh : MIN(TEXTWM(prev->left->text), n)) > n)
-		#else
-		if ((i += (lines > 0) ? bh : MIN(TEXTW(prev->left->text), n)) > n)
-		#endif // PANGO_PATCH
+		if ((i += (lines > 0) ? bh : textw_clamp(prev->left->text, n)) > n)
 			break;
 }
 
@@ -271,6 +270,14 @@ cleanup(void)
 	XUngrabKey(dpy, AnyKey, AnyModifier, root);
 	for (i = 0; i < SchemeLast; i++)
 		free(scheme[i]);
+	for (i = 0; items && items[i].text; ++i)
+		free(items[i].text);
+	free(items);
+	#if HIGHPRIORITY_PATCH
+	for (i = 0; i < hplength; ++i)
+		free(hpitems[i]);
+	free(hpitems);
+	#endif // HIGHPRIORITY_PATCH
 	drw_free(drw);
 	XSync(dpy, False);
 	XCloseDisplay(dpy);
@@ -636,21 +643,17 @@ drawmenu(void)
 		}
 		x += w;
 		for (item = curr; item != next; item = item->right) {
-			#if PANGO_PATCH && TSV_PATCH
-			itw = TEXTWM(item->stext);
-			#elif PANGO_PATCH
-			itw = TEXTWM(item->text);
-			#elif TSV_PATCH
-			itw = TEXTW(item->stext);
-			#else
-			itw = TEXTW(item->text);
-			#endif // PANGO_PATCH | TSV_PATCH
 			#if SYMBOLS_PATCH
 			stw = TEXTW(symbol_2);
 			#else
 			stw = TEXTW(">");
 			#endif // SYMBOLS_PATCH
-			x = drawitem(item, x, 0, MIN(itw, mw - x - stw - rpad));
+			#if TSV_PATCH
+			itw = textw_clamp(item->stext, mw - x - stw - rpad);
+			#else
+			itw = textw_clamp(item->text, mw - x - stw - rpad);
+			#endif // PANGO_PATCH | TSV_PATCH
+			x = drawitem(item, x, 0, itw);
 		}
 		if (next) {
 			#if SYMBOLS_PATCH
@@ -760,7 +763,7 @@ match(void)
 	/* separate input text into tokens to be matched individually */
 	for (s = strtok(buf, " "); s; tokv[tokc - 1] = s, s = strtok(NULL, " "))
 		if (++tokc > tokn && !(tokv = realloc(tokv, ++tokn * sizeof *tokv)))
-			die("cannot realloc %u bytes:", tokn * sizeof *tokv);
+			die("cannot realloc %zu bytes:", tokn * sizeof *tokv);
 	len = tokc ? strlen(tokv[0]) : 0;
 
 	#if PREFIXCOMPLETION_PATCH
@@ -1053,7 +1056,7 @@ keypress(XKeyEvent *ev)
 	switch(ksym) {
 	default:
 insert:
-		if (!iscntrl(*buf))
+		if (!iscntrl((unsigned char)*buf))
 			insert(buf, len);
 		break;
 	case XK_Delete:
@@ -1358,12 +1361,10 @@ readstdin(void)
 	char buf[sizeof text], *p;
 	#if JSON_PATCH
 	size_t i;
-	unsigned int imax = 0;
 	struct item *item;
 	#else
-	size_t i, imax = 0, size = 0;
+	size_t i, size = 0;
 	#endif // JSON_PATCH
-	unsigned int tmpmax = 0;
 
 	#if PASSWORD_PATCH
 	if (passwd) {
@@ -1379,7 +1380,7 @@ readstdin(void)
 		#else
 		if (i + 1 >= size / sizeof *items)
 			if (!(items = realloc(items, (size += BUFSIZ))))
-				die("cannot realloc %u bytes:", size);
+				die("cannot realloc %zu bytes:", size);
 		#endif // JSON_PATCH
 		if ((p = strchr(buf, '\n')))
 			*p = '\0';
@@ -1388,12 +1389,12 @@ readstdin(void)
 		#else
 		if (!(items[i].text = strdup(buf)))
 		#endif // JSON_PATCH
-			die("cannot strdup %u bytes:", strlen(buf) + 1);
+			die("cannot strdup %zu bytes:", strlen(buf) + 1);
 		#if TSV_PATCH
 		if ((p = strchr(buf, '\t')))
 			*p = '\0';
 		if (!(items[i].stext = strdup(buf)))
-			die("cannot strdup %u bytes:", strlen(buf) + 1);
+			die("cannot strdup %zu bytes:", strlen(buf) + 1);
 		#endif // TSV_PATCH
 		#if MULTI_SELECTION_PATCH
 		items[i].id = i; /* for multiselect */
@@ -1415,19 +1416,6 @@ readstdin(void)
 		#if HIGHPRIORITY_PATCH
 		items[i].hp = arrayhas(hpitems, hplength, items[i].text);
 		#endif // HIGHPRIORITY_PATCH
-		#if PANGO_PATCH
-		drw_font_getexts(drw->font, buf, strlen(buf), &tmpmax, NULL, True);
-		#else
-		drw_font_getexts(drw->fonts, buf, strlen(buf), &tmpmax, NULL);
-		#endif // PANGO_PATCH
-		if (tmpmax > inputw) {
-			inputw = tmpmax;
-			#if JSON_PATCH
-			imax = items_ln - 1;
-			#else
-			imax = i;
-			#endif // JSON_PATCH
-		}
 	}
 	if (items)
 		#if JSON_PATCH
@@ -1435,11 +1423,6 @@ readstdin(void)
 		#else
 		items[i].text = NULL;
 		#endif // JSON_PATCH
-	#if PANGO_PATCH
-	inputw = items ? TEXTWM(items[imax].text) : 0;
-	#else
-	inputw = items ? TEXTW(items[imax].text) : 0;
-	#endif // PANGO_PATCH
 	#if JSON_PATCH
 	lines = MIN(lines, items_ln);
 	#else
@@ -1514,12 +1497,13 @@ static void
 setup(void)
 {
 	int x, y, i, j;
-	unsigned int du;
+	unsigned int du, tmp;
 	XSetWindowAttributes swa;
 	XIM xim;
 	Window w, dw, *dws;
 	XWindowAttributes wa;
 	XClassHint ch = {"dmenu", "dmenu"};
+	struct item *item;
 #ifdef XINERAMA
 	XineramaScreenInfo *info;
 	Window pw;
@@ -1656,7 +1640,12 @@ setup(void)
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
 	#endif // PANGO_PATCH
 	#endif // CENTER_PATCH
-	inputw = MIN(inputw, mw/3);
+	for (item = items; item && item->text; ++item) {
+		if ((tmp = textw_clamp(item->text, mw/3)) > inputw) {
+			if ((inputw = tmp) == mw/3)
+				break;
+		}
+	}
 	match();
 
 	/* create menu window */

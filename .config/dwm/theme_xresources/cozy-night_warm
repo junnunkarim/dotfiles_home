@@ -1,0 +1,46 @@
+#define midnight 					#2b2337
+#define dusk 							#524d68
+#define dark_lavender 		#9b6c81
+#define pinkish_grey 			#dc9e89
+#define light_peach 			#ffd28e
+#define very_light_pink 	#fff4c7
+
+dwm.normfgcolor                : dark_lavender
+dwm.normbgcolor                : midnight
+dwm.normbordercolor            : midnight
+dwm.normfloatcolor             : midnight
+
+dwm.selfgcolor                 : midnight
+dwm.selbgcolor                 : midnight
+dwm.selbordercolor             : dark_lavender
+dwm.selfloatcolor              : very_light_pink
+
+dwm.titlenormfgcolor           : dusk
+dwm.titlenormbgcolor           : midnight
+dwm.titlenormbordercolor       : midnight
+dwm.titlenormfloatcolor        : very_light_pink
+
+dwm.titleselfgcolor            : very_light_pink
+dwm.titleselbgcolor            : midnight
+dwm.titleselbordercolor        : midnight
+dwm.titleselfloatcolor         : very_light_pink
+
+dwm.tagsnormfgcolor		         : midnight
+dwm.tagsnormbgcolor            : pinkish_grey
+dwm.tagsnormbordercolor        : dark_lavender
+dwm.tagsnormfloatcolor         : midnight
+
+dwm.tagsselfgcolor             : pinkish_grey
+dwm.tagsselbgcolor             : midnight
+dwm.tagsselbordercolor         : dark_lavender
+dwm.tagsselfloatcolor          : midnight
+
+dwm.hidnormfgcolor             : dark_lavender
+dwm.hidselfgcolor              : dark_lavender
+dwm.hidnormbgcolor             : midnight
+dwm.hidselbgcolor              : midnight
+
+dwm.urgfgcolor								 : midnight
+dwm.urgbgcolor								 : light_peach
+dwm.urgbordercolor						 : pinkish_grey
+dwm.urgfloatcolor							 : pinkish_grey

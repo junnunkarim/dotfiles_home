@@ -142,7 +142,7 @@ static const char *fonts[]               = {
 
 static const char dmenufont[]            = "JetBrainsMono Nerd Font:size=15";
 
-/*
+
 static char c000000[]                    = "#000000"; // placeholder value
 
 static char normfgcolor[]                = "#ebdbb2";
@@ -185,6 +185,7 @@ static char urgbgcolor[]                 = "#222222";
 static char urgbordercolor[]             = "#ff0000";
 static char urgfloatcolor[]              = "#db8fd9";
 
+/*
 #if BAR_FLEXWINTITLE_PATCH
 static char normTTBbgcolor[]             = "#330000";
 static char normLTRbgcolor[]             = "#330033";
@@ -291,7 +292,7 @@ static const int color_ptrs[][ColCount] = {
 */
 
 // loads colorscheme
-#include "theme.h"
+//#include "theme.h"
 
 static char *colors[][ColCount] = {
 	//                       fg                bg                border                float
@@ -307,7 +308,7 @@ static char *colors[][ColCount] = {
 	[SchemeHidNorm]      = { hidnormfgcolor,   hidnormbgcolor,   c000000,              c000000 },
 	[SchemeHidSel]       = { hidselfgcolor,    hidselbgcolor,    c000000,              c000000 },
 	
-	//[SchemeUrg]          = { urgfgcolor,       urgbgcolor,       urgbordercolor,       urgfloatcolor },
+	[SchemeUrg]          = { urgfgcolor,       urgbgcolor,       urgbordercolor,       urgfloatcolor },
 	
 	/*
 	#if BAR_FLEXWINTITLE_PATCH
@@ -345,7 +346,7 @@ static char *colors[][ColCount] = {
 	[SchemeFlexSelSPRL]  = { titleselfgcolor,  selSPRLbgcolor,   selSPRLbgcolor,       c000000 },
 	[SchemeFlexSelFloat] = { titleselfgcolor,  selfloatbgcolor,  selfloatbgcolor,      c000000 },
 	#endif // BAR_FLEXWINTITLE_PATCH
-	*/
+	*/	
 };
 
 /*
@@ -482,16 +483,16 @@ static const Rule rules[] = {
 	RULE(.class = "Geany", .tags = 1 << 0, .switchtag = 3)
 
 	RULE(.class = "Pcmanfm", .tags = 1 << 1, .switchtag = 3) // tag-2
-	RULE(.class = "Thunar", .tags = 1 << 1, .switchtag = 3) // tag-2
+	RULE(.class = "Thunar", .tags = 1 << 1, .switchtag = 3, .iscentered = 1) // tag-2
 	RULE(.class = "qBittorrent", .tags = 1 << 1, .switchtag = 3)
 
-	RULE(.class = "Chromium", .tags = 1 << 2, .switchtag = 3) // tag-3
-	RULE(.class = "firefox", .tags = 1 << 2, .switchtag = 3)
+	RULE(.class = "Chromium", .tags = 1 << 2, .switchtag = 3, .iscentered = 1) // tag-3
+	RULE(.class = "firefox", .tags = 1 << 2, .switchtag = 3, .iscentered = 1)
 	RULE(.class = "Nyxt", .tags = 1 << 2, .switchtag = 3) // tag-3
 	RULE(.class = "Vieb", .tags = 1 << 2, .switchtag = 3)
 
-	RULE(.class = "Gimp", .tags = 1 << 3, .switchtag = 3, .isfloating = 1) // tag-4
-	RULE(.class = "obs", .tags = 1 << 3, .switchtag = 3)
+	RULE(.class = "Gimp", .tags = 1 << 3, .switchtag = 3, .isfloating = 1, .iscentered = 1) // tag-4
+	RULE(.class = "obs", .tags = 1 << 3, .switchtag = 3, .iscentered = 1)
 	RULE(.class = "vlc", .tags = 1 << 3, .switchtag = 3)
 	RULE(.class = "mpv", .tags = 1 << 3, .switchtag = 3)
 
@@ -503,8 +504,8 @@ static const Rule rules[] = {
 	RULE(.class = "Ryujinx", .tags = 1 << 6, .switchtag = 3) // tag-6
 	RULE(.class = "yuzu", .tags = 1 << 6, .switchtag = 3) // tag-6
 																																			//
-	RULE(.class = "GParted", .tags = 1 << 7, .switchtag = 3, .isfloating = 1) // tag-8
-	RULE(.class = "Xfce4-power-manager-settings", .tags = 1 << 7, .switchtag = 3, .isfloating = 1)
+	RULE(.class = "GParted", .tags = 1 << 7, .switchtag = 3, .isfloating = 1, .iscentered = 1) // tag-8
+	RULE(.class = "Xfce4-power-manager-settings", .tags = 1 << 7, .switchtag = 3, .isfloating = 1, .iscentered = 1)
 
 	#if SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)

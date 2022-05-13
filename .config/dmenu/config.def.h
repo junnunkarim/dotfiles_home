@@ -82,23 +82,20 @@ static
 #if !XRESOURCES_PATCH
 const
 #endif // XRESOURCES_PATCH
-
-#include "theme.h"
-
 char *colors[][2] = {
 	/*               fg         bg       */
-	[SchemeNorm] = { schemenormfg, schemenormbg },
-	[SchemeSel]  = { schemeselfg, schemeselbg },
-	[SchemeOut]  = { schemeoutfg, schemeoutbg },
+	[SchemeNorm] = { "#bbbbbb", "#222222" },
+	[SchemeSel]  = { "#eeeeee", "#005577" },
+	[SchemeOut]  = { "#000000", "#00ffff" },
 	#if BORDER_PATCH
-	[SchemeBorder] = { "#000000", schemeborder },
+	[SchemeBorder] = { "#000000", "#005577" },
 	#endif // BORDER_PATCH
 	#if MORECOLOR_PATCH
 	[SchemeMid]  = { "#eeeeee", "#770000" },
 	#endif // MORECOLOR_PATCH
 	#if HIGHLIGHT_PATCH || FUZZYHIGHLIGHT_PATCH
-	[SchemeSelHighlight]  = { schemeselhighfg, schemeselhighbg },
-	[SchemeNormHighlight] = { schemenormhighfg, schemenormhighbg },
+	[SchemeSelHighlight]  = { "#ffc978", "#005577" },
+	[SchemeNormHighlight] = { "#ffc978", "#222222" },
 	#endif // HIGHLIGHT_PATCH | FUZZYHIGHLIGHT_PATCH
 	#if HIGHPRIORITY_PATCH
 	[SchemeHp]   = { "#bbbbbb", "#333333" },
@@ -113,7 +110,7 @@ char *colors[][2] = {
 	#endif // EMOJI_HIGHLIGHT_PATCH
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
-static unsigned int lines      = 0;
+static unsigned int lines      = 5;
 #if GRID_PATCH
 /* -g option; if nonzero, dmenu uses a grid comprised of columns and lines */
 static unsigned int columns    = 0;
@@ -138,7 +135,7 @@ static const char worddelimiters[] = " ";
 
 #if BORDER_PATCH
 /* Size of the window border */
-static unsigned int border_width = 3;
+static unsigned int border_width = 2;
 #endif // BORDER_PATCH
 
 #if PREFIXCOMPLETION_PATCH
