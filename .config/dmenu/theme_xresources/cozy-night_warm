@@ -1,0 +1,23 @@
+#define midnight          #2b2337
+#define dusk              #524d68
+#define dark_lavender     #9b6c81
+#define pinkish_grey      #dc9e89
+#define light_peach       #ffd28e
+#define very_light_pink   #fff4c7
+
+dmenu.foreground:				very_light_pink
+dmenu.background:				midnight
+
+dmenu.selforeground:		midnight
+dmenu.selbackground:		pinkish_grey
+
+dmenu.outforeground:		dusk
+dmenu.outbackground:		midnight
+
+dmenu.bordercolor:			dark_lavender
+
+dmenu.selhlforeground:	light_peach
+dmenu.selhlbackground:	pinkish_grey
+
+dmenu.hlforeground:			dark_lavender
+dmenu.hlbackground:			midnight

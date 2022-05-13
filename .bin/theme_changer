@@ -2,9 +2,11 @@
 
 # Directory
 dwm_dir="$HOME/.config/dwm"
+dmenu_dir="$HOME/.config/dmenu"
 dwm_luastatus_dir="$HOME/.config/dwm/luastatus/colorscheme"
 alacritty_dir="$HOME/.config/alacritty"
 kitty_dir="$HOME/.config/kitty"
+zathura_dir="$HOME/.config/zathura"
 
 prompt="dmenu -l 9 "
 #prompt="rofi -dmenu"
@@ -24,21 +26,24 @@ option="$cancel\n$theme1\n$theme2\n$theme3"
 
 theme_change()
 {
-	cp ${dwm_dir}/theme/$1.h ${dwm_dir}/theme.h
-	cp ${dwm_dir}/dmenu/theme/$1.h ${dwm_dir}/dmenu/theme.h
+	cp ${dwm_dir}/theme_xresources/$1 ${dwm_dir}/theme_xresources/theme
+	cp ${dmenu_dir}/theme_xresources/$1 ${dmenu_dir}/theme_xresources/theme
 	cp ${dwm_luastatus_dir}/$1.lua ${dwm_luastatus_dir}/color.lua
 	
 	cp ${alacritty_dir}/colorscheme/$1.yml ${alacritty_dir}/color.yml
 	cp ${kitty_dir}/colorscheme/$1.conf ${kitty_dir}/color.conf
+	cp ${zathura_dir}/theme/$1 ${zathura_dir}/theme.color
 
-	make -s -C ${dwm_dir} clean
-	bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir} install
-	make -s -C ${dwm_dir} clean
-	kill -HUP dwmpid $dwm_pid
+	#make -s -C ${dwm_dir} clean
+	#bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir} install
+	#make -s -C ${dwm_dir} clean
+	
+	xrdb -merge -I$HOME ~/.Xresources # reload Xresources
+	kill -HUP dwmpid $dwm_pid # restart dwm
 
-	make -s -C ${dwm_dir}/dmenu clean
-	bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir}/dmenu install
-	make -s -C ${dwm_dir}/dmenu clean
+	#make -s -C ${dwm_dir}/dmenu clean
+	#bash $HOME/.bin/sudo_passhelper make -s -C ${dmenu_dir} install
+	#make -s -C ${dmenu_dir} clean
 }
 
 select="$(echo -e "$option" | $prompt -p "Choose a theme: " )"

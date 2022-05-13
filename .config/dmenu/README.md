@@ -1,5 +1,5 @@
-Similar to [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch) this dmenu 5.1 (3a505ce,
-2022-03-01) project has a different take on patching. It uses preprocessor directives to decide
+Similar to [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch) this dmenu 5.1 (33685b0,
+2022-03-28) project has a different take on patching. It uses preprocessor directives to decide
 whether or not to include a patch during build time. Essentially this means that this build, for
 better or worse, contains both the patched _and_ the original code. The aim being that you can
 select which patches to include and the build will contain that code and nothing more.
@@ -21,6 +21,8 @@ you selected.
 
 Refer to [https://tools.suckless.org/dmenu/](https://tools.suckless.org/dmenu/) for details on
 dmenu, how to install it and how it works.
+
+Browsing patches? There is a [map of patches](https://coggle.it/diagram/YjT2DD6jBM9dayf3) diagram which tries to organise patches into categories.
 
 ---
 
