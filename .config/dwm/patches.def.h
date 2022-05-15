@@ -705,7 +705,7 @@
  * in such scenarios the previous window loses fullscreen.
  * https://github.com/bakkeby/patches/blob/master/dwm/dwm-losefullscreen-6.2.diff
  */
-#define LOSEFULLSCREEN_PATCH 0
+#define LOSEFULLSCREEN_PATCH 1
 
 /* This patch adds helper functions for maximizing, horizontally and vertically, floating
  * windows using keybindings.

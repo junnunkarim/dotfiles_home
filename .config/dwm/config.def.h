@@ -129,14 +129,13 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 static const char font[]                 = "monospace 10";
 #else
 static const char *fonts[]               = {
+	"JetBrainsMono Nerd Font Mono:style=Medium:size=13",
 	//"Iosevka Nerd Font Mono:style:Boldsize=13",
 	//"FantasqueSansMono Nerd Font:size=15",
-	//"Font Awesome 6 Free:size=15",
-	//"Wuncon Siji:size=15",
 	//"Hack Nerd Font:style:medium:size=14",
-	"JetBrainsMono Nerd Font Mono:style=Medium:size=13",
-	//"siji:size=15",
 	//"Comfortaa:size=15",
+	//"Font Awesome 6 Free:size=15",
+	//"siji:size=15",
 };
 #endif // BAR_PANGO_PATCH
 
@@ -374,9 +373,9 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 // Autostart Program list
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
-	"bash", "/home/dragoonfx/.fehbg", NULL,
+	"bash", ".fehbg", NULL,
 	"sxhkd", NULL,
-	"luastatus", "-b", "dwm", "-B", "separator=", "/home/dragoonfx/.config/dwm/luastatus/backlight.lua", "/home/dragoonfx/.config/dwm/luastatus/alsa.lua", "/home/dragoonfx/.config/dwm/luastatus/battery.lua", "/home/dragoonfx/.config/dwm/luastatus/wifi.lua", "/home/dragoonfx/.config/dwm/luastatus/time-date.lua", NULL,
+	"luastatus", "-b", "dwm", "-B", "separator=", ".config/dwm/luastatus/backlight.lua", ".config/dwm/luastatus/alsa.lua", ".config/dwm/luastatus/battery.lua", ".config/dwm/luastatus/wifi.lua", ".config/dwm/luastatus/time-date.lua", NULL,
 	"xfce4-power-manager", NULL,
 	"/usr/lib/xfce-polkit/xfce-polkit", NULL,
 	"picom", NULL,
@@ -477,35 +476,35 @@ static const Rule rules[] = {
 	//  { "Alacritty", NULL,  NULL, 1 << 0,        0,          1,         -1  },
 	//  { "Firefox",  NULL,    NULL, 1 << 8,   1,          0,         -1  },
 
-	RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 3) // tag-1
-	RULE(.class = "st-256color", .tags = 1 << 0, .switchtag = 3) // tag-1
-	RULE(.class = "Emacs", .tags = 1 << 0, .switchtag = 3)
-	RULE(.class = "Geany", .tags = 1 << 0, .switchtag = 3)
+	RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 1) // tag-1
+	RULE(.class = "st-256color", .tags = 1 << 0, .switchtag = 1) // tag-1
+	RULE(.class = "Emacs", .tags = 1 << 0, .switchtag = 1)
+	RULE(.class = "Geany", .tags = 1 << 0, .switchtag = 1)
 
-	RULE(.class = "Pcmanfm", .tags = 1 << 1, .switchtag = 3) // tag-2
-	RULE(.class = "Thunar", .tags = 1 << 1, .switchtag = 3, .iscentered = 1) // tag-2
-	RULE(.class = "qBittorrent", .tags = 1 << 1, .switchtag = 3)
+	RULE(.class = "Pcmanfm", .tags = 1 << 1, .switchtag = 1) // tag-2
+	RULE(.class = "Thunar", .tags = 1 << 1, .switchtag = 1, .iscentered = 1) // tag-2
+	RULE(.class = "qBittorrent", .tags = 1 << 1, .switchtag = 1)
 
-	RULE(.class = "Chromium", .tags = 1 << 2, .switchtag = 3, .iscentered = 1) // tag-3
-	RULE(.class = "firefox", .tags = 1 << 2, .switchtag = 3, .iscentered = 1)
-	RULE(.class = "Nyxt", .tags = 1 << 2, .switchtag = 3) // tag-3
-	RULE(.class = "Vieb", .tags = 1 << 2, .switchtag = 3)
+	RULE(.class = "Chromium", .tags = 1 << 2, .switchtag = 1, .iscentered = 1) // tag-3
+	RULE(.class = "firefox", .tags = 1 << 2, .switchtag = 1, .iscentered = 1)
+	RULE(.class = "Nyxt", .tags = 1 << 2, .switchtag = 1) // tag-3
+	RULE(.class = "Vieb", .tags = 1 << 2, .switchtag = 1)
 
-	RULE(.class = "Gimp", .tags = 1 << 3, .switchtag = 3, .isfloating = 1, .iscentered = 1) // tag-4
-	RULE(.class = "obs", .tags = 1 << 3, .switchtag = 3, .iscentered = 1)
-	RULE(.class = "vlc", .tags = 1 << 3, .switchtag = 3)
-	RULE(.class = "mpv", .tags = 1 << 3, .switchtag = 3)
+	RULE(.class = "Gimp", .tags = 1 << 3, .switchtag = 1, .isfloating = 1, .iscentered = 1) // tag-4
+	RULE(.class = "obs", .tags = 1 << 3, .switchtag = 1, .iscentered = 1)
+	RULE(.class = "vlc", .tags = 1 << 3, .switchtag = 1)
+	RULE(.class = "mpv", .tags = 1 << 3, .switchtag = 1)
 
-	RULE(.class = "calibre", .tags = 1 << 4, .switchtag = 3) // tag-5
-	RULE(.class = "Zathura", .tags = 1 << 4, .switchtag = 3) // tag-5
+	RULE(.class = "calibre", .tags = 1 << 4, .switchtag = 1) // tag-5
+	RULE(.class = "Zathura", .tags = 1 << 4, .switchtag = 1) // tag-5
 
-	RULE(.class = "KotatogramDesktop", .tags = 1 << 5, .switchtag = 3) // tag-6
+	RULE(.class = "KotatogramDesktop", .tags = 1 << 5, .switchtag = 1) // tag-6
 	
-	RULE(.class = "Ryujinx", .tags = 1 << 6, .switchtag = 3) // tag-6
-	RULE(.class = "yuzu", .tags = 1 << 6, .switchtag = 3) // tag-6
+	RULE(.class = "Ryujinx", .tags = 1 << 6, .switchtag = 1, .isfloating = 1) // tag-6
+	RULE(.class = "yuzu", .tags = 1 << 6, .switchtag = 1, .isfloating = 1) // tag-6
 																																			//
-	RULE(.class = "GParted", .tags = 1 << 7, .switchtag = 3, .isfloating = 1, .iscentered = 1) // tag-8
-	RULE(.class = "Xfce4-power-manager-settings", .tags = 1 << 7, .switchtag = 3, .isfloating = 1, .iscentered = 1)
+	RULE(.class = "GParted", .tags = 1 << 7, .switchtag = 1, .isfloating = 1, .iscentered = 1) // tag-8
+	RULE(.class = "Xfce4-power-manager-settings", .tags = 1 << 7, .switchtag = 1, .isfloating = 1, .iscentered = 1)
 
 	#if SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
@@ -783,6 +782,7 @@ static const char *xkb_layouts[]  = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define ALTKEY Mod1Mask
+
 #if COMBO_PATCH && SWAPTAGS_PATCH && TAGOTHERMONITOR_PATCH
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      comboview,      {.ui = 1 << TAG} }, \
@@ -846,11 +846,13 @@ static const char *xkb_layouts[]  = {
 #endif // COMBO_PATCH / SWAPTAGS_PATCH / TAGOTHERMONITOR_PATCH
 
 #if STACKER_PATCH
+// XK_Tab = clockwise and XK_grave = anti-clockwise
 #define STACKKEYS(MOD,ACTION) \
-	{ MOD, 						XK_Tab,     ACTION##stack, {.i = INC(+1) } }, \
-	{ MOD|ShiftMask,	XK_Tab,     ACTION##stack, {.i = INC(-1) } }, \
-	{ MOD, 						XK_grave,   ACTION##stack, {.i = PREVSEL } }, \
+	{ MOD, 						XK_Tab,     	ACTION##stack, {.i = INC(+1) } }, \
+	{ MOD,						XK_grave,     ACTION##stack, {.i = INC(-1) } }, \
+
 	/*
+	{ MOD, 						XK_grave,   ACTION##stack, {.i = PREVSEL } }, \
 	{ MOD, 						XK_w,     ACTION##stack, {.i = 0 } }, \
 	{ MOD, 						XK_e,     ACTION##stack, {.i = 1 } }, \
 	{ MOD, 						XK_a,     ACTION##stack, {.i = 2 } }, \
@@ -938,8 +940,8 @@ static Key keys[] = {
 	#endif // CYCLELAYOUTS_PATCH
 
 	#if SHIFTVIEW_CLIENTS_PATCH
-	{ MODKEY,             					XK_Tab,        shiftviewclients,       { .i = +1 } },
-	{ MODKEY|ShiftMask,             XK_Tab,  			 shiftviewclients,       { .i = -1 } },
+	{ MODKEY,             					XK_Tab,        shiftviewclients,       { .i = +1 } }, // clockwise
+	{ MODKEY,             					XK_grave,  		 shiftviewclients,       { .i = -1 } }, // anti-clockwise
   #endif // SHIFTVIEW_CLIENTS_PATCH
 
 	#if STACKER_PATCH

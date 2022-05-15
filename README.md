@@ -29,17 +29,20 @@ Here are some details about my setup:
 
 # TODO
 - [x] Switch to [xrdb patch](https://dwm.suckless.org/patches/xrdb/) for theme switching
-- [ ] Explain the features of this setup
-- [ ] Throughly explain the installation procedure and how everything works
-	- [ ] Mention the issue about hardcoded path
+- [x] Fix the issue with hardcoded path
+- [ ] Explain installation procedure and how everything works
 	- [ ] Mention the mandatory and optional dependencies
-	- [ ] Make guides for Arch and debian
+	- [ ] Make a basic guide
+	- [ ] Make a detailed guide
+	- [ ] Make guides for fedora and debian
+- [ ] Redo setup on an updated version of dwm-flexipatch
+- [ ] Explain the features of this setup
 - [ ] Switch to rofi from dmenu (but keep dmenu as an alternative)
 - [ ] Make new colorschemes
-- [ ] Rice Firefox
+- [ ] Rice Firefox or switch to vieb
 - [ ] Create conky and eww widgets
 - [ ] Remove unused patches
-- [ ] use flexipatch-finalizer
+- [ ] Give credit to proper persons and projects
 
 # Setup
 - will write about it soon
