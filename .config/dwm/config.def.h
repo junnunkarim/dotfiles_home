@@ -129,8 +129,8 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 static const char font[]                 = "monospace 10";
 #else
 static const char *fonts[]               = {
-	"JetBrainsMono Nerd Font Mono:style=Medium:size=13",
-	//"Iosevka Nerd Font Mono:style:Boldsize=13",
+	//"JetBrainsMono Nerd Font Mono:style=Medium:size=13",
+	"Iosevka Nerd Font Mono:style=Medium:size=13",
 	//"FantasqueSansMono Nerd Font:size=15",
 	//"Hack Nerd Font:style:medium:size=14",
 	//"Comfortaa:size=15",
@@ -375,7 +375,7 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 static const char *const autostart[] = {
 	"bash", ".fehbg", NULL,
 	"sxhkd", NULL,
-	"luastatus", "-b", "dwm", "-B", "separator=", ".config/dwm/luastatus/backlight.lua", ".config/dwm/luastatus/alsa.lua", ".config/dwm/luastatus/battery.lua", ".config/dwm/luastatus/wifi.lua", ".config/dwm/luastatus/time-date.lua", NULL,
+	"luastatus", "-b", "dwm", "-B", "separator=", ".config/dwm/luastatus/module/backlight.lua", ".config/dwm/luastatus/module/alsa.lua", ".config/dwm/luastatus/module/battery.lua", ".config/dwm/luastatus/module/wifi.lua", ".config/dwm/luastatus/module/time-date.lua", NULL,
 	"xfce4-power-manager", NULL,
 	"/usr/lib/xfce-polkit/xfce-polkit", NULL,
 	"picom", NULL,
@@ -471,6 +471,7 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.class = "kitty", .isfloating = 1)
 	RULE(.class = "Gpick", .isfloating = 1, .iscentered = 1)
+	RULE(.class = "Lxappearance", .isfloating = 1, .iscentered = 1)
 
 	/* class      instance title tags mask switchtotag isfloating monitor */
 	//  { "Alacritty", NULL,  NULL, 1 << 0,        0,          1,         -1  },
@@ -846,6 +847,8 @@ static const char *xkb_layouts[]  = {
 #endif // COMBO_PATCH / SWAPTAGS_PATCH / TAGOTHERMONITOR_PATCH
 
 #if STACKER_PATCH
+// change focus through windows. Note it uses MOD not MODKEY and
+// MOD is ALTKEY here.
 // XK_Tab = clockwise and XK_grave = anti-clockwise
 #define STACKKEYS(MOD,ACTION) \
 	{ MOD, 						XK_Tab,     	ACTION##stack, {.i = INC(+1) } }, \
@@ -940,13 +943,15 @@ static Key keys[] = {
 	#endif // CYCLELAYOUTS_PATCH
 
 	#if SHIFTVIEW_CLIENTS_PATCH
+	// move through open tags
 	{ MODKEY,             					XK_Tab,        shiftviewclients,       { .i = +1 } }, // clockwise
 	{ MODKEY,             					XK_grave,  		 shiftviewclients,       { .i = -1 } }, // anti-clockwise
   #endif // SHIFTVIEW_CLIENTS_PATCH
 
 	#if STACKER_PATCH
+	// defines MOD as ALTKEY
 	STACKKEYS(ALTKEY,                           	 focus)
-	STACKKEYS(MODKEY|ShiftMask,                    push)
+	STACKKEYS(ALTKEY|ShiftMask,                    push)
 	//#else
 	//{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
 	//{ MODKEY,           						XK_k,          focusstack,             {.i = -1 } },
