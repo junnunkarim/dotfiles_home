@@ -161,4 +161,3 @@ export LIBVA_DRIVER_NAME=iHD
 #export VDPAU_DRIVER=va_gl
 
 
-alias ryujinx="AMD_DEBUG=w32ge,w32cs,nohyperz,nofmask glsl_zero_init=true radeonsi_clamp_div_by_zero=true force_integer_tex_nearest=true mesa_glthread=false vblank_mode=0 MESA_NO_ERROR=1 gamemoderun GDK_BACKEND=x11 ~/.local/share/Ryujinx/Ryujinx"

@@ -1,0 +1,52 @@
+#define black 						#252112
+#define dark_brown 				#54381c
+#define dirt_brown 				#6c441d
+#define earth 						#965d32
+#define dark_taupe 				#786248
+#define mocha 						#a47b59
+#define copper 						#cf7837
+#define apricot 					#d8a04d
+#define fawn 							#c4a872
+#define very_light_brown 	#dcbe87
+#define dark1 						#1f232e
+#define dark2 						#1c1d26
+
+dwm.normfgcolor                : black
+dwm.normbgcolor                : copper
+dwm.normbordercolor            : black
+dwm.normfloatcolor             : black
+
+dwm.selfgcolor                 : copper
+dwm.selbgcolor                 : black
+dwm.selbordercolor             : apricot
+dwm.selfloatcolor              : very_light_brown
+
+dwm.titlenormfgcolor           : dark_taupe
+dwm.titlenormbgcolor           : black
+dwm.titlenormbordercolor       : black
+dwm.titlenormfloatcolor        : earth
+
+dwm.titleselfgcolor            : very_light_brown
+dwm.titleselbgcolor            : black
+dwm.titleselbordercolor        : black
+dwm.titleselfloatcolor         : fawn
+
+dwm.tagsnormfgcolor		         : black
+dwm.tagsnormbgcolor            : copper
+dwm.tagsnormbordercolor        : copper
+dwm.tagsnormfloatcolor         : black
+
+dwm.tagsselfgcolor             : copper
+dwm.tagsselbgcolor             : black
+dwm.tagsselbordercolor         : copper
+dwm.tagsselfloatcolor          : black
+
+dwm.hidnormfgcolor             : dirt_brown
+dwm.hidselfgcolor              : dirt_brown
+dwm.hidnormbgcolor             : black
+dwm.hidselbgcolor              : black
+
+dwm.urgfgcolor								 : black
+dwm.urgbgcolor								 : dirt_brown
+dwm.urgbordercolor						 : dirt_brown
+dwm.urgfloatcolor							 : black

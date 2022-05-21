@@ -10,6 +10,7 @@ Here are some details about my setup:
 ---
 - Status Bar: vanilla dwm bar
 - Status Content: [luastatus](https://github.com/shdown/luastatus)
+- Lock Screen: [slock-flexipatch](https://github.com/bakkeby/slock-flexipatch)
 - App Menu: [dmenu-flexipatch](https://github.com/bakkeby/dmenu-flexipatch)
 - Network Menu: [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
 - Dropdown Menu: [tdrop](https://github.com/noctuid/tdrop)
@@ -17,21 +18,27 @@ Here are some details about my setup:
 - Notification Daemon: [Linux Notification Center](https://github.com/phuhl/linux_notification_center)
 - AUR helper: [Paru](https://github.com/Morganamilo/paru)
 - Power Management: [Xfce Power Manger](https://docs.xfce.org/xfce/xfce4-power-manager/start)
+- Brightness Control: [brightnessctl](https://github.com/Hummer12007/brightnessctl)
 - Compositor: [Picom](https://github.com/yshui/picom)
 ---
-- Font: [Nerd fonts JetBrains Mono](https://www.nerdfonts.com/)
+- Font: [Iosevka Nerd Font](https://www.nerdfonts.com/)
 - Shell Prompt: [starship](https://github.com/starship/starship)
 - System Info: [macchina](https://github.com/Macchina-CLI/macchina)
 ---
+- File Manager: [nnn](https://github.com/jarun/nnn) and [Thunar](https://docs.xfce.org/xfce/thunar/start)
 - Ebook Reader: [zathura](https://github.com/pwmt/zathura)
+- Image Viewer: [nsxiv](https://github.com/nsxiv/nsxiv)
+- Video Player: [mpv](https://github.com/mpv-player/mpv)
 - ScreenShot: [Flameshot](https://github.com/flameshot-org/flameshot)
 - Wallpaper Setter: [feh](https://github.com/derf/feh)
+- Color Picker: [Gpick](https://github.com/thezbyg/gpick)
 
 # TODO
 - [x] Switch to [xrdb patch](https://dwm.suckless.org/patches/xrdb/) for theme switching
 - [x] Fix the issue with hardcoded path
+- [x] Create a list of keybindings
 - [ ] Explain installation procedure and how everything works
-	- [ ] Mention the mandatory and optional dependencies
+	- [x] Mention the mandatory and optional dependencies
 	- [ ] Make a basic guide
 	- [ ] Make a detailed guide
 	- [ ] Make guides for fedora and debian
@@ -44,10 +51,125 @@ Here are some details about my setup:
 - [ ] Remove unused patches
 - [ ] Give credit to proper persons and projects
 
-# Setup
-- will write about it soon
+# Dependencies
 
-# dwm patches used
+<details>
+<summary><b>Mandatory</b></summary>
+
+- Xorg
+- xrdb (for reloading xresource colorschemes)
+- Imlib2
+- dmenu (for opening programs, changing theme and using the power menu)
+- [luastatus](https://github.com/shdown/luastatus) (for status info)
+- [sxhkd](https://github.com/baskerville/sxhkd) (for shortcuts)
+- [feh](https://github.com/derf/feh) (for setting wallpaper)
+- font: Iosevka Nerd Font
+	- You can also use any other nerd font, but don't forget to add that font to ```*fonts[]``` in ```config.def.h``` and recompile dwm)
+
+</details>
+
+<details>
+<summary><b>Optional</b></summary>
+
+You may choose not to install any of these and but doing so might make some things not work as intended
+- Terminal: Alacritty (__main__) and  Kitty (__dropdown__)
+	- if you use kitty as your main terminal, replace ```kitty``` to ```Alacritty``` in this  line -  ```RULE(.class = "kitty", .isfloating = 1)``` and replace ```Alacritty``` to ```kitty``` in this line - ```RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 1)``` in ```config.def.h```
+	- if you use any other terminal then you have to modify ```~/.bin/theme_changer``` in order to make that terminal's colorschemes to change automatically when changing theme
+- [Paru](https://github.com/Morganamilo/paru)
+- [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
+- [Linux Notification Center](https://github.com/phuhl/linux_notification_center)
+- [Xfce Power Manager](https://docs.xfce.org/xfce/xfce4-power-manager/start) (only if you are using a laptop)
+- [picom](https://github.com/yshui/picom)
+- [macchina](https://github.com/Macchina-CLI/macchina)
+
+</details>
+
+# Setup 
+## Minimal
+### Arch
+#### Install mandatory dependencies
+- ```sudo pacman -Su --needed xorg xorg-xrdb imlib2 feh ttf-iosevka-nerd```
+#### Clone this repo and cd to it
+- ```git clone https://github.com/junnunkarim/dotfiles-linux```
+- ```cd dotfiles-linux```
+#### work in progress
+- work in progress
+
+# Keybindings
+> __Standard__ <br>
+> super + <any key> == system main shortcuts <br>
+> super + shift + <any key> == system main shortcuts <br>
+> super + ctrl + shift + <any key> == system low priority shortcuts <br>
+> super + alt + shift + <any key> == system low priority shortcuts <br>
+> alt + <any num or alphabet key> == open applications  <br>
+> ctrl + <any num or alpabet key> == open other programs or scripts <br>
+
+<details>
+<summary><b>Keybings that depend on dwm</b></summary>
+
+| __Keybind__										| __Action__ |
+| --- 													| --- |
+| super + b											| toggle bar on/off |
+| super + s											| switch a window form stack with master |
+| super + c											| close a program	|
+| super + shift + q							| quit dwm (only if all programs are closed) |
+| super + space									| toggle floating on/off |
+| super + left/right						| increase/decrease window size |
+| super + shift + ctrl + space 	| cycle through all layouts |
+| super + tab										| move through open tags clockwise |
+| super + ` (backtick)					| move through open tags anti-clockwise |
+| super + 0 (zero)							| toggle gaps on/of |
+| super + shift + i							| hide/unhide window |
+| super + shift + r							| restart dwm |
+| super + f											| toggle fullscreen |
+| super + 0-9										| go to the specified tag |
+| super + shift + 0-9						| move selected window to the specified tag |
+| alt + tab											| move through window focus clockwise |
+| alt + ` (backtick)						| move through window focus anti-clockwise |
+
+</details>
+
+<details>
+<summary><b>Keybindings that are window manager agnostic (sxhkd)</b></summary>
+
+| __Keybind__										| __Action__ |
+| ---														| --- |
+| super + return/enter					| open terminal |
+| super + shift + return/enter	| open dropdown terminal |
+| super + l											| lock screen |
+| super + backspace							| reload sxhkd keybindings |
+| super + n											| open network menu |
+| super + shift + n							| open/close notification center |
+| super + shift + escape				| force kill a program |
+| super + t											| open theme switcher |
+| super + x											| open powermenu |
+| super + d											| open dmenu |
+| super + ctrl + r							| turn on bluelight filter (redshift) |
+| super + ctrl + e							| turn off bluelight filter (redshift) |
+| super + ctrl + p							| open color picker (gpick) |
+| super + alt + f								| open file manager (thunar) |
+| super + alt + n								| open file manager (nnn) |
+| super + alt + b								| open chromium |
+| super + alt + e								| open firefox |
+| super + alt + e								| open vim |
+| super + alt + h								| open bottom |
+| prtsc													| take fullscreen screenshot now |
+| super + prtsc									| take interective screenshot |
+| alt + prtsc										| take fullscreen screenshot after 5 sec |
+| ctrl + prtsc									| take fullscreen screenshot after 10 sec |
+| super + F1										| increase brightness |
+| super + F2										| decrease brightness |
+| super + F5										| increase volume |
+| super + F6										| decrease volume |
+| super + F7										| toggle mute on/off |
+
+</details>
+
+# Active dwm Patches
+
+<details>
+<summary><b>click here</b></summary>
+
 - BAR_AWESOMEBAR_PATCH
 - BAR_EWMHTAGS_PATCH
 - BAR_LTSYMBOL_PATCH
@@ -83,3 +205,5 @@ Here are some details about my setup:
 - HORIZGRID_LAYOUT
 - TILE_LAYOUT
 - MONOCLE_LAYOUT
+
+</details>

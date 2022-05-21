@@ -99,4 +99,7 @@ call plug#end()
 	    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 	endfunction
 
+	" vim-markdown
+	let g:vim_markdown_folding_disabled = 1
+
 	"<new plugin settings>

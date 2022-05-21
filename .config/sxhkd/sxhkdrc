@@ -65,8 +65,14 @@ super + alt + e
 	firefox
 
 # Terminal Apps
-super + alt + {v,n,h}
-	alacritty -e {vim,nnn -dHc,btm}
+super + alt + v
+	alacritty -e vim
+
+super + alt + h
+	alacritty -e btm
+
+super + alt + n
+	alacritty -e bash ~/.bin/nnn_run -T v
 
 ##---------- System Keys ----------##
 
@@ -96,12 +102,12 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	brightnessctl -d "intel_backlight" set 5%-
 
-super + F2
-	brightnessctl -d "intel_backlight" set +5%
+super + F1
+	brightnessctl -d "intel_backlight" set 5%-
 	#xbacklight -dec 5
 
-super + F3
-	brightnessctl -d "intel_backlight" set 5%-
+super + F2
+	brightnessctl -d "intel_backlight" set +5%
 	#xbacklight -inc 5
 	
 # Volume control
