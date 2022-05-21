@@ -35,6 +35,10 @@ super + t
 super + x
 	bash ~/.bin/powermenu
 
+# Keybindings Cheatsheet
+super + k
+	bash ~/.bin/dwm_keybindings
+
 # dmenu
 super + d
 	dmenu_run -l 9 -p "﩯" 
