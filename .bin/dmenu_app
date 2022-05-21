@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+prompt="dmenu -l 9 "
+
+app_path="/usr/share/applications/"
+app="$(ls /usr/share/applications/)"
+
+all_app="$(echo -e "$app" | sed "s/\.desktop*//")" # get the list of desktop file names and remove .desktop from file names
+
+select="$(echo -e "$all_app"| $prompt -p "﩯 ")"
+
+check_term="$(cat "$app_path$select.desktop" | grep Terminal)" # get the line of the selected desktop file that has "Terminal="
+
+echo $check_term
+if [ "$check_term" = "Terminal=true" ]; then
+	Exec=env "$(cat "$app_path$select.desktop" | grep Exec= | sed 's/.*=//g' | sed -n '1p')" # [grep Exec=] means, print the line that has Exec= | [sed 's/.*=//g'] means print everything after '=' | [sed -n '1p'] means only print the first line
+else
+	gtk-launch "$select"
+fi

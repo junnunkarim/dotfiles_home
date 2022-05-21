@@ -163,6 +163,7 @@ Type=XSession
 | super + x											| open powermenu |
 | super + k											| show all keybindings |
 | super + d											| open dmenu |
+| super + a											| open dektop applications selector (dmenu) |
 | super + ctrl + r							| turn on bluelight filter (redshift) |
 | super + ctrl + e							| turn off bluelight filter (redshift) |
 | super + ctrl + p							| open color picker (gpick) |

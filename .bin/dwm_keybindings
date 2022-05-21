@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+prompt="dmenu -l 15 "
+
 option="
 super + b                     toggle bar on/off
 super + s                     switch a window form stack with master
@@ -28,6 +30,7 @@ super + shift + escape        force kill a program
 super + t                     open theme switcher
 super + x                     open powermenu
 super + d                     open dmenu
+super + a                     open desktop application selector (dmenu)
 super + ctrl + r              turn on bluelight filter (redshift)
 super + ctrl + e              turn off bluelight filter (redshift)
 super + ctrl + p              open color picker (gpick)
@@ -48,4 +51,4 @@ super + F6                    decrease volume
 super + F7                    toggle mute on/off
 "
 
-echo -e "$option" | dmenu -l 15 -p "Keybindings"
+echo -e "$option" | $prompt -p "Keybindings"
