@@ -6,6 +6,7 @@ Here are some details about my setup:
 - Terminal: [Alacritty](https://github.com/alacritty/alacritty)
 - Shell: [Bash](https://www.gnu.org/software/bash/)
 - WM: [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch)
+- Login Manager: [ly](https://github.com/fairyglade/ly)
 - Editor: [Vim](https://github.com/vim/vim)
 ---
 - Status Bar: vanilla dwm bar
@@ -75,6 +76,7 @@ You may choose not to install any of these and but doing so might make some thin
 - Terminal: Alacritty (__main__) and  Kitty (__dropdown__)
 	- if you use kitty as your main terminal, replace ```kitty``` to ```Alacritty``` in this  line -  ```RULE(.class = "kitty", .isfloating = 1)``` and replace ```Alacritty``` to ```kitty``` in this line - ```RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 1)``` in ```config.def.h```
 	- if you use any other terminal then you have to modify ```~/.bin/theme_changer``` in order to make that terminal's colorschemes to change automatically when changing theme
+- [ly](https://github.com/fairyglade/ly)
 - [Paru](https://github.com/Morganamilo/paru)
 - [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
 - [Linux Notification Center](https://github.com/phuhl/linux_notification_center)
@@ -95,6 +97,17 @@ You may choose not to install any of these and but doing so might make some thin
 #### Clone this repo and cd to it
 - ```git clone https://github.com/junnunkarim/dotfiles-linux```
 - ```cd dotfiles-linux```
+#### Create a desktop entry
+```sudo vim /usr/share/xsessions/dwm.desktop```
+```
+[Desktop Entry]
+Encoding=UTF-8
+Name=dwm
+Comment=the dynamic window manager
+Exec=dwm
+Icon=dwm
+Type=XSession
+```
 #### work in progress
 - work in progress
 
@@ -112,7 +125,7 @@ You may choose not to install any of these and but doing so might make some thin
 <details>
 <summary><b>Keybindings that depend on dwm</b></summary>
 
-| __Keybind__										| __Action__ |
+| __Keybinding__								| __Action__ |
 | --- 													| --- |
 | super + b											| toggle bar on/off |
 | super + s											| switch a window form stack with master |
@@ -137,7 +150,7 @@ You may choose not to install any of these and but doing so might make some thin
 <details>
 <summary><b>Keybindings that are window manager agnostic (sxhkd)</b></summary>
 
-| __Keybinding__										| __Action__ |
+| __Keybinding__								| __Action__ |
 | ---														| --- |
 | super + return/enter					| open terminal |
 | super + shift + return/enter	| open dropdown terminal |
@@ -148,6 +161,7 @@ You may choose not to install any of these and but doing so might make some thin
 | super + shift + escape				| force kill a program |
 | super + t											| open theme switcher |
 | super + x											| open powermenu |
+| super + k											| show all keybindings |
 | super + d											| open dmenu |
 | super + ctrl + r							| turn on bluelight filter (redshift) |
 | super + ctrl + e							| turn off bluelight filter (redshift) |
