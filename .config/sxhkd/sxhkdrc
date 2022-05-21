@@ -41,7 +41,11 @@ super + k
 
 # dmenu
 super + d
-	dmenu_run -l 9 -p "﩯" 
+	dmenu_run -l 9 -p "﩯 " 
+
+# show desktop applications
+super + a
+	bash ~/.bin/dmenu_app
 
 ##---------- Other programs or scripts (super + ctrl) ----------##
 
