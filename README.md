@@ -78,7 +78,7 @@ You may choose not to install any of these and but doing so might make some thin
 - [Paru](https://github.com/Morganamilo/paru)
 - [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
 - [Linux Notification Center](https://github.com/phuhl/linux_notification_center)
-- [Xfce Power Manager](https://docs.xfce.org/xfce/xfce4-power-manager/start) (only if you are using a laptop)
+- [Xfce Power Manager](https://docs.xfce.org/xfce/xfce4-power-manager/start)
 - [picom](https://github.com/yshui/picom)
 - [macchina](https://github.com/Macchina-CLI/macchina)
 
@@ -86,7 +86,10 @@ You may choose not to install any of these and but doing so might make some thin
 
 # Setup 
 ## Minimal
-### Arch
+
+<details>
+<summary><b>Arch Linux</b></summary>
+
 #### Install mandatory dependencies
 - ```sudo pacman -Su --needed xorg xorg-xrdb imlib2 feh ttf-iosevka-nerd```
 #### Clone this repo and cd to it
@@ -95,17 +98,19 @@ You may choose not to install any of these and but doing so might make some thin
 #### work in progress
 - work in progress
 
+</details>
+
 # Keybindings
-> __Standard__ <br>
-> super + <any key> == system main shortcuts <br>
-> super + shift + <any key> == system main shortcuts <br>
-> super + ctrl + shift + <any key> == system low priority shortcuts <br>
-> super + alt + shift + <any key> == system low priority shortcuts <br>
-> alt + <any num or alphabet key> == open applications  <br>
-> ctrl + <any num or alpabet key> == open other programs or scripts <br>
+> __Standards__ <br>
+> super + [any key] == system main shortcuts <br>
+> super + shift + [any key] == system main shortcuts <br>
+> super + ctrl + shift + [any key] == system low priority shortcuts <br>
+> super + alt + shift + [any key] == system low priority shortcuts <br>
+> alt + [any num or alphabet key] == open applications  <br>
+> ctrl + [any num or alpabet key] == open other programs or scripts <br>
 
 <details>
-<summary><b>Keybings that depend on dwm</b></summary>
+<summary><b>Keybindings that depend on dwm</b></summary>
 
 | __Keybind__										| __Action__ |
 | --- 													| --- |
@@ -117,7 +122,7 @@ You may choose not to install any of these and but doing so might make some thin
 | super + left/right						| increase/decrease window size |
 | super + shift + ctrl + space 	| cycle through all layouts |
 | super + tab										| move through open tags clockwise |
-| super + ` (backtick)					| move through open tags anti-clockwise |
+| super + backtick							| move through open tags anti-clockwise |
 | super + 0 (zero)							| toggle gaps on/of |
 | super + shift + i							| hide/unhide window |
 | super + shift + r							| restart dwm |
@@ -125,14 +130,14 @@ You may choose not to install any of these and but doing so might make some thin
 | super + 0-9										| go to the specified tag |
 | super + shift + 0-9						| move selected window to the specified tag |
 | alt + tab											| move through window focus clockwise |
-| alt + ` (backtick)						| move through window focus anti-clockwise |
+| alt + backtick								| move through window focus anti-clockwise |
 
 </details>
 
 <details>
 <summary><b>Keybindings that are window manager agnostic (sxhkd)</b></summary>
 
-| __Keybind__										| __Action__ |
+| __Keybinding__										| __Action__ |
 | ---														| --- |
 | super + return/enter					| open terminal |
 | super + shift + return/enter	| open dropdown terminal |
