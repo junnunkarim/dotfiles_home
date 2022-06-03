@@ -40,8 +40,7 @@ Here are some details about my setup:
 - [x] Create a list of keybindings
 - [ ] Explain installation procedure and how everything works
 	- [x] Mention the mandatory and optional dependencies
-	- [ ] Make a basic guide
-	- [ ] Make a detailed guide
+	- [x] Make a detailed guide for archlinux
 	- [ ] Make guides for fedora and debian
 - [ ] Redo setup on an updated version of dwm-flexipatch
 - [ ] Explain the features of this setup
@@ -59,10 +58,12 @@ Here are some details about my setup:
 
 - Xorg
 - xrdb (for reloading xresource colorschemes)
-- Imlib2
-- dmenu (for opening programs, changing theme and using the power menu)
+- imlib2
+- alacritty
+- dmenu (for opening programs, showing keybindings, changing theme and using as power menu)
 - [luastatus](https://github.com/shdown/luastatus) (for status info)
 - [sxhkd](https://github.com/baskerville/sxhkd) (for shortcuts)
+- [brightnessctl](https://github.com/Hummer12007/brightnessctl)
 - [feh](https://github.com/derf/feh) (for setting wallpaper)
 - font: Iosevka Nerd Font
 	- You can also use any other nerd font, but don't forget to add that font to ```*fonts[]``` in ```config.def.h``` and recompile dwm)
@@ -74,12 +75,10 @@ Here are some details about my setup:
 
 You may choose not to install any of these and but doing so might make some things not work as intended
 - Terminal: Alacritty (__main__) and  Kitty (__dropdown__)
-	- if you use kitty as your main terminal, replace ```kitty``` to ```Alacritty``` in this  line -  ```RULE(.class = "kitty", .isfloating = 1)``` and replace ```Alacritty``` to ```kitty``` in this line - ```RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 1)``` in ```config.def.h```
+	- if you use kitty as your main terminal, replace ```kitty``` to ```Alacritty``` in this line -  ```RULE(.class = "kitty", .isfloating = 1)``` and replace ```Alacritty``` to ```kitty``` in this line - ```RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 1)``` in ```config.def.h```
 	- if you use any other terminal then you have to modify ```~/.bin/theme_changer``` in order to make that terminal's colorschemes to change automatically when changing theme
-- [ly](https://github.com/fairyglade/ly)
 - [Paru](https://github.com/Morganamilo/paru)
 - [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
-- [Linux Notification Center](https://github.com/phuhl/linux_notification_center)
 - [Xfce Power Manager](https://docs.xfce.org/xfce/xfce4-power-manager/start)
 - [picom](https://github.com/yshui/picom)
 - [macchina](https://github.com/Macchina-CLI/macchina)
@@ -87,33 +86,78 @@ You may choose not to install any of these and but doing so might make some thin
 </details>
 
 # Setup 
-## Minimal
 
 <details>
-<summary><b>Arch Linux</b></summary>
+<summary><b>Arch Linux or Arch based distro</b></summary>
 
-#### Install mandatory dependencies
-- ```sudo pacman -Su --needed xorg xorg-xrdb imlib2 feh ttf-iosevka-nerd```
-#### Clone this repo and cd to it
-- ```git clone https://github.com/junnunkarim/dotfiles-linux```
-- ```cd dotfiles-linux```
-#### Create a desktop entry
-```sudo vim /usr/share/xsessions/dwm.desktop```
-```
-[Desktop Entry]
-Encoding=UTF-8
-Name=dwm
-Comment=the dynamic window manager
-Exec=dwm
-Icon=dwm
-Type=XSession
-```
-#### work in progress
-- work in progress
+> Work in Progress!!!
+### Mandatory Steps
+
+- First backup your dotfiles from your home directory
+- Clone this repo to your preferred directory and cd into it - ```git clone https://github.com/junnunkarim/dotfiles-linux && cd dotfiles-linux```
+
+- Install mandatory dependencies
+	- ```sudo pacman -Su --needed base-devel coreutils xorg imlib2 alacritty lua sxhkd brightnessctl feh ttf-iosevka-nerd```
+	- Install luastatus
+		- ```sudo pacman -Su --needed cmake yajl python-docutils```
+		- ```git clone https://github.com/shdown/luastatus && cd luastatus```
+		- ```cmake . && make && sudo make install```
+- Copy necessary configs -
+	- ```cp -rf .bin .Xresources .xsession ~```
+	- ```cp -rf .config/alacritty .config/dwm .config/dmenu .config/sxhkd .config/wallpaper ~/.config/```
+- Build necessary progarms
+	- ```cd ~/.config/dwm && sudo make install```
+	- ```cd ~/.config/dmenu && sudo make install```
+- Create a desktop entry for dwm
+	- ```sudo vim /usr/share/xsessions/dwm.desktop```
+	```
+	[Desktop Entry]
+	Encoding=UTF-8
+	Name=dwm
+	Comment=the dynamic window manager
+	Exec=dwm
+	Icon=dwm
+	Type=XSession
+	```
+- Open ```~/.config/sxhkd/sxhkdrc``` and ```~/.config/dwm/config.def.h``` in a text editor and modify the keybindings to your need
+- Logout and login to dwm
+- After getting into dwm press ```super + t``` and choose any colorscheme (this is to load the wallpaper for the first time)
+
+### Optional steps
+
+> make sure you are inside dotfiles-linux directory
+- Install paru (AUR helper)
+	- ```git clone https://aur.archlinux.org/paru.git```
+	- ```cd paru```
+	- ```makepkg -si```
+- My ```.bashrc```
+	- ```cp .bashrc ~```
+	- ```sudo pacman -Su --needed exa starship```
+	- ```paru -S --needed macchina```
+- My ```.vimrc```
+	- ```cp .vimrc ~```
+	- install [vim-plug](https://github.com/junegunn/vim-plug)
+	- setup [coc-nvim](https://github.com/neoclide/coc.nvim)
+- picom
+	- ```sudo pacman -Su --needed picom```
+- networkmanager-dmenu
+	- ```paru -S --needed networkmanager-dmenu-git```
+- redshift
+	- ```sudo pacman -Su --needed redshift```
+- Dropdown terminal
+	- ```paru -S --needed kitty tdrop tmux```
+	- ```cp -rf .config/kitty ~/.config```
+- zathura
+	- ```sudo pacman -Su --needed zathura```
+	- ```cp -rf .config/zathura ~/.config/```
+- slock
+	- ```cp -rf .config/slock ~/.config/```
+	- ```cd ~/.config/slock && sudo make install```
+	- Continue setup using [arch wiki](https://wiki.archlinux.org/title/Slock)
 
 </details>
 
-# Keybindings
+# Default Keybindings
 > __Standards__ <br>
 > super + [any key] == system main shortcuts <br>
 > super + shift + [any key] == system main shortcuts <br>
@@ -191,7 +235,6 @@ Type=XSession
 <summary><b>click here</b></summary>
 
 - BAR_AWESOMEBAR_PATCH
-- BAR_EWMHTAGS_PATCH
 - BAR_LTSYMBOL_PATCH
 - BAR_STATUS_PATCH
 - BAR_STATUSBUTTON_PATCH
@@ -202,6 +245,7 @@ Type=XSession
 - BAR_TITLE_LEFT_PAD_PATCH 
 - BAR_BORDER_PATCH 
 - BAR_CENTEREDWINDOWNAME_PATCH 
+- BAR_EWMHTAGS_PATCH
 - BAR_IGNORE_XFT_ERRORS_WHEN_DRAWING_TEXT_PATCH
 - BAR_PADDING_VANITYGAPS_PATCH 
 - ATTACHBOTTOM_PATCH
@@ -210,6 +254,7 @@ Type=XSession
 - COOL_AUTOSTART_PATCH
 - CYCLELAYOUTS_PATCH
 - FOCUSONNETACTIVE_PATCH
+- LOSEFULLSCREEN_PATCH
 - NET_CLIENT_LIST_STACKING_PATCH 
 - ONLYQUITONEMPTY_PATCH
 - RESTARTSIG_PATCH
@@ -218,6 +263,7 @@ Type=XSession
 - SWITCHTAG_PATCH 
 - TOGGLEFULLSCREEN_PATCH 
 - VANITYGAPS_PATCH 
+- XRDB_PATCH
 - ZOOMSWAP_PATCH
 - BSTACK_LAYOUT
 - DECK_LAYOUT 
