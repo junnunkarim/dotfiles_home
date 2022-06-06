@@ -9,6 +9,7 @@ call plug#begin('~/.vim')
 	"Plug 'ryanoasis/vim-devicons'
 	"Plug 'preservim/vim-markdown'
 	"Plug 'ap/vim-css-color'
+	Plug 'elkowar/yuck.vim'
 
 	" autocomplete
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}

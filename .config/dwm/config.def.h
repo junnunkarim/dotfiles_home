@@ -469,9 +469,11 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "UTILITY", .isfloating = 1)
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
+
 	RULE(.class = "kitty", .isfloating = 1)
 	RULE(.class = "Gpick", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Lxappearance", .isfloating = 1, .iscentered = 1)
+	RULE(.class = "Xfce-polkit", .isfloating = 1, .iscentered = 1)
 
 	/* class      instance title tags mask switchtotag isfloating monitor */
 	//  { "Alacritty", NULL,  NULL, 1 << 0,        0,          1,         -1  },

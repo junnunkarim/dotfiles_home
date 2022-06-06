@@ -9,4 +9,10 @@ all_app="$(echo -e "$app" | sed "s/\.desktop*//")" # get the list of desktop fil
 
 select="$(echo -e "$all_app"| $prompt -p "﩯 ")"
 
-$(cat "$app_path$select.desktop" | grep Exec= | grep -v -m1 'Try' | sed -n 's/Exec=//p') # get file names | get the lines that has "Exec=" | remove lines that has Try in it. for example "TryExec" | get everything after "Exec="
+terminal="$(cat "$app_path$select.desktop" | grep Terminal= | sed -n 's/Terminal=//p')"
+
+if [[ "$terminal" == "true" ]]; then
+	$(alacritty -e $(cat "$app_path$select.desktop" | grep Exec= | grep -v -m1 'Try' | sed -n 's/Exec=//p')) # get file names | get the lines that has "Exec=" | remove lines that has Try in it. for example "TryExec" | get everything after "Exec="
+else
+	$(cat "$app_path$select.desktop" | grep Exec= | grep -v -m1 'Try' | sed -n 's/Exec=//p') # get file names | get the lines that has "Exec=" | remove lines that has Try in it. for example "TryExec" | get everything after "Exec="
+fi

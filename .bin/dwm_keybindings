@@ -19,7 +19,7 @@ super + f                     toggle fullscreen
 super + 0-9                   go to the specified tag
 super + shift + 0-9           move selected window to the specified tag
 alt + tab                     move through window focus clockwise
-alt + backtick        move through window focus anti-clockwise
+alt + backtick                move through window focus anti-clockwise
 super + return/enter          open terminal
 super + shift + return/enter  open dropdown terminal
 super + l                     lock screen
