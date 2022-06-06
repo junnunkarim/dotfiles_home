@@ -1,46 +1,48 @@
+<h1 align="center"><i>~/dotfiles</i></h1>
+
 ![img](/ss/dwm_gruvbox_cozy-night.png)
 
 # Information
 Here are some details about my setup:
-- OS: [Arch Linux](https://archlinux.org/)
-- Terminal: [Alacritty](https://github.com/alacritty/alacritty)
-- Shell: [Bash](https://www.gnu.org/software/bash/)
-- WM: [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch)
-- Login Manager: [ly](https://github.com/fairyglade/ly)
-- Editor: [Vim](https://github.com/vim/vim)
+- OS: 									[Arch Linux](https://archlinux.org/)
+- Terminal: 						[Alacritty](https://github.com/alacritty/alacritty)
+- Shell: 								[Bash](https://www.gnu.org/software/bash/)
+- WM: 									[dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch)
+- Login Manager: 				[ly](https://github.com/fairyglade/ly)
+- Editor: 							[Vim](https://github.com/vim/vim)
 ---
-- Status Bar: vanilla dwm bar
-- Status Content: [luastatus](https://github.com/shdown/luastatus)
-- Lock Screen: [slock-flexipatch](https://github.com/bakkeby/slock-flexipatch)
-- App Menu: [dmenu-flexipatch](https://github.com/bakkeby/dmenu-flexipatch)
-- Network Menu: [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
-- Dropdown Menu: [tdrop](https://github.com/noctuid/tdrop)
-- Hotkey Daemon: [sxhkd](https://github.com/baskerville/sxhkd)
-- Notification Daemon: [Linux Notification Center](https://github.com/phuhl/linux_notification_center)
-- AUR helper: [Paru](https://github.com/Morganamilo/paru)
-- Power Management: [Xfce Power Manger](https://docs.xfce.org/xfce/xfce4-power-manager/start)
-- Brightness Control: [brightnessctl](https://github.com/Hummer12007/brightnessctl)
-- Compositor: [Picom](https://github.com/yshui/picom)
+- Status Bar: 					vanilla dwm bar
+- Status Content: 			[luastatus](https://github.com/shdown/luastatus)
+- Lock Screen: 					[slock-flexipatch](https://github.com/bakkeby/slock-flexipatch)
+- App Menu: 						[dmenu-flexipatch](https://github.com/bakkeby/dmenu-flexipatch)
+- Network Menu: 				[networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
+- Dropdown Menu: 				[tdrop](https://github.com/noctuid/tdrop)
+- Hotkey Daemon: 				[sxhkd](https://github.com/baskerville/sxhkd)
+- Notification Daemon: 	[Linux Notification Center](https://github.com/phuhl/linux_notification_center)
+- AUR helper: 					[Paru](https://github.com/Morganamilo/paru)
+- Power Management: 		[Xfce Power Manger](https://docs.xfce.org/xfce/xfce4-power-manager/start)
+- Brightness Control: 	[brightnessctl](https://github.com/Hummer12007/brightnessctl)
+- Compositor: 					[Picom](https://github.com/yshui/picom)
 ---
-- Font: [Iosevka Nerd Font](https://www.nerdfonts.com/)
-- Shell Prompt: [starship](https://github.com/starship/starship)
-- System Info: [macchina](https://github.com/Macchina-CLI/macchina)
+- Font: 								[Iosevka Nerd Font](https://www.nerdfonts.com/)
+- Shell Prompt: 				[starship](https://github.com/starship/starship)
+- System Info: 					[macchina](https://github.com/Macchina-CLI/macchina)
 ---
-- File Manager: [nnn](https://github.com/jarun/nnn) and [Thunar](https://docs.xfce.org/xfce/thunar/start)
-- Ebook Reader: [zathura](https://github.com/pwmt/zathura)
-- Image Viewer: [nsxiv](https://github.com/nsxiv/nsxiv)
-- Video Player: [mpv](https://github.com/mpv-player/mpv)
-- ScreenShot: [Flameshot](https://github.com/flameshot-org/flameshot)
-- Wallpaper Setter: [feh](https://github.com/derf/feh)
-- Color Picker: [Gpick](https://github.com/thezbyg/gpick)
+- File Manager: 				[nnn](https://github.com/jarun/nnn) and [Thunar](https://docs.xfce.org/xfce/thunar/start)
+- Ebook Reader: 				[zathura](https://github.com/pwmt/zathura)
+- Image Viewer: 				[nsxiv](https://github.com/nsxiv/nsxiv)
+- Video Player: 				[mpv](https://github.com/mpv-player/mpv)
+- ScreenShot: 					[Flameshot](https://github.com/flameshot-org/flameshot)
+- Wallpaper Setter: 		[feh](https://github.com/derf/feh)
+- Color Picker: 				[Gpick](https://github.com/thezbyg/gpick)
 
 # TODO
-- [x] Switch to [xrdb patch](https://dwm.suckless.org/patches/xrdb/) for theme switching
-- [x] Fix the issue with hardcoded path
-- [x] Create a list of keybindings
+- [x] ~~Switch to [xrdb patch](https://dwm.suckless.org/patches/xrdb/) for theme switching~~
+- [x] ~~Fix the issue with hardcoded path~~
+- [x] ~~Create a list of keybindings~~
 - [ ] Explain installation procedure and how everything works
-	- [x] Mention the mandatory and optional dependencies
-	- [x] Make a detailed guide for archlinux
+	- [x] ~~Mention the mandatory and optional dependencies~~
+	- [x] ~~Make a detailed guide for archlinux~~
 	- [ ] Make guides for fedora and debian
 - [ ] Redo setup on an updated version of dwm-flexipatch
 - [ ] Explain the features of this setup
@@ -56,17 +58,16 @@ Here are some details about my setup:
 <details>
 <summary><b>Mandatory</b></summary>
 
-- Xorg
+- Xorg (for beginners,I recommend installing the whole package)
 - xrdb (for reloading xresource colorschemes)
-- imlib2
-- alacritty
-- dmenu (for opening programs, showing keybindings, changing theme and using as power menu)
+- A terminal emulator
+	- if you use anything other than alacritty, modify the line after ```super + Return``` in ```~/.config/sxhkd/sxhkdrc``` to your terminal's name (__the theme_changer script will only change the colorschemes of alacritty or kitty__)
+- dmenu (for opening programs, showing keybindings, changing theme, using as power menu etc)
 - [luastatus](https://github.com/shdown/luastatus) (for status info)
 - [sxhkd](https://github.com/baskerville/sxhkd) (for shortcuts)
-- [brightnessctl](https://github.com/Hummer12007/brightnessctl)
 - [feh](https://github.com/derf/feh) (for setting wallpaper)
-- font: Iosevka Nerd Font
-	- You can also use any other nerd font, but don't forget to add that font to ```*fonts[]``` in ```config.def.h``` and recompile dwm)
+- Font: Iosevka Nerd Font
+	- You can also use any other nerd font, but don't forget to add that font to ```*fonts[]``` in ```~/.config/dwm/config.def.h``` and recompile)
 
 </details>
 
@@ -74,13 +75,15 @@ Here are some details about my setup:
 <summary><b>Optional</b></summary>
 
 You may choose not to install any of these and but doing so might make some things not work as intended
-- Terminal: Alacritty (__main__) and  Kitty (__dropdown__)
-	- if you use kitty as your main terminal, replace ```kitty``` to ```Alacritty``` in this line -  ```RULE(.class = "kitty", .isfloating = 1)``` and replace ```Alacritty``` to ```kitty``` in this line - ```RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 1)``` in ```config.def.h```
-	- if you use any other terminal then you have to modify ```~/.bin/theme_changer``` in order to make that terminal's colorschemes to change automatically when changing theme
+- Drop-down terminal: Kitty
+	- Drop-down creator - [tdrop](https://github.com/noctuid/tdrop)
+	- If you want to use another as a drop-down terminal, replace ```kitty``` to your preferred terminal name in this line -  ```RULE(.class = "kitty", .isfloating = 1)``` in ```~/.config/dwm/config.def.h```
 - [Paru](https://github.com/Morganamilo/paru)
-- [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
-- [Xfce Power Manager](https://docs.xfce.org/xfce/xfce4-power-manager/start)
 - [picom](https://github.com/yshui/picom)
+- [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
+- [brightnessctl](https://github.com/Hummer12007/brightnessctl)
+- [exa](https://github.com/ogham/exa)
+- [starship](https://github.com/starship/starship)
 - [macchina](https://github.com/Macchina-CLI/macchina)
 
 </details>
@@ -90,22 +93,23 @@ You may choose not to install any of these and but doing so might make some thin
 <details>
 <summary><b>Arch Linux or Arch based distro</b></summary>
 
-> Work in Progress!!!
+> __Work in Progress!!!__
 ### Mandatory Steps
 
-- First backup your dotfiles from your home directory
+> __WARNING!!! Backup your dotfiles from your home directory. These steps below will overwrite your configs.__
+
 - Clone this repo to your preferred directory and cd into it - ```git clone https://github.com/junnunkarim/dotfiles-linux && cd dotfiles-linux```
 
 - Install mandatory dependencies
-	- ```sudo pacman -Su --needed base-devel coreutils xorg imlib2 alacritty lua sxhkd brightnessctl feh ttf-iosevka-nerd```
+	- ```sudo pacman -Su --needed base-devel coreutils xorg alacritty lua sxhkd feh ttf-iosevka-nerd```
 	- Install luastatus
 		- ```sudo pacman -Su --needed cmake yajl python-docutils```
-		- ```git clone https://github.com/shdown/luastatus && cd luastatus```
-		- ```cmake . && make && sudo make install```
+		- Continue from here - [luastatus](https://github.com/shdown/luastatus#installation)
 - Copy necessary configs -
-	- ```cp -rf .bin .Xresources .xsession ~```
+	- ```cp -rf .bin .Xresources .xinitrc ~```
+		- __Do not copy ```.xsession``` as it will change your keyboard layout to dvorak.__
 	- ```cp -rf .config/alacritty .config/dwm .config/dmenu .config/sxhkd .config/wallpaper ~/.config/```
-- Build necessary progarms
+- Build dwm and dmenu
 	- ```cd ~/.config/dwm && sudo make install```
 	- ```cd ~/.config/dmenu && sudo make install```
 - Create a desktop entry for dwm
@@ -119,25 +123,28 @@ You may choose not to install any of these and but doing so might make some thin
 	Icon=dwm
 	Type=XSession
 	```
-- Open ```~/.config/sxhkd/sxhkdrc``` and ```~/.config/dwm/config.def.h``` in a text editor and modify the keybindings to your need
-- Logout and login to dwm
-- After getting into dwm press ```super + t``` and choose any colorscheme (this is to load the wallpaper for the first time)
+- Open ```~/.config/sxhkd/sxhkdrc``` and ```~/.config/dwm/config.def.h``` in a text editor and modify the keybindings to your needs
+- Login to dwm using a display manager
+	- After getting into dwm press ```super + t``` and choose any colorscheme (this is to load the wallpaper for the first time)
 
 ### Optional steps
 
-> make sure you are inside dotfiles-linux directory
+> __For each options below, make sure that you are in the dotfiles-linux directory__
+
 - Install paru (AUR helper)
 	- ```git clone https://aur.archlinux.org/paru.git```
 	- ```cd paru```
 	- ```makepkg -si```
-- My ```.bashrc```
+- If you want to use my ```.bashrc```
 	- ```cp .bashrc ~```
 	- ```sudo pacman -Su --needed exa starship```
 	- ```paru -S --needed macchina```
-- My ```.vimrc```
+- If you want to use my ```.vimrc```
 	- ```cp .vimrc ~```
 	- install [vim-plug](https://github.com/junegunn/vim-plug)
 	- setup [coc-nvim](https://github.com/neoclide/coc.nvim)
+- brightnessctl
+	- ```sudo pacman -Su --needed brightnessctl```
 - picom
 	- ```sudo pacman -Su --needed picom```
 - networkmanager-dmenu
@@ -153,7 +160,8 @@ You may choose not to install any of these and but doing so might make some thin
 - slock
 	- ```cp -rf .config/slock ~/.config/```
 	- ```cd ~/.config/slock && sudo make install```
-	- Continue setup using [arch wiki](https://wiki.archlinux.org/title/Slock)
+	- Continue lockscreen setup using [arch wiki - slock](https://wiki.archlinux.org/title/Slock)
+- Install other programs to your needs
 
 </details>
 
@@ -240,8 +248,7 @@ You may choose not to install any of these and but doing so might make some thin
 - BAR_STATUSBUTTON_PATCH
 - BAR_STATUS2D_PATCH
 - BAR_SYSTRAY_PATCH
-- BAR_UNDERLINETAGS_PATCH 
-- BAR_WINICON_PATCH 
+- BAR_UNDERLINETAGS_PATCH  
 - BAR_TITLE_LEFT_PAD_PATCH 
 - BAR_BORDER_PATCH 
 - BAR_CENTEREDWINDOWNAME_PATCH 

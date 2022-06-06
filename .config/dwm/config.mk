@@ -49,7 +49,7 @@ XRENDER = -lXrender
 XCBLIBS = -lX11-xcb -lxcb -lxcb-res
 
 # This is needed for the winicon patch / BAR_WINICON_PATCH
-IMLIB2LIBS = -lImlib2
+# IMLIB2LIBS = -lImlib2
 
 # includes and libs
 INCS = -I${X11INC} -I${FREETYPEINC} ${YAJLINC} ${PANGOINC}
