@@ -39,7 +39,11 @@ theme_change()
 	#make -s -C ${dwm_dir} clean
 	
 	xrdb -merge -I$HOME ~/.Xresources # reload Xresources
-	kill -HUP dwmpid $dwm_pid # restart dwm
+
+        # calls xrdb function in dwm
+        xsetroot -name "fsignal:2"
+        # update luastatus
+        kill -9 $(pidof luastatus)
 
 	#make -s -C ${dwm_dir}/dmenu clean
 	#bash $HOME/.bin/sudo_passhelper make -s -C ${dmenu_dir} install
