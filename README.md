@@ -1,4 +1,5 @@
-<h1 align="center"><i>~/dotfiles</i></h1>
+<h1 align="center"><i><u>~/dotfiles</u></i></h1>
+---
 
 ![img](/ss/dwm_gruvbox_cozy-night.png)
 
@@ -292,6 +293,29 @@ You may choose not to install any of these and but doing so might make some thin
 - MONOCLE_LAYOUT
 
 </details>
+
+# Screenshots
+
+<details>
+<summary><b>click here</b></summary>
+
+- Gruvbox
+  - ![img](/ss/dwm_gruvbox_1.png)
+  - ![img](/ss/dwm_gruvbox_4.png)
+- Cozy-Night 
+  - ![img](/ss/dwm_cozy-night_1.png)
+  - ![img](/ss/dwm_cozy-night_4.png)
+- Nord
+  - ![img](/ss/dwm_nord_1.png)
+  - ![img](/ss/dwm_nord_3.png)
+- Dracula
+  - ![img](/ss/dwm_dracula_1.png)
+  - ![img](/ss/dwm_dracula_3.png)
+
+</details>
+
+# r/unixporn
+- [[dwm] Well, what do you say?](https://www.reddit.com/r/unixporn/comments/un7we2/dwm_well_what_do_you_say/?utm_source=share&utm_medium=web2x&context=3)
 
 # Credit
 
