@@ -41,14 +41,14 @@ theme_change()
 		sed -i "0,/'colorscheme'/{s/\('colorscheme':\)\(.*\)/\ 'colorscheme': 'tokyonight',/}" .vimrc
 
     # nvim
-		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" ~/.config/nvim/lua/user/colorscheme.lua
+		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" ~/.config/nvim/lua/colorscheme.lua
 	else
     # vim
 		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" .vimrc
 		sed -i "s/\('colorscheme':\)\(.*\)/'colorscheme': '$1',/" .vimrc
 
     # nvim
-		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" ~/.config/nvim/lua/system/colorscheme.lua
+		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" ~/.config/nvim/lua/colorscheme.lua
 	fi
 
 	#make -s -C ${dwm_dir} clean
