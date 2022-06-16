@@ -299,18 +299,18 @@ You may choose not to install any of these and but doing so might make some thin
 <details>
 <summary><b>click here</b></summary>
 
-- Gruvbox
-  - ![img](/ss/dwm_gruvbox_1.png)
-  - ![img](/ss/dwm_gruvbox_4.png)
-- Cozy-Night 
-  - ![img](/ss/dwm_cozy-night_1.png)
-  - ![img](/ss/dwm_cozy-night_4.png)
-- Nord
-  - ![img](/ss/dwm_nord_1.png)
-  - ![img](/ss/dwm_nord_3.png)
-- Dracula
-  - ![img](/ss/dwm_dracula_1.png)
-  - ![img](/ss/dwm_dracula_3.png)
+## Gruvbox
+![img](/ss/dwm_gruvbox_1.png)
+![img](/ss/dwm_gruvbox_4.png)
+## Cozy-Night 
+![img](/ss/dwm_cozy-night_1.png)
+![img](/ss/dwm_cozy-night_4.png)
+## Nord
+![img](/ss/dwm_nord_1.png)
+![img](/ss/dwm_nord_3.png)
+## Dracula
+![img](/ss/dwm_dracula_1.png)
+![img](/ss/dwm_dracula_3.png)
 
 </details>
 
