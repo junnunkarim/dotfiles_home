@@ -23,6 +23,7 @@ call plug#begin('~/.vim')
 	Plug 'arcticicestudio/nord-vim'
 	Plug 'cocopon/iceberg.vim'
 	Plug 'ajmwagar/vim-deus'
+	Plug 'dracula/vim', { 'as': 'dracula'  }
 call plug#end()
 
 "ColorScheme Config
@@ -77,7 +78,7 @@ call plug#end()
 
 	"Lightline
 	let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 		             'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste'  ],
       \             [ 'readonly', 'filename'  ] ],

@@ -1,0 +1,28 @@
+#define black0  #282a36
+#define black1  #44475a
+#define white   #f8f8f2
+#define black2  #6272a4
+#define cyan    #8be9fd
+#define green   #50fa7b
+#define orange  #ffb86c
+#define pink    #ff79c6
+#define purple  #bd93f9
+#define red     #ff5555
+#define yellow  #f1fa8c
+
+dmenu.foreground:				white
+dmenu.background:				black0
+
+dmenu.selforeground:		black0
+dmenu.selbackground:		purple
+
+dmenu.outforeground:		red
+dmenu.outbackground:		black0
+
+dmenu.bordercolor:			pink
+
+dmenu.selhlforeground:	cyan
+dmenu.selhlbackground:	purple
+
+dmenu.hlforeground:			cyan
+dmenu.hlbackground:			black0

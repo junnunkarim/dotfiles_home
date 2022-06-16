@@ -17,11 +17,12 @@ dwm_pid="$(pidof dwm)"
 # Theme
 cancel="窱 Cancel"
 theme1=" Cozy-Night"
-theme2=" Cozy-Night(Warm Color)"
+theme2=" Dracula"
 theme3=" Gruvbox"
+theme4=" Nord"
 
 # Variable to pass to dmenu or rofi
-option="$cancel\n$theme1\n$theme2\n$theme3"
+option="$cancel\n$theme1\n$theme2\n$theme3\n$theme4"
 
 
 theme_change()
@@ -33,17 +34,34 @@ theme_change()
 	cp ${alacritty_dir}/colorscheme/$1.yml ${alacritty_dir}/color.yml
 	cp ${kitty_dir}/colorscheme/$1.conf ${kitty_dir}/color.conf
 	cp ${zathura_dir}/theme/$1 ${zathura_dir}/theme.color
+	
+	if [[ "$1" == "cozy-night" ]]; then
+    # vim
+		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" .vimrc
+		sed -i "0,/'colorscheme'/{s/\('colorscheme':\)\(.*\)/\ 'colorscheme': 'tokyonight',/}" .vimrc
+
+    # nvim
+		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" ~/.config/nvim/lua/user/colorscheme.lua
+	else
+    # vim
+		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" .vimrc
+		sed -i "s/\('colorscheme':\)\(.*\)/'colorscheme': '$1',/" .vimrc
+
+    # nvim
+		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" ~/.config/nvim/lua/system/colorscheme.lua
+	fi
 
 	#make -s -C ${dwm_dir} clean
 	#bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir} install
 	#make -s -C ${dwm_dir} clean
 	
 	xrdb -merge -I$HOME ~/.Xresources # reload Xresources
+	#kill -HUP dwmpid $dwm_pid # restart dwm
 
-        # calls xrdb function in dwm
-        xsetroot -name "fsignal:2"
-        # update luastatus
-        kill -9 $(pidof luastatus)
+  # calls xrdb function in dwm
+  xsetroot -name "fsignal:2"
+  # update luastatus
+  kill -9 $(pidof luastatus)
 
 	#make -s -C ${dwm_dir}/dmenu clean
 	#bash $HOME/.bin/sudo_passhelper make -s -C ${dmenu_dir} install
@@ -57,10 +75,15 @@ case $select in
 		theme_change cozy-night
 		;;
 	$theme2)
-		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas_warm-color.png
-		theme_change cozy-night_warm
+		feh --bg-fill $HOME/.config/wallpaper/pixelart_arabian_palace_princess.png
+		theme_change dracula
 		;;
 	$theme3)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_house_inside_girl_book_dog.png
 		theme_change gruvbox
-esac
+		;;
+	$theme4)
+		feh --bg-fill $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord.png
+		theme_change nord
+		;;
+	esac

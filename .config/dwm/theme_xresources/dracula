@@ -1,0 +1,51 @@
+#define black0 	#282a36
+#define black1 	#44475a
+#define white 	#f8f8f2
+#define black2 	#6272a4
+#define cyan 		#8be9fd
+#define green 	#50fa7b
+#define orange 	#ffb86c
+#define pink 		#ff79c6
+#define purple 	#bd93f9
+#define red 		#ff5555
+#define yellow 	#f1fa8c
+
+dwm.normfgcolor                : cyan
+dwm.normbgcolor                : black0
+dwm.normbordercolor            : black0
+dwm.normfloatcolor             : black2
+
+dwm.selfgcolor                 : purple
+dwm.selbgcolor                 : black0
+dwm.selbordercolor             : purple
+dwm.selfloatcolor              : cyan
+
+dwm.titlenormfgcolor           : black2
+dwm.titlenormbgcolor           : blacUk0
+dwm.titlenormbordercolor       : black0
+dwm.titlenormfloatcolor        : black2
+
+dwm.titleselfgcolor            : white
+dwm.titleselbgcolor            : black0
+dwm.titleselbordercolor        : yellow
+dwm.titleselfloatcolor         : purple
+
+dwm.tagsnormfgcolor		         : black0
+dwm.tagsnormbgcolor            : purple
+dwm.tagsnormbordercolor        : yellow
+dwm.tagsnormfloatcolor         : black0
+
+dwm.tagsselfgcolor             : purple
+dwm.tagsselbgcolor             : black0
+dwm.tagsselbordercolor         : purple
+dwm.tagsselfloatcolor          : black0
+
+dwm.hidnormfgcolor             : pink
+dwm.hidselfgcolor              : pink
+dwm.hidnormbgcolor             : black0
+dwm.hidselbgcolor              : black0
+
+dwm.urgfgcolor								 : black0
+dwm.urgbgcolor								 : red
+dwm.urgbordercolor						 : red
+dwm.urgfloatcolor							 : green

@@ -1,3 +1,3 @@
 include theme.color
 
-set selection-clipboard clipboard
+set selection-clipboard "clipboard"
