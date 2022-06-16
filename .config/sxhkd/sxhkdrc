@@ -51,13 +51,19 @@ super + a
 
 # Redshift
 super + ctrl + r
-  redshift -P -O 5000
+  redshift -P -O 5000 # turn on
 
-super + ctrl + e
-	redshift -x
+super + ctrl + n
+	redshift -x # turn off 
+
+# Picom
+super + ctrl + p
+	picom
+super + ctrl + u
+	pkill picom
 
 # Color Picker
-super + ctrl + p
+super + ctrl + g
 	gpick
 
 ##---------- Applications (super + alt) ----------##

@@ -3,7 +3,7 @@
 
 export HISTCONTROL=ignoreboth:erasedups
 export EDITOR='vim'
-export VISUAL='nvim'
+export VISUAL='vim'
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin/:~/.bin"
 
 #PS1="\[\e[0;38;5;203m\]┌\[\e[0;38;5;203m\][\[\e[0;38;5;203m\]\h\[\e[0;38;5;203m\]] \[\e[0;4;38;5;38m\]\w \[\e[0;4;38;5;77m\]\$\[\e[0m\]\n\[\e[0;38;5;203m\]└■|\[\e[0m\]"
@@ -27,8 +27,6 @@ alias udpate='sudo pacman -Syyu'
 alias upate='sudo pacman -Syyu'
 alias updte='sudo pacman -Syyu'
 alias updqte='sudo pacman -Syyu'
-alias upqll="yay -Syu --noconfirm"
-alias upal="yay -Syu --noconfirm"
 
 # list
 alias ls='exa --icons'
@@ -38,6 +36,19 @@ alias lt='exa -aT'
 
 # ripgrep
 alias rg="rg --sort path"
+
+# xplr
+alias xx="xplr"
+
+# rm
+alias rm="rm -I"
+
+# nvim
+alias nv="nvim"
+
+# buku
+alias b="buku --suggest"
+alias buku_list="buku -p"
 
 # Colorize the grep command output
 alias grep='grep --color=auto'
@@ -159,5 +170,3 @@ eval "$(starship init bash)"
 # intel hardware accelaration
 export LIBVA_DRIVER_NAME=iHD
 #export VDPAU_DRIVER=va_gl
-
-

@@ -1662,7 +1662,7 @@ static Signal signals[] = {
 static Signal signals[] = {
 	/* signum       function        argument  */
 	{ 1,            setlayout,      {.v = 0} },
-	{ 2,            xrdb,           {.v = 0} },
+  { 2,            xrdb,           {.v = 0} },
 };
 #endif // DWMC_PATCH
 

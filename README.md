@@ -4,37 +4,37 @@
 
 # Information
 Here are some details about my setup:
-- OS: 									[Arch Linux](https://archlinux.org/)
-- Terminal: 						[Alacritty](https://github.com/alacritty/alacritty)
-- Shell: 								[Bash](https://www.gnu.org/software/bash/)
-- WM: 									[dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch)
-- Login Manager: 				[ly](https://github.com/fairyglade/ly)
-- Editor: 							[Vim](https://github.com/vim/vim)
+- OS: [Arch Linux](https://archlinux.org/)
+- Terminal: [Alacritty](https://github.com/alacritty/alacritty)
+- Shell: [Bash](https://www.gnu.org/software/bash/)
+- WM: [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch)
+- Login Manager: [ly](https://github.com/fairyglade/ly)
+- Editor: [nvim](https://github.com/neovim/neovim)
 ---
-- Status Bar: 					vanilla dwm bar
-- Status Content: 			[luastatus](https://github.com/shdown/luastatus)
-- Lock Screen: 					[slock-flexipatch](https://github.com/bakkeby/slock-flexipatch)
-- App Menu: 						[dmenu-flexipatch](https://github.com/bakkeby/dmenu-flexipatch)
-- Network Menu: 				[networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
-- Dropdown Menu: 				[tdrop](https://github.com/noctuid/tdrop)
-- Hotkey Daemon: 				[sxhkd](https://github.com/baskerville/sxhkd)
-- Notification Daemon: 	[Linux Notification Center](https://github.com/phuhl/linux_notification_center)
-- AUR helper: 					[Paru](https://github.com/Morganamilo/paru)
-- Power Management: 		[Xfce Power Manger](https://docs.xfce.org/xfce/xfce4-power-manager/start)
-- Brightness Control: 	[brightnessctl](https://github.com/Hummer12007/brightnessctl)
-- Compositor: 					[Picom](https://github.com/yshui/picom)
+- Status Bar: vanilla dwm bar
+- Status Content: [luastatus](https://github.com/shdown/luastatus)
+- Lock Screen: [slock-flexipatch](https://github.com/bakkeby/slock-flexipatch)
+- App Menu: [dmenu-flexipatch](https://github.com/bakkeby/dmenu-flexipatch)
+- Network Menu: [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
+- Dropdown Menu: [tdrop](https://github.com/noctuid/tdrop)
+- Hotkey Daemon: [sxhkd](https://github.com/baskerville/sxhkd)
+- Notification Daemon: [Linux Notification Center](https://github.com/phuhl/linux_notification_center)
+- AUR helper: [Paru](https://github.com/Morganamilo/paru)
+- Power Management: [Xfce Power Manger](https://docs.xfce.org/xfce/xfce4-power-manager/start)
+- Brightness Control: [brightnessctl](https://github.com/Hummer12007/brightnessctl)
+- Compositor: [Picom](https://github.com/yshui/picom)
 ---
-- Font: 								[Iosevka Nerd Font](https://www.nerdfonts.com/)
-- Shell Prompt: 				[starship](https://github.com/starship/starship)
-- System Info: 					[macchina](https://github.com/Macchina-CLI/macchina)
+- Font: [Iosevka Nerd Font](https://www.nerdfonts.com/)
+- Shell Prompt: [starship](https://github.com/starship/starship)
+- System Info: [macchina](https://github.com/Macchina-CLI/macchina)
 ---
-- File Manager: 				[nnn](https://github.com/jarun/nnn) and [Thunar](https://docs.xfce.org/xfce/thunar/start)
-- Ebook Reader: 				[zathura](https://github.com/pwmt/zathura)
-- Image Viewer: 				[nsxiv](https://github.com/nsxiv/nsxiv)
-- Video Player: 				[mpv](https://github.com/mpv-player/mpv)
-- ScreenShot: 					[Flameshot](https://github.com/flameshot-org/flameshot)
-- Wallpaper Setter: 		[feh](https://github.com/derf/feh)
-- Color Picker: 				[Gpick](https://github.com/thezbyg/gpick)
+- File Manager: [nnn](https://github.com/jarun/nnn) and [Thunar](https://docs.xfce.org/xfce/thunar/start)
+- Ebook Reader: [zathura](https://github.com/pwmt/zathura)
+- Image Viewer: [nsxiv](https://github.com/nsxiv/nsxiv)
+- Video Player: [mpv](https://github.com/mpv-player/mpv)
+- ScreenShot: [Flameshot](https://github.com/flameshot-org/flameshot)
+- Wallpaper Setter: [feh](https://github.com/derf/feh)
+- Color Picker: [Gpick](https://github.com/thezbyg/gpick)
 
 # TODO
 - [x] ~~Switch to [xrdb patch](https://dwm.suckless.org/patches/xrdb/) for theme switching~~
@@ -48,6 +48,10 @@ Here are some details about my setup:
 - [ ] Explain the features of this setup
 - [ ] Switch to rofi from dmenu (but keep dmenu as an alternative)
 - [ ] Make new colorschemes
+  - [x] ~~nord~~
+  - [x] ~~dracula~~
+  - [ ] kanagawa
+  - [ ] catppuccin
 - [ ] Rice Firefox or switch to vieb
 - [ ] Create conky and eww widgets
 - [ ] Remove unused patches
@@ -58,7 +62,7 @@ Here are some details about my setup:
 <details>
 <summary><b>Mandatory</b></summary>
 
-- Xorg (for beginners,I recommend installing the whole package)
+- Xorg (for beginners, I recommend installing the whole package)
 - xrdb (for reloading xresource colorschemes)
 - A terminal emulator
 	- if you use anything other than alacritty, modify the line after ```super + Return``` in ```~/.config/sxhkd/sxhkdrc``` to your terminal's name (__the theme_changer script will only change the colorschemes of alacritty or kitty__)
@@ -77,7 +81,7 @@ Here are some details about my setup:
 You may choose not to install any of these and but doing so might make some things not work as intended
 - Drop-down terminal: Kitty
 	- Drop-down creator - [tdrop](https://github.com/noctuid/tdrop)
-	- If you want to use another as a drop-down terminal, replace ```kitty``` to your preferred terminal name in this line -  ```RULE(.class = "kitty", .isfloating = 1)``` in ```~/.config/dwm/config.def.h```
+	- If you want to use anothera terminal as a drop-down terminal, replace ```kitty``` to your preferred terminal name in this line -  ```RULE(.class = "kitty", .isfloating = 1)``` in ```~/.config/dwm/config.def.h```
 - [Paru](https://github.com/Morganamilo/paru)
 - [picom](https://github.com/yshui/picom)
 - [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
@@ -97,6 +101,8 @@ You may choose not to install any of these and but doing so might make some thin
 ### Mandatory Steps
 
 > __WARNING!!! Backup your dotfiles from your home directory. These steps below will overwrite your configs.__
+
+> If you don't want to use my configs for programs other than dwm and dmenu, then manually change the ```~/.bin/theme_changer``` or else things might get out of control
 
 - Clone this repo to your preferred directory and cd into it - ```git clone https://github.com/junnunkarim/dotfiles-linux && cd dotfiles-linux```
 
@@ -139,6 +145,9 @@ You may choose not to install any of these and but doing so might make some thin
 	- ```cp .bashrc ~```
 	- ```sudo pacman -Su --needed exa starship```
 	- ```paru -S --needed macchina```
+- If you want to use my nvim dotfiles
+  - ```cp -rf .config/nvim ~/.config```
+  - ```nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'```
 - If you want to use my ```.vimrc```
 	- ```cp .vimrc ~```
 	- install [vim-plug](https://github.com/junegunn/vim-plug)
@@ -217,8 +226,10 @@ You may choose not to install any of these and but doing so might make some thin
 | super + d											| open dmenu |
 | super + a											| open dektop applications selector (dmenu) |
 | super + ctrl + r							| turn on bluelight filter (redshift) |
-| super + ctrl + e							| turn off bluelight filter (redshift) |
-| super + ctrl + p							| open color picker (gpick) |
+| super + ctrl + n							| turn off bluelight filter (redshift) |
+| super + ctrl + p              | turn on compositor (picom) |
+| super + ctrl + u              | turn on compositor (picom) |
+| super + ctrl + g							| open color picker (gpick) |
 | super + alt + f								| open file manager (thunar) |
 | super + alt + n								| open file manager (nnn) |
 | super + alt + b								| open chromium |
@@ -261,6 +272,7 @@ You may choose not to install any of these and but doing so might make some thin
 - COOL_AUTOSTART_PATCH
 - CYCLELAYOUTS_PATCH
 - FOCUSONNETACTIVE_PATCH
+- FSIGNAL_PATCH
 - LOSEFULLSCREEN_PATCH
 - NET_CLIENT_LIST_STACKING_PATCH 
 - ONLYQUITONEMPTY_PATCH
@@ -280,3 +292,7 @@ You may choose not to install any of these and but doing so might make some thin
 - MONOCLE_LAYOUT
 
 </details>
+
+# Credit
+
+- [karlivory](https://github.com/karlivory) for fixing the need to restart dwm when changing theme

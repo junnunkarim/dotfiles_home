@@ -32,8 +32,10 @@ super + x                     open powermenu
 super + d                     open dmenu
 super + a                     open desktop application selector (dmenu)
 super + ctrl + r              turn on bluelight filter (redshift)
-super + ctrl + e              turn off bluelight filter (redshift)
-super + ctrl + p              open color picker (gpick)
+super + ctrl + n              turn off bluelight filter (redshift)
+super + ctrl + p              turn on compositor (picom)
+super + ctrl + u              turn off compositor (picom)
+super + ctrl + g              open color picker (gpick)
 super + alt + f               open file manager (thunar)
 super + alt + n               open file manager (nnn)
 super + alt + b               open chromium
