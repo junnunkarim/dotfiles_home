@@ -375,7 +375,6 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 static const char *const autostart[] = {
 	"bash", ".fehbg", NULL,
 	"sxhkd", NULL,
-	"luastatus", "-b", "dwm", "-B", "separator=", ".config/dwm/luastatus/module/backlight.lua", ".config/dwm/luastatus/module/alsa.lua", ".config/dwm/luastatus/module/battery.lua", ".config/dwm/luastatus/module/wifi.lua", ".config/dwm/luastatus/module/time-date.lua", NULL,
 	"xfce4-power-manager", NULL,
 	"/usr/lib/xfce-polkit/xfce-polkit", NULL,
 	"picom", NULL,
@@ -1663,6 +1662,7 @@ static Signal signals[] = {
 static Signal signals[] = {
 	/* signum       function        argument  */
 	{ 1,            setlayout,      {.v = 0} },
+	{ 2,            xrdb,           {.v = 0} },
 };
 #endif // DWMC_PATCH
 
