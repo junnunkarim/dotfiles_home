@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+while true; do
+    $HOME/.bin/dwm_statusbar
+    echo "Killed, restarting..."
+    sleep 0.1
+done
