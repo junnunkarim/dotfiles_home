@@ -1,10 +1,7 @@
 <h1 align="center"><i><u>~/dotfiles</u></i></h1>
 
-<hr>
 ![img](/ss/dwm_gruvbox_cozy-night.png)
-<hr>
 ![img](/ss/dwm_nord_catppuccin-macchiato.png)
-<hr>
 
 # Information
 Here are some details about my setup:
