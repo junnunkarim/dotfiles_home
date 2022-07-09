@@ -10,8 +10,8 @@ super + shift + q             quit dwm (only if all programs are closed)
 super + space                 toggle floating on/off
 super + left/right            increase/decrease window size
 super + shift + ctrl + space  cycle through all layouts
-super + tab                   move through open tags clockwise
-super + backtick              move through open tags anti-clockwise
+super + tab                   move through active tags clockwise
+super + backtick              move through active tags anti-clockwise
 super + 0 (zero)              toggle gaps on/of
 super + shift + i             hide/unhide window
 super + shift + r             restart dwm

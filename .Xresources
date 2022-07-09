@@ -4,9 +4,6 @@
 ! source dmenu colorscheme !
 #include ".config/dmenu/theme_xresources/theme"
 
-! sxiv !
-Sxiv.background: #282828
-
 ! fonts config !
 Xft.dpi: 120
 Xft.antialias:	1

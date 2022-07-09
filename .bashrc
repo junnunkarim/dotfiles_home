@@ -2,8 +2,8 @@
 [[ $- != *i* ]] && return
 
 export HISTCONTROL=ignoreboth:erasedups
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin/:~/.bin"
 
 #PS1="\[\e[0;38;5;203m\]┌\[\e[0;38;5;203m\][\[\e[0;38;5;203m\]\h\[\e[0;38;5;203m\]] \[\e[0;4;38;5;38m\]\w \[\e[0;4;38;5;77m\]\$\[\e[0m\]\n\[\e[0;38;5;203m\]└■|\[\e[0m\]"
@@ -43,12 +43,16 @@ alias xx="xplr"
 # rm
 alias rm="rm -I"
 
+# free space
+alias fr="free -h --si"
+alias fs="df --si"
+
 # nvim
 alias nv="nvim"
 
 # buku
 alias b="buku --suggest"
-alias buku_list="buku -p"
+alias b_list="buku -p"
 
 # Colorize the grep command output
 alias grep='grep --color=auto'

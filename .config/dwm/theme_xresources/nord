@@ -1,3 +1,4 @@
+#define black   #181926
 #define pn1 		#2e3440
 #define pn2 		#3b4252
 #define pn3 		#434c5e
@@ -17,13 +18,13 @@
 
 dwm.normfgcolor                : aurora2
 dwm.normbgcolor                : pn1
-dwm.normbordercolor            : pn1
+dwm.normbordercolor            : black
 dwm.normfloatcolor             : pn3
 
 dwm.selfgcolor                 : frost2
 dwm.selbgcolor                 : pn1
-dwm.selbordercolor             : frost2
-dwm.selfloatcolor              : aurora2
+dwm.selbordercolor             : aurora2
+dwm.selfloatcolor              : aurora3
 
 dwm.titlenormfgcolor           : pn4
 dwm.titlenormbgcolor           : pn1

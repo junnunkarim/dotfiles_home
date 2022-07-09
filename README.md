@@ -1,7 +1,10 @@
 <h1 align="center"><i><u>~/dotfiles</u></i></h1>
----
 
+<hr>
 ![img](/ss/dwm_gruvbox_cozy-night.png)
+<hr>
+![img](/ss/dwm_nord_catppuccin-macchiato.png)
+<hr>
 
 # Information
 Here are some details about my setup:
@@ -51,8 +54,8 @@ Here are some details about my setup:
 - [ ] Make new colorschemes
   - [x] ~~nord~~
   - [x] ~~dracula~~
+  - [x] ~~catppuccin~~
   - [ ] kanagawa
-  - [ ] catppuccin
 - [ ] Rice Firefox or switch to vieb
 - [ ] Create conky and eww widgets
 - [ ] Remove unused patches
@@ -171,7 +174,6 @@ You may choose not to install any of these and but doing so might make some thin
 	- ```cp -rf .config/slock ~/.config/```
 	- ```cd ~/.config/slock && sudo make install```
 	- Continue lockscreen setup using [arch wiki - slock](https://wiki.archlinux.org/title/Slock)
-- Install other programs to your needs
 
 </details>
 
@@ -196,8 +198,8 @@ You may choose not to install any of these and but doing so might make some thin
 | super + space									| toggle floating on/off |
 | super + left/right						| increase/decrease window size |
 | super + shift + ctrl + space 	| cycle through all layouts |
-| super + tab										| move through open tags clockwise |
-| super + backtick							| move through open tags anti-clockwise |
+| super + tab										| move through active tags clockwise |
+| super + backtick							| move through active tags anti-clockwise |
 | super + 0 (zero)							| toggle gaps on/of |
 | super + shift + i							| hide/unhide window |
 | super + shift + r							| restart dwm |
@@ -285,10 +287,6 @@ You may choose not to install any of these and but doing so might make some thin
 - VANITYGAPS_PATCH 
 - XRDB_PATCH
 - ZOOMSWAP_PATCH
-- BSTACK_LAYOUT
-- DECK_LAYOUT 
-- FIBONACCI_DWINDLE_LAYOUT
-- HORIZGRID_LAYOUT
 - TILE_LAYOUT
 - MONOCLE_LAYOUT
 
@@ -299,18 +297,21 @@ You may choose not to install any of these and but doing so might make some thin
 <details>
 <summary><b>click here</b></summary>
 
-## Gruvbox
-![img](/ss/dwm_gruvbox_1.png)
-![img](/ss/dwm_gruvbox_4.png)
+## Catppuccin (Macchiato) 
+![img](/ss/dwm_catppuccin_macchiato_1.png)
+![img](/ss/dwm_catppuccin_macchiato_3.png)
 ## Cozy-Night 
 ![img](/ss/dwm_cozy-night_1.png)
 ![img](/ss/dwm_cozy-night_4.png)
-## Nord
-![img](/ss/dwm_nord_1.png)
-![img](/ss/dwm_nord_3.png)
 ## Dracula
 ![img](/ss/dwm_dracula_1.png)
 ![img](/ss/dwm_dracula_3.png)
+## Gruvbox
+![img](/ss/dwm_gruvbox_1.png)
+![img](/ss/dwm_gruvbox_4.png)
+## Nord
+![img](/ss/dwm_nord_1.png)
+![img](/ss/dwm_nord_3.png)
 
 </details>
 
