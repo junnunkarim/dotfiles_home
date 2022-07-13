@@ -78,21 +78,21 @@ case $select in
 	$theme1)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas.png
 		theme_change cozy-night
-		chgtk TokyoNight
+		change_gtk_theme TokyoNight
 		;;
 	$theme2)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_arabian_palace_princess.png
 		theme_change dracula
-		chgtk Dracula
+		change_gtk_theme Dracula
 		;;
 	$theme3)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_house_inside_girl_book_dog.png
 		theme_change gruvbox
-		chgtk Gruvbox-Dark
+		change_gtk_theme Gruvbox-Dark
 		;;
 	$theme4)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord.png
 		theme_change nord
-		chgtk Nord
+		change_gtk_theme Nord
 		;;
 	esac
