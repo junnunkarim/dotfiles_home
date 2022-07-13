@@ -67,10 +67,10 @@ theme_change()
 	#bash $HOME/.bin/sudo_passhelper make -s -C ${dmenu_dir} install
 	#make -s -C ${dmenu_dir} clean
 }
-chgtk() {
+change_gtk_theme() 
+{
    sed -e "s/^gtk-theme-name=.*/gtk-theme-name="$@"/" -i ~/.config/gtk-3.0/settings.ini
    sed -e "s/^gtk-theme-name=.*/gtk-theme-name=\""$@"\"/" -i ~/.gtkrc-2.0 
-
 }
 
 select="$(echo -e "$option" | $prompt -p "Choose a theme: " )"
