@@ -75,6 +75,11 @@ theme_change()
 	#bash $HOME/.bin/sudo_passhelper make -s -C ${dmenu_dir} install
 	#make -s -C ${dmenu_dir} clean
 }
+change_gtk_theme() 
+{
+   sed -e "s/^gtk-theme-name=.*/gtk-theme-name="$@"/" -i ~/.config/gtk-3.0/settings.ini
+   sed -e "s/^gtk-theme-name=.*/gtk-theme-name=\""$@"\"/" -i ~/.gtkrc-2.0 
+}
 
 select="$(echo -e "$option" | $prompt -p "Choose a theme: " )"
 case $select in
@@ -85,17 +90,21 @@ case $select in
 	$theme2)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas.png
 		theme_change cozy-night
+		change_gtk_theme TokyoNight
 		;;
 	$theme3)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_arabian_palace_princess.png
 		theme_change dracula
+		change_gtk_theme Dracula
 		;;
 	$theme4)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_house_chibi_person_game.png
 		theme_change gruvbox
+		change_gtk_theme Gruvbox-Dark
 		;;
 	$theme5)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord.png
 		theme_change nord
+		change_gtk_theme Nord
 		;;
 	esac
