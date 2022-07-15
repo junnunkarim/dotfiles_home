@@ -26,7 +26,7 @@ theme5=" Nord"
 option="$cancel\n$theme1\n$theme2\n$theme3\n$theme4\n$theme5"
 
 
-theme_change()
+change_theme()
 {
 	cp ${dwm_dir}/theme_xresources/$1 ${dwm_dir}/theme_xresources/theme
 	cp ${dmenu_dir}/theme_xresources/$1 ${dmenu_dir}/theme_xresources/theme
@@ -40,29 +40,24 @@ theme_change()
     # vim
 		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" .vimrc
 		sed -i "0,/'colorscheme'/{s/\('colorscheme':\)\(.*\)/\ 'colorscheme': 'tokyonight',/}" .vimrc
-
     # nvim
 		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" ~/.config/nvim/lua/colorscheme.lua
+
   elif [[ "$1" == "catppuccin_macchiato" ]]; then
     # vim
 		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme catppuccin_macchiato/}" .vimrc
 		sed -i "0,/'colorscheme'/{s/\('colorscheme':\)\(.*\)/\ 'colorscheme': 'catppuccin_macchiato',/}" .vimrc
-
     # nvim
 		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme catppuccin/}" ~/.config/nvim/lua/colorscheme.lua
+
 	else
     # vim
 		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" .vimrc
 		sed -i "s/\('colorscheme':\)\(.*\)/'colorscheme': '$1',/" .vimrc
-
     # nvim
 		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" ~/.config/nvim/lua/colorscheme.lua
 	fi
 
-	#make -s -C ${dwm_dir} clean
-	#bash $HOME/.bin/sudo_passhelper make -s -C ${dwm_dir} install
-	#make -s -C ${dwm_dir} clean
-	
 	xrdb -merge -I$HOME ~/.Xresources # reload Xresources
 	#kill -HUP dwmpid $dwm_pid # restart dwm
 
@@ -70,11 +65,8 @@ theme_change()
   xsetroot -name "fsignal:2"
   # update luastatus
   kill -9 $(pidof luastatus)
-
-	#make -s -C ${dwm_dir}/dmenu clean
-	#bash $HOME/.bin/sudo_passhelper make -s -C ${dmenu_dir} install
-	#make -s -C ${dmenu_dir} clean
 }
+
 change_gtk_theme() 
 {
    sed -e "s/^gtk-theme-name=.*/gtk-theme-name="$@"/" -i ~/.config/gtk-3.0/settings.ini
@@ -84,27 +76,28 @@ change_gtk_theme()
 select="$(echo -e "$option" | $prompt -p "Choose a theme: " )"
 case $select in
   $theme1)
-		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_stars_clouds_trees_cozy.png
-		theme_change catppuccin_macchiato
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_night_stars_clouds_trees_cozy_PixelArtJourney.png $HOME/.config/wallpaper/pixelart_evening_trees_pole_wires_makrustic.png
+		change_theme catppuccin_macchiato
+    change_gtk_theme Catppuccin
 		;;
 	$theme2)
-		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas.png
-		theme_change cozy-night
+		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas_RoyalNaym.png
+		change_theme cozy-night
 		change_gtk_theme TokyoNight
 		;;
 	$theme3)
-		feh --bg-fill $HOME/.config/wallpaper/pixelart_arabian_palace_princess.png
-		theme_change dracula
+		feh --bg-fill $HOME/.config/wallpaper/pixelart_arabian_palace_princess_snakepixel.png
+		change_theme dracula
 		change_gtk_theme Dracula
 		;;
 	$theme4)
-		feh --bg-fill $HOME/.config/wallpaper/pixelart_house_chibi_person_game.png
-		theme_change gruvbox
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_house_inside_girl_book_dog_jmw327.png $HOME/.config/wallpaper/pixelart_house_chibi_person_game_jmw327.png
+		change_theme gruvbox
 		change_gtk_theme Gruvbox-Dark
 		;;
 	$theme5)
-		feh --bg-fill $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord.png
-		theme_change nord
+		feh --bg-fill $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord_Ansitru.png
+		change_theme nord
 		change_gtk_theme Nord
 		;;
 	esac

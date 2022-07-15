@@ -321,7 +321,7 @@ You may choose not to install any of these and but doing so might make some thin
 - __I do not take any credit for the images I use as wallpaper__. I simply upscaled and changed the colorscheme of some wallpapers to match with my setup. __But all credit goes to the original author__. Since I have been collecting these wallpaper from various sources, for most of the images I do not know who the original author is. So,
   - If you know the name of the author, please let me know. I will surely mention their name in ```.config/wallpaper``` directory.
   - If you are the artist and you do not want me to redistribute your art, then let me know. I will remove your art from my git repo.
-- Name of the image artists that I know are listed in the ```.config/wallpaper/README.md```
+- Name of the image artists that I know are listed [here](/.config/wallpaper/README.md)
 
 - [karlivory](https://github.com/karlivory) for fixing the need to restart dwm when changing theme
 - [Petingoso](https://github.com/Petingoso) for modifying the theme_changer script to also change gtk theme
