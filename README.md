@@ -84,7 +84,7 @@ You may choose not to install any of these and but doing so might make some thin
 	- Drop-down creator - [tdrop](https://github.com/noctuid/tdrop)
 	- If you want to use anothera terminal as a drop-down terminal, replace ```kitty``` to your preferred terminal name in this line -  ```RULE(.class = "kitty", .isfloating = 1)``` in ```~/.config/dwm/config.def.h```
 - [Paru](https://github.com/Morganamilo/paru)
-- [picom](https://github.com/yshui/picom)
+- [picom-pijulius-git](https://github.com/pijulius/picom)
 - [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
 - [brightnessctl](https://github.com/Hummer12007/brightnessctl)
 - [exa](https://github.com/ogham/exa)
@@ -114,6 +114,7 @@ You may choose not to install any of these and but doing so might make some thin
 		- Continue from here - [luastatus](https://github.com/shdown/luastatus#installation)
 - Copy necessary configs -
 	- ```cp -rf .bin .Xresources .xinitrc ~```
+    - If you won't use my bashrc then add ```.bin``` to your $PATH variable
 		- __Do not copy ```.xsession``` as it will change your keyboard layout to dvorak.__
 	- ```cp -rf .config/alacritty .config/dwm .config/dmenu .config/sxhkd .config/wallpaper ~/.config/```
 - Build dwm and dmenu
@@ -147,23 +148,24 @@ You may choose not to install any of these and but doing so might make some thin
 	- ```cp .bashrc ~```
 	- ```sudo pacman -Su --needed exa starship```
 	- ```paru -S --needed macchina```
-- If you want to use my nvim dotfiles
+- nvim dotfiles
   - ```cp -rf .config/nvim ~/.config```
-  - ```nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'```
-- If you want to use my ```.vimrc```
+- If you want to use my ```.vimrc``` 
 	- ```cp .vimrc ~```
 	- install [vim-plug](https://github.com/junegunn/vim-plug)
 	- setup [coc-nvim](https://github.com/neoclide/coc.nvim)
+- rofi dotfiles
+  - ```cp -rf .config/rofi ~/.config```
 - brightnessctl
 	- ```sudo pacman -Su --needed brightnessctl```
 - picom
-	- ```sudo pacman -Su --needed picom```
+	- ```paru -S --needed picom-pijulius-git```
 - networkmanager-dmenu
 	- ```paru -S --needed networkmanager-dmenu-git```
 - redshift
 	- ```sudo pacman -Su --needed redshift```
 - Dropdown terminal
-	- ```paru -S --needed kitty tdrop tmux```
+	- ```paru -S --needed alacritty tdrop tmux```
 	- ```cp -rf .config/kitty ~/.config```
 - zathura
 	- ```sudo pacman -Su --needed zathura```
@@ -224,8 +226,7 @@ You may choose not to install any of these and but doing so might make some thin
 | super + t											| open theme switcher |
 | super + x											| open powermenu |
 | super + k											| show all keybindings |
-| super + d											| open dmenu |
-| super + a											| open dektop applications selector (dmenu) |
+| super + d											| open rofi |
 | super + ctrl + r							| turn on bluelight filter (redshift) |
 | super + ctrl + n							| turn off bluelight filter (redshift) |
 | super + ctrl + p              | turn on compositor (picom) |
@@ -283,6 +284,7 @@ You may choose not to install any of these and but doing so might make some thin
 - SWITCHTAG_PATCH 
 - TOGGLEFULLSCREEN_PATCH 
 - VANITYGAPS_PATCH 
+- VANITYGAPS_MONOCLE_PATCH
 - XRDB_PATCH
 - ZOOMSWAP_PATCH
 - TILE_LAYOUT
@@ -323,5 +325,7 @@ You may choose not to install any of these and but doing so might make some thin
   - If you are the artist and you do not want me to redistribute your art, then let me know. I will remove your art from my git repo.
 - Name of the image artists that I know are listed [here](/.config/wallpaper/README.md)
 
+- [adi1090x](https://github.com/adi1090x) mainly for his [Archcraft](https://archcraft.io/), his scripts (from where I learned a lot) and his rofi configs
+- [NvChad](https://github.com/NvChad) for the neovim configs
 - [karlivory](https://github.com/karlivory) for fixing the need to restart dwm when changing theme
 - [Petingoso](https://github.com/Petingoso) for modifying the theme_changer script to also change gtk theme

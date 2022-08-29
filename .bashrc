@@ -54,6 +54,15 @@ alias nv="nvim"
 alias b="buku --suggest"
 alias b_list="buku -p"
 
+# translate-shell
+alias dic="trans -d"
+
+# wezterm
+alias img="wezterm imgcat" # view image in wezterm
+
+# taskwarrior-tui
+alias ts="taskwarrior-tui"
+
 # Colorize the grep command output
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -68,8 +77,8 @@ alias df='df -h'
 # free
 alias free="free -mt"
 
-# continue download
-alias wget="wget -c"
+# wget
+alias wget="wget -c" # continue download
 
 # pacman/paru
 alias pacman='sudo pacman --color auto'
@@ -80,7 +89,8 @@ alias uninstall='sudo pacman -Rcns'
 alias pklist='sudo pacman -Qe'  				# show package list
 alias pcc='sudo pacman -Sc' 						# clear package cache
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # cleanup orphaned packages
-alias prcc='paru -Scc' #clear paru cache
+alias prcc='paru -Scc' # clear paru cache
+alias prupdate='paru -Sua' # update AUR packages
 
 # grub
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -174,3 +184,8 @@ eval "$(starship init bash)"
 # intel hardware accelaration
 export LIBVA_DRIVER_NAME=iHD
 #export VDPAU_DRIVER=va_gl
+
+# nvm (node version manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

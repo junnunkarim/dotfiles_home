@@ -1203,7 +1203,7 @@
  * Most gaps patches tries to avoid gaps on the monocle layout, as it is often used as a
  * fullscreen mode, hence this is enabled separately from the main vanitygaps patch.
  */
-#define VANITYGAPS_MONOCLE_PATCH 0
+#define VANITYGAPS_MONOCLE_PATCH 1
 
 /* Follow a window to the tag it is being moved to.
  * https://dwm.suckless.org/patches/viewontag/

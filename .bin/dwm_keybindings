@@ -29,8 +29,7 @@ super + shift + n             open/close notification center
 super + shift + escape        force kill a program
 super + t                     open theme switcher
 super + x                     open powermenu
-super + d                     open dmenu
-super + a                     open desktop application selector (dmenu)
+super + d                     open rofi
 super + ctrl + r              turn on bluelight filter (redshift)
 super + ctrl + n              turn off bluelight filter (redshift)
 super + ctrl + p              turn on compositor (picom)

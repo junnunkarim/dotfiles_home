@@ -1,11 +1,11 @@
 ##---------- System (super / super + shift) ----------##
 # Terminal
 super + Return
-	alacritty
+	wezterm
 
 # TDrop (scratchpad)
 super + shift + Return
-	tdrop -ma -A -w 50% -x 25% -s dropdown kitty
+	tdrop -ma -A -w 60% -x 20% -s dropdown alacritty
 
 # Lockscreen
 super + l
@@ -41,7 +41,8 @@ super + k
 
 # dmenu
 super + d
-	dmenu_run -l 9 -p "﩯 " 
+  ~/.config/rofi/launchers/type-1/launcher.sh
+	#dmenu_run -l 9 -p "﩯 " 
 
 # show desktop applications
 super + a
@@ -80,13 +81,16 @@ super + alt + e
 
 # Terminal Apps
 super + alt + v
-	alacritty -e vim
+  wezterm start nvim
+	#alacritty -e vim
 
 super + alt + h
-	alacritty -e btm
+  wezterm start btm
+	#alacritty -e btm
 
 super + alt + n
-	alacritty -e bash ~/.bin/nnn_run -T v
+	wezterm start bash ~/.bin/nnn_run -T v
+	#alacritty -e bash ~/.bin/nnn_run -T v
 
 ##---------- System Keys ----------##
 

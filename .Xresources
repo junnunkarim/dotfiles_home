@@ -12,3 +12,9 @@ Xft.autohint:	0
 Xft.hintstyle:	hintslight
 Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
+
+
+XTerm.vt100.background: black
+XTerm.vt100.foreground: grey
+xterm*faceName: Monospace
+xterm*faceSize: 12

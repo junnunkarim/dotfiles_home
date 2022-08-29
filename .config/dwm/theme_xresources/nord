@@ -18,7 +18,7 @@
 
 dwm.normfgcolor                : aurora2
 dwm.normbgcolor                : pn1
-dwm.normbordercolor            : black
+dwm.normbordercolor            : pn1
 dwm.normfloatcolor             : pn3
 
 dwm.selfgcolor                 : frost2

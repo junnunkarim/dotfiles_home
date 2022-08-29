@@ -36,27 +36,27 @@ change_theme()
 	cp ${kitty_dir}/colorscheme/$1.conf ${kitty_dir}/color.conf
 	cp ${zathura_dir}/theme/$1 ${zathura_dir}/theme.color
 	
-	if [[ "$1" == "cozy-night" ]]; then
+	#if [[ "$1" == "cozy-night" ]]; then
     # vim
-		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" .vimrc
-		sed -i "0,/'colorscheme'/{s/\('colorscheme':\)\(.*\)/\ 'colorscheme': 'tokyonight',/}" .vimrc
+		#sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" .vimrc
+		#sed -i "0,/'colorscheme'/{s/\('colorscheme':\)\(.*\)/\ 'colorscheme': 'tokyonight',/}" .vimrc
     # nvim
-		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" ~/.config/nvim/lua/colorscheme.lua
+		#sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme tokyonight/}" ~/.config/nvim/lua/colorscheme.lua
 
-  elif [[ "$1" == "catppuccin_macchiato" ]]; then
+  #elif [[ "$1" == "catppuccin_macchiato" ]]; then
     # vim
-		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme catppuccin_macchiato/}" .vimrc
-		sed -i "0,/'colorscheme'/{s/\('colorscheme':\)\(.*\)/\ 'colorscheme': 'catppuccin_macchiato',/}" .vimrc
+		#sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme catppuccin_macchiato/}" .vimrc
+		#sed -i "0,/'colorscheme'/{s/\('colorscheme':\)\(.*\)/\ 'colorscheme': 'catppuccin_macchiato',/}" .vimrc
     # nvim
-		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme catppuccin/}" ~/.config/nvim/lua/colorscheme.lua
+		#sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme catppuccin/}" ~/.config/nvim/lua/colorscheme.lua
 
-	else
+	#else
     # vim
-		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" .vimrc
-		sed -i "s/\('colorscheme':\)\(.*\)/'colorscheme': '$1',/" .vimrc
+		#sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" .vimrc
+		#sed -i "s/\('colorscheme':\)\(.*\)/'colorscheme': '$1',/" .vimrc
     # nvim
-		sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" ~/.config/nvim/lua/colorscheme.lua
-	fi
+		#sed -i "0,/colorscheme/{s/\(colorscheme\)\(.*\)/colorscheme $1/}" ~/.config/nvim/lua/colorscheme.lua
+	#fi
 
 	xrdb -merge -I$HOME ~/.Xresources # reload Xresources
 	#kill -HUP dwmpid $dwm_pid # restart dwm
@@ -73,31 +73,62 @@ change_gtk_theme()
    sed -e "s/^gtk-theme-name=.*/gtk-theme-name=\""$@"\"/" -i ~/.gtkrc-2.0 
 }
 
+change_wzterm_colorscheme()
+{
+	sed -i "0,/color_scheme/{s/\(color_scheme\)\(.*\)/color_scheme = \"$1\",/}" ~/.config/wezterm/wezterm.lua
+
+}
+
+change_rofi_theme()
+{
+  sed "s/\.config\/rofi\/colors.*.rasi/\.config\/rofi\/colors\/$1.rasi/" -i ~/.config/rofi/launchers/type-1/shared/colors.rasi
+}
+
+change_nvim_theme()
+{
+  sed "s/theme = .*/theme = \"$1\",/" -i ~/.config/nvim/lua/custom/chadrc.lua
+}
+
 select="$(echo -e "$option" | $prompt -p "Choose a theme: " )"
 case $select in
   $theme1)
-		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_night_stars_clouds_trees_cozy_PixelArtJourney.png $HOME/.config/wallpaper/pixelart_evening_trees_pole_wires_makrustic.png
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_night_stars_clouds_trees_cozy_PixelArtJourney.png $HOME/.config/wallpaper/pixelart_evening_trees_pole_wires_makrustic.png $HOME/.config/wallpaper/pixelart_france_house_police-car.jpg $HOME/.config/wallpaper/pixelart_pokemon_rayquaza_forest.png
 		change_theme catppuccin_macchiato
     change_gtk_theme Catppuccin
+    change_wzterm_colorscheme "Catppuccin Mocha"
+    change_rofi_theme catppuccin
+    change_nvim_theme catppuccin
 		;;
 	$theme2)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas_RoyalNaym.png
 		change_theme cozy-night
 		change_gtk_theme TokyoNight
+    change_wzterm_colorscheme "tokyonight"
+    change_rofi_theme tokyonight
+    change_nvim_theme tokyonight
 		;;
 	$theme3)
-		feh --bg-fill $HOME/.config/wallpaper/pixelart_arabian_palace_princess_snakepixel.png
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_arabian_palace_princess_snakepixel.png $HOME/.config/wallpaper/pixelart_winter_hut_deer_man_dog_hunt_PixelArtJourney.png
 		change_theme dracula
 		change_gtk_theme Dracula
+    change_wzterm_colorscheme "Dracula"
+    change_rofi_theme dracula
+    change_nvim_theme chadracula
 		;;
 	$theme4)
-		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_house_inside_girl_book_dog_jmw327.png $HOME/.config/wallpaper/pixelart_house_chibi_person_game_jmw327.png
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_house_inside_girl_book_dog_jmw327.png $HOME/.config/wallpaper/pixelart_forest_camp_children_maolow-paoPao.jpg $HOME/.config/wallpaper/pixelart_house_chibi_person_game_jmw327.png
 		change_theme gruvbox
 		change_gtk_theme Gruvbox-Dark
+    change_wzterm_colorscheme "Gruvbox Dark"
+    change_rofi_theme gruvbox
+    change_nvim_theme gruvbox
 		;;
 	$theme5)
-		feh --bg-fill $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord_Ansitru.png
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord_Ansitru.png $HOME/.config/wallpaper/mist_forest_nord.jpg
 		change_theme nord
 		change_gtk_theme Nord
+    change_wzterm_colorscheme "nord"
+    change_rofi_theme nord
+    change_nvim_theme nord
 		;;
 	esac

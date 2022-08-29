@@ -470,6 +470,7 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 
 	RULE(.class = "kitty", .isfloating = 1)
+	RULE(.class = "Alacritty", .isfloating = 1)
 	RULE(.class = "Gpick", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Lxappearance", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Xfce-polkit", .isfloating = 1, .iscentered = 1)
@@ -478,7 +479,7 @@ static const Rule rules[] = {
 	//  { "Alacritty", NULL,  NULL, 1 << 0,        0,          1,         -1  },
 	//  { "Firefox",  NULL,    NULL, 1 << 8,   1,          0,         -1  },
 
-	RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 1) // tag-1
+	RULE(.class = "org.wezfurlong.wezterm", .tags = 1 << 0, .switchtag = 1) // tag-1
 	RULE(.class = "st-256color", .tags = 1 << 0, .switchtag = 1) // tag-1
 	RULE(.class = "Emacs", .tags = 1 << 0, .switchtag = 1)
 	RULE(.class = "Geany", .tags = 1 << 0, .switchtag = 1)
@@ -724,14 +725,14 @@ static const Layout layouts[] = {
 #else
 static const Layout layouts[] = {
 	/* symbol     arrange function */
+  #if MONOCLE_LAYOUT
+	{ "𧻓",      monocle },  /* first entry is default */
+	#endif
 	#if TILE_LAYOUT
-	{ "ﱖ",      tile },    /* first entry is default */
+	{ "ﱖ",      tile },    
 	#endif
 	{ "𥳐",      NULL },    /* no layout function means floating behavior */
-	#if MONOCLE_LAYOUT
-	{ "𧻓",      monocle },
-	#endif
-	#if BSTACK_LAYOUT
+		#if BSTACK_LAYOUT
 	{ "﯅",      bstack },
 	#endif
 	#if BSTACKHORIZ_LAYOUT

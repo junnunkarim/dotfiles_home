@@ -27,7 +27,7 @@ dwm.normfloatcolor             : overlay1
 
 dwm.selfgcolor                 : blue
 dwm.selbgcolor                 : crust
-dwm.selbordercolor             : red
+dwm.selbordercolor             : maroon
 dwm.selfloatcolor              : blue
 
 dwm.titlenormfgcolor           : overlay1
@@ -41,13 +41,13 @@ dwm.titleselbordercolor        : yellow
 dwm.titleselfloatcolor         : blue
 
 dwm.tagsnormfgcolor		         : crust
-dwm.tagsnormbgcolor            : red
+dwm.tagsnormbgcolor            : maroon
 dwm.tagsnormbordercolor        : yellow
 dwm.tagsnormfloatcolor         : crust
 
-dwm.tagsselfgcolor             : red
+dwm.tagsselfgcolor             : maroon
 dwm.tagsselbgcolor             : crust
-dwm.tagsselbordercolor         : green
+dwm.tagsselbordercolor         : maroon
 dwm.tagsselfloatcolor          : crust
 
 dwm.hidnormfgcolor             : maroon
