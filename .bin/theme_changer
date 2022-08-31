@@ -8,7 +8,8 @@ alacritty_dir="$HOME/.config/alacritty"
 kitty_dir="$HOME/.config/kitty"
 zathura_dir="$HOME/.config/zathura"
 
-prompt="dmenu -l 9 "
+#prompt="dmenu -l 9 "
+prompt="rofi -dmenu -i -theme ~/.config/rofi/theme_changer/type-1/style-3.rasi"
 #prompt="rofi -dmenu"
 
 # for restarting dwm
@@ -82,6 +83,8 @@ change_wzterm_colorscheme()
 change_rofi_theme()
 {
   sed "s/\.config\/rofi\/colors.*.rasi/\.config\/rofi\/colors\/$1.rasi/" -i ~/.config/rofi/launchers/type-1/shared/colors.rasi
+  sed "s/\.config\/rofi\/colors.*.rasi/\.config\/rofi\/colors\/$1.rasi/" -i ~/.config/rofi/powermenu/type-1/shared/colors.rasi
+  sed "s/\.config\/rofi\/colors.*.rasi/\.config\/rofi\/colors\/$1.rasi/" -i ~/.config/rofi/theme_changer/type-1/shared/colors.rasi
 }
 
 change_nvim_theme()
@@ -89,7 +92,7 @@ change_nvim_theme()
   sed "s/theme = .*/theme = \"$1\",/" -i ~/.config/nvim/lua/custom/chadrc.lua
 }
 
-select="$(echo -e "$option" | $prompt -p "Choose a theme: " )"
+select="$(echo -e "$option" | $prompt -p "Choose a theme" )"
 case $select in
   $theme1)
 		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_night_stars_clouds_trees_cozy_PixelArtJourney.png $HOME/.config/wallpaper/pixelart_evening_trees_pole_wires_makrustic.png $HOME/.config/wallpaper/pixelart_france_house_police-car.jpg $HOME/.config/wallpaper/pixelart_pokemon_rayquaza_forest.png
