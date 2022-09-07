@@ -9,7 +9,7 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,run,filebrowser,window";
+	modi:                       "drun,run,window";
     show-icons:                 true;
     display-drun:               " Apps";
     display-run:                " Run";
@@ -50,11 +50,11 @@ configuration {
 
     /* For Screens with 1920x1080 resolution */
     screen-margin:               0px 0px;
-    box-spacing:                 20px;
+    box-spacing:                 10px;
     list-padding:                8px;
-    element-padding:             15px;
+    element-padding:             8px;
     element-radius:              0px;
-    element-spacing:             15px;
+    element-spacing:             8px;
 
     /* For Screens with 1366x768 resolution */
     /*
@@ -75,7 +75,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       800px;
+    width:                       600px;
     height:                      600px;
     x-offset:                    0px;
     y-offset:                    0px;
@@ -83,7 +83,7 @@ window {
     /* properties for all widgets */
     enabled:                     true;
     margin:                      0px;
-    padding:                     20px;
+    padding:                     10px;
     border:                      3px solid;
     border-radius:               0px;
     border-color:                @border-colour;
@@ -203,7 +203,7 @@ listview {
     cursor:                      "default";
 }
 scrollbar {
-    handle-width:                6px ;
+    handle-width:                8px ;
     handle-color:                @handle-colour;
     border-radius:               @element-radius;
     background-color:            @alternate-background;
