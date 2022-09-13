@@ -127,7 +127,7 @@ case $select in
     change_nvim_theme gruvbox
 		;;
 	$theme5)
-		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord_Ansitru.png $HOME/.config/wallpaper/mist_forest_nord.jpg
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord_Ansitru.png $HOME/.config/wallpaper/pixelart_mountains_dark_sky.png $HOME/.config/wallpaper/pixelart_mountain $HOME/.config/wallpaper/mist_forest_nord.jpg
 		change_theme nord
 		change_gtk_theme Nord
     change_wzterm_colorscheme "nord"
