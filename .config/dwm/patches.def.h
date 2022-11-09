@@ -103,7 +103,7 @@
 #define BAR_POWERLINE_TAGS_PATCH 0
 
 /* Alters the tags powerline to use forward slash instead of arrows */
-#define BAR_POWERLINE_TAGS_SLASH_PATCH 0
+#define BAR_POWERLINE_TAGS_SLASH_PATCH 1
 
 /* This patch turns the titlebar area into a mfact-respecting tabbar showing each client's title.
  * https://dwm.suckless.org/patches/bartabgroups/
@@ -238,7 +238,7 @@
  * sole purpose of providing visual aid.
  * https://dwm.suckless.org/patches/alternativetags/
  */
-#define BAR_ALTERNATIVE_TAGS_PATCH 0
+#define BAR_ALTERNATIVE_TAGS_PATCH 1
 
 /* This patches provides the ability to use alternative text for tags which contain at
  * least one window.

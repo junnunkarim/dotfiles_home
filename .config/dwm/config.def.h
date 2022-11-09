@@ -130,7 +130,8 @@ static const char font[]                 = "monospace 10";
 #else
 static const char *fonts[]               = {
 	//"JetBrainsMono Nerd Font Mono:style=Medium:size=13",
-	"Iosevka Nerd Font Mono:style=Medium:size=13",
+	"Iosevka:style=Medium:size=13",
+	"Iosevka Nerd Font Mono:style=Medium:size=18",
 	//"FantasqueSansMono Nerd Font:size=15",
 	//"Hack Nerd Font:style:medium:size=14",
 	//"Comfortaa:size=15",
@@ -374,10 +375,12 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
 	"bash", ".fehbg", NULL,
-	"sxhkd", NULL,
+	//"sxhkd", NULL,
 	"xfce4-power-manager", NULL,
 	"/usr/lib/xfce-polkit/xfce-polkit", NULL,
 	"picom", NULL,
+  "nm-applet", NULL,
+  "/usr/bin/gnome-keyring-daemon", "--start", NULL,
 	NULL /* terminate */
 };
 #endif // COOL_AUTOSTART_PATCH
@@ -419,7 +422,7 @@ static Sp scratchpads[] = {
  */
 static char *tagicons[][NUMTAGS] = {
 	[DEFAULT_TAGS]        = { "", "", "", "ﮑ", "龎", "ﮠ", "", "煉", "" },
-	[ALTERNATIVE_TAGS]    = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+	[ALTERNATIVE_TAGS]    = { "", "", "", "", "", "", "", "", "" },
 	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
 };
 
@@ -470,10 +473,11 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 
 	RULE(.class = "kitty", .isfloating = 1)
-	RULE(.class = "Alacritty", .isfloating = 1)
+	RULE(.class = "Alacritty", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Gpick", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Lxappearance", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Xfce-polkit", .isfloating = 1, .iscentered = 1)
+	RULE(.class = "Protonvpn", .isfloating = 1)
 
 	/* class      instance title tags mask switchtotag isfloating monitor */
 	//  { "Alacritty", NULL,  NULL, 1 << 0,        0,          1,         -1  },
@@ -483,6 +487,7 @@ static const Rule rules[] = {
 	RULE(.class = "st-256color", .tags = 1 << 0, .switchtag = 1) // tag-1
 	RULE(.class = "Emacs", .tags = 1 << 0, .switchtag = 1)
 	RULE(.class = "Geany", .tags = 1 << 0, .switchtag = 1)
+	RULE(.class = "jetbrains-idea-ce", .tags = 1 << 0, .switchtag = 1, .iscentered = 1)
 
 	RULE(.class = "Pcmanfm", .tags = 1 << 1, .switchtag = 1) // tag-2
 	RULE(.class = "Thunar", .tags = 1 << 1, .switchtag = 1, .iscentered = 1) // tag-2
@@ -500,11 +505,14 @@ static const Rule rules[] = {
 
 	RULE(.class = "calibre", .tags = 1 << 4, .switchtag = 1) // tag-5
 	RULE(.class = "Zathura", .tags = 1 << 4, .switchtag = 1) // tag-5
+	RULE(.class = "sioyek", .tags = 1 << 4, .switchtag = 1) // tag-5
+	RULE(.class = "DesktopEditors", .tags = 1 << 4, .switchtag = 1) // tag-5
 
 	RULE(.class = "KotatogramDesktop", .tags = 1 << 5, .switchtag = 1) // tag-6
 	
 	RULE(.class = "Ryujinx", .tags = 1 << 6, .switchtag = 1, .isfloating = 1) // tag-6
 	RULE(.class = "yuzu", .tags = 1 << 6, .switchtag = 1, .isfloating = 1) // tag-6
+	RULE(.class = "retroarch", .tags = 1 << 6, .switchtag = 1, .isfloating = 0) // tag-6
 																																			//
 	RULE(.class = "GParted", .tags = 1 << 7, .switchtag = 1, .isfloating = 1, .iscentered = 1) // tag-8
 	RULE(.class = "Xfce4-power-manager-settings", .tags = 1 << 7, .switchtag = 1, .isfloating = 1, .iscentered = 1)
@@ -876,6 +884,7 @@ static const char *xkb_layouts[]  = {
 #if !NODMENU_PATCH
 static char dmenumon[2] = "0"; // component of dmenucmd, manipulated in spawn()
 #endif // NODMENU_PATCH
+
 static const char *dmenucmd[] = {
 	"dmenu_run",
 	#if !NODMENU_PATCH
@@ -892,8 +901,6 @@ static const char *dmenucmd[] = {
 	NULL
 };
 
-
-static const char *termcmd[]  = { "alacritty", NULL };
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -924,10 +931,73 @@ static Key on_empty_keys[] = {
  	 Super + Shift + <any key> == system main shortcuts
 	 Super + Ctrl + Shift + <any key> == system low priority shortcuts
 	 Super + Alt + Shift + <any key> == system low priority shortcuts
+	 Super + Alt + <any key> == application shortcuts
 */
+
+#include <X11/XF86keysym.h>
+
+static const char *termcmd[]  = { "wezterm", NULL };
+static const char *launchercmd[]  = { ".config/rofi/launchers/type-1/launcher.sh", NULL };
+static const char *network_manager_cmd[]  = { "networkmanager_dmenu", NULL };
+static const char *theme_changer_cmd[]  = { ".bin/dwm/theme_changer", NULL };
+static const char *keybindings_cmd[]  = { ".bin/dwm/dwm_keybindings", NULL };
+static const char *powermenu_cmd[]  = { ".config/rofi/powermenu/type-1/powermenu.sh", NULL };
+
+static const char *lock_cmd[]  = { "slock", NULL };
+static const char *filecmd[]  = { "thunar", NULL };
+static const char *firefoxcmd[]  = { "firefox", NULL };
+static const char *chromiumcmd[]  = { "chromium", NULL };
+static const char *nvimcmd[]  = { "wezterm", "start", "nvim", NULL };
+static const char *btopcmd[]  = { "wezterm", "start", "btop", NULL };
 
 static Key keys[] = {
 	/* modifier                     key            function                argument */
+
+	{ MODKEY,                       XK_l,          spawn,                  {.v = lock_cmd } },
+	{ MODKEY,                       XK_d,          spawn,                  {.v = launchercmd } },
+	{ MODKEY,                       XK_n,          spawn,                  {.v = network_manager_cmd } },
+	{ MODKEY,                       XK_t,          spawn,                  {.v = theme_changer_cmd } },
+	{ MODKEY,                       XK_k,          spawn,                  {.v = keybindings_cmd } },
+	{ MODKEY,                       XK_x,          spawn,                  {.v = powermenu_cmd } },
+	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
+  { MODKEY | ShiftMask,           XK_Return,     spawn,                  SHCMD("tdrop -ma -A -w 60% -x 20% -y 5% -s dropdown alacritty") },
+
+  //---------- Other programs or scripts (super + ctrl) ----------//
+  { MODKEY | ControlMask,         XK_r,          spawn,                  SHCMD("redshift -P -O 5000") },
+  { MODKEY | ControlMask,         XK_n,          spawn,                  SHCMD("redshift -x") },
+  { MODKEY | ControlMask,         XK_v,          spawn,                  SHCMD("redshift -P -O 3500") },
+  { MODKEY | ControlMask,         XK_p,          spawn,                  SHCMD("picom") },
+  { MODKEY | ControlMask,         XK_u,          spawn,                  SHCMD("pkill picom") },
+  { MODKEY | ControlMask,         XK_g,          spawn,                  SHCMD("gpick") },
+  
+  //---------- Applications (super + alt) ----------//
+  { MODKEY | ALTKEY,              XK_f,          spawn,                  {.v = filecmd } },
+  { MODKEY | ALTKEY,              XK_b,          spawn,                  {.v = chromiumcmd } },
+  { MODKEY | ALTKEY,              XK_e,          spawn,                  {.v = firefoxcmd } },
+  { MODKEY | ALTKEY,              XK_v,          spawn,                  {.v = nvimcmd } },
+  { MODKEY | ALTKEY,              XK_h,          spawn,                  {.v = btopcmd } },
+  { MODKEY | ALTKEY,              XK_n,          spawn,                  SHCMD("wezterm start bash ~/.bin/nnn_run -T -v") },
+
+  { 0,                            XK_Print,      spawn,                  SHCMD("flameshot full -p $HOME/Pictures/SS/") },
+  { MODKEY,                       XK_Print,      spawn,                  SHCMD("flameshot gui") },
+  { ALTKEY,                       XK_Print,      spawn,                  SHCMD("flameshot full -d 5000 -p $HOME/Pictures/SS/") },
+  { ShiftMask,                    XK_Print,      spawn,                  SHCMD("flameshot full -d 10000 -p $HOME/Pictures/SS/") },
+
+  { 0,              XF86XK_MonBrightnessDown,    spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 5%-") },
+  { MODKEY,                       XK_F1,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 5%-") },
+  { 0,              XF86XK_MonBrightnessUp,      spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +5%") },
+  { MODKEY,                       XK_F2,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +5%") },
+
+  { 0,              XF86XK_AudioLowerVolume,     spawn,                  SHCMD("pactl set-sink-volume 0 -5%") },
+  { 0,              XF86XK_AudioRaiseVolume,     spawn,                  SHCMD("pactl set-sink-volume 0 +5%") },
+  { 0,              XF86XK_AudioMute,            spawn,                  SHCMD("pactl set-sink-mute 0 toggle") },
+  { MODKEY,                       XK_F5,         spawn,                  SHCMD("pactl set-sink-volume 0 -5%") },
+  { MODKEY,                       XK_F6,         spawn,                  SHCMD("pactl set-sink-volume 0 +5%") },
+  { MODKEY,                       XK_F7,         spawn,                  SHCMD("pactl set-sink-mute 0 toggle") },
+
+  { MODKEY,                       XK_F9,         spawn,                  SHCMD("nmcli radio all on && notify-send \"Turned on wifi\"") },
+  { MODKEY,                       XK_F10,        spawn,                  SHCMD("nmcli radio all off && notify-send \"Turned off wifi\"") },
+
 
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	{ MODKEY,                       XK_s,     		 zoom,                   {0} }, //swap the focused stack with master
@@ -1026,8 +1096,6 @@ static Key keys[] = {
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH
-	{ MODKEY,                       XK_d,          spawn,                  {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
 
 	#if RIODRAW_PATCH
 	{ MODKEY|ControlMask,           XK_p,          riospawnsync,           {.v = dmenucmd } },
@@ -1271,11 +1339,13 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ControlMask,  XK_comma,      tagswapmon,             {.i = +1 } },
 	{ MODKEY|Mod4Mask|ControlMask,  XK_period,     tagswapmon,             {.i = -1 } },
 	#endif // TAGSWAPMON_PATCH
+  */
 	
 	#if BAR_ALTERNATIVE_TAGS_PATCH
-	{ MODKEY,                       XK_n,          togglealttag,           {0} },
+	{ MODKEY,                       XK_bracketleft,          togglealttag,           {0} },
 	#endif // BAR_ALTERNATIVE_TAGS_PATCH
 	
+  /*
 	#if BAR_TAGGRID_PATCH
 	{ MODKEY|ControlMask,           XK_Up,         switchtag,              { .ui = SWITCHTAG_UP    | SWITCHTAG_VIEW } },
 	{ MODKEY|ControlMask,           XK_Down,       switchtag,              { .ui = SWITCHTAG_DOWN  | SWITCHTAG_VIEW } },

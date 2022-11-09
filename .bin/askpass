@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-dmenu -P -p "Password: "
-#rofi -dmenu -password -i -no-fixed-num-lines -p "Password: "

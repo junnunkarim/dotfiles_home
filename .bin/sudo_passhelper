@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# export dmenu as sudo askpass helper
-export SUDO_ASKPASS=~/.bin/askpass
-
-# execute the given application
-sudo -A $1 $2 $3 $4 $5

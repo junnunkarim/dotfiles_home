@@ -5,9 +5,9 @@ widget = luastatus.require_plugin('battery-linux').widget{
     period = 2,
     cb = function(t)
         local symbol = ({
-            Charging    = '',
+            Charging    = '',
             Discharging = '',
-        })[t.status] or ''
+        })[t.status] or ''
         local rem_seg
         if t.rem_time then
             local h = math.floor(t.rem_time)

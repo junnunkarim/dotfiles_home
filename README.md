@@ -15,15 +15,14 @@ Here are some details about my setup:
 - Status Bar: vanilla dwm bar
 - Status Content: [luastatus](https://github.com/shdown/luastatus)
 - Lock Screen: [slock-flexipatch](https://github.com/bakkeby/slock-flexipatch)
-- App Menu: [dmenu-flexipatch](https://github.com/bakkeby/dmenu-flexipatch)
+- App Menu: [rofi](https://github.com/davatorium/rofi)
 - Network Menu: [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
 - Dropdown Menu: [tdrop](https://github.com/noctuid/tdrop)
-- Hotkey Daemon: [sxhkd](https://github.com/baskerville/sxhkd)
 - Notification Daemon: [Linux Notification Center](https://github.com/phuhl/linux_notification_center)
 - AUR helper: [Paru](https://github.com/Morganamilo/paru)
 - Power Management: [Xfce Power Manger](https://docs.xfce.org/xfce/xfce4-power-manager/start)
 - Brightness Control: [brightnessctl](https://github.com/Hummer12007/brightnessctl)
-- Compositor: [picom-pijulius-git](https://github.com/pijulius/picom)
+- Compositor: [picom](https://github.com/yshui/picom)
 ---
 - Font: [Iosevka Nerd Font](https://www.nerdfonts.com/)
 - Shell Prompt: [starship](https://github.com/starship/starship)
@@ -31,7 +30,7 @@ Here are some details about my setup:
 ---
 - File Manager: [nnn](https://github.com/jarun/nnn) and [Thunar](https://docs.xfce.org/xfce/thunar/start)
 - Ebook Reader: [zathura](https://github.com/pwmt/zathura)
-- Image Viewer: [nsxiv](https://github.com/nsxiv/nsxiv)
+- Image Viewer: [qView](https://github.com/jurplel/qView)
 - Video Player: [mpv](https://github.com/mpv-player/mpv)
 - ScreenShot: [Flameshot](https://github.com/flameshot-org/flameshot)
 - Wallpaper Setter: [feh](https://github.com/derf/feh)
@@ -47,7 +46,7 @@ Here are some details about my setup:
 	- [ ] Make guides for fedora and debian
 - [ ] Redo setup on an updated version of dwm-flexipatch
 - [ ] Explain the features of this setup
-- [ ] Switch to rofi from dmenu (but keep dmenu as an alternative)
+- [x] ~Switch to rofi from dmenu (but keep dmenu as an alternative)~
 - [ ] Make new colorschemes
   - [x] ~~nord~~
   - [x] ~~dracula~~
@@ -67,12 +66,10 @@ Here are some details about my setup:
 - xrdb (for reloading xresource colorschemes)
 - A terminal emulator
 	- if you use anything other than wezterm, modify the line after ```super + Return``` in ```~/.config/sxhkd/sxhkdrc``` to your terminal's name (__the theme_changer script will only change the colorschemes of wezterm, alacritty or kitty__)
-- rofi (for opening programs)
-- dmenu (for showing keybindings, changing theme, using as power menu etc)
+- rofi (for opening programs, showing keybindings, changing theme, using as power menu etc)
 - [luastatus](https://github.com/shdown/luastatus) (for status info)
-- [sxhkd](https://github.com/baskerville/sxhkd) (for shortcuts)
 - [feh](https://github.com/derf/feh) (for setting wallpaper)
-- Font: Iosevka Nerd Font
+- Font: Iosevka Nerd Font and Iosevka normal
 	- You can also use any other nerd font, but don't forget to add that font to ```*fonts[]``` in ```~/.config/dwm/config.def.h``` and recompile)
 
 </details>
@@ -85,10 +82,9 @@ You may choose not to install any of these and but doing so might make some thin
 	- Drop-down creator - [tdrop](https://github.com/noctuid/tdrop)
 	- If you want to use anothera terminal as a drop-down terminal, replace ```Alacritty``` to your preferred terminal name in this line -  ```RULE(.class = "Alacritty", .isfloating = 1)``` in ```~/.config/dwm/config.def.h```
 - [Paru](https://github.com/Morganamilo/paru)
-- [picom-pijulius-git](https://github.com/pijulius/picom)
+- [picom](https://github.com/yshui/picom)
 - [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
 - [brightnessctl](https://github.com/Hummer12007/brightnessctl)
-- [exa](https://github.com/ogham/exa)
 - [starship](https://github.com/starship/starship)
 - [macchina](https://github.com/Macchina-CLI/macchina)
 
@@ -109,7 +105,7 @@ You may choose not to install any of these and but doing so might make some thin
 - Clone this repo to your preferred directory and cd into it - ```git clone https://github.com/junnunkarim/dotfiles-linux && cd dotfiles-linux```
 
 - Install mandatory dependencies
-	- ```sudo pacman -Su --needed base-devel coreutils xorg wezterm lua sxhkd feh ttf-iosevka-nerd```
+	- ```sudo pacman -Su --needed base-devel coreutils xorg wezterm lua sxhkd feh ttf-iosevka-nerd ttc-iosevka```
 	- Install luastatus
 		- ```sudo pacman -Su --needed cmake yajl python-docutils```
 		- Continue from here - [luastatus](https://github.com/shdown/luastatus#installation)
@@ -117,7 +113,7 @@ You may choose not to install any of these and but doing so might make some thin
 	- ```cp -rf .bin .Xresources .xinitrc ~```
     - If you won't use my bashrc then add ```.bin``` to your $PATH variable
     - __Do not copy ```.xsession``` as it will change your keyboard layout to dvorak.__
-	- ```cp -rf .config/wezterm .config/dwm .config/dmenu .config/rofi .config/sxhkd .config/wallpaper ~/.config/```
+	- ```cp -rf .config/wezterm .config/dwm .config/rofi .config/wallpaper ~/.config/```
 - Build dwm and dmenu
 	- ```cd ~/.config/dwm && sudo make install```
 	- ```cd ~/.config/dmenu && sudo make install```
@@ -132,7 +128,7 @@ You may choose not to install any of these and but doing so might make some thin
 	Icon=dwm
 	Type=XSession
 	```
-- Open ```~/.config/sxhkd/sxhkdrc``` and ```~/.config/dwm/config.def.h``` in a text editor and modify the keybindings to your needs
+- Open ```$HOME/.config/dwm/config.def.h``` in a text editor and modify the keybindings to your needs
 - Extract the gtk themes from ```.themes``` directory to your ```$HOME/.themes``` directory
 - Login to dwm using a display manager
 	- After getting into dwm press ```super + t``` and choose any colorscheme (this is to load the wallpaper for the first time)
@@ -158,7 +154,7 @@ You may choose not to install any of these and but doing so might make some thin
 - brightnessctl
 	- ```sudo pacman -Su --needed brightnessctl```
 - picom
-	- ```paru -S --needed picom-pijulius-git```
+	- ```sudo pacman -Su --needed picom```
 - networkmanager-dmenu
 	- ```paru -S --needed networkmanager-dmenu-git```
 - redshift
@@ -186,7 +182,7 @@ You may choose not to install any of these and but doing so might make some thin
 > ctrl + [any num or alpabet key] == open other programs or scripts <br>
 
 <details>
-<summary><b>Keybindings that depend on dwm</b></summary>
+<summary><b>Keybindings</b></summary>
 
 | __Keybinding__								| __Action__ |
 | --- 													| --- |
@@ -208,20 +204,13 @@ You may choose not to install any of these and but doing so might make some thin
 | alt + tab											| move through window focus clockwise |
 | alt + backtick								| move through window focus anti-clockwise |
 
-</details>
-
-<details>
-<summary><b>Keybindings that are window manager agnostic (sxhkd)</b></summary>
-
 | __Keybinding__								| __Action__ |
 | ---														| --- |
 | super + return/enter					| open terminal |
 | super + shift + return/enter	| open dropdown terminal |
 | super + l											| lock screen |
-| super + backspace							| reload sxhkd keybindings |
 | super + n											| open network menu |
 | super + shift + n							| open/close notification center |
-| super + shift + escape				| force kill a program |
 | super + t											| open theme switcher |
 | super + x											| open powermenu |
 | super + k											| show all keybindings |
@@ -235,8 +224,8 @@ You may choose not to install any of these and but doing so might make some thin
 | super + alt + n								| open file manager (nnn) |
 | super + alt + b								| open chromium |
 | super + alt + e								| open firefox |
-| super + alt + e								| open vim |
-| super + alt + h								| open bottom |
+| super + alt + e								| open neovim |
+| super + alt + h								| open btop |
 | prtsc													| take fullscreen screenshot now |
 | super + prtsc									| take interective screenshot |
 | alt + prtsc										| take fullscreen screenshot after 5 sec |

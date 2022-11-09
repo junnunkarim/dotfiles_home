@@ -60,13 +60,13 @@ local color =
 
 	wifi_ic_fg = fg_black;
 	wifi_ic_bg = bg_green1;
-	wifi_fg = fg_green2;
-	wifi_bg = bg_black;
+	wifi_fg = fg_black;
+	wifi_bg = bg_green2;
 
 	btt_ic_fg = fg_black; -- battery
 	btt_ic_bg = bg_blue1;
-	btt_fg = fg_blue2;
-	btt_bg = bg_black;
+	btt_fg = fg_black;
+	btt_bg = bg_blue2;
 	
 	vol_ic_fg = fg_black; -- volume
 	vol_ic_bg = bg_purple1;

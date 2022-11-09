@@ -23,7 +23,7 @@ colors:
     focused_match:
       foreground: '#24273A' # base
       background: '#A6DA95' # green
-    bar:
+    colors.footer_bar:
       foreground: '#24273A' # base
       background: '#A5ADCB' # subtext0
 

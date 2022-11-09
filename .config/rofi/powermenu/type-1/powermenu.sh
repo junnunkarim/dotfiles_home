@@ -16,6 +16,7 @@ theme='style-3'
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
 host=`cat /proc/sys/kernel/hostname`
+dwm_pid="$(pidof dwm)"
 
 # Options
 shutdown=' Shutdown'
