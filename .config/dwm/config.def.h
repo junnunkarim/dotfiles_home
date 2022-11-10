@@ -937,11 +937,11 @@ static Key on_empty_keys[] = {
 #include <X11/XF86keysym.h>
 
 static const char *termcmd[]  = { "wezterm", NULL };
-static const char *launchercmd[]  = { ".config/rofi/launchers/type-1/launcher.sh", NULL };
+static const char *launchercmd[]  = { ".bin/rofi_run", NULL };
 static const char *network_manager_cmd[]  = { "networkmanager_dmenu", NULL };
 static const char *theme_changer_cmd[]  = { ".bin/dwm/theme_changer", NULL };
 static const char *keybindings_cmd[]  = { ".bin/dwm/dwm_keybindings", NULL };
-static const char *powermenu_cmd[]  = { ".config/rofi/powermenu/type-1/powermenu.sh", NULL };
+static const char *powermenu_cmd[]  = { ".bin/powermenu", NULL };
 
 static const char *lock_cmd[]  = { "slock", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
@@ -953,7 +953,7 @@ static const char *btopcmd[]  = { "wezterm", "start", "btop", NULL };
 static Key keys[] = {
 	/* modifier                     key            function                argument */
 
-	{ MODKEY,                       XK_l,          spawn,                  {.v = lock_cmd } },
+  { MODKEY,                       XK_l,          spawn,                  {.v = lock_cmd } },
 	{ MODKEY,                       XK_d,          spawn,                  {.v = launchercmd } },
 	{ MODKEY,                       XK_n,          spawn,                  {.v = network_manager_cmd } },
 	{ MODKEY,                       XK_t,          spawn,                  {.v = theme_changer_cmd } },
@@ -962,44 +962,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
   { MODKEY | ShiftMask,           XK_Return,     spawn,                  SHCMD("tdrop -ma -A -w 60% -x 20% -y 5% -s dropdown alacritty") },
 
-  //---------- Other programs or scripts (super + ctrl) ----------//
-  { MODKEY | ControlMask,         XK_r,          spawn,                  SHCMD("redshift -P -O 5000") },
-  { MODKEY | ControlMask,         XK_n,          spawn,                  SHCMD("redshift -x") },
-  { MODKEY | ControlMask,         XK_v,          spawn,                  SHCMD("redshift -P -O 3500") },
-  { MODKEY | ControlMask,         XK_p,          spawn,                  SHCMD("picom") },
-  { MODKEY | ControlMask,         XK_u,          spawn,                  SHCMD("pkill picom") },
-  { MODKEY | ControlMask,         XK_g,          spawn,                  SHCMD("gpick") },
-  
-  //---------- Applications (super + alt) ----------//
-  { MODKEY | ALTKEY,              XK_f,          spawn,                  {.v = filecmd } },
-  { MODKEY | ALTKEY,              XK_b,          spawn,                  {.v = chromiumcmd } },
-  { MODKEY | ALTKEY,              XK_e,          spawn,                  {.v = firefoxcmd } },
-  { MODKEY | ALTKEY,              XK_v,          spawn,                  {.v = nvimcmd } },
-  { MODKEY | ALTKEY,              XK_h,          spawn,                  {.v = btopcmd } },
-  { MODKEY | ALTKEY,              XK_n,          spawn,                  SHCMD("wezterm start bash ~/.bin/nnn_run -T -v") },
-
-  { 0,                            XK_Print,      spawn,                  SHCMD("flameshot full -p $HOME/Pictures/SS/") },
-  { MODKEY,                       XK_Print,      spawn,                  SHCMD("flameshot gui") },
-  { ALTKEY,                       XK_Print,      spawn,                  SHCMD("flameshot full -d 5000 -p $HOME/Pictures/SS/") },
-  { ShiftMask,                    XK_Print,      spawn,                  SHCMD("flameshot full -d 10000 -p $HOME/Pictures/SS/") },
-
-  { 0,              XF86XK_MonBrightnessDown,    spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 5%-") },
-  { MODKEY,                       XK_F1,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 5%-") },
-  { 0,              XF86XK_MonBrightnessUp,      spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +5%") },
-  { MODKEY,                       XK_F2,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +5%") },
-
-  { 0,              XF86XK_AudioLowerVolume,     spawn,                  SHCMD("pactl set-sink-volume 0 -5%") },
-  { 0,              XF86XK_AudioRaiseVolume,     spawn,                  SHCMD("pactl set-sink-volume 0 +5%") },
-  { 0,              XF86XK_AudioMute,            spawn,                  SHCMD("pactl set-sink-mute 0 toggle") },
-  { MODKEY,                       XK_F5,         spawn,                  SHCMD("pactl set-sink-volume 0 -5%") },
-  { MODKEY,                       XK_F6,         spawn,                  SHCMD("pactl set-sink-volume 0 +5%") },
-  { MODKEY,                       XK_F7,         spawn,                  SHCMD("pactl set-sink-mute 0 toggle") },
-
-  { MODKEY,                       XK_F9,         spawn,                  SHCMD("nmcli radio all on && notify-send \"Turned on wifi\"") },
-  { MODKEY,                       XK_F10,        spawn,                  SHCMD("nmcli radio all off && notify-send \"Turned off wifi\"") },
-
-
-	{ MODKEY,                       XK_b,          togglebar,              {0} },
+  { MODKEY,                       XK_b,          togglebar,              {0} },
 	{ MODKEY,                       XK_s,     		 zoom,                   {0} }, //swap the focused stack with master
 	{ MODKEY,                       XK_c,          killclient,             {0} },
 	{ MODKEY|ShiftMask,             XK_q,          quit,                   {0} },
@@ -1007,7 +970,6 @@ static Key keys[] = {
 	
 	{ MODKEY,                       XK_Left,       setmfact,               {.f = -0.05} },
 	{ MODKEY,                       XK_Right,      setmfact,               {.f = +0.05} },
-
 
 	#if CYCLELAYOUTS_PATCH
 	{ MODKEY|ShiftMask|ControlMask, XK_space,      cyclelayout,            {.i = +1 } },
@@ -1060,6 +1022,41 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,          togglefullscreen,       {0} },
 	#endif // TOGGLEFULLSCREEN_PATCH
 
+  //---------- Other programs or scripts (super + ctrl) ----------//
+  { MODKEY | ControlMask,         XK_r,          spawn,                  SHCMD("redshift -P -O 5000") },
+  { MODKEY | ControlMask,         XK_n,          spawn,                  SHCMD("redshift -x") },
+  { MODKEY | ControlMask,         XK_v,          spawn,                  SHCMD("redshift -P -O 3500") },
+  { MODKEY | ControlMask,         XK_p,          spawn,                  SHCMD("picom") },
+  { MODKEY | ControlMask,         XK_u,          spawn,                  SHCMD("pkill picom") },
+  { MODKEY | ControlMask,         XK_g,          spawn,                  SHCMD("gpick") },
+  
+  //---------- Applications (super + alt) ----------//
+  { MODKEY | ALTKEY,              XK_f,          spawn,                  {.v = filecmd } },
+  { MODKEY | ALTKEY,              XK_b,          spawn,                  {.v = chromiumcmd } },
+  { MODKEY | ALTKEY,              XK_e,          spawn,                  {.v = firefoxcmd } },
+  { MODKEY | ALTKEY,              XK_v,          spawn,                  {.v = nvimcmd } },
+  { MODKEY | ALTKEY,              XK_h,          spawn,                  {.v = btopcmd } },
+  { MODKEY | ALTKEY,              XK_n,          spawn,                  SHCMD("wezterm start bash ~/.bin/nnn_run -T -v") },
+
+  { 0,                            XK_Print,      spawn,                  SHCMD("flameshot full -p $HOME/Pictures/SS/") },
+  { MODKEY,                       XK_Print,      spawn,                  SHCMD("flameshot gui") },
+  { ALTKEY,                       XK_Print,      spawn,                  SHCMD("flameshot full -d 5000 -p $HOME/Pictures/SS/") },
+  { ShiftMask,                    XK_Print,      spawn,                  SHCMD("flameshot full -d 10000 -p $HOME/Pictures/SS/") },
+
+  { 0,              XF86XK_MonBrightnessDown,    spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 5%-") },
+  { MODKEY,                       XK_F1,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 5%-") },
+  { 0,              XF86XK_MonBrightnessUp,      spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +5%") },
+  { MODKEY,                       XK_F2,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +5%") },
+
+  { 0,              XF86XK_AudioLowerVolume,     spawn,                  SHCMD("pactl set-sink-volume 0 -5%") },
+  { 0,              XF86XK_AudioRaiseVolume,     spawn,                  SHCMD("pactl set-sink-volume 0 +5%") },
+  { 0,              XF86XK_AudioMute,            spawn,                  SHCMD("pactl set-sink-mute 0 toggle") },
+  { MODKEY,                       XK_F5,         spawn,                  SHCMD("pactl set-sink-volume 0 -5%") },
+  { MODKEY,                       XK_F6,         spawn,                  SHCMD("pactl set-sink-volume 0 +5%") },
+  { MODKEY,                       XK_F7,         spawn,                  SHCMD("pactl set-sink-mute 0 toggle") },
+
+  { MODKEY,                       XK_F9,         spawn,                  SHCMD("nmcli radio all on && notify-send \"Turned on wifi\"") },
+  { MODKEY,                       XK_F10,        spawn,                  SHCMD("nmcli radio all off && notify-send \"Turned off wifi\"") },
 
 
 	//{ MODKEY,                       XK_i,          incnmaster,             {.i = +1 } },

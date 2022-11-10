@@ -1,74 +1,82 @@
 -- foreground
-fg_pn1 			= "^c#2e3440^";
-fg_pn2 			= "^c#3b4252^";
-fg_pn3 			= "^c#434c5e^";
-fg_pn4 			= "^c#4c566a^";
-fg_ss1 			= "^c#d8dee9^";
-fg_ss2 			= "^c#e5e9f0^";
-fg_ss3 			= "^c#eceff4^";
-fg_frost1 	= "^c#8fbcbb^";
-fg_frost2 	= "^c#88c0d0^";
-fg_frost3 	= "^c#81a1c1^";
-fg_frost4 	= "^c#5e81ac^";
-fg_aurora1 	= "^c#bf616a^";
-fg_aurora2 	= "^c#d08770^";
-fg_aurora3 	= "^c#ebcb8b^";
-fg_aurora4 	= "^c#a3be8c^";
-fg_aurora5 	= "^c#b48ead^";
+fg_black = "^c#282828^";
+fg_black0 = "^c#1d2021^";
+fg_white = "^c#ebdbb2^";
+fg_white0 = "^c#fbf1c7^";
+fg_gray1 = "^c#a89984^";
+fg_gray2 = "^c#928374^";
+fg_red1 = "^c#cc241d^";
+fg_red2 = "^c#fb4934^";
+fg_green1 = "^c#98971a^";
+fg_green2 = "^c#b8bb26^";
+fg_yellow1 = "^c#d79921^";
+fg_yellow2 = "^c#fabd2f^";
+fg_blue1 = "^c#458588^";
+fg_blue2 = "^c#83a598^";
+fg_purple1 = "^c#b16286^";
+fg_purple2 = "^c#d3869b^";
+fg_aqua1 = "^c#689d6a^";
+fg_aqua2 = "^c#8ec07c^";
+fg_orange1 = "^c#d65d0e^";
+fg_orange2 = "^c#fe8019^";
 
 -- background
-bg_pn1 			= "^b#2e3440^";
-bg_pn2 			= "^b#3b4252^";
-bg_pn3 			= "^b#434c5e^";
-bg_pn4 			= "^b#4c566a^";
-bg_ss1 			= "^b#d8dee9^";
-bg_ss2 			= "^b#e5e9f0^";
-bg_ss3 			= "^b#eceff4^";
-bg_frost1 	= "^b#8fbcbb^";
-bg_frost2 	= "^b#88c0d0^";
-bg_frost3 	= "^b#81a1c1^";
-bg_frost4 	= "^b#5e81ac^";
-bg_aurora1 	= "^b#bf616a^";
-bg_aurora2 	= "^b#d08770^";
-bg_aurora3 	= "^b#ebcb8b^";
-bg_aurora4 	= "^b#a3be8c^";
-bg_aurora5 	= "^b#b48ead^";
+bg_black = "^b#282828^";
+bg_black0 = "^b#1d2021^";
+bg_white = "^b#ebdbb2^";
+bg_white0 = "^b#fbf1c7^";
+bg_gray1 = "^b#a89984^";
+bg_gray2 = "^b#928374^";
+bg_red1 = "^b#cc241d^";
+bg_red2 = "^b#fb4934^";
+bg_green1 = "^b#98971a^";
+bg_green2 = "^b#b8bb26^";
+bg_yellow1 = "^b#d79921^";
+bg_yellow2 = "^b#fabd2f^";
+bg_blue1 = "^b#458588^";
+bg_blue2 = "^b#83a598^";
+bg_purple1 = "^b#b16286^";
+bg_purple2 = "^b#d3869b^";
+bg_aqua1 = "^b#689d6a^";
+bg_aqua2 = "^b#8ec07c^";
+bg_orange1 = "^b#d65d0e^";
+bg_orange2 = "^b#fe8019^";
 
 
 local color =
 {
 	-- set colors to modules
-	sep = bg_pn1 .. fg_pn1 .. '|'; -- separator
+	sep = bg_black .. fg_black .. '|'; -- separator
 
-	date_ic_fg 	= fg_pn1;
-	date_ic_bg 	= bg_frost4;
-	date_fg 		= fg_pn1;
-	date_bg 		= bg_frost3;
+	date_ic_fg = fg_black;
+	date_ic_bg = bg_orange1;
+	date_fg = fg_black;
+	date_bg = bg_orange2;
 
-	time_ic_fg 	= fg_pn1;
-	time_ic_bg 	= bg_aurora4;
-	time_fg 		= fg_aurora4;
-	time_bg 		= bg_pn1;
+	time_ic_fg = fg_black;
+	time_ic_bg = bg_yellow1;
+	time_fg = fg_black;
+	time_bg = bg_yellow2;
 
-	wifi_ic_fg 	= fg_pn1;
-	wifi_ic_bg 	= bg_aurora3;
-	wifi_fg 		= fg_aurora3;
-	wifi_bg 		= bg_pn1;
+	wifi_ic_fg = fg_black;
+	wifi_ic_bg = bg_green1;
+	wifi_fg = fg_black;
+	wifi_bg = bg_green2;
 
-	btt_ic_fg 	= fg_pn1; -- battery
-	btt_ic_bg 	= bg_aurora2;
-	btt_fg 			= fg_aurora2;
-	btt_bg 			= bg_pn1;
+	btt_ic_fg = fg_black; -- battery
+	btt_ic_bg = bg_blue1;
+	btt_fg = fg_black;
+	btt_bg = bg_blue2;
 	
-	vol_ic_fg 	= fg_pn1; -- volume
-	vol_ic_bg 	= bg_aurora1;
-	vol_fg 			= fg_aurora1;
-	vol_bg 			= bg_pn1;
+	vol_ic_fg = fg_black; -- volume
+	vol_ic_bg = bg_purple1;
+	vol_fg = fg_black;
+	vol_bg = bg_purple2;
 
-	brgn_ic_fg 	= fg_pn1; -- brightness
-	brgn_ic_bg 	= bg_aurora5;
-	brgn_fg 		= fg_aurora5;
-	brgn_bg 		= bg_pn1;
+	brgn_ic_fg = fg_black; -- brightness
+	brgn_ic_bg = bg_aqua1;
+	brgn_fg = fg_black;
+	brgn_bg = bg_aqua2;
 }
 
 return color
