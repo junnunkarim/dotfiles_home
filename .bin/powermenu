@@ -30,11 +30,11 @@ confirmation()
 execute()
 {
 	confirm="$(confirmation)"
-  wm="wmctrl -m | grep \"Name: \" | awk '{print $2}'"
+  wm="`wmctrl -m | grep \"Name: \" | awk '{print $2}'`"
 
 	if [[ "$confirm" == "$yes" ]]; then
 		if [[ $1 == 'shutdown' ]]; then
-			systemctl shutdown
+			systemctl poweroff
     elif [[ $1 == 'hibernate' ]]; then
       systemctl hibernate
 		elif [[ $1 == 'reboot' ]]; then
@@ -42,15 +42,17 @@ execute()
 		elif [[ $1 == 'suspend' ]]; then
 			systemctl suspend
 		elif [[ $1 == 'logout' ]]; then
-      if [[ wm == 'dwm' ]]; then
+      if [[ $wm == 'dwm' ]]; then
         kill -TERM dwmpid $dwm_pid
-      elif [[ wm == 'openbox' ]]; then
+      elif [[ $wm == 'awesome' ]]; then
+        awesome-client 'awesome.quit()'
+      elif [[ $wm == 'openbox' ]]; then
 				openbox --exit
-			elif [[ wm == 'bspwm' ]]; then
+			elif [[ $wm == 'bspwm' ]]; then
 				bspc quit
-			elif [[ wm == 'i3' ]]; then
+			elif [[ $wm == 'i3' ]]; then
 				i3-msg exit
-			elif [[ wm == 'plasma' ]]; then
+			elif [[ $wm == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
 			fi
 		fi

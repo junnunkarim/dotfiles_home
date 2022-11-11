@@ -4,12 +4,13 @@
 dwm_dir="$HOME/.config/dwm"
 dmenu_dir="$HOME/.config/dmenu"
 dwm_luastatus_dir="$HOME/.config/dwm/luastatus/colorscheme"
+rofi_dir="$HOME/.config/rofi"
 alacritty_dir="$HOME/.config/alacritty"
 kitty_dir="$HOME/.config/kitty"
 zathura_dir="$HOME/.config/zathura"
 
 # launcher
-prompt="rofi -dmenu -i -theme ~/.config/rofi/script_menu.rasi"
+prompt="rofi -dmenu -i -theme $HOME/.config/rofi/script_menu.rasi"
 
 # for restarting dwm
 dwm_pid="$(pidof dwm)"
@@ -28,6 +29,8 @@ change_theme()
 	cp ${dwm_dir}/theme_xresources/$1 ${dwm_dir}/theme_xresources/theme
 	#cp ${dmenu_dir}/theme_xresources/$1 ${dmenu_dir}/theme_xresources/theme
 	cp ${dwm_luastatus_dir}/$1.lua ${dwm_luastatus_dir}/color.lua
+
+	cp ${rofi_dir}/colors/$1.rasi ${rofi_dir}/colors/colors.rasi
 	
 	cp ${alacritty_dir}/colorscheme/$1.yml ${alacritty_dir}/color.yml
 	cp ${kitty_dir}/colorscheme/$1.conf ${kitty_dir}/color.conf
@@ -72,11 +75,10 @@ select="$(echo -e "$option" | $prompt -p "Choose a theme" )"
 
 case $select in
   $theme1)
-		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_night_stars_clouds_trees_cozy_PixelArtJourney.png $HOME/.config/wallpaper/pixelart_evening_trees_pole_wires_makrustic.png $HOME/.config/wallpaper/pixelart_france_house_police-car.jpg $HOME/.config/wallpaper/pixelart_pokemon_rayquaza_forest.png
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_night_stars_clouds_trees_cozy_PixelArtJourney.png $HOME/.config/wallpaper/pixelart_evening_trees_pole_wires_makrustic.png $HOME/.config/wallpaper/pixelart_pokemon_rayquaza_forest.png
 		change_theme catppuccin_macchiato
     change_gtk_theme Catppuccin
     change_wzterm_colorscheme "Catppuccin Mocha"
-    change_rofi_theme catppuccin
     change_nvim_theme catppuccin
     change_btop_theme catppuccin_macchiato
 		;;
@@ -85,7 +87,6 @@ case $select in
 		change_theme cozy-night
 		change_gtk_theme TokyoNight
     change_wzterm_colorscheme "tokyonight"
-    change_rofi_theme tokyonight
     change_nvim_theme tokyonight
     change_btop_theme tokyo-night
 		;;
@@ -94,7 +95,6 @@ case $select in
 		change_theme dracula
 		change_gtk_theme Dracula
     change_wzterm_colorscheme "Dracula"
-    change_rofi_theme dracula
     change_nvim_theme chadracula
     change_btop_theme dracula
     ;;
@@ -103,7 +103,6 @@ case $select in
 		change_theme gruvbox
 		change_gtk_theme Gruvbox-Dark
     change_wzterm_colorscheme "Gruvbox Dark"
-    change_rofi_theme gruvbox
     change_nvim_theme gruvbox
     change_btop_theme gruvbox_dark
 		;;
@@ -112,7 +111,6 @@ case $select in
 		change_theme nord
 		change_gtk_theme Nord
     change_wzterm_colorscheme "nord"
-    change_rofi_theme nord
     change_nvim_theme nord
     change_btop_theme nord
 		;;

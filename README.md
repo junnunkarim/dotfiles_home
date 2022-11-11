@@ -105,7 +105,7 @@ You may choose not to install any of these and but doing so might make some thin
 - Clone this repo to your preferred directory and cd into it - ```git clone https://github.com/junnunkarim/dotfiles-linux && cd dotfiles-linux```
 
 - Install mandatory dependencies
-	- ```sudo pacman -Su --needed base-devel coreutils xorg wezterm lua sxhkd feh ttf-iosevka-nerd ttc-iosevka```
+	- ```sudo pacman -Su --needed base-devel coreutils xorg wezterm lua feh ttf-iosevka-nerd ttc-iosevka wmctrl```
 	- Install luastatus
 		- ```sudo pacman -Su --needed cmake yajl python-docutils```
 		- Continue from here - [luastatus](https://github.com/shdown/luastatus#installation)
@@ -287,18 +287,22 @@ You may choose not to install any of these and but doing so might make some thin
 
 ## Catppuccin (Macchiato) 
 ![img](/ss/dwm_catppuccin_macchiato_1.png)
+![img](/ss/dwm_catppuccin_macchiato_2.png)
 ![img](/ss/dwm_catppuccin_macchiato_3.png)
 ## Cozy-Night 
 ![img](/ss/dwm_cozy-night_1.png)
 ![img](/ss/dwm_cozy-night_4.png)
 ## Dracula
 ![img](/ss/dwm_dracula_1.png)
+![img](/ss/dwm_dracula_2.png)
 ![img](/ss/dwm_dracula_3.png)
 ## Gruvbox
 ![img](/ss/dwm_gruvbox_1.png)
-![img](/ss/dwm_gruvbox_4.png)
+![img](/ss/dwm_gruvbox_2.png)
+![img](/ss/dwm_gruvbox_3.png)
 ## Nord
 ![img](/ss/dwm_nord_1.png)
+![img](/ss/dwm_nord_2.png)
 ![img](/ss/dwm_nord_3.png)
 
 </details>
@@ -313,7 +317,7 @@ You may choose not to install any of these and but doing so might make some thin
   - If you are the artist and you do not want me to redistribute your art, then let me know. I will remove your art from my git repo.
 - Name of the image artists that I know are listed [here](/.config/wallpaper/README.md)
 
-- [adi1090x](https://github.com/adi1090x) mainly for his [Archcraft](https://archcraft.io/), his scripts (from where I learned a lot) and his rofi configs
+- [adi1090x](https://github.com/adi1090x) mainly for his [Archcraft](https://archcraft.io/) and his scripts as well as configs (from where I learned a lot)
 - [NvChad](https://github.com/NvChad) for the neovim configs
 - [karlivory](https://github.com/karlivory) for fixing the need to restart dwm when changing theme
 - [Petingoso](https://github.com/Petingoso) for modifying the theme_changer script to also change gtk theme

@@ -1,166 +1,161 @@
-/*****----- Configuration -----*****/
+/*---------- Main Config ----------*/
 configuration {
-    show-icons:                 false;
+  modi:                       "drun,run,window";
+    show-icons:                 true;
+    display-drun:               " Apps";
+    display-run:                " Run";
+    display-filebrowser:        " Files";
+    display-window:             " Windows";
+  window-format:              "{w} · {c} · {t}";
 }
 
-/*****----- Global Properties -----*****/
-@import                          "~/.config/rofi/colors/gruvbox.rasi"
 
-*{
-    font: "Iosevka Nerd Font Mono 15";
+/*---------- Theme Config ----------*/
+@import "~/.config/rofi/colors/colors.rasi"
+
+* {
+  font: "Iosevka Nerd Font Mono Bold 15";
 }
 
-/*****----- Main Window -----*****/
 window {
-    /* properties for window widget */
-    transparency:                "real";
-    location:                    center;
-    anchor:                      center;
-    fullscreen:                  false;
-    width:                       500px;
-    x-offset:                    0px;
-    y-offset:                    0px;
+  /* properties for just the window widget */
+  location: north;
+  anchor: north;
+  width: 600px;
+  height: 600px;
 
-    /* properties for all widgets */
-    enabled:                     true;
-    margin:                      0px;
-    padding:                     10px;
-    border:                      3px solid;
-    border-radius:               0px;
-    border-color:                @selected;
-    cursor:                      "default";
-    background-color:            @background;
+  /* properties for all widgets */
+  padding: 20px;
+  border: 0px 1px 10px 1px;
+
+  border-color: var(selected);
+  background-color: var(background);
 }
 
-/*****----- Main Box -----*****/
 mainbox {
-    enabled:                     true;
-    spacing:                     8px;
-    margin:                      0px;
-    padding:                     8px;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @selected;
-    background-color:            transparent;
-    children:                    [ "inputbar", "message", "listview" ];
+  children: [ "listview", "message", "inputbar" ];
+
+  text-color: var(foreground);
+  background-color: var(background);
 }
 
-/*****----- Inputbar -----*****/
-inputbar {
-    enabled:                     true;
-    spacing:                     8px;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px;
-    border-radius:               0px;
-    border-color:                @selected;
-    background-color:            transparent;
-    text-color:                  @foreground;
-    children:                    [ /*"textbox-prompt-colon",*/ "entry", "prompt"];
-}
+listview {
+  children: [ "scrollbar", "element" ];
 
-textbox-prompt-colon {
-    enabled:                     true;
-    expand:                      false;
-    str:                         "";
-    padding:                     8px 12px;
-    border-radius:               0px;
-    background-color:            @urgent;
-    text-color:                  @background;
-}
-prompt {
-    enabled:                     true;
-    padding:                     8px;
-    border-radius:               0px;
-    background-color:            @active;
-    text-color:                  @background;
-}
+  cycle: true;
+  scrollbar: true;
 
-entry {
-    enabled:                     true;
-    expand:                      true;
-    padding:                     8px;
-    background-color:            inherit;
-    text-color:                  inherit;
-    cursor:                      text;
-    placeholder:                 "Search...";
-    placeholder-color:           inherit;
-}
+  padding: 10px;
 
-/*****----- Message -----*****/
+  text-color: var(foreground);
+  background-color: var(background);
+}
+  scrollbar {
+    handle-width: 8px;
+    padding: inherit;
+
+    handle-color: var(selected);
+    background-color: inherit;
+  }
+  element {
+    padding: inherit;
+    margin: 5px;
+
+    text-color: inherit;
+    background-color: inherit;
+  }
+  element-text {
+    text-color: inherit;
+    background-color: transparent;
+  }
+  element.normal.normal, element.alternate.normal, element.selected.normal {
+    text-color: var(foreground);
+    background-color: var(background);
+  }
+  element.selected.normal {
+    text-color: var(background-1);
+    background-color: var(selected);
+  }
+  element.normal.active, element.normal.urgent, element.alternate.active, element.alternate.urgent, element.selected.active, element.selected.urgent {
+    text-color: var(background);
+    background-color: var(urgent);
+  }
+  element-icon {
+    size: 0px;
+    padding: 0px 0px 0px 0px;
+    
+    text-color: inherit;
+    background-color: transparent;
+  }
+
+
 message {
-    enabled:                     true;
-    margin:                      0px;
-    padding:                     8px;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @selected;
-    background-color:            @background-alt;
-    text-color:                  @foreground;
+  padding: 10px;
+  margin: 0px 0px 10px 0px;
+  border: 0px 0px 0px 5px solid;
+
+  border-color: var(urgent);
+  text-color: var(foreground);
+  background-color: var(background-1);
 }
 textbox {
-    background-color:            inherit;
-    text-color:                  inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-    placeholder-color:           @foreground;
-    blink:                       true;
-    markup:                      true;
-}
-error-message {
-    padding:                     8px;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @selected;
-    background-color:            @background;
-    text-color:                  @foreground;
+  blink: true;
+  markup: true;
+
+  text-color: inherit;
+  background-color: inherit;
 }
 
-/*****----- Listview -----*****/
-listview {
-    enabled:                     true;
-    columns:                     1;
-    lines:                       6;
-    cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    layout:                      vertical;
-    reverse:                     false;
-    fixed-height:                true;
-    fixed-columns:               true;
-    
-    spacing:                     5px;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @selected;
-    background-color:            transparent;
-    text-color:                  @foreground;
-    cursor:                      "default";
-}
 
-/*****----- Elements -----*****/
-element {
-    enabled:                     true;
-    spacing:                     0px;
-    margin:                      0px;
-    padding:                     8px;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @selected;
-    background-color:            transparent;
-    text-color:                  @foreground;
-    cursor:                      pointer;
+inputbar {
+  children: [ "entry", "prompt" ];
+
+  padding: 5px;
+  border: 1px 1px 1px 5px solid;
+
+  border-color: var(active);
+  text-color: var(foreground);
+  background-color: var(background-1);
 }
-element-text {
-    background-color:            transparent;
-    text-color:                  inherit;
-    cursor:                      inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-}
-element selected.normal {
-    background-color:            var(selected);
-    text-color:                  var(background);
-}
+  textbox-prompt-colon {
+    str: "";
+
+    text-color: inherit;
+    background-color: inherit;
+  }
+  entry {
+    placeholder: "Search...";
+    padding: 8px 3px 3px 3px;
+
+    background-color: inherit;
+    text-color: inherit;
+  }
+  prompt {
+    padding: 5px;
+    background-color: var(active);
+    text-color: var(background);
+  }
+  mode-switcher {
+    children: [ "button" ];
+
+    spacing: 10px;
+    padding: 5px;
+
+    background-color: var(background-1);
+  }
+    button {
+      width: 125px;
+      padding: inherit;
+      border: 0px 0px 2px 0px solid;
+
+      border-color: var(active);
+      background-color: var(background-1);
+      text-color: var(foreground);
+    }
+    button.selected {
+      border: 5px 0px 0px 0px solid;
+
+      border-color: var(active);
+      background-color: var(background);
+      text-color: var(foreground);
+    }
