@@ -10,11 +10,13 @@ case $# in
 	focusurgent) ;&
 	mirrorlayout) ;&
 	mpdcontrol) ;&
+	nametag) ;&
 	pushdown) ;&
 	pushup) ;&
 	self_restart) ;&
 	setlayout) ;&
 	setcfact) ;&
+	showhideclient) ;&
 	switchcol) ;&
 	view) ;&
 	viewall) ;&
@@ -99,6 +101,9 @@ case $# in
 	setcfact) ;&
 	setmfact)
 		signal $1 f $2
+		;;
+	floatpos)
+		signal $1 v $2
 		;;
 	*)
 		echo "Unknown command ($1) or too many arguments"

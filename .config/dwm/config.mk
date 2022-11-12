@@ -1,5 +1,5 @@
 # dwm version
-VERSION = 6.3
+VERSION = 6.4
 
 # Customize below to fit your system
 
@@ -46,14 +46,18 @@ XRENDER = -lXrender
 #XEXTLIB = -lXext
 
 # Uncomment this for the swallow patch / SWALLOW_PATCH
-XCBLIBS = -lX11-xcb -lxcb -lxcb-res
+#XCBLIBS = -lX11-xcb -lxcb -lxcb-res
 
-# This is needed for the winicon patch / BAR_WINICON_PATCH
-# IMLIB2LIBS = -lImlib2
+# This is needed for the winicon and tagpreview patches / BAR_WINICON_PATCH / BAR_TAGPREVIEW_PATCH
+#IMLIB2LIBS = -lImlib2
+
+# Uncomment for the bidi patch
+#BDINC = -I/usr/include/fribidi
+#BDLIBS = -lfribidi
 
 # includes and libs
-INCS = -I${X11INC} -I${FREETYPEINC} ${YAJLINC} ${PANGOINC}
-LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS}  ${XRENDER} ${MPDCLIENT} ${XEXTLIB} ${XCBLIBS} ${KVMLIB} ${PANGOLIB} ${YAJLLIBS} ${IMLIB2LIBS}
+INCS = -I${X11INC} -I${FREETYPEINC} ${YAJLINC} ${PANGOINC} ${BDINC}
+LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS}  ${XRENDER} ${MPDCLIENT} ${XEXTLIB} ${XCBLIBS} ${KVMLIB} ${PANGOLIB} ${YAJLLIBS} ${IMLIB2LIBS} $(BDLIBS)
 
 # flags
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=200809L -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}

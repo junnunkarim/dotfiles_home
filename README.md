@@ -1,5 +1,7 @@
 <h1 align="center"><i><u>~/dotfiles</u></i></h1>
 
+> Check the **Screenshot** part for updated screenshots
+
 ![img](/ss/dwm_gruvbox_cozy-night.png)
 ![img](/ss/dwm_nord_catppuccin-macchiato.png)
 
@@ -35,6 +37,8 @@ Here are some details about my setup:
 - ScreenShot: [Flameshot](https://github.com/flameshot-org/flameshot)
 - Wallpaper Setter: [feh](https://github.com/derf/feh)
 - Color Picker: [Gpick](https://github.com/thezbyg/gpick)
+- Clipboard Manager: [greenclip](https://github.com/erebe/greenclip)
+- Calculator: [rofi-calc](https://github.com/svenstaro/rofi-calc)
 
 # TODO
 - [x] ~~Switch to [xrdb patch](https://dwm.suckless.org/patches/xrdb/) for theme switching~~
@@ -44,7 +48,7 @@ Here are some details about my setup:
 	- [x] ~~Mention the mandatory and optional dependencies~~
 	- [x] ~~Make a detailed guide for archlinux~~
 	- [ ] Make guides for fedora and debian
-- [ ] Redo setup on an updated version of dwm-flexipatch
+- [x] ~Redo setup on an updated version of dwm-flexipatch~
 - [ ] Explain the features of this setup
 - [x] ~Switch to rofi from dmenu (but keep dmenu as an alternative)~
 - [ ] Make new colorschemes
@@ -56,6 +60,7 @@ Here are some details about my setup:
 - [ ] Create conky and eww widgets
 - [ ] Remove unused patches
 - [ ] Give credit to proper persons and projects
+- [ ] Write my own neovim config
 
 # Dependencies
 
@@ -65,12 +70,12 @@ Here are some details about my setup:
 - Xorg (for beginners, I recommend installing the whole package)
 - xrdb (for reloading xresource colorschemes)
 - A terminal emulator
-	- if you use anything other than wezterm, modify the line after ```super + Return``` in ```~/.config/sxhkd/sxhkdrc``` to your terminal's name (__the theme_changer script will only change the colorschemes of wezterm, alacritty or kitty__)
-- rofi (for opening programs, showing keybindings, changing theme, using as power menu etc)
+	- if you use anything other than wezterm, modify the line ```static const char *termcmd[]  = { "wezterm", NULL };``` in ```~/.config/dwm/config.h``` to your terminal's name (__the theme_changer script will only change the colorschemes of wezterm, alacritty or kitty__)
+- rofi (for opening programs, showing keybindings, changing theme, using as power menu, managing clipboard, using as a calculator etc)
 - [luastatus](https://github.com/shdown/luastatus) (for status info)
 - [feh](https://github.com/derf/feh) (for setting wallpaper)
 - Font: Iosevka Nerd Font and Iosevka normal
-	- You can also use any other nerd font, but don't forget to add that font to ```*fonts[]``` in ```~/.config/dwm/config.def.h``` and recompile)
+	- You can also use any other nerd font, but don't forget to add that font to ```*fonts[]``` in ```~/.config/dwm/config.h``` and recompile)
 
 </details>
 
@@ -80,7 +85,7 @@ Here are some details about my setup:
 You may choose not to install any of these and but doing so might make some things not work as intended
 - Drop-down terminal: Alacritty
 	- Drop-down creator - [tdrop](https://github.com/noctuid/tdrop)
-	- If you want to use anothera terminal as a drop-down terminal, replace ```Alacritty``` to your preferred terminal name in this line -  ```RULE(.class = "Alacritty", .isfloating = 1)``` in ```~/.config/dwm/config.def.h```
+	- If you want to use anothera terminal as a drop-down terminal, replace ```Alacritty``` to your preferred terminal name in this line -  ```RULE(.class = "Alacritty", .isfloating = 1)``` in ```~/.config/dwm/config.h```
 - [Paru](https://github.com/Morganamilo/paru)
 - [picom](https://github.com/yshui/picom)
 - [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
@@ -99,8 +104,9 @@ You may choose not to install any of these and but doing so might make some thin
 ### Mandatory Steps
 
 > __WARNING!!! Backup your dotfiles from your home directory. These steps below will overwrite your configs.__
+> __WARNING! This rice only works on a 1920x1080 resolution display.__
 
-> If you don't want to use my configs for programs other than dwm and dmenu, then manually change the ```~/.bin/theme_changer``` or else things might get out of control
+> If you don't want to use my configs for programs other than dwm and dmenu, then manually change the ```~/.bin/dwm/theme_changer``` or else things might get out of control
 
 - Clone this repo to your preferred directory and cd into it - ```git clone https://github.com/junnunkarim/dotfiles-linux && cd dotfiles-linux```
 
@@ -128,7 +134,7 @@ You may choose not to install any of these and but doing so might make some thin
 	Icon=dwm
 	Type=XSession
 	```
-- Open ```$HOME/.config/dwm/config.def.h``` in a text editor and modify the keybindings to your needs
+- Open ```$HOME/.config/dwm/config.h``` in a text editor and modify the keybindings to your needs
 - Extract the gtk themes from ```.themes``` directory to your ```$HOME/.themes``` directory
 - Login to dwm using a display manager
 	- After getting into dwm press ```super + t``` and choose any colorscheme (this is to load the wallpaper for the first time)
@@ -210,11 +216,12 @@ You may choose not to install any of these and but doing so might make some thin
 | super + shift + return/enter	| open dropdown terminal |
 | super + l											| lock screen |
 | super + n											| open network menu |
-| super + shift + n							| open/close notification center |
 | super + t											| open theme switcher |
 | super + x											| open powermenu |
 | super + k											| show all keybindings |
 | super + d											| open rofi |
+| super + h											| open clipboad manager (greenclip) |
+| super + r											| open calculator (rofi-calc) |
 | super + ctrl + r							| turn on bluelight filter (redshift) |
 | super + ctrl + n							| turn off bluelight filter (redshift) |
 | super + ctrl + p              | turn on compositor (picom) |

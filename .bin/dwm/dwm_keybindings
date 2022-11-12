@@ -25,10 +25,11 @@ super + return/enter          open terminal
 super + shift + return/enter  open dropdown terminal
 super + l                     lock screen
 super + n                     open network menu
-super + shift + n             open/close notification center
 super + t                     open theme switcher
 super + x                     open powermenu
 super + d                     open rofi
+super + h                     open clipboard manager (greenclip)
+super + r                     open calculator (rofi-calc)
 super + ctrl + r              turn on bluelight filter (redshift)
 super + ctrl + n              turn off bluelight filter (redshift)
 super + ctrl + p              turn on compositor (picom)

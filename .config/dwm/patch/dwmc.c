@@ -13,7 +13,7 @@ viewex(const Arg *arg)
 void
 viewallex(const Arg *arg)
 {
-	#if SCRATCHPADS_PATCH
+	#if SCRATCHPADS_PATCH && !RENAMED_SCRATCHPADS_PATCH
 	view(&((Arg){.ui = ~SPTAGMASK}));
 	#else
 	view(&((Arg){.ui = ~0}));
@@ -41,7 +41,7 @@ toggletagex(const Arg *arg)
 void
 tagallex(const Arg *arg)
 {
-	#if SCRATCHPADS_PATCH
+	#if SCRATCHPADS_PATCH && !RENAMED_SCRATCHPADS_PATCH
 	tag(&((Arg){.ui = ~SPTAGMASK}));
 	#else
 	tag(&((Arg){.ui = ~0}));
@@ -83,6 +83,8 @@ fake_signal(void)
 				#endif // IPC_PATCH
 			else if (strncmp(param, "f", n - len_str_sig) == 0)
 				sscanf(fsignal + len_indicator + n, "%f", &(arg.f));
+			else if (strncmp(param, "v", n - len_str_sig) == 0)
+				arg.v = &(fsignal[len_indicator + n + 1]);
 			else return 1;
 
 			// Check if a signal was found, and if so handle it

@@ -8,8 +8,11 @@ width_systray(Bar *bar, BarArg *a)
 	Client *i;
 	if (!systray)
 		return 1;
-	if (showsystray)
+	if (showsystray) {
 		for (i = systray->icons; i; w += i->w + systrayspacing, i = i->next);
+		if (!w)
+			XMoveWindow(dpy, systray->win, -systray->h, bar->by);
+	}
 	return w ? w + lrpad - systrayspacing : 0;
 }
 
@@ -36,12 +39,12 @@ draw_systray(Bar *bar, BarArg *a)
 		#if BAR_ALPHA_PATCH
 		wa.background_pixel = 0;
 		wa.colormap = cmap;
-		systray->win = XCreateWindow(dpy, root, bar->bx + a->x + lrpad / 2, bar->by + a->y + (a->h - systray->h) / 2, MAX(a->w + 40, 1), systray->h, 0, depth,
+		systray->win = XCreateWindow(dpy, root, bar->bx + a->x + lrpad / 2, -systray->h, MAX(a->w + 40, 1), systray->h, 0, depth,
 						InputOutput, visual,
 						CWOverrideRedirect|CWBorderPixel|CWBackPixel|CWColormap|CWEventMask, &wa); // CWBackPixmap
 		#else
 		wa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
-		systray->win = XCreateSimpleWindow(dpy, root, bar->bx + a->x + lrpad / 2, bar->by + a->y + (a->h - systray->h) / 2, MIN(a->w, 1), systray->h, 0, 0, scheme[SchemeNorm][ColBg].pixel);
+		systray->win = XCreateSimpleWindow(dpy, root, bar->bx + a->x + lrpad / 2, -systray->h, MIN(a->w, 1), systray->h, 0, 0, scheme[SchemeNorm][ColBg].pixel);
 		XChangeWindowAttributes(dpy, systray->win, CWOverrideRedirect|CWBackPixel|CWBorderPixel|CWEventMask, &wa);
 		#endif // BAR_ALPHA_PATCH
 
@@ -91,7 +94,7 @@ draw_systray(Bar *bar, BarArg *a)
 			i->mon = bar->mon;
 	}
 
-	XMoveResizeWindow(dpy, systray->win, bar->bx + a->x + lrpad / 2, (w ? bar->by + a->y + (a->h - systray->h) / 2: -bar->by - a->y), MAX(w, 1), systray->h);
+	XMoveResizeWindow(dpy, systray->win, bar->bx + a->x + lrpad / 2, (w ? bar->by + a->y + (a->h - systray->h) / 2: -systray->h), MAX(w, 1), systray->h);
 	return w;
 }
 
@@ -111,6 +114,7 @@ removesystrayicon(Client *i)
 	for (ii = &systray->icons; *ii && *ii != i; ii = &(*ii)->next);
 	if (ii)
 		*ii = i->next;
+	XReparentWindow(dpy, i->win, root, 0, 0);
 	free(i);
 	drawbarwin(systray->bar);
 }
@@ -163,7 +167,7 @@ updatesystrayiconstate(Client *i, XPropertyEvent *ev)
 	int code = 0;
 
 	if (!showsystray || !systray || !i || ev->atom != xatom[XembedInfo] ||
-			!(flags = getatomprop(i, xatom[XembedInfo])))
+			!(flags = getatomprop(i, xatom[XembedInfo], xatom[XembedInfo])))
 		return;
 
 	if (flags & XEMBED_MAPPED && !i->tags) {
