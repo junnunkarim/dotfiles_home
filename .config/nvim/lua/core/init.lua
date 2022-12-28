@@ -1,0 +1,5 @@
+require('impatient')
+require("core.keymaps")
+require("core.packer")
+require("core.options")
+require("core.colorscheme")
