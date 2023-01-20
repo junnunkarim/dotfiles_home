@@ -60,7 +60,7 @@ Here are some details about my setup:
 - [ ] Create conky and eww widgets
 - [ ] Remove unused patches
 - [ ] Give credit to proper persons and projects
-- [ ] Write my own neovim config
+- [x] ~~Write my own neovim config~~
 
 # Dependencies
 

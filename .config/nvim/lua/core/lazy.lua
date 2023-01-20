@@ -29,15 +29,8 @@ return require('packer').startup(
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     }
-    use { "neovim/nvim-lspconfig" }
-    use { "folke/lsp-colors.nvim" }
-    use { "glepnir/lspsaga.nvim", }
-
-    use 'simrat39/rust-tools.nvim'
-    use { "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons", }
-
-    -- Debugging
-    use 'mfussenegger/nvim-dap'
+    use {"neovim/nvim-lspconfig"}
+    use {"folke/lsp-colors.nvim"}
 
     -- snippet
     use { "L3MON4D3/LuaSnip", }

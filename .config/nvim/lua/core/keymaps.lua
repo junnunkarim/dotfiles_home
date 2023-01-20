@@ -1,9 +1,13 @@
-local function keymap(mode, lhs, rhs, opts)
-  local options = { noremap=true, silent=true }
+local function keymap(mode, map, command, opts)
+  local options = {
+    noremap=true,
+    silent=true
+  }
+
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  vim.api.nvim_set_keymap(mode, map, command, options)
 end
 
 local opts = {
@@ -15,9 +19,13 @@ vim.g.mapleader = " "
 
 --vim.keymap.set("n", "<leader>nt", vim.cmd.Ex)
 
-keymap("n", "<leader>n", ":NvimTreeToggle<cr>", opts)
+-- Plugin keymaps
+keymap("n", "<leader>n", ":NvimTreeToggle<cr>", {noremap = true, silent = true, desc = "Toggle nvim-tree"})
+keymap("n", "<leader>h", ":NvimTreeFocus<cr>", {noremap = true, silent = true, desc = "Focus nvim-tree"})
+keymap("n", "<leader>u", ":UndotreeToggle<cr>", {noremap = true, silent = true, desc = "Toggle undotree"})
 
--- Better window management
+-- Native keymaps
+---- Better window management
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
