@@ -6,10 +6,13 @@ require("plugin_config.diagnostics")
 
 require("plugin_config.gitsigns")
 
+require("plugin_config.glow")
+
 require("plugin_config.indent-blankline")
 
 require("plugin_config.lualine")
 
+--require("plugin_config.lsp")
 require("plugin_config.lsp-colors")
 require("plugin_config.lspsaga")
 
@@ -18,6 +21,8 @@ require("plugin_config.mason-lspconfig")
 
 require("plugin_config.nvim-cmp")
 require("plugin_config.nvim-cmp-lsp")
+
+require("plugin_config.clangd_extensions")
 
 require("plugin_config.nvim-web-devicons")
 

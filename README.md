@@ -8,7 +8,7 @@
 # Information
 Here are some details about my setup:
 - OS: [Arch Linux](https://archlinux.org/)
-- Terminal: [Wezterm](https://github.com/wez/wezterm)
+- Terminal: [Alacritty](https://github.com/alacritty/alacritty)
 - Shell: [Bash](https://www.gnu.org/software/bash/)
 - WM: [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch)
 - Login Manager: [ly](https://github.com/fairyglade/ly)
@@ -55,6 +55,7 @@ Here are some details about my setup:
   - [x] ~~nord~~
   - [x] ~~dracula~~
   - [x] ~~catppuccin~~
+  - [x] ~~rose-pine~~
   - [ ] kanagawa
 - [ ] Rice Firefox or switch to vieb
 - [ ] Create conky and eww widgets
@@ -70,7 +71,7 @@ Here are some details about my setup:
 - Xorg (for beginners, I recommend installing the whole package)
 - xrdb (for reloading xresource colorschemes)
 - A terminal emulator
-	- if you use anything other than wezterm, modify the line ```static const char *termcmd[]  = { "wezterm", NULL };``` in ```~/.config/dwm/config.h``` to your terminal's name (__the theme_changer script will only change the colorschemes of wezterm, alacritty or kitty__)
+	- if you use anything other than alacritty, modify the line ```static const char *termcmd[]  = { "alacritty", NULL };``` in ```~/.config/dwm/config.h``` to your terminal's name (__the theme_changer script will only change the colorschemes of wezterm, alacritty or kitty__)
 - rofi (for opening programs, showing keybindings, changing theme, using as power menu, managing clipboard, using as a calculator etc)
 - [luastatus](https://github.com/shdown/luastatus) (for status info)
 - [feh](https://github.com/derf/feh) (for setting wallpaper)
@@ -83,9 +84,9 @@ Here are some details about my setup:
 <summary><b>Optional</b></summary>
 
 You may choose not to install any of these and but doing so might make some things not work as intended
-- Drop-down terminal: Alacritty
+- Drop-down terminal: kitty
 	- Drop-down creator - [tdrop](https://github.com/noctuid/tdrop)
-	- If you want to use anothera terminal as a drop-down terminal, replace ```Alacritty``` to your preferred terminal name in this line -  ```RULE(.class = "Alacritty", .isfloating = 1)``` in ```~/.config/dwm/config.h```
+	- If you want to use anothera terminal as a drop-down terminal, replace ```kitty``` to your preferred terminal name in this line -  ```RULE(.class = "kitty", .isfloating = 1)``` in ```~/.config/dwm/config.h```
 - [Paru](https://github.com/Morganamilo/paru)
 - [picom](https://github.com/yshui/picom)
 - [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
@@ -111,7 +112,7 @@ You may choose not to install any of these and but doing so might make some thin
 - Clone this repo to your preferred directory and cd into it - ```git clone https://github.com/junnunkarim/dotfiles-linux && cd dotfiles-linux```
 
 - Install mandatory dependencies
-	- ```sudo pacman -Su --needed base-devel coreutils xorg wezterm lua feh ttf-iosevka-nerd ttc-iosevka wmctrl```
+	- ```sudo pacman -Su --needed base-devel coreutils xorg alacritty lua feh ttf-iosevka-nerd ttc-iosevka wmctrl```
 	- Install luastatus
 		- ```sudo pacman -Su --needed cmake yajl python-docutils```
 		- Continue from here - [luastatus](https://github.com/shdown/luastatus#installation)
@@ -119,7 +120,7 @@ You may choose not to install any of these and but doing so might make some thin
 	- ```cp -rf .bin .Xresources .xinitrc ~```
     - If you won't use my bashrc then add ```.bin``` to your $PATH variable
     - __Do not copy ```.xsession``` as it will change your keyboard layout to dvorak.__
-	- ```cp -rf .config/wezterm .config/dwm .config/rofi .config/wallpaper ~/.config/```
+	- ```cp -rf .config/alacritty .config/dwm .config/rofi .config/wallpaper ~/.config/```
 - Build dwm and dmenu
 	- ```cd ~/.config/dwm && sudo make install```
 	- ```cd ~/.config/dmenu && sudo make install```
@@ -166,8 +167,8 @@ You may choose not to install any of these and but doing so might make some thin
 - redshift
 	- ```sudo pacman -Su --needed redshift```
 - Dropdown terminal
-	- ```paru -S --needed alacritty tdrop tmux```
-	- ```cp -rf .config/alacritty ~/.config```
+	- ```paru -S --needed kitty tdrop tmux```
+	- ```cp -rf .config/kitty ~/.config```
 - zathura
 	- ```sudo pacman -Su --needed zathura```
 	- ```cp -rf .config/zathura ~/.config/```

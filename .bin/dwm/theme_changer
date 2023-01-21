@@ -15,15 +15,6 @@ prompt="rofi -dmenu -i -theme $HOME/.config/rofi/script_menu.rasi"
 # for restarting dwm
 dwm_pid="$(pidof dwm)"
 
-# Theme
-cancel="窱 Cancel"
-theme1=" Catppuccin (Macchiato)"
-theme2=" Cozy-Night"
-theme3=" Dracula"
-theme4=" Gruvbox"
-theme5=" Nord"
-
-
 change_theme()
 {
 	cp ${dwm_dir}/theme_xresources/$1 ${dwm_dir}/theme_xresources/theme
@@ -51,7 +42,6 @@ change_gtk_theme()
 change_wzterm_colorscheme()
 {
 	sed -i "/color_scheme/s/ = ".*"/ = \"$1\",/" -i $HOME/.config/wezterm/wezterm.lua
-
 }
 change_rofi_theme()
 {
@@ -61,15 +51,29 @@ change_rofi_theme()
 }
 change_nvim_theme()
 {
-  sed "/theme/s/ = ".*"/ = \"$1\",/" -i $HOME/.config/nvim/lua/custom/chadrc.lua
+  sed "/change_colorscheme(\"/s/(".*")/(\"$1\")/" -i $HOME/.config/nvim/lua/core/colorscheme.lua
 }
 change_btop_theme()
 {
   sed -e "s@color_theme = .*@color_theme = \"$HOME/.config/btop/themes/$1.theme\"@" -i $HOME/.config/btop/btop.conf
 }
+change_helix_theme()
+{
+  sed -i "/theme/s/ = ".*"/ = \"$1\"/" -i $HOME/.config/helix/config.toml
+}
+
+
+# Theme
+cancel="窱 Cancel"
+theme1=" Catppuccin (Macchiato)"
+theme2=" Cozy-Night"
+theme3=" Dracula"
+theme4=" Gruvbox"
+theme5=" Nord"
+theme6=" Rosé Pine"
 
 # Variable to pass to dmenu or rofi
-option="$cancel\n$theme1\n$theme2\n$theme3\n$theme4\n$theme5"
+option="$cancel\n$theme1\n$theme2\n$theme3\n$theme4\n$theme5\n$theme6"
 
 select="$(echo -e "$option" | $prompt -p "Choose a theme" )"
 
@@ -81,6 +85,7 @@ case $select in
     change_wzterm_colorscheme "Catppuccin Mocha"
     change_nvim_theme catppuccin
     change_btop_theme catppuccin_macchiato
+    change_helix_theme catppuccin_mocha
 		;;
 	$theme2)
 		feh --bg-fill $HOME/.config/wallpaper/pixelart_night_train_cozy_gas_RoyalNaym.png
@@ -89,6 +94,7 @@ case $select in
     change_wzterm_colorscheme "tokyonight"
     change_nvim_theme tokyonight
     change_btop_theme tokyo-night
+    change_helix_theme tokyonight
 		;;
 	$theme3)
 		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_arabian_palace_princess_snakepixel.png $HOME/.config/wallpaper/pixelart_winter_hut_deer_man_dog_hunt_PixelArtJourney.png
@@ -97,6 +103,7 @@ case $select in
     change_wzterm_colorscheme "Dracula"
     change_nvim_theme chadracula
     change_btop_theme dracula
+    change_helix_theme dracula
     ;;
 	$theme4)
 		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_house_inside_girl_book_dog_jmw327.png $HOME/.config/wallpaper/pixelart_forest_camp_children_maolow-paoPao.jpg $HOME/.config/wallpaper/pixelart_house_chibi_person_game_jmw327.png $HOME/.config/wallpaper/pixelart_house_girl_string_cozy.png
@@ -105,6 +112,7 @@ case $select in
     change_wzterm_colorscheme "Gruvbox Dark"
     change_nvim_theme gruvbox
     change_btop_theme gruvbox_dark
+    change_helix_theme gruvbox_dark_hard
 		;;
 	$theme5)
 		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_medicine_flower_reminder_nord_Ansitru.png $HOME/.config/wallpaper/pixelart_night_train_cozy_gas_nord_RoyalNaym.png $HOME/.config/wallpaper/pixelart_mountain $HOME/.config/wallpaper/mist_forest_nord.jpg
@@ -113,5 +121,15 @@ case $select in
     change_wzterm_colorscheme "nord"
     change_nvim_theme nord
     change_btop_theme nord
+    change_helix_theme nord
+		;;
+  $theme6)
+		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_night_stars_clouds_trees_cozy_PixelArtJourney.png $HOME/.config/wallpaper/pixelart_evening_trees_pole_wires_makrustic.png
+		change_theme rose_pine
+    change_gtk_theme rose-pine-gtk
+    change_wzterm_colorscheme "Catppuccin Mocha"
+    change_nvim_theme rose-pine
+    change_btop_theme catppuccin_macchiato
+    change_helix_theme rose_pine
 		;;
 	esac

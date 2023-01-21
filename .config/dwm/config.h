@@ -503,13 +503,14 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 
 	RULE(.class = "kitty", .isfloating = 1)
-	RULE(.class = "Alacritty", .isfloating = 1)
+	//RULE(.class = "Alacritty", .isfloating = 0)
 	RULE(.class = "Gpick", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Lxappearance", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Xfce-polkit", .isfloating = 1, .iscentered = 1)
 	RULE(.class = "Protonvpn", .isfloating = 1)
 
 	RULE(.class = "org.wezfurlong.wezterm", .tags = 1 << 0, .switchtag = 1) // tag-1
+	RULE(.class = "Alacritty", .tags = 1 << 0, .switchtag = 1) // tag-1
 	RULE(.class = "st-256color", .tags = 1 << 0, .switchtag = 1) // tag-1
 	RULE(.class = "Emacs", .tags = 1 << 0, .switchtag = 1)
 	RULE(.class = "Geany", .tags = 1 << 0, .switchtag = 1)
@@ -535,6 +536,7 @@ static const Rule rules[] = {
 	RULE(.class = "DesktopEditors", .tags = 1 << 4, .switchtag = 1) // tag-5
 
 	RULE(.class = "KotatogramDesktop", .tags = 1 << 5, .switchtag = 1) // tag-6
+	RULE(.class = "TelegramDesktop", .tags = 1 << 5, .switchtag = 1) // tag-6
 	
 	RULE(.class = "Ryujinx", .tags = 1 << 6, .switchtag = 1, .isfloating = 1) // tag-6
 	RULE(.class = "yuzu", .tags = 1 << 6, .switchtag = 1, .isfloating = 1) // tag-6
@@ -961,7 +963,7 @@ static const Key on_empty_keys[] = {
 
 #include <X11/XF86keysym.h>
 
-static const char *termcmd[]  = { "wezterm", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char *launcher_cmd[]  = { ".bin/rofi_run", NULL };
 static const char *scratchpad_cmd[]  = { ".bin/scratchpad", NULL };
 static const char *network_manager_cmd[]  = { "networkmanager_dmenu", NULL };

@@ -33,6 +33,8 @@ return require('packer').startup(
     use { "folke/lsp-colors.nvim" }
     use { "glepnir/lspsaga.nvim", }
 
+    --use { "ranjithshegde/ccls.nvim", }
+    use { "p00f/clangd_extensions.nvim" }
     use 'simrat39/rust-tools.nvim'
     use { "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons", }
 
@@ -66,6 +68,8 @@ return require('packer').startup(
       "nvim-lualine/lualine.nvim",
       requires = { "kyazdani42/nvim-web-devicons", opt = true }
     }
+
+    use {"ellisonleao/glow.nvim"}
 
     use {'lewis6991/gitsigns.nvim'}
 

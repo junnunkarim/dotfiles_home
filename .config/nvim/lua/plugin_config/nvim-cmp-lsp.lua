@@ -3,15 +3,34 @@ if not available then
   return
 end
 
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local available, capabilities = pcall(require, "cmp_nvim_lsp")
-if not available then
+local present, lspconfig = pcall(require, "lspconfig")
+if not present then
   return
 end
 
-capabilities.default_capabilities()
+cmp.setup {
+  sources = {
+    { name = 'nvim_lsp' }
+  }
+}
 
--- The following example advertise capabilities to `clangd`.
---require'lspconfig'.clangd.setup {
---  capabilities = capabilities,
---}
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+lspconfig.clangd.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.html.setup {
+  capabilities = capabilities,
+  init_options = {
+    configurationSection = { "html", "css", "javascript" },
+    embeddedLanguages = {
+      css = true,
+      javascript = true
+    },
+    provideFormatter = true
+  }
+}
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+}

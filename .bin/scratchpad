@@ -4,4 +4,4 @@ tdrop -ma -A \
   -w 60% \
   -x 20% \
   -y 6% \
-  -s dropdown alacritty
+  -s dropdown kitty

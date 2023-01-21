@@ -35,6 +35,7 @@ window {
 mainbox {
   children: [ "listview", "inputbar" ];
 
+  fullscreen: true;
   text-color: var(foreground);
   background-color: var(background);
 }
