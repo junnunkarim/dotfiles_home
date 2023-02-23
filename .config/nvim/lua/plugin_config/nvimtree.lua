@@ -19,6 +19,22 @@ local options = {
       },
     },
   },
+  diagnostics = {
+    enable = true,
+    show_on_dirs = true,
+    show_on_open_dirs = true,
+    debounce_delay = 50,
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+      max = vim.diagnostic.severity.ERROR,
+    },
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
+  },
   renderer = {
     group_empty = true,
   },
@@ -72,3 +88,17 @@ local options = {
 }
 
 nvimtree.setup(options)
+
+local function keymap(mode, map, command, opts)
+  local options = {
+    noremap=true,
+    silent=true
+  }
+
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, map, command, options)
+end
+
+keymap("n", "<leader>n", ":NvimTreeToggle<cr>", {noremap = true, silent = true, desc = "Toggle nvim-tree"})

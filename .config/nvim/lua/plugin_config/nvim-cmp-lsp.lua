@@ -1,18 +1,20 @@
-local available, cmp = pcall(require, "cmp")
-if not available then
-  return
-end
+--local available, cmp = pcall(require, "cmp")
+--if not available then
+--  return
+--end
 
 local present, lspconfig = pcall(require, "lspconfig")
 if not present then
   return
 end
 
+--[[
 cmp.setup {
   sources = {
     { name = 'nvim_lsp' }
   }
 }
+]]--
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -34,3 +36,10 @@ lspconfig.html.setup {
 lspconfig.cssls.setup {
   capabilities = capabilities,
 }
+
+lspconfig.pyright.setup{}
+
+lspconfig.kotlin_language_server.setup{}
+
+-- not needed, configured in jdtls
+--lspconfig.jdtls.setup{}

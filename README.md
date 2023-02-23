@@ -1,6 +1,6 @@
 <h1 align="center"><i><u>~/dotfiles</u></i></h1>
 
-> Check the **Screenshot** part for updated screenshots
+> Check the **Screenshot** section for updated screenshots
 
 ![img](/ss/dwm_gruvbox_cozy-night.png)
 ![img](/ss/dwm_nord_catppuccin-macchiato.png)

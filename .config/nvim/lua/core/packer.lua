@@ -33,6 +33,7 @@ return require('packer').startup(
     use { "folke/lsp-colors.nvim" }
     use { "glepnir/lspsaga.nvim", }
 
+    --use { "mfussenegger/nvim-jdtls" }
     --use { "ranjithshegde/ccls.nvim", }
     use { "p00f/clangd_extensions.nvim" }
     use 'simrat39/rust-tools.nvim'
@@ -48,7 +49,7 @@ return require('packer').startup(
 
     use "nvim-lua/plenary.nvim"
 
-    -- telescoppe
+    -- telescope
     use {
       "nvim-telescope/telescope.nvim", tag = '0.1.0',
       requires = { {'nvim-lua/plenary.nvim'} }
@@ -61,6 +62,7 @@ return require('packer').startup(
     }
     use {"nvim-treesitter/nvim-treesitter-context"}
 
+    use { "karb94/neoscroll.nvim" }
 
     use {"mbbill/undotree"}
 
@@ -82,8 +84,11 @@ return require('packer').startup(
     use { "windwp/nvim-autopairs" }
 
     use { "NvChad/nvim-colorizer.lua" }
+    --use { "max397574/colortils.nvim" }
+    use { "ziontee113/color-picker.nvim" }
 
-    use { "glepnir/dashboard-nvim" }
+    --use { "glepnir/dashboard-nvim" }
+    use { "goolord/alpha-nvim" }
 
     use {
       'nvim-tree/nvim-tree.lua',
@@ -93,9 +98,8 @@ return require('packer').startup(
       tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
 
-    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-      require("toggleterm").setup()
-    end}
+    use {"akinsho/toggleterm.nvim", tag = '*', }
+    --use { "NvChad/nvterm", }
 
     use {
       "nvim-neorg/neorg",
@@ -106,6 +110,18 @@ return require('packer').startup(
 
     -- Aesthetics
     use { "nvim-tree/nvim-web-devicons" }
+
+    use({
+      "folke/noice.nvim",
+      requires = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        "MunifTanjim/nui.nvim",
+        -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        "rcarriga/nvim-notify",
+        }
+    })
 
     -- Colorschemes
     use { "ellisonleao/gruvbox.nvim" }

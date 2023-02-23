@@ -1,4 +1,7 @@
 local available, lualine = pcall(require, "lualine")
+if not available then
+  return
+end
 
 local options = {
   options = {
