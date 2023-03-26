@@ -22,6 +22,6 @@
   foreground-1: var(muted);
   selected: var(rose1);
   selected-1: var(rose);
-  active: var(love);
-  urgent: var(foam);
+  active: var(foam);
+  urgent: var(iris);
 }

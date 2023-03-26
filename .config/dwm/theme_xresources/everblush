@@ -1,0 +1,50 @@
+#define black #141b1e
+#define lighterblack #232a2d
+#define red #e57474
+#define green #8ccf7e
+#define yellow #e5c76b
+#define blue #67b0e8
+#define magenta #c47fd5
+#define cyan #6cbfbf
+#define gray #a3a9a8
+#define white #dadada
+
+dwm.normfgcolor                : yellow
+dwm.normbgcolor                : black
+dwm.normbordercolor            : black
+dwm.normfloatcolor             : gray
+
+dwm.selfgcolor                 : blue
+dwm.selbgcolor                 : black
+dwm.selbordercolor             : yellow
+dwm.selfloatcolor              : blue
+
+dwm.titlenormfgcolor           : gray
+dwm.titlenormbgcolor           : black
+dwm.titlenormbordercolor       : black
+dwm.titlenormfloatcolor        : gray
+
+dwm.titleselfgcolor            : white
+dwm.titleselbgcolor            : black
+dwm.titleselbordercolor        : magenta
+dwm.titleselfloatcolor         : blue
+
+dwm.tagsnormfgcolor		         : black
+dwm.tagsnormbgcolor            : green
+dwm.tagsnormbordercolor        : magenta
+dwm.tagsnormfloatcolor         : lighterblack
+
+dwm.tagsselfgcolor             : green
+dwm.tagsselbgcolor             : black
+dwm.tagsselbordercolor         : cyan
+dwm.tagsselfloatcolor          : lighterblack
+
+dwm.hidnormfgcolor             : red
+dwm.hidselfgcolor              : red
+dwm.hidnormbgcolor             : black
+dwm.hidselbgcolor              : black
+
+dwm.urgfgcolor								 : black
+dwm.urgbgcolor								 : red
+dwm.urgbordercolor						 : red
+dwm.urgfloatcolor							 : green

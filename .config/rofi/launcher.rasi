@@ -27,6 +27,7 @@ window {
   /* properties for all widgets */
   padding: 20px;
   border: 0px 1px 10px 1px;
+  border-radius: 30px;
 
   border-color: var(selected);
   background-color: var(background);
@@ -47,6 +48,7 @@ listview {
   scrollbar: true;
 
   padding: 5px;
+  border-radius: 30px;
 
   text-color: var(foreground);
   background-color: var(background);
@@ -61,6 +63,7 @@ listview {
   element {
     padding: inherit;
     margin: 5px;
+    border-radius: inherit;
 
     text-color: inherit;
     background-color: inherit;
@@ -95,6 +98,7 @@ inputbar {
 
   padding: 5px;
   border: 1px 1px 1px 5px solid;
+  border-radius: 30px;
 
   border-color: var(active);
   text-color: var(foreground);
@@ -118,6 +122,7 @@ inputbar {
 
     spacing: 10px;
     padding: 5px;
+    border-radius: inherit;
 
     background-color: var(background-1);
   }
@@ -125,6 +130,7 @@ inputbar {
       width: 125px;
       padding: inherit;
       border: 0px 0px 2px 0px solid;
+      border-radius: inherit;
 
       border-color: var(active);
       background-color: var(background-1);

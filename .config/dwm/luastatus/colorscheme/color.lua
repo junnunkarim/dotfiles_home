@@ -1,71 +1,61 @@
-fg_base = "^c#191724^";
-fg_surface = "^c#1f1d2e^";
-fg_overlay = "^c#26233a^";
-fg_muted = "^c#6e6a86^";
-fg_subtle = "^c#908caa^";
-fg_text = "^c#e0def4^";
-fg_love = "^c#eb6f92^";
-fg_love_1 = "^c#b4637a^";
-fg_gold = "^c#f6c177^";
-fg_gold_1 = "^c#ea9d34^";
-fg_rose = "^c#ebbcba^";
-fg_rose_1 = "^c#d7827e^";
-fg_foam = "^c#9ccfd8^";
-fg_pine = "^c#31748f^";
-fg_iris = "^c#c4a7e7^";
-fg_iris_1 = "^c#907aa9^";
+-- foreground
+fg_black = "^c#141b1e^";
+fg_ligtherblack = "^c#232a2d^";
+fg_red = "^c#e57474^";
+fg_green = "^c#8ccf7e^";
+fg_yellow = "^c#e5c76b^";
+fg_blue = "^c#67b0e8^";
+fg_magenta = "^c#c47fd5^";
+fg_cyan = "^c#6cbfbf^";
+fg_gray = "^c#b3b9b8^";
+fg_white = "^c#dadada^";
 
-bg_base = "^b#191724^";
-bg_surface = "^b#1f1d2e^";
-bg_overlay = "^b#26233a^";
-bg_muted = "^b#6e6a86^";
-bg_subtle = "^b#908caa^";
-bg_text = "^b#e0def4^";
-bg_love = "^b#eb6f92^";
-bg_love_1 = "^b#b4637a^";
-bg_gold = "^b#f6c177^";
-bg_gold_1 = "^b#ea9d34^";
-bg_rose = "^b#ebbcba^";
-bg_rose_1 = "^b#d7827e^";
-bg_foam = "^b#9ccfd8^";
-bg_pine = "^b#31748f^";
-bg_iris = "^b#c4a7e7^";
-bg_iris_1 = "^b#907aa9^";
+-- background
+bg_black = "^b#141b1e^";
+bg_ligtherblack = "^b#232a2d^";
+bg_red = "^b#e57474^";
+bg_green = "^b#8ccf7e^";
+bg_yellow = "^b#e5c76b^";
+bg_blue = "^b#67b0e8^";
+bg_magenta = "^b#c47fd5^";
+bg_cyan = "^b#6cbfbf^";
+bg_gray = "^b#b3b9b8^";
+bg_white = "^b#dadada^";
 
 local color =
 {
 	-- set colors to modules
-	sep = bg_base .. fg_base .. '|'; -- separator
+	sep = bg_black .. fg_black .. '|'; -- separator
 
-	date_ic_fg = fg_base;
-	date_ic_bg = bg_rose_1;
-	date_fg = fg_base;
-	date_bg = bg_rose;
+	date_ic_fg = fg_black;
+	date_ic_bg = bg_green;
+	date_fg = fg_black;
+	date_bg = bg_green;
 
-	time_ic_fg = fg_text;
-	time_ic_bg = bg_pine;
-	time_fg = fg_base;
-	time_bg = bg_foam;
+	time_ic_fg = fg_black;
+	time_ic_bg = bg_red;
+	time_fg = fg_black;
+	time_bg = bg_red;
 
-	wifi_ic_fg = fg_base;
-	wifi_ic_bg = bg_iris_1;
-	wifi_fg = fg_base;
-	wifi_bg = bg_iris;
+	wifi_ic_fg = fg_black;
+	wifi_ic_bg = bg_yellow;
+	wifi_fg = fg_black;
+	wifi_bg = bg_yellow;
 
-	btt_ic_fg = fg_base; -- battery
-	btt_ic_bg = bg_love_1;
-	btt_fg = fg_base;
-	btt_bg = bg_love;
+	btt_ic_fg = fg_black; -- battery
+	btt_ic_bg = bg_blue;
+	btt_fg = fg_black;
+	btt_bg = bg_blue;
+	
+	vol_ic_fg = fg_black; -- volume
+	vol_ic_bg = bg_magenta;
+	vol_fg = fg_black;
+	vol_bg = bg_magenta;
 
-	vol_ic_fg = fg_base; -- volume
-	vol_ic_bg = bg_gold;
-	vol_fg = fg_base;
-	vol_bg = bg_gold_1;
-
-	brgn_ic_fg = fg_base; -- brightness
-	brgn_ic_bg = bg_pine;
-	brgn_fg = fg_base;
-	brgn_bg = bg_foam;
+	brgn_ic_fg = fg_black; -- brightness
+	brgn_ic_bg = bg_cyan;
+	brgn_fg = fg_black;
+	brgn_bg = bg_cyan;
 }
 
 return color

@@ -1,0 +1,21 @@
+* {
+  bg: #141b1e;
+  lighter-bg: #232a2d;
+  red: #e57474;
+  green: #8ccf7e;
+  yellow: #e5c76b;
+  blue: #67b0e8;
+  magenta: #c47fd5;
+  cyan: #6cbfbf;
+  light-gray: #b3b9b8;
+  white: #dadada;
+
+  background: var(bg);
+  background-1: var(lighter-bg);
+  foreground: var(white);
+  foreground-1: var(light-gray);
+  selected: var(green);
+  selected-1: var(green);
+  active: var(blue);
+  urgent: var(red);
+}
