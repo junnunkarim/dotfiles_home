@@ -80,10 +80,12 @@ local options = {
 which_key.setup(options)
 
 which_key.register({
+  --[[
   ["<leader>"] = {
    p = {
       name = "Keymaps for project",
       --n = { "<cmd>enew<cr>", "New File" },
   },
  },
+ --]]
 })

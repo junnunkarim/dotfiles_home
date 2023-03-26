@@ -14,6 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 --}}}
 
 local plugins = {
+  --{{{ LSP
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "neovim/nvim-lspconfig",
+  "folke/lsp-colors.nvim",
+  --"glepnir/lspsaga.nvim",
 
   -- autocomplete
   "hrsh7th/cmp-nvim-lsp",
@@ -22,24 +28,19 @@ local plugins = {
   "hrsh7th/cmp-cmdline",
   "hrsh7th/nvim-cmp",
 
-  --{{{ LSP
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "neovim/nvim-lspconfig",
-  "folke/lsp-colors.nvim",
-  "glepnir/lspsaga.nvim",
-
   --{ "mfussenegger/nvim-jdtls" }
   --{ "ranjithshegde/ccls.nvim", }
   "p00f/clangd_extensions.nvim",
   "simrat39/rust-tools.nvim",
 
+  --[[
   {
     "folke/trouble.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
   },
+  ]]--
   --}}}
 
   --{{{ Functional
@@ -50,7 +51,7 @@ local plugins = {
   --"mbbill/undotree",
 
   -- Debugging
-  "mfussenegger/nvim-dap",
+  --"mfussenegger/nvim-dap",
 
   -- Snippet
   "L3MON4D3/LuaSnip",
@@ -103,23 +104,23 @@ local plugins = {
   "ziontee113/color-picker.nvim",
 
   -- file manager
-  --[[
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- optional, for file icons
     },
   },
-  --]]
+  --[[
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons", -- optional
       "MunifTanjim/nui.nvim",
     },
   },
+  --]]
 
   "lewis6991/gitsigns.nvim",
   "folke/which-key.nvim", -- shows keyboard shortcuts
@@ -133,6 +134,7 @@ local plugins = {
   --"karb94/neoscroll.nvim", -- smooth scroll
 
   -- notification ui
+  --[[
   {
     "folke/noice.nvim",
     dependencies = {
@@ -144,6 +146,7 @@ local plugins = {
       "rcarriga/nvim-notify",
     }
   },
+  --]]
   --}}}
 
   --{{{ Colorschemes
