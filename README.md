@@ -9,7 +9,7 @@
 Here are some details about my setup:
 - OS: [Arch Linux](https://archlinux.org/)
 - Terminal: [Alacritty](https://github.com/alacritty/alacritty)
-- Shell: [Bash](https://www.gnu.org/software/bash/)
+- Shell: [Fish](https://fishshell.com/)
 - WM: [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch)
 - Login Manager: [ly](https://github.com/fairyglade/ly)
 - Editor: [nvim](https://github.com/neovim/neovim)
@@ -151,6 +151,10 @@ You may choose not to install any of these and but doing so might make some thin
 	- ```makepkg -si```
 - If you want to use my ```.bashrc```
 	- ```cp .bashrc ~```
+	- ```sudo pacman -Su --needed exa starship```
+	- ```paru -S --needed macchina```
+- If you want to use my ```config.fish```
+	- ```cp -rf ~/.config/fish/config.fish```
 	- ```sudo pacman -Su --needed exa starship```
 	- ```paru -S --needed macchina```
 - nvim dotfiles
