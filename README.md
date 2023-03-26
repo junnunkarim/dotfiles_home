@@ -57,6 +57,7 @@ Here are some details about my setup:
   - [x] ~~catppuccin~~
   - [x] ~~rose-pine~~
   - [ ] kanagawa
+  - [ ] everblush
 - [ ] Rice Firefox or switch to vieb
 - [ ] Create conky and eww widgets
 - [ ] Remove unused patches
