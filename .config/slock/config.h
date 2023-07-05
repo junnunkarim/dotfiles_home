@@ -6,9 +6,9 @@ static const char *colorname[NUMCOLS] = {
 	#if DWM_LOGO_PATCH && !BLUR_PIXELATED_SCREEN_PATCH
 	[BACKGROUND] =  "#2d2d2d", /* after initialization */
 	#endif // DWM_LOGO_PATCH
-	[INIT] =   "black",     /* after initialization */
-	[INPUT] =  "#005577",   /* during input */
-	[FAILED] = "#CC3333",   /* wrong password */
+	[INIT] =   "#81a1c1",     /* after initialization */
+	[INPUT] =  "#a3be8c",   /* during input */
+	[FAILED] = "#bf616a",   /* wrong password */
 	#if CAPSCOLOR_PATCH
 	[CAPS] =   "red",       /* CapsLock on */
 	#endif // CAPSCOLOR_PATCH
@@ -16,7 +16,7 @@ static const char *colorname[NUMCOLS] = {
 	[PAM] =    "#9400D3",   /* waiting for PAM */
 	#endif // PAMAUTH_PATCH
 	#if KEYPRESS_FEEDBACK_PATCH
-	[BLOCKS] = "#ffffff",   /* key feedback block */
+	[BLOCKS] = "#d08770",   /* key feedback block */
 	#endif // KEYPRESS_FEEDBACK_PATCH
 };
 
@@ -25,15 +25,15 @@ static const char *colorname[NUMCOLS] = {
 static const char * message = "Suckless: Software that sucks less.";
 
 /* text color */
-static const char * text_color = "#ffffff";
+static const char * text_color = "#ebdbb2";
 
 /* text size (must be a valid size) */
-static const char * font_name = "6x10";
+static const char * font_name = "Iosevka Nerd Font Mono:style=Medium:size=18";
 #endif // MESSAGE_PATCH | COLOR_MESSAGE_PATCH
 
 #if BACKGROUND_IMAGE_PATCH
 /* Background image path, should be available to the user above */
-static const char * background_image = "";
+static const char * background_image = ".config/wallpaper/pixelart_night_train_cozy_gas_gruvbox_RoyalNaym.png";
 #endif // BACKGROUND_IMAGE_PATCH
 
 #if DWM_LOGO_PATCH
@@ -143,7 +143,7 @@ static const int monitortime = 5;
 #if KEYPRESS_FEEDBACK_PATCH
 static short int blocks_enabled = 1; // 0 = don't show blocks
 static const int blocks_width = 0; // 0 = full width
-static const int blocks_height = 16;
+static const int blocks_height = 10;
 
 // position
 static const int blocks_x = 0;

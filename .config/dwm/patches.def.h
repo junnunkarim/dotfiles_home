@@ -590,7 +590,7 @@
  *    #cp -f patch/dwmc ${DESTDIR}${PREFIX}/bin
  * http://dwm.suckless.org/patches/dwmc/
  */
-#define DWMC_PATCH 0
+#define DWMC_PATCH 1
 
 /* This patch allows no tag at all to be selected. The result is that dwm will start with
  * no tag selected and when you start a client with no tag rule and no tag selected then

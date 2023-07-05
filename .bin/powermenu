@@ -54,6 +54,10 @@ execute()
 				i3-msg exit
 			elif [[ $wm == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
+			elif [[ $wm == 'wlroots' ]]; then
+        hyprctl dispatch exit
+			elif [[ $wm == 'LG3D' ]]; then
+        qtile cmd-obj -o cmd -f shutdown
 			fi
 		fi
 	else

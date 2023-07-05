@@ -157,8 +157,8 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 static const char font[]                 = "monospace 10";
 #else
 static const char *fonts[]               = {
-	"Iosevka:style=Medium:size=13",
-	"Iosevka Nerd Font Mono:style=Medium:size=18",
+	"Iosevka:style=Medium:size=16",
+	"Iosevka Nerd Font Mono:style=Medium:size=21",
 };
 #endif // BAR_PANGO_PATCH
 static const char dmenufont[]            = "monospace:size=10";
@@ -398,6 +398,7 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
+  "luastatus", "-b", "dwm", "-B", "separator=", ".config/dwm/luastatus/module/backlight.lua", ".config/dwm/luastatus/module/alsa.lua", ".config/dwm/luastatus/module/battery.lua", ".config/dwm/luastatus/module/wifi.lua", ".config/dwm/luastatus/module/time-date.lua", NULL,
 	"bash", ".fehbg", NULL,
 	"xfce4-power-manager", NULL,
 	"/usr/lib/xfce-polkit/xfce-polkit", NULL,
@@ -977,8 +978,8 @@ static const char *lock_cmd[]  = { "slock", NULL };
 static const char *file_cmd[]  = { "thunar", NULL };
 static const char *firefox_cmd[]  = { "firefox", NULL };
 static const char *chromium_cmd[]  = { "chromium", NULL };
-static const char *nvim_cmd[]  = { "wezterm", "start", "nvim", NULL };
-static const char *btop_cmd[]  = { "wezterm", "start", "btop", NULL };
+static const char *nvim_cmd[]  = { "alacritty", "-e", "nvim", NULL };
+static const char *btop_cmd[]  = { "alacritty", "-e", "btop", NULL };
 
 
 static const Key keys[] = {
@@ -998,17 +999,17 @@ static const Key keys[] = {
   { MODKEY | ALTKEY,              XK_e,          spawn,                  {.v = firefox_cmd } },
   { MODKEY | ALTKEY,              XK_v,          spawn,                  {.v = nvim_cmd } },
   { MODKEY | ALTKEY,              XK_h,          spawn,                  {.v = btop_cmd } },
-  { MODKEY | ALTKEY,              XK_n,          spawn,                  SHCMD("wezterm start bash ~/.bin/nnn_run -T -v") },
+  { MODKEY | ALTKEY,              XK_n,          spawn,                  SHCMD("alacritty -e bash ~/.bin/nnn_run -T -v") },
 
   { 0,                            XK_Print,      spawn,                  SHCMD("flameshot full -p $HOME/Pictures/SS/") },
   { MODKEY,                       XK_Print,      spawn,                  SHCMD("flameshot gui") },
   { ALTKEY,                       XK_Print,      spawn,                  SHCMD("flameshot full -d 5000 -p $HOME/Pictures/SS/") },
   { ShiftMask,                    XK_Print,      spawn,                  SHCMD("flameshot full -d 10000 -p $HOME/Pictures/SS/") },
 
-  { 0,              XF86XK_MonBrightnessDown,    spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 5%-") },
-  { MODKEY,                       XK_F1,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 5%-") },
-  { 0,              XF86XK_MonBrightnessUp,      spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +5%") },
-  { MODKEY,                       XK_F2,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +5%") },
+  { 0,              XF86XK_MonBrightnessDown,    spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 2%-") },
+  { MODKEY,                       XK_F1,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set 2%-") },
+  { 0,              XF86XK_MonBrightnessUp,      spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +2%") },
+  { MODKEY,                       XK_F2,         spawn,                  SHCMD("brightnessctl -d \"intel_backlight\" set +2%") },
 
   { 0,              XF86XK_AudioLowerVolume,     spawn,                  SHCMD("pactl set-sink-volume 0 -5%") },
   { 0,              XF86XK_AudioRaiseVolume,     spawn,                  SHCMD("pactl set-sink-volume 0 +5%") },

@@ -117,11 +117,8 @@ case $select in
 		feh --bg-fill --randomize $HOME/.config/wallpaper/pixelart_forest_flower.png $HOME/.config/wallpaper/pixelart_forest_ruins_castle.png
     change_theme everblush
 		change_gtk_theme everblush
-    #change_wzterm_colorscheme "Gruvbox Dark"
     change_alacritty_colorscheme everblush
     change_nvim_theme everblush
-    #change_btop_theme gruvbox_dark
-    #change_helix_theme gruvbox_dark_hard
 		;;
 
 	$theme5)
@@ -130,7 +127,7 @@ case $select in
 		change_gtk_theme Gruvbox-Dark
     change_wzterm_colorscheme "Gruvbox Dark"
     change_alacritty_colorscheme gruvbox
-    change_nvim_theme gruvbox
+    change_nvim_theme gruvbox-baby
     change_btop_theme gruvbox_dark
     change_helix_theme gruvbox_dark_hard
 		;;

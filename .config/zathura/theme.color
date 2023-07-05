@@ -1,40 +1,40 @@
-map <C-i> recolor
+set notification-error-bg       "#282828" # bg
+set notification-error-fg       "#fb4934" # bright:red
+set notification-warning-bg     "#282828" # bg
+set notification-warning-fg     "#fabd2f" # bright:yellow
+set notification-bg             "#282828" # bg
+set notification-fg             "#b8bb26" # bright:green
 
-set notification-error-bg       "#ff5555" # Red
-set notification-error-fg       "#dadada" # Foreground
-set notification-warning-bg     "#ffb86c" # Orange
-set notification-warning-fg     "#22292b" # Selection
-set notification-bg             "#181f21" # Background
-set notification-fg             "#dadada" # Foreground
+set completion-bg               "#504945" # bg2
+set completion-fg               "#ebdbb2" # fg
+set completion-group-bg         "#3c3836" # bg1
+set completion-group-fg         "#928374" # gray
+set completion-highlight-bg     "#83a598" # bright:blue
+set completion-highlight-fg     "#504945" # bg2
 
-set completion-bg               "#1f2628" # Background
-set completion-fg               "#6d7476" # Comment
-set completion-group-bg         "#181f21" # Background
-set completion-group-fg         "#dadada" # Comment
-set completion-highlight-bg     "#6da4cd" # Selection
-set completion-highlight-fg     "#22292b" # Foreground
+# Define the color in index mode
+set index-bg                    "#504945" # bg2
+set index-fg                    "#ebdbb2" # fg
+set index-active-bg             "#83a598" # bright:blue
+set index-active-fg             "#504945" # bg2
 
-set index-bg                    "#181f21" # Background
-set index-fg                    "#dadada" # Foreground
-set index-active-bg             "#22292b" # Current Line
-set index-active-fg             "#dadada" # Foreground
+set inputbar-bg                 "#282828" # bg
+set inputbar-fg                 "#ebdbb2" # fg
 
-set inputbar-bg                 "#181f21" # Background
-set inputbar-fg                 "#dadada" # Foreground
-set statusbar-bg                "#181f21" # Background
-set statusbar-fg                "#dadada" # Foreground
+set statusbar-bg                "#504945" # bg2
+set statusbar-fg                "#ebdbb2" # fg
 
-set highlight-color             "#ffb86c" # Orange
-set highlight-active-color      "#ff79c6" # Pink
+set highlight-color             "#fabd2f" # bright:yellow
+set highlight-active-color      "#fe8019" # bright:orange
 
-set default-bg                  "#181f21" # Background
-set default-fg                  "#dadada" # Foreground
-
+set default-bg                  "#282828" # bg
+set default-fg                  "#ebdbb2" # fg
 set render-loading              true
-set render-loading-fg           "#181f21" # Background
-set render-loading-bg           "#dadada" # Foreground
+set render-loading-bg           "#282828" # bg
+set render-loading-fg           "#ebdbb2" # fg
 
-# Recolor mode settings
-
-set recolor-lightcolor          "#181f21" # Background
-set recolor-darkcolor           "#dadada" # Foreground
+# Recolor book content's color
+set recolor-lightcolor          "#282828" # bg
+set recolor-darkcolor           "#ebdbb2" # fg
+set recolor                     "true"
+# set recolor-keephue             true      # keep original color

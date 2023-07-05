@@ -67,6 +67,9 @@ if status is-interactive
   # nvim
   alias nv="nvim"
 
+  # bpython
+  alias pp="bpython"
+
   # helix
   alias hx="helix"
 
@@ -102,6 +105,7 @@ if status is-interactive
 
   # edit configs
   alias ccnv="nvim ~/.config/nvim/lua/"
+  alias ccaw="nvim ~/.config/awesome/."
 
   # pacman/paru
   alias pacman='sudo pacman --color auto'

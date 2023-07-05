@@ -1,5 +1,7 @@
 /* Patches */
-#if BLUR_PIXELATED_SCREEN_PATCH
+#if BACKGROUND_IMAGE_PATCH
+#include "background_image.c"
+#elif BLUR_PIXELATED_SCREEN_PATCH
 #include "blur_pixelated_screen.c"
 #endif
 

@@ -27,7 +27,7 @@
  * This patch is a variant of the blur pixelated screen patch and takes precedence over that.
  * https://tools.suckless.org/slock/patches/background-image/
  */
-#define BACKGROUND_IMAGE_PATCH 0
+#define BACKGROUND_IMAGE_PATCH 1
 
 /* This patch sets the lockscreen picture to a blured or pixelated screenshot.
  * This patch depends on the Imlib2 library, uncomment the relevant line in
@@ -40,7 +40,7 @@
 /* This patch introduces an additional color to indicate the state of Caps Lock.
  * https://tools.suckless.org/slock/patches/capscolor/
  */
-#define CAPSCOLOR_PATCH 0
+#define CAPSCOLOR_PATCH 1
 
 /* Based on the message patch this patch lets you add a message to your lock screen using 24 bit
  * color ANSI escape codes.
@@ -88,7 +88,7 @@
  * https://tools.suckless.org/slock/patches/keypress-feedback/
  * https://patch-diff.githubusercontent.com/raw/phenax/bslock/pull/2.diff
  */
-#define KEYPRESS_FEEDBACK_PATCH 0
+#define KEYPRESS_FEEDBACK_PATCH 1
 
 /* This patch allows media keys to be used while the screen is locked. Allows for volume
  * to be adjusted or to skip to the next song without having to unlock the screen first.
@@ -102,7 +102,7 @@
  * configuration in config.mk. Look for and uncomment the XINERAMA placeholder.
  * https://tools.suckless.org/slock/patches/message/
  */
-#define MESSAGE_PATCH 0
+#define MESSAGE_PATCH 1
 
 /* Replaces shadow support with PAM authentication support.
  * Change variable pam_service in config.def.h to the corresponding PAM service.
@@ -142,4 +142,4 @@
 /* This patch adds the ability to get colors via Xresources.
  * https://tools.suckless.org/slock/patches/xresources/
  */
-#define XRESOURCES_PATCH 0
+#define XRESOURCES_PATCH 1

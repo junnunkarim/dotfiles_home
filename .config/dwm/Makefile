@@ -57,7 +57,7 @@ install: all
 ifdef YAJLLIBS
 	cp -f dwm-msg ${DESTDIR}${PREFIX}/bin
 endif
-	#cp -f patch/dwmc ${DESTDIR}${PREFIX}/bin
+	cp -f patch/dwmc ${DESTDIR}${PREFIX}/bin
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm
 ifdef YAJLLIBS
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm-msg

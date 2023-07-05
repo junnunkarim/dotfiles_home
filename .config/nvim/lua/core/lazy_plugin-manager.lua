@@ -151,6 +151,7 @@ local plugins = {
 
   --{{{ Colorschemes
   "ellisonleao/gruvbox.nvim",
+  "luisiacc/gruvbox-baby",
 
   {
     "rose-pine/neovim",

@@ -1,0 +1,58 @@
+#define black_night #1a1b26
+#define black_storm #24283b
+#define black1 #414868
+#define black2 #565f89
+#define white #cfc9c2
+#define white1 #9aa5ce
+#define white2 #a9b1d6
+#define white3 #c0caf5
+#define purple #bb9af7
+#define blue1 #7aa2f7
+#define blue2 #7dcfff
+#define cyan #2ac3de
+#define green1 #b4f9f8
+#define green2 #73daca
+#define green3 #9ece6a
+#define orange1 #e0af68
+#define orange2 #ff9e64
+#define red #f7768e
+
+dwm.normfgcolor                : purple
+dwm.normbgcolor                : black_night
+dwm.normbordercolor            : black_night
+dwm.normfloatcolor             : black_night
+
+dwm.selfgcolor                 : black_night
+dwm.selbgcolor                 : black_night
+dwm.selbordercolor             : purple
+dwm.selfloatcolor              : white
+
+dwm.titlenormfgcolor           : black1
+dwm.titlenormbgcolor           : black_night
+dwm.titlenormbordercolor       : black_night
+dwm.titlenormfloatcolor        : white
+
+dwm.titleselfgcolor            : white
+dwm.titleselbgcolor            : black_night
+dwm.titleselbordercolor        : black_night
+dwm.titleselfloatcolor         : white
+
+dwm.tagsnormfgcolor		         : black_night
+dwm.tagsnormbgcolor            : purple2
+dwm.tagsnormbordercolor        : purple
+dwm.tagsnormfloatcolor         : black_night
+
+dwm.tagsselfgcolor             : purple2
+dwm.tagsselbgcolor             : black_night
+dwm.tagsselbordercolor         : purple
+dwm.tagsselfloatcolor          : black_night
+
+dwm.hidnormfgcolor             : purple
+dwm.hidselfgcolor              : purple
+dwm.hidnormbgcolor             : black_night
+dwm.hidselbgcolor              : black_night
+
+dwm.urgfgcolor								 : black_night
+dwm.urgbgcolor								 : orange1
+dwm.urgbordercolor						 : orange1
+dwm.urgfloatcolor							 : purple2

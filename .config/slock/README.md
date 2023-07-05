@@ -1,5 +1,5 @@
-Similar to [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch) this slock 1.4 (701aa9,
-2017-03-25) project has a different take on patching. It uses preprocessor directives to decide
+Similar to [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch) this slock 1.5 (4f04554,
+2022-10-04) project has a different take on patching. It uses preprocessor directives to decide
 whether or not to include a patch during build time. Essentially this means that this build, for
 better or worse, contains both the patched _and_ the original code. The aim being that you can
 select which patches to include and the build will contain that code and nothing more.
@@ -26,6 +26,8 @@ slock tool, how to install it and how it works.
 
 ### Changelog:
 
+2022-03-28 - Added the background image patch
+
 2021-09-13 - Added the dwm logo patch
 
 2021-09-09 - Added the auto-timeout, failure-command and secret-password patches
@@ -48,6 +50,9 @@ slock tool, how to install it and how it works.
 
    - [auto-timeout](https://tools.suckless.org/slock/patches/auto-timeout/)
       - allows for a command to be executed after a specified time of inactivity
+
+   - [background_image](https://tools.suckless.org/slock/patches/background-image/)
+      - sets the lockscreen picture to a background image
 
    - [blur_pixelated_screen](https://tools.suckless.org/slock/patches/blur-pixelated-screen/)
       - sets the lockscreen picture to a blured or pixelated screenshot

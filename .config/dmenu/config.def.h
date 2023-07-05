@@ -31,8 +31,7 @@ static char *fonts[] =
 static const char *fonts[] =
 #endif // XRESOURCES_PATCH
 {
-	"Iosevka Nerd Font Mono:style=Medium:size=13",
-	//"JetBrainsMono Nerd Font Mono:style=Medium:size=12"
+	"monospace:size=10"
 };
 #endif // PANGO_PATCH
 #if MANAGED_PATCH
@@ -111,7 +110,7 @@ char *colors[][2] = {
 	#endif // EMOJI_HIGHLIGHT_PATCH
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
-static unsigned int lines      = 5;
+static unsigned int lines      = 0;
 #if GRID_PATCH
 /* -g option; if nonzero, dmenu uses a grid comprised of columns and lines */
 static unsigned int columns    = 0;
@@ -136,7 +135,7 @@ static const char worddelimiters[] = " ";
 
 #if BORDER_PATCH
 /* Size of the window border */
-static unsigned int border_width = 2;
+static unsigned int border_width = 0;
 #endif // BORDER_PATCH
 
 #if PREFIXCOMPLETION_PATCH

@@ -53,7 +53,7 @@ dwm.hidselfgcolor              : red1
 dwm.hidnormbgcolor             : black
 dwm.hidselbgcolor              : black
 
-dwm.urgfgcolor                 : black
-dwm.urgbgcolor                 : red1
-dwm.urgbordercolor             : red1
-dwm.urgfloatcolor              : green1
+dwm.urgfgcolor								 : black
+dwm.urgbgcolor								 : red1
+dwm.urgbordercolor						 : red1
+dwm.urgfloatcolor							 : green1

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # If you use pywal, you need to restore the scheme here
 # (cat ~/.cache/wal/sequences &)
@@ -20,4 +20,4 @@ stty start undef
 stty stop undef
 
 # Start nnn with your preferred options
-nnn "$@"
+alacritty -e nnn "$@" -T -v
