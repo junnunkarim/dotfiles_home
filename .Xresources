@@ -5,7 +5,7 @@
 #include ".config/dmenu/theme_xresources/theme"
 
 ! fonts config !
-Xft.dpi: 120
+!Xft.dpi: 120
 Xft.antialias:	1
 Xft.hinting:	1
 Xft.autohint:	0
