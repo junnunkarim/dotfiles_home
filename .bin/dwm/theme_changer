@@ -32,7 +32,7 @@ change_theme()
   # calls xrdb function in dwm
   xsetroot -name "fsignal:2"
   # update luastatus
-  #kill -9 $(pidof luastatus)
+  kill -9 $(pidof luastatus)
 }
 change_gtk_theme() 
 {
