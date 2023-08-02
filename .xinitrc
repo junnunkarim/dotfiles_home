@@ -6,4 +6,4 @@
 
 [[ -f ~/.Xresources  ]] && xrdb -merge -I$HOME ~/.Xresources
 
-~/.bin/./dwm_statusbar_wrapper &
+~/.bin/dwm/./dwm_statusbar_wrapper &

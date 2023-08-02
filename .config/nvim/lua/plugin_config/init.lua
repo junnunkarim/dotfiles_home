@@ -29,7 +29,7 @@ require("plugin_config.telescope")
 
 -- Treesitter
 require("plugin_config.treesitter")
---require("plugin_config.treesitter-context")
+require("plugin_config.treesitter-context")
 --}}}
 
 
@@ -49,5 +49,5 @@ require("plugin_config.indent-blankline")
 
 --{{{ Aesthetics
 --require("plugin_config.noice")
---require("plugin_config.neoscroll")
+require("plugin_config.neoscroll")
 require("plugin_config.nvim-web-devicons")

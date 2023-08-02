@@ -6,7 +6,7 @@ end
 
 local options = {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "rust", "toml", "help", "javascript", "typescript", "java" },
+  ensure_installed = { "c", "lua", "rust", "toml", "javascript", "typescript", "java" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,

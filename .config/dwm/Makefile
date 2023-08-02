@@ -66,7 +66,7 @@ endif
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	mkdir -p ${DESTDIR}${PREFIX}/share/xsession
-	cp -n dwm.desktop ${DESTDIR}${PREFIX}/share/xsession
+	cp dwm.desktop ${DESTDIR}${PREFIX}/share/xsession
 	chmod 644 ${DESTDIR}${PREFIX}/share/xsession/dwm.desktop
 
 uninstall:

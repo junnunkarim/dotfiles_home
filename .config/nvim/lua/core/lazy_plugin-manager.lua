@@ -71,16 +71,16 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     build = ':TSUpdate',
   },
-  --"nvim-treesitter/nvim-treesitter-context",
+  "nvim-treesitter/nvim-treesitter-context",
 
   -- knowledge organization system
-  {
-    "nvim-neorg/neorg",
+  --{
+    --"nvim-neorg/neorg",
     --build = ":Neorg sync-parsers",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
+    --dependencies = {
+      --"nvim-lua/plenary.nvim",
+    --},
+  --},
   --}}}
 
   --{{{ Functional and Aesthetics
@@ -131,7 +131,7 @@ local plugins = {
   --{{{ Aesthetics
   "nvim-tree/nvim-web-devicons", -- nerdfont icons
   --"onsails/lspkind.nvim", -- vscode-like pictograms
-  --"karb94/neoscroll.nvim", -- smooth scroll
+  "karb94/neoscroll.nvim", -- smooth scroll
 
   -- notification ui
   --[[

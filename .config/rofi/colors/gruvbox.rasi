@@ -23,8 +23,8 @@
   background-1: var(black0);
   foreground: var(white);
   foreground-1: var(gray2);
-  selected: var(green1);
-  selected-1: var(green2);
-  active: var(orange1);
+  selected: var(blue2);
+  selected-1: var(blue1);
+  active: var(aqua2);
   urgent: var(red1);
 }

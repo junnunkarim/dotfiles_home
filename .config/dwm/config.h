@@ -88,7 +88,7 @@ static const int horizpadbar             = 2;   /* horizontal padding for status
 static const int vertpadbar              = 0;   /* vertical padding for statusbar */
 #endif // BAR_STATUSPADDING_PATCH
 #if BAR_STATUSBUTTON_PATCH
-static const char buttonbar[]            = "﩯";
+static const char buttonbar[]            = "󰕰";
 #endif // BAR_STATUSBUTTON_PATCH
 #if BAR_SYSTRAY_PATCH
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -398,14 +398,19 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 
 #if COOL_AUTOSTART_PATCH
 static const char *const autostart[] = {
-  "luastatus", "-b", "dwm", "-B", "separator=", ".config/dwm/luastatus/module/backlight.lua", ".config/dwm/luastatus/module/alsa.lua", ".config/dwm/luastatus/module/battery.lua", ".config/dwm/luastatus/module/wifi.lua", ".config/dwm/luastatus/module/time-date.lua", NULL,
+  //"bash", ".bin/dwm/dwm_statusbar_wrapper", NULL,
+  //"xrdb", "-merge", "-I$HOME", "~/.Xresources", NULL,
+  //"luastatus", "-b", "dwm", "-B", "separator=", ".config/dwm/luastatus/module/backlight.lua", ".config/dwm/luastatus/module/alsa.lua", ".config/dwm/luastatus/module/battery.lua", ".config/dwm/luastatus/module/wifi.lua", ".config/dwm/luastatus/module/time-date.lua", NULL,
+  //"setxkbmap", "-option", "caps:escape", NULL,
+  //"setxkbmap", "-model", "pc105", "-layout", "us,us", "-variant", "dvorak,", "-option", "grp:shifts_toggle,grp_led:caps", NULL,
 	"bash", ".fehbg", NULL,
-	"xfce4-power-manager", NULL,
-	"/usr/lib/xfce-polkit/xfce-polkit", NULL,
+  "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1", NULL,
 	"picom", NULL,
-  "nm-applet", NULL,
-  "/usr/bin/gnome-keyring-daemon", "--start", NULL,
   "greenclip", "daemon", NULL,
+	//"xfce4-power-manager", NULL,
+	//"/usr/lib/xfce-polkit/xfce-polkit", NULL,
+  //"nm-applet", NULL,
+  //"/usr/bin/gnome-keyring-daemon", "--start", NULL,
 	NULL /* terminate */
 };
 #endif // COOL_AUTOSTART_PATCH
@@ -453,8 +458,8 @@ static char tagicons[][NUMTAGS][MAX_TAGLEN] =
 static char *tagicons[][NUMTAGS] =
 #endif // NAMETAG_PATCH
 {
-	[DEFAULT_TAGS]        = { "", "", "", "ﮑ", "龎", "ﮠ", "", "煉", "" },
-	[ALTERNATIVE_TAGS]    = { "", "", "", "", "", "", "", "", "" },
+	[DEFAULT_TAGS]        = { "", "󰉋", "", "", "", "󰍡", "󰊖", "", "󰆩" },
+	[ALTERNATIVE_TAGS]    = { "󰎤", "󰎧", "󰎪", "󰎭", "󰎱", "󰎳", "󰎶", "󰎹", "󰎼" },
 	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
 };
 
@@ -765,10 +770,10 @@ static const Layout layouts[] = {
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	#if MONOCLE_LAYOUT
-	{ "𧻓",      monocle },
+	{ "󰊓",      monocle },
 	#endif
 	#if TILE_LAYOUT
-	{ "ﱖ",      tile },    /* first entry is default */
+	{ "󰝘",      tile },    /* first entry is default */
 	#endif
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	#if BSTACK_LAYOUT
@@ -986,7 +991,7 @@ static const Key keys[] = {
 	/* modifier                     key            function                argument */
 
  //---------- Other programs or scripts (super + ctrl) ----------//
-  { MODKEY | ControlMask,         XK_r,          spawn,                  SHCMD("redshift -P -O 5000") },
+  { MODKEY | ControlMask,         XK_r,          spawn,                  SHCMD("redshift -P -O 5500") },
   { MODKEY | ControlMask,         XK_n,          spawn,                  SHCMD("redshift -x") },
   { MODKEY | ControlMask,         XK_v,          spawn,                  SHCMD("redshift -P -O 3500") },
   { MODKEY | ControlMask,         XK_p,          spawn,                  SHCMD("picom") },

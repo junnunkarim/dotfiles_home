@@ -50,7 +50,7 @@ local options = {
         icons_enabled = false,
         symbols = {
           modified = ' ●',      -- Text to show when the buffer is modified
-          alternate_file = '絛', -- Text to show to identify the alternate file
+          alternate_file = '', -- Text to show to identify the alternate file
           directory =  '',     -- Text to show when the buffer is a directory
         },
       },
@@ -59,7 +59,9 @@ local options = {
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {'tabs'},
+    lualine_z = {
+      { 'tabs', separator = { left = '', right = '' } }
+    },
   },
   winbar = {},
   inactive_winbar = {},

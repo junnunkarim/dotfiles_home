@@ -26,7 +26,9 @@ window {
 
   /* properties for all widgets */
   padding: 20px;
-  border: 0px 1px 10px 1px;
+  /*margin: 52px;*/
+  margin: 52px 0px 0px 0px;
+  border: 1px 1px 10px 1px;
   border-radius: 30px;
 
   border-color: var(selected);
@@ -137,7 +139,7 @@ inputbar {
       text-color: var(foreground);
     }
     button.selected {
-      border: 5px 0px 0px 0px solid;
+      border: 1px 1px 6px 1px solid;
 
       border-color: var(active);
       background-color: var(background);

@@ -44,6 +44,9 @@ widget = {
 								--r[#r + 1] = '---'
             end
         end
-				return { string.format(color.sep .. color.wifi_ic_fg .. color.wifi_ic_bg .. ' 直 ' .. color.wifi_fg .. color.wifi_bg .. ' %s ', r[1]), }
+        if r[1] == nil then
+          r[1] = "Disconnected"
+        end
+				return { string.format(color.sep .. color.wifi_ic_fg .. color.wifi_ic_bg .. '  ' .. color.wifi_fg .. color.wifi_bg .. ' %s ', r[1]), }
     end,
 }

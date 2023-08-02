@@ -8,14 +8,14 @@ host=`cat /proc/sys/kernel/hostname`
 dwm_pid="$(pidof dwm)"
 
 # options
-shutdown=' Shutdown'
-reboot=' Reboot'
-lock=' Lock'
-suspend=' Suspend'
-logout=' Logout'
-hibernate=' Hibernate'
-yes=' Yes'
-no=' No'
+shutdown=' Shutdown'
+reboot='󰜉 Reboot'
+lock=' Lock'
+suspend='󰒲 Suspend'
+logout='󰍃 Logout'
+hibernate='⏾ Hibernate'
+yes=' Yes'
+no=' No'
 
 option="$lock\n$hibernate\n$suspend\n$logout\n$reboot\n$shutdown"
 
