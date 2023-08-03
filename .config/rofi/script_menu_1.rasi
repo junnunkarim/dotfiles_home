@@ -26,9 +26,9 @@ window {
 
   /* properties for all widgets */
   padding: 20px;
-  margin: 52px 0px 0px 0px;
-  border: 1px 1px 10px 1px;
-  border-radius: 30px;
+  margin: 0px 0px 0px 0px;
+  border: 0px 1px 10px 1px;
+  border-radius: 0px;
 
   border-color: var(selected);
   background-color: var(background);
@@ -48,7 +48,7 @@ listview {
   scrollbar: true;
 
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 0px;
 
   text-color: var(foreground);
   background-color: var(background);
@@ -98,7 +98,7 @@ inputbar {
 
   padding: 5px;
   border: 1px 1px 1px 5px solid;
-  border-radius: 30px;
+  border-radius: 0px;
 
   border-color: var(active);
   text-color: var(foreground);
