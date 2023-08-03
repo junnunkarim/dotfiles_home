@@ -107,6 +107,7 @@ You may choose not to install any of these and but doing so might make some thin
 
 > __WARNING!!! Backup your dotfiles from your home directory. These steps below will overwrite your configs.__
 > __WARNING! This rice only has been on a 1920x1080 resolution display.__
+> __If you want to use my dotfiles then it is highly recommended to fork this repo as I might heavily change it overtime.__
 
 > If you don't want to use my configs for programs other than dwm and dmenu, then manually change the ```~/.bin/dwm/theme_changer``` or else things might get out of control
 
