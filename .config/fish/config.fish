@@ -48,6 +48,9 @@ if status is-interactive
   #alias find="fd -p"
   #alias find_all="fd -H -p"
 
+  # top
+  alias top='top -E g -e g'
+
   # skim
   alias find="sk"
 
@@ -56,6 +59,9 @@ if status is-interactive
 
   # xplr
   alias xx="xplr"
+
+  # chezmoi
+  alias ch="chezmoi"
 
   # rm
   alias rm="rm -I"
@@ -131,6 +137,9 @@ if status is-interactive
 
   # find the name of the selected program
   alias find_name="xprop | grep \"WM_CLASS\""
+
+  # force scan wifi using nmcli
+  alias scan_wifi="nmcli dev wifi rescan && nmcli dev wifi"
 
   # youtube-dl
   alias youtube-dl="yt-dlp"
