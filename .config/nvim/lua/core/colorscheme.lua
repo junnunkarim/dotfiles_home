@@ -5,4 +5,4 @@ function change_colorscheme(colorscheme)
 	--vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"} )
 end
 
-change_colorscheme("rose-pine")
+change_colorscheme("gruvbox-baby")
