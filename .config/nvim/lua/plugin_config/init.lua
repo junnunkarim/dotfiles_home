@@ -14,6 +14,7 @@ require("plugin_config.rust-tools")
 --require("plugin_config.jdtls")
 
 require("plugin_config.diagnostics")
+require("plugin_config.diffview")
 
 --require("plugin_config.trouble")
 --}}}

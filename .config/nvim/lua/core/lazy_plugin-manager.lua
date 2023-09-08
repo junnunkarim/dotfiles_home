@@ -47,6 +47,7 @@ local plugins = {
   "nvim-lua/plenary.nvim",
   "ellisonleao/glow.nvim",
   "windwp/nvim-autopairs",
+  "sindrets/diffview.nvim",
   --"lewis6991/impatient.nvim",
   --"mbbill/undotree",
 
@@ -123,8 +124,15 @@ local plugins = {
   --]]
 
   "lewis6991/gitsigns.nvim",
-  "folke/which-key.nvim", -- shows keyboard shortcuts
   "lukas-reineke/indent-blankline.nvim",
+  { -- shows keyboard shortcuts
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+  },
   --}}}
 
 
