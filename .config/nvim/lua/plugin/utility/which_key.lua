@@ -1,5 +1,4 @@
 local available, which_key = pcall(require, "which-key")
-
 if not available then
   return
 end
@@ -39,7 +38,7 @@ local options = {
   },
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-    separator = "➜ ", -- symbol used between a key and it's label
+    separator = "➜", -- symbol used between a key and it's label
     group = "+", -- symbol prepended to a group
   },
   popup_mappings = {
@@ -94,14 +93,3 @@ local options = {
 }
 
 which_key.setup(options)
-
-which_key.register({
-  --[[
-  ["<leader>"] = {
-   p = {
-      name = "Keymaps for project",
-      --n = { "<cmd>enew<cr>", "New File" },
-  },
- },
- --]]
-})

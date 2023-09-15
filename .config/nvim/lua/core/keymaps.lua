@@ -1,20 +1,13 @@
-local function keymap(mode, map, command, opts)
-  local options = {
-    noremap=true,
-    silent=true
-  }
-
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, map, command, options)
-end
+local helper = require("core.helper")
 
 vim.g.mapleader = " "
 
 -- Native keymaps
 ---- Better window management
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+helper.set_keymap("n", "<C-h>", "<C-w>h", opts)
+helper.set_keymap("n", "<C-j>", "<C-w>j", opts)
+helper.set_keymap("n", "<C-k>", "<C-w>k", opts)
+helper.set_keymap("n", "<C-l>", "<C-w>l", opts)
+helper.set_keymap("n", "<C-k>", "<C-w>k", opts)
+--helper.set_keymap("n", "<C-<lt>>", "<C-w><lt>", opts)
+--helper.set_keymap("n", "<C-<gt>>", "<C-w><gt>", opts)

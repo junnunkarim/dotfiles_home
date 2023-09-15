@@ -24,14 +24,14 @@ local options = {
   },
   sections = {
     lualine_a = {
-      { 'mode', separator = { left = '', right = '' } }
+      { 'mode', separator = { left = '', right = '' } }
     },
     lualine_b = {'diagnostics'},
     lualine_c = {},
     lualine_x = {'encoding', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {
-      { 'location', separator = { right = '' } }
+      { 'location', separator = { right = '' } }
     },
   },
   inactive_sections = {
