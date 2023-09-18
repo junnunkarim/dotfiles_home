@@ -10,8 +10,8 @@ end
 --  vim.g.gruvbox_baby_use_original_palette = true
 --end
 
-require("core.highlight_group")
+--require("core.highlight_group")
 
-local color = "gruvbox-baby"
+local color = "kanagawa-dragon"
 
 change_colorscheme(color)

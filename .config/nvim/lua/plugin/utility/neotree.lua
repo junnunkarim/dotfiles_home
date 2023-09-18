@@ -10,10 +10,11 @@ end
 --
 helper.set_keymap("n", "<leader>nn", ":Neotree toggle right<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree filesystem"})
 helper.set_keymap("n", "<leader>nb", ":Neotree toggle buffers float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree buffers"})
+helper.set_keymap("n", "<leader>ng", ":Neotree toggle git_status float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree git-status"})
+helper.set_keymap("n", "<leader>nd", ":Neotree toggle diagnostics float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree document-symbols"})
+--helper.set_keymap("n", "<leader>no", ":Neotree toggle document_symbols float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree document-symbols"})
 --
 --}}
-
-
 
 local options = {
   close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -38,6 +39,37 @@ local options = {
     }, -- mappings
   }, -- window
 
+  sources = {
+    "filesystem",
+    "buffers",
+    "git_status",
+    --"document_symbols",
+    "diagnostics",
+  },
+
+  source_selector = {
+    winbar = true,
+    statusline = false,
+    sources = {
+      {
+        source = "filesystem",
+        display_name = " 󰉓 "
+      },
+      {
+        source = "buffers",
+        display_name = " 󰈚 "
+      },
+      {
+        source = "git_status",
+        display_name = " 󰊢 "
+      },
+      {
+        source = "diagnostics",
+        display_name = "  "
+      },
+    }, -- sources
+  }, --  source_selector
+
   filesystem = {
     filtered_items = {
       hide_dotfiles = false,
@@ -60,6 +92,35 @@ local options = {
     --group_empty_dirs = true, -- when true, empty folders will be grouped together
     --show_unloaded = true,
   }, -- buffers
+
+  diagnostics = {
+    auto_preview = { -- May also be set to `true` or `false`
+      enabled = false, -- Whether to automatically enable preview mode
+      preview_config = {}, -- Config table to pass to auto preview (for example `{ use_float = true }`)
+      event = "neo_tree_buffer_enter", -- The event to enable auto preview upon (for example `"neo_tree_window_after_open"`)
+    },
+    bind_to_cwd = true,
+    diag_sort_function = "severity", -- "severity" means diagnostic items are sorted by severity in addition to their positions.
+                                     -- "position" means diagnostic items are sorted strictly by their positions.
+                                     -- May also be a function.
+    follow_current_file = { -- May also be set to `true` or `false`
+      enabled = true, -- This will find and focus the file in the active buffer every time
+      always_focus_file = false, -- Focus the followed file, even when focus is currently on a diagnostic item belonging to that file
+      expand_followed = true, -- Ensure the node of the followed file is expanded
+      leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+      leave_files_open = false, -- `false` closes auto expanded files, such as with `:Neotree reveal`
+    },
+    group_dirs_and_files = true, -- when true, empty folders and files will be grouped together
+    group_empty_dirs = true, -- when true, empty directories will be grouped together
+    show_unloaded = true, -- show diagnostics from unloaded buffers
+    refresh = {
+      delay = 100, -- Time (in ms) to wait before updating diagnostics. Might resolve some issues with Neovim hanging.
+      event = "vim_diagnostic_changed", -- Event to use for updating diagnostics (for example `"neo_tree_buffer_enter"`)
+                                        -- Set to `false` or `"none"` to disable automatic refreshing
+      max_items = 10000, -- The maximum number of diagnostic items to attempt processing
+                         -- Set to `false` for no maximum
+    },
+  }, -- diagnonstics
 
 } -- options
 

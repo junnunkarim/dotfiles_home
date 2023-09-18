@@ -68,7 +68,7 @@ local plugins = {
   {
     "ellisonleao/glow.nvim"
   },
-  "AckslD/nvim-neoclip.lua",
+  --"AckslD/nvim-neoclip.lua",
 
   "akinsho/toggleterm.nvim",
 
@@ -83,6 +83,7 @@ local plugins = {
     tag = '0.1.3',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      --"nvim-telescope/telescope-ui-select.nvim",
     }
   },
 
@@ -94,6 +95,7 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
+      "mrbjarksen/neo-tree-diagnostics.nvim",
     }
   },
 
@@ -130,8 +132,19 @@ local plugins = {
 
   --{{ aesthetic and functional
   --
-  -- statusline
+  "rcarriga/nvim-notify",
+  "stevearc/dressing.nvim",
   {
+    's1n7ax/nvim-window-picker',
+    name = 'window-picker',
+    event = 'VeryLazy',
+    version = '2.*',
+    config = function()
+        require'window-picker'.setup()
+    end,
+  },
+  --"simrat39/symbols-outline.nvim",
+  { -- statusline
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
@@ -156,12 +169,12 @@ local plugins = {
 
   "lukas-reineke/indent-blankline.nvim",
 
-  {
+  --[[ {
     "folke/trouble.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons"
     },
-  },
+  }, ]]
 
   "goolord/alpha-nvim", -- dashboard
 

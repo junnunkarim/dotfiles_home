@@ -39,6 +39,14 @@ lspconfig.pyright.setup {
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+    },
+  },
 }
 
 lspconfig.rust_analyzer.setup {
