@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --path PATH:/opt/devkitpro/tools/bin\x1e/sbin\x1e/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/bin\x1e/usr/sbin\x1e/usr/lib/jvm/default/bin\x1e/usr/bin/site_perl\x1e/usr/bin/vendor_perl\x1e/usr/bin/core_perl\x1e/home/dragoonfx/\x2elocal/bin\x1e/home/dragoonfx/\x2ecargo/bin/\x1e/home/dragoonfx/\x2ebin\x1e/home/dragoonfx/\x2econfig/nvim/lsp/jdt\x2dlanguage\x2dserver\x2d1\x2e19\x2e0\x2d202301171536/bin/
+SETUVAR --export PYENV_ROOT:/home/dragoonfx/\x2epyenv
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:\x7e/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_list\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e\x7e/\x2econfig/fish/functions/nvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e\x7e/\x2econfig/fish/completions/nvm\x2efish
@@ -34,6 +35,6 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:cyan\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/dragoonfx/\x2ecargo/bin\x1e/home/dragoonfx/\x2elocal/bin\x1e/home/dragoonfx/\x2ebin
+SETUVAR fish_user_paths:/home/dragoonfx/\x2epyenv/bin\x1e/home/dragoonfx/\x2ecargo/bin\x1e/home/dragoonfx/\x2elocal/bin\x1e/home/dragoonfx/\x2ebin
 SETUVAR nvm_data:/home/dragoonfx/\x2elocal/share/nvm
 SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist

@@ -24,6 +24,13 @@ if status is-interactive
   set -x _JAVA_AWT_WM_NONREPARENTING 1
   set -x AWT_TOOLKIT MToolkit
 
+  # python virtualfish
+  set -x WORKON_HOME $HOME/.virtualenvs
+  #python pyenv
+  set -Ux PYENV_ROOT $HOME/.pyenv
+  set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  pyenv init - | source
+
   #________________________________End__________________________________#
 
 
@@ -38,11 +45,11 @@ if status is-interactive
   alias updte='sudo pacman -Syyu'
   alias updqte='sudo pacman -Syyu'
 
-  # exa
-  alias ls='exa --icons'
-  alias la='exa -a --icons'
-  alias ll='exa -al'
-  alias lt='exa -aT'
+  # eza
+  alias ls='eza --icons'
+  alias la='eza -a --icons'
+  alias ll='eza -al'
+  alias lt='eza -aT'
 
   # fd
   #alias find="fd -p"
@@ -54,6 +61,9 @@ if status is-interactive
   # skim
   alias find="sk"
 
+  # lazygit
+  alias lg="lazygit"
+
   # ripgrep
   alias rg="rg --sort path"
 
@@ -62,6 +72,10 @@ if status is-interactive
 
   # chezmoi
   alias ch="chezmoi"
+
+  # tokei
+  alias sloc="tokei"
+  alias line_of_code="tokei"
 
   # rm
   alias rm="rm -I"
@@ -89,11 +103,14 @@ if status is-interactive
   # translate-shell
   alias dic="trans -d"
 
+  # trashy
+  alias ts="trash"
+
   # wezterm
   alias img="wezterm imgcat" # view image in wezterm
 
   # taskwarrior-tui
-  alias ts="taskwarrior-tui"
+  # alias ts="taskwarrior-tui"
 
   # Colorize the grep command output
   alias grep='grep --color=auto'
@@ -112,6 +129,7 @@ if status is-interactive
   # edit configs
   alias ccnv="nvim ~/.config/nvim/lua/"
   alias ccaw="nvim ~/.config/awesome/."
+  alias ccfs="nvim ~/.config/fish/."
 
   # pacman/paru
   alias pacman='sudo pacman --color auto'
