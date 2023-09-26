@@ -42,6 +42,17 @@ local plugins = {
 
   --{{ utility
   --
+  {
+    "mickael-menu/zk-nvim",
+  },
+  {
+    "luckasRanarison/nvim-devdocs",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
   -- autocomplete
   {
     "hrsh7th/nvim-cmp",
@@ -191,42 +202,43 @@ local plugins = {
   --{
   --  "ellisonleao/gruvbox.nvim",
   --},
-  {
-    "luisiacc/gruvbox-baby",
-  },
-  {
-    "rose-pine/neovim",
-    name = 'rose-pine',
-  },
-  {
-    "shaunsingh/nord.nvim",
-  },
-  {
-    "rebelot/kanagawa.nvim",
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-  },
-  {
-    "folke/tokyonight.nvim",
-  },
-  {
-    "nyoom-engineering/oxocarbon.nvim",
-  },
-  {
-    "savq/melange",
-  },
-  {
-    "Everblush/everblush.nvim",
-    name = "everblush",
-  },
-  {
-    "olivercederborg/poimandres.nvim",
-  },
-  {
-    "EdenEast/nightfox.nvim",
-  },
+  { "RRethy/nvim-base16" },
+  -- {
+  --   "luisiacc/gruvbox-baby",
+  -- },
+  -- {
+  --   "rose-pine/neovim",
+  --   name = 'rose-pine',
+  -- },
+  -- {
+  --   "shaunsingh/nord.nvim",
+  -- },
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  -- },
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  -- },
+  -- {
+  --   "folke/tokyonight.nvim",
+  -- },
+  -- {
+  --   "nyoom-engineering/oxocarbon.nvim",
+  -- },
+  -- {
+  --   "savq/melange",
+  -- },
+  -- {
+  --   "Everblush/everblush.nvim",
+  --   name = "everblush",
+  -- },
+  -- {
+  --   "olivercederborg/poimandres.nvim",
+  -- },
+  -- {
+  --   "EdenEast/nightfox.nvim",
+  -- },
   --
   --}}
 }

@@ -3,12 +3,13 @@ if not available then
   return
 end
 
+
 local options = {
   options = {
     icons_enabled = true,
-    theme = 'auto',
+    theme = 'base16',
     component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -24,14 +25,21 @@ local options = {
   },
   sections = {
     lualine_a = {
-      { 'mode', separator = { left = '', right = '' } }
+      { 'mode', separator = { left = '', right = '' } }
     },
-    lualine_b = {'diagnostics'},
+    lualine_b = {
+      { 'diagnostics', separator = { left = '', right = '' }},
+    },
     lualine_c = {},
-    lualine_x = {'encoding', 'filetype'},
-    lualine_y = {'progress'},
+    lualine_x = {
+      { 'encoding', separator = { left = '', right = '' }},
+      { 'filetype', separator = { left = '', right = '' }},
+    },
+    lualine_y = {
+      { 'progress', separator = { left = '', right = '' }}
+    },
     lualine_z = {
-      { 'location', separator = { right = '' } }
+      { 'location', separator = { left = '', right = '' } }
     },
   },
   inactive_sections = {
@@ -55,18 +63,28 @@ local options = {
         },
       },
     },
-    lualine_b = { 'branch', 'diff' },
+    lualine_b = {
+      {
+        'branch',
+        --separator = { left = '', right = '' }
+      },
+      { 'diff', separator = { left = '', right = '' }},
+    },
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      { 'tabs', separator = { left = '', right = '' } }
+      { 'tabs', separator = { left = '', right = '' } }
     },
   },
   winbar = {},
   inactive_winbar = {},
   extensions = {
     "nvim-tree",
+    "neo-tree",
+    "toggleterm",
+    "quickfix",
+    "lazy",
   }
 }
 

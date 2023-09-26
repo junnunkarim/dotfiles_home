@@ -8,11 +8,11 @@ end
 
 --{{ keymaps
 --
-helper.set_keymap("n", "<leader>nn", ":Neotree toggle right<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree filesystem"})
-helper.set_keymap("n", "<leader>nb", ":Neotree toggle buffers float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree buffers"})
-helper.set_keymap("n", "<leader>ng", ":Neotree toggle git_status float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree git-status"})
-helper.set_keymap("n", "<leader>nd", ":Neotree toggle diagnostics float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree document-symbols"})
---helper.set_keymap("n", "<leader>no", ":Neotree toggle document_symbols float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree document-symbols"})
+helper.set_keymap("n", "<leader>nn", "<cmd>Neotree toggle right<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree filesystem"})
+helper.set_keymap("n", "<leader>nb", "<cmd>Neotree toggle buffers float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree buffers"})
+helper.set_keymap("n", "<leader>ng", "<cmd>Neotree toggle git_status float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree git-status"})
+helper.set_keymap("n", "<leader>nd", "<cmd>Neotree toggle diagnostics float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree diagnostics"})
+--helper.set_keymap("n", "<leader>no", "<cmd>Neotree toggle document_symbols float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree document-symbols"})
 --
 --}}
 
@@ -47,28 +47,28 @@ local options = {
     "diagnostics",
   },
 
-  source_selector = {
-    winbar = true,
-    statusline = false,
-    sources = {
-      {
-        source = "filesystem",
-        display_name = " 󰉓 "
-      },
-      {
-        source = "buffers",
-        display_name = " 󰈚 "
-      },
-      {
-        source = "git_status",
-        display_name = " 󰊢 "
-      },
-      {
-        source = "diagnostics",
-        display_name = "  "
-      },
-    }, -- sources
-  }, --  source_selector
+  -- source_selector = {
+  --   winbar = true,
+  --   statusline = false,
+  --   sources = {
+  --     {
+  --       source = "filesystem",
+  --       display_name = " 󰉓 "
+  --     },
+  --     {
+  --       source = "buffers",
+  --       display_name = " 󰈚 "
+  --     },
+  --     {
+  --       source = "git_status",
+  --       display_name = " 󰊢 "
+  --     },
+  --     {
+  --       source = "diagnostics",
+  --       display_name = "  "
+  --     },
+  --   }, -- sources
+  -- }, --  source_selector
 
   filesystem = {
     filtered_items = {

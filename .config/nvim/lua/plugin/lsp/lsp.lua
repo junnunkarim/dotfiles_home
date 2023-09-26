@@ -70,3 +70,8 @@ lspconfig.html.setup {
     provideFormatter = true
   }
 }
+
+lspconfig.marksman.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}

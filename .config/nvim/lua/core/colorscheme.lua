@@ -12,6 +12,6 @@ end
 
 --require("core.highlight_group")
 
-local color = "kanagawa-dragon"
+local color = "base16-rose-pine"
 
 change_colorscheme(color)
