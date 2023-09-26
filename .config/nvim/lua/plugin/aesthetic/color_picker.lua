@@ -1,7 +1,13 @@
-local opts = { noremap = true, silent = true }
+local helper = require("core.helper")
 
-vim.keymap.set("n", "<A-c>", "<cmd>PickColor<cr>", opts)
-vim.keymap.set("i", "<A-c>", "<cmd>PickColorInsert<cr>", opts)
+--{{ keymaps
+--
+helper.set_keymap("n", "<leader>cc", "<cmd>PickColor<cr>", {noremap = true, silent = true, desc = "Open color picker"})
+helper.set_keymap("i", "<A-c>", "<cmd>PickColorInsert<cr>", {noremap = true, silent = true, desc = "Open color picker"})
+--
+--}}
+
+
 
 -- vim.keymap.set("n", "your_keymap", "<cmd>ConvertHEXandRGB<cr>", opts)
 -- vim.keymap.set("n", "your_keymap", "<cmd>ConvertHEXandHSL<cr>", opts)

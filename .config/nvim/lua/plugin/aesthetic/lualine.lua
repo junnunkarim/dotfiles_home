@@ -9,9 +9,12 @@ local options = {
     icons_enabled = true,
     theme = 'base16',
     component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
     disabled_filetypes = {
-      statusline = {},
+      statusline = {
+        "neo-tree",
+        "nvim-tree",
+      },
       winbar = {},
     },
     ignore_focus = {},
@@ -28,7 +31,25 @@ local options = {
       { 'mode', separator = { left = '', right = '' } }
     },
     lualine_b = {
-      { 'diagnostics', separator = { left = '', right = '' }},
+      {
+        "diagnostics",
+        sources = { "nvim_lsp" },
+        sections = { "error", "warn", "info", "hint" },
+        symbols = {
+          error = " ",
+          warn = " ",
+          info = "󰋼 ",
+          hint = "󰌵 ",
+        },
+        colored = true,
+        diagnostics_color = {
+          error = "DiagnosticError",
+          warn  = "DiagnosticWarn",
+          info  = "DiagnosticInfo",
+          hint  = "DiagnosticHint"
+        },
+        update_in_insert = true
+      }
     },
     lualine_c = {},
     lualine_x = {
@@ -55,6 +76,7 @@ local options = {
       {
         'buffers',
         --show_filename_only = true,
+        separator = { left = '', right = '' },
         icons_enabled = false,
         symbols = {
           modified = ' ●',      -- Text to show when the buffer is modified
@@ -66,9 +88,11 @@ local options = {
     lualine_b = {
       {
         'branch',
-        --separator = { left = '', right = '' }
+        separator = { left = '', right = '' }
       },
-      { 'diff', separator = { left = '', right = '' }},
+      {
+        'diff',
+        separator = { left = '', right = '' }},
     },
     lualine_c = {},
     lualine_x = {},

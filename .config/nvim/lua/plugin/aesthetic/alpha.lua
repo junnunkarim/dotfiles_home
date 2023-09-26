@@ -19,7 +19,7 @@ local dashboard = require("alpha.themes.dashboard")
 }
 
 local function footer()
- return '"My Lord increase me in knowledge" - Surah Ta-Ha 20:114'
+ return '"My Lord increase me in knowledge" - Surah Ta-Ha:114'
 end
 
  dashboard.section.buttons.val = {

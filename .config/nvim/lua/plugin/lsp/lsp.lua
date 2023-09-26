@@ -75,3 +75,8 @@ lspconfig.marksman.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+
+lspconfig.bashls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}

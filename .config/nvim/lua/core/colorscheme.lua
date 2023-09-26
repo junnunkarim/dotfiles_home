@@ -12,6 +12,6 @@ end
 
 --require("core.highlight_group")
 
-local color = "base16-rose-pine"
+local color = "base16-everforest"
 
 change_colorscheme(color)

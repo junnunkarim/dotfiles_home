@@ -7,7 +7,7 @@ end
 
 --{{ keymaps
 --
-helper.set_keymap("n", "<leader>gg", ":Glow<cr>", {noremap = true, silent = true, desc = "Toggle Glow markdown viewer"})
+helper.set_keymap("n", "<leader>gg", "<cmd>Glow<cr>", {noremap = true, silent = true, desc = "Toggle Glow markdown viewer"})
 --
 --}}
 

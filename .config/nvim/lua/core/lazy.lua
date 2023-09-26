@@ -243,4 +243,6 @@ local plugins = {
   --}}
 }
 
-require("lazy").setup(plugins, opts)
+local options = {}
+
+require("lazy").setup(plugins, options)

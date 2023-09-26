@@ -11,7 +11,7 @@ local actions = require("telescope.actions")
 vim.keymap.set(
   'n',
   '<leader>tb',
-  builtin.buffers,
+  "<cmd>Telescope buffers sort_lastused=true<cr>",
   {desc = "All active buffers"}
 )
 vim.keymap.set(
@@ -133,7 +133,13 @@ local options = {
           actions.move_selection_next, type = "action",
           opts = { nowait = true, silent = true }
         },
-      } -- n
+        ['<c-d>'] = actions.delete_buffer,
+        ['<a-d>'] = actions.delete_buffer,
+      }, -- i
+      n = {
+        ['<c-d>'] = actions.delete_buffer,
+        ['<a-d>'] = actions.delete_buffer,
+      }
     } -- mappings
   },
   pickers = {

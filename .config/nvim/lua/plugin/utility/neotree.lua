@@ -12,6 +12,7 @@ helper.set_keymap("n", "<leader>nn", "<cmd>Neotree toggle right<cr>", {noremap =
 helper.set_keymap("n", "<leader>nb", "<cmd>Neotree toggle buffers float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree buffers"})
 helper.set_keymap("n", "<leader>ng", "<cmd>Neotree toggle git_status float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree git-status"})
 helper.set_keymap("n", "<leader>nd", "<cmd>Neotree toggle diagnostics float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree diagnostics"})
+helper.set_keymap("n", "<leader>nr", "<cmd>Neotree reveal<cr>", {noremap = true, silent = true, desc = "Reveal Neo-tree"})
 --helper.set_keymap("n", "<leader>no", "<cmd>Neotree toggle document_symbols float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree document-symbols"})
 --
 --}}
@@ -87,7 +88,7 @@ local options = {
   buffers = {
     follow_current_file = {
       --enabled = true, -- This will find and focus the file in the active buffer every time the current file is changed while the tree is open.
-      --leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+      leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
     }, -- follow_current_file
     --group_empty_dirs = true, -- when true, empty folders will be grouped together
     --show_unloaded = true,
