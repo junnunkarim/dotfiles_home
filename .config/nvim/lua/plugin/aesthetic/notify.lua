@@ -7,7 +7,7 @@ end
 
 --{{ keymaps
 --
---helper.set_keymap("n", "<leader>zz", ":ZenMode<cr>", {noremap = true, silent = true, desc = "Toggle zen-mode"})
+helper.set_keymap("n", "<leader>dn", "<cmd>lua require('notify').dismiss({ silent = true })<cr>", {noremap = true, silent = true, desc = "Dismiss notifications"})
 --
 --}}
 

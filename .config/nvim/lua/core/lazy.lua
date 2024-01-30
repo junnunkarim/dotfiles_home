@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 --}}
 
+local helper = require("core.helper")
 
 local plugins = {
   --{{ lsp and debug
@@ -24,24 +25,55 @@ local plugins = {
   "neovim/nvim-lspconfig",
 
   "p00f/clangd_extensions.nvim",
-
-  --[[
-  {
-    "nvimdev/lspsaga.nvim",
-    config = function()
-    end,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
-  ]]--
   --
   --}}
 
+  --{{ formatter and linter
+  --
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  --
+  --}}
 
   --{{ utility
   --
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod",                     lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
+  { "Vigemus/iron.nvim" },
+  -- { "jghauser/kitty-runner.nvim" },
+  -- { "lolpie244/simple-kitty-runner.nvim", },
+  {
+    "quarto-dev/quarto-nvim",
+    dev = false,
+    dependencies = {
+      {
+        "jmbuhr/otter.nvim",
+        dev = false,
+        dependencies = {
+          "hrsh7th/nvim-cmp",
+          "neovim/nvim-lspconfig",
+          "nvim-treesitter/nvim-treesitter",
+        },
+      },
+    },
+  },
   {
     "mickael-menu/zk-nvim",
   },
@@ -57,45 +89,52 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-calc",
-      "hrsh7th/cmp-nvim-lua",
-      "saadparwaiz1/cmp_luasnip",
-      --"hrsh7th/cmp-path",
       "FelipeLema/cmp-async-path", -- same as path, but directories are read in a separate thread to avoid
-      "kdheepak/cmp-latex-symbols",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-calc",
+      "hrsh7th/cmp-cmdline",
+      --"hrsh7th/cmp-emoji",
       --"petertriho/cmp-git",
+      "kdheepak/cmp-latex-symbols",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-nvim-lua",
+      "jmbuhr/cmp-pandoc-references",
+      "f3fora/cmp-spell",
+      "ray-x/cmp-treesitter",
     },
   },
   -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ':TSUpdate',
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-context",
+    },
+    build = ":TSUpdate",
   },
-  "nvim-treesitter/nvim-treesitter-context",
 
   {
-    "ellisonleao/glow.nvim"
+    "ellisonleao/glow.nvim",
   },
   --"AckslD/nvim-neoclip.lua",
 
   "akinsho/toggleterm.nvim",
 
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     lazy = false,
   },
 
   -- telescope
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.3',
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.3",
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      "nvim-lua/plenary.nvim",
       --"nvim-telescope/telescope-ui-select.nvim",
-    }
+    },
   },
 
   -- file explorer
@@ -107,7 +146,7 @@ local plugins = {
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
       "mrbjarksen/neo-tree-diagnostics.nvim",
-    }
+    },
   },
 
   {
@@ -133,39 +172,117 @@ local plugins = {
     "L3MON4D3/LuaSnip",
     -- follow latest release.
     version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
     -- install jsregexp (optional!).
-    build = "make install_jsregexp"
+    build = "make install_jsregexp",
   },
+  -- {
+  --   "bfredl/nvim-ipy",
+  --   init = function()
+  --     vim.cmd [[
+  --       let g:nvim_ipy_perform_mappings = 0
+  --     ]]
+  --   end
+  -- },
+
+  -- {
+  --   'jpalardy/vim-slime',
+  --   init = function()
+  --     vim.b['quarto_is_' .. 'python' .. '_chunk'] = false
+  --     Quarto_is_in_python_chunk = function()
+  --       require 'otter.tools.functions'.is_otter_language_context('python')
+  --     end
+  --
+  --     vim.cmd [[
+  --       let g:slime_dispatch_ipython_pause = 100
+  --
+  --       function SlimeOverride_EscapeText_quarto(text)
+  --         call v:lua.Quarto_is_in_python_chunk()
+  --         if exists('g:slime_python_ipython') && len(split(a:text,"\n")) > 1 && b:quarto_is_python_chunk
+  --           return ["%cpaste -q\n", g:slime_dispatch_ipython_pause, a:text, "--", "\n"]
+  --         else
+  --           return a:text
+  --         end
+  --       endfunction
+  --     ]]
+  --
+  --     local function mark_terminal()
+  --       vim.g.slime_last_channel = vim.b.terminal_job_id
+  --       vim.print(vim.g.slime_last_channel)
+  --     end
+  --
+  --     local function set_terminal()
+  --       vim.b.slime_config = { jobid = vim.g.slime_last_channel }
+  --     end
+  --
+  --     vim.b.slime_cell_delimiter = "```"
+  --
+  --     -- slime, neovim terminal
+  --     --vim.g.slime_target = "neovim"
+  --     vim.g.slime_target = "kitty"
+  --     vim.g.slime_python_ipython = 1
+  --
+  --     -- -- slime, tmux
+  --     -- vim.g.slime_target = 'tmux'
+  --     -- vim.g.slime_bracketed_paste = 1
+  --     -- vim.g.slime_default_config = { socket_name = "default", target_pane = ".2" }
+  --
+  --     local function toggle_slime_tmux_nvim()
+  --       if vim.g.slime_target == 'tmux' then
+  --         pcall(function()
+  --           vim.b.slime_config = nil
+  --           vim.g.slime_default_config = nil
+  --         end
+  --         )
+  --         -- slime, neovvim terminal
+  --         vim.g.slime_target = "neovim"
+  --         vim.g.slime_bracketed_paste = 0
+  --         vim.g.slime_python_ipython = 1
+  --       elseif vim.g.slime_target == 'neovim' then
+  --         pcall(function()
+  --           vim.b.slime_config = nil
+  --           vim.g.slime_default_config = nil
+  --         end
+  --         )
+  --         -- -- slime, tmux
+  --         vim.g.slime_target = 'tmux'
+  --         vim.g.slime_bracketed_paste = 1
+  --         vim.g.slime_default_config = { socket_name = "default", target_pane = ".2" }
+  --       end
+  --     end
+  --     require 'which-key'.register({
+  --       ['<leader>qm'] = { mark_terminal, 'mark terminal' },
+  --       ['<leader>qs'] = { set_terminal, 'set terminal' },
+  --       ['<leader>qt'] = { toggle_slime_tmux_nvim, 'toggle tmux/nvim terminal' },
+  --     })
+  --   end
+  -- },
   --
   --}}
 
-
   --{{ aesthetic and functional
   --
+  "jbyuki/nabla.nvim",
   "rcarriga/nvim-notify",
   "stevearc/dressing.nvim",
   {
-    's1n7ax/nvim-window-picker',
-    name = 'window-picker',
-    event = 'VeryLazy',
-    version = '2.*',
+    "s1n7ax/nvim-window-picker",
+    name = "window-picker",
+    event = "VeryLazy",
+    version = "2.*",
     config = function()
-        require'window-picker'.setup()
+      require("window-picker").setup()
     end,
   },
-  --"simrat39/symbols-outline.nvim",
   { -- statusline
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       lazy = true,
-    }
+    },
   },
-  -- {
-  --   "echasnovski/mini.animate",
-  --   version = '*'
-  -- },
   {
     "folke/zen-mode.nvim",
   },
@@ -177,68 +294,22 @@ local plugins = {
     "sindrets/diffview.nvim",
     lazy = true,
   },
-
   "lukas-reineke/indent-blankline.nvim",
-
-  --[[ {
-    "folke/trouble.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-  }, ]]
-
-  "goolord/alpha-nvim", -- dashboard
-
+  "goolord/alpha-nvim",       -- dashboard
   "NvChad/nvim-colorizer.lua", -- highlights colors
   "ziontee113/color-picker.nvim",
-
-  "karb94/neoscroll.nvim", -- smooth scroll
+  "karb94/neoscroll.nvim",    -- smooth scroll
   --
   --}}
 
-
   --{{ Colorschemes
   --
-  --{
-  --  "ellisonleao/gruvbox.nvim",
-  --},
   { "RRethy/nvim-base16" },
-  -- {
-  --   "luisiacc/gruvbox-baby",
-  -- },
-  -- {
-  --   "rose-pine/neovim",
-  --   name = 'rose-pine',
-  -- },
-  -- {
-  --   "shaunsingh/nord.nvim",
-  -- },
-  -- {
-  --   "rebelot/kanagawa.nvim",
-  -- },
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  -- },
-  -- {
-  --   "folke/tokyonight.nvim",
-  -- },
-  -- {
-  --   "nyoom-engineering/oxocarbon.nvim",
-  -- },
-  -- {
-  --   "savq/melange",
-  -- },
-  -- {
-  --   "Everblush/everblush.nvim",
-  --   name = "everblush",
-  -- },
-  -- {
-  --   "olivercederborg/poimandres.nvim",
-  -- },
-  -- {
-  --   "EdenEast/nightfox.nvim",
-  -- },
+  { "nyoom-engineering/oxocarbon.nvim" },
+  {
+    "Everblush/nvim",
+    name = "everblush",
+  },
   --
   --}}
 }
@@ -246,3 +317,9 @@ local plugins = {
 local options = {}
 
 require("lazy").setup(plugins, options)
+
+--{{ keymaps
+--
+helper.set_keymap("n", "<leader>sl", "<cmd>Lazy<cr>", { noremap = true, silent = true, desc = "Open Lazy" })
+--
+--}}

@@ -6,17 +6,6 @@ if not available then
   return
 end
 
---{{ keymaps
---
-helper.set_keymap("n", "<leader>nn", "<cmd>Neotree toggle right<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree filesystem"})
-helper.set_keymap("n", "<leader>nb", "<cmd>Neotree toggle buffers float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree buffers"})
-helper.set_keymap("n", "<leader>ng", "<cmd>Neotree toggle git_status float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree git-status"})
-helper.set_keymap("n", "<leader>nd", "<cmd>Neotree toggle diagnostics float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree diagnostics"})
-helper.set_keymap("n", "<leader>nr", "<cmd>Neotree reveal<cr>", {noremap = true, silent = true, desc = "Reveal Neo-tree"})
---helper.set_keymap("n", "<leader>no", "<cmd>Neotree toggle document_symbols float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree document-symbols"})
---
---}}
-
 local options = {
   close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = "rounded",
@@ -126,3 +115,14 @@ local options = {
 } -- options
 
 neotree.setup(options)
+
+--{{ keymaps
+--
+helper.set_keymap("n", "<leader>nn", "<cmd>Neotree toggle right<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree filesystem"})
+helper.set_keymap("n", "<leader>nb", "<cmd>Neotree toggle buffers float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree buffers"})
+helper.set_keymap("n", "<leader>ng", "<cmd>Neotree toggle git_status float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree git-status"})
+helper.set_keymap("n", "<leader>nd", "<cmd>Neotree toggle diagnostics float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree diagnostics"})
+helper.set_keymap("n", "<leader>nr", "<cmd>Neotree reveal<cr>", {noremap = true, silent = true, desc = "Reveal Neo-tree"})
+--helper.set_keymap("n", "<leader>no", "<cmd>Neotree toggle document_symbols float<cr>", {noremap = true, silent = true, desc = "Toggle Neo-tree document-symbols"})
+--
+--}}

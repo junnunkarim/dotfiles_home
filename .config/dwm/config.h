@@ -975,7 +975,8 @@ static const char *scratchpad_cmd[]  = { ".bin/scratchpad", NULL };
 static const char *network_manager_cmd[]  = { "networkmanager_dmenu", NULL };
 static const char *theme_changer_cmd[]  = { ".bin/dwm/theme_changer", NULL };
 static const char *keybindings_cmd[]  = { ".bin/dwm/dwm_keybindings", NULL };
-static const char *powermenu_cmd[]  = { ".bin/powermenu", NULL };
+// static const char *powermenu_cmd[]  = { ".bin/powermenu", NULL };
+static const char *powermenu_cmd[]  = { ".bin/dwm/dmenu_powermenu", NULL };
 static const char *clipboard_cmd[]  = { ".bin/clipboard", NULL };
 static const char *rofi_calc_cmd[]  = { ".bin/rofi_calc", NULL };
 

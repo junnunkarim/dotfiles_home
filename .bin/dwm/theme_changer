@@ -10,7 +10,8 @@ kitty_dir="$HOME/.config/kitty"
 zathura_dir="$HOME/.config/zathura"
 
 # launcher
-prompt="rofi -dmenu -i -theme $HOME/.config/rofi/script_menu.rasi"
+# prompt="rofi -dmenu -i -theme $HOME/.config/rofi/script_menu.rasi"
+prompt="dmenu -l 9 "
 
 # for restarting dwm
 dwm_pid="$(pidof dwm)"
@@ -18,7 +19,7 @@ dwm_pid="$(pidof dwm)"
 change_theme()
 {
 	cp ${dwm_dir}/theme_xresources/$1 ${dwm_dir}/theme_xresources/theme
-	#cp ${dmenu_dir}/theme_xresources/$1 ${dmenu_dir}/theme_xresources/theme
+	cp ${dmenu_dir}/theme_xresources/$1 ${dmenu_dir}/theme_xresources/theme
 	cp ${dwm_luastatus_dir}/$1.lua ${dwm_luastatus_dir}/color.lua
 
 	cp ${rofi_dir}/colors/$1.rasi ${rofi_dir}/colors/colors.rasi
@@ -45,7 +46,7 @@ change_wzterm_colorscheme()
 }
 change_alacritty_colorscheme()
 {
-	cp ${alacritty_dir}/colorscheme/$1.yml ${alacritty_dir}/color.yml
+	cp ${alacritty_dir}/colorscheme/$1.toml ${alacritty_dir}/color.toml
 }
 change_rofi_theme()
 {
@@ -69,7 +70,7 @@ change_helix_theme()
 
 # Theme
 cancel=" Cancel"
-theme1=" Catppuccin (Macchiato)"
+theme1=" Catppuccin"
 theme2=" Cozy-Night"
 theme3=" Dracula"
 theme4=" Everblush"

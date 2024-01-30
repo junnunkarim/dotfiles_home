@@ -39,7 +39,7 @@ local options = {
   --scrolloff = 10, -- minimal number of screen lines to keep above and below the cursor
   --sidescrolloff = 10, -- minimal number of screen columns either side of cursor if wrap is `false`
   --guifont = "monospace:h17", -- the font used in graphical neovim applications
-  whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
+  --whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
 }
 
 for option, value in pairs(options) do
@@ -64,3 +64,14 @@ vim.fn.sign_define("DiagnosticSignInfo",
 vim.fn.sign_define("DiagnosticSignHint",
   {text = "󰌵", texthl = "DiagnosticSignHint"})
 --}}
+
+
+-- Neovide settings
+if vim.g.neovide then
+  vim.o.guifont = "Iosevka Nerd Font Mono:h14" -- text below applies for VimScript
+  vim.g.neovide_scale_factor = 1.0
+  vim.g.neovide_padding_top = 10
+  vim.g.neovide_padding_bottom = 10
+  vim.g.neovide_padding_right = 10
+  vim.g.neovide_padding_left = 10
+end

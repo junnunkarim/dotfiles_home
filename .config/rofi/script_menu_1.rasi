@@ -87,7 +87,7 @@ listview {
   element-icon {
     size: 0px;
     padding: 0px 0px 0px 0px;
-    
+
     text-color: inherit;
     background-color: transparent;
   }

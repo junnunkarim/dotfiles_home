@@ -1,0 +1,3 @@
+#!/bin/bash
+
+zk fleeting-list

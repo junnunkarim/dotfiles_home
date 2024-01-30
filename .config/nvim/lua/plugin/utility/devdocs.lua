@@ -5,16 +5,6 @@ if not available then
   return
 end
 
---{{ keymaps
---
-helper.set_keymap("n", "<leader>df", "<cmd>DevdocsFetch<cr>", {noremap = true, silent = true, desc = "Fetch DevDocs metadata"})
-helper.set_keymap("n", "<leader>di", "<cmd>DevdocsInstall<cr>", {noremap = true, silent = true, desc = "Install documentation"})
-helper.set_keymap("n", "<leader>du", "<cmd>DevdocsUpdate<cr>", {noremap = true, silent = true, desc = "Update documentation"})
-helper.set_keymap("n", "<leader>do", "<cmd>DevdocsOpen<cr>", {noremap = true, silent = true, desc = "Open documentation in a normal buffer"})
-helper.set_keymap("n", "<leader>dt", "<cmd>DevdocsOpenFloat<cr>", {noremap = true, silent = true, desc = "Open documentation in a floating window"})
---
---}}
-
 local options = {
   dir_path = vim.fn.stdpath("data") .. "/devdocs", -- installation directory
   telescope = {}, -- passed to the telescope picker
@@ -40,3 +30,15 @@ local options = {
 }
 
 devdocs.setup(options)
+
+--{{ keymaps
+--
+helper.set_keymap("n", "<leader>df", "<cmd>DevdocsFetch<cr>", {noremap = true, silent = true, desc = "Fetch DevDocs metadata"})
+helper.set_keymap("n", "<leader>di", "<cmd>DevdocsInstall<cr>", {noremap = true, silent = true, desc = "Install documentation"})
+helper.set_keymap("n", "<leader>du", "<cmd>DevdocsUpdate<cr>", {noremap = true, silent = true, desc = "Update documentation"})
+helper.set_keymap("n", "<leader>do", "<cmd>DevdocsOpen<cr>", {noremap = true, silent = true, desc = "Open documentation in a normal buffer"})
+helper.set_keymap("n", "<leader>dt", "<cmd>DevdocsOpenFloat<cr>", {noremap = true, silent = true, desc = "Open documentation in a floating window"})
+--
+--}}
+
+

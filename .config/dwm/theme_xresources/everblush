@@ -16,7 +16,7 @@ dwm.normfloatcolor             : gray
 
 dwm.selfgcolor                 : blue
 dwm.selbgcolor                 : black
-dwm.selbordercolor             : yellow
+dwm.selbordercolor             : red
 dwm.selfloatcolor              : blue
 
 dwm.titlenormfgcolor           : gray

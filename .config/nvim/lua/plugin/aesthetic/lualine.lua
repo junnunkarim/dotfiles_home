@@ -7,8 +7,8 @@ end
 local options = {
   options = {
     icons_enabled = true,
-    theme = 'base16',
-    component_separators = { left = '', right = ''},
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
       statusline = {
@@ -76,7 +76,7 @@ local options = {
       {
         'buffers',
         --show_filename_only = true,
-        separator = { left = '', right = '' },
+        separator = { left = '', right = '' },
         icons_enabled = false,
         symbols = {
           modified = ' ●',      -- Text to show when the buffer is modified

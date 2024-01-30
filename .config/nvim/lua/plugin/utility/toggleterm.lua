@@ -4,16 +4,6 @@ if not available then
   return
 end
 
---{{ keymaps
---
-helper.set_keymap("n", "<leader>cv", "<cmd>ToggleTerm direction=vertical size=80<cr>", {noremap = true, silent = true, desc = "Toggle vertical terminal"})
-helper.set_keymap("n", "<leader>ch", "<cmd>ToggleTerm direction=horizontal size=10<cr>", {noremap = true, silent = true, desc = "Toggle horizontal terminal"})
-helper.set_keymap("n", "<leader>ct", "<cmd>ToggleTerm direction=tab<cr>", {noremap = true, silent = true, desc = "Toggle horizontal terminal"})
-helper.set_keymap("n", "<leader>cf", "<cmd>ToggleTerm direction=float<cr>", {noremap = true, silent = true, desc = "Toggle horizontal terminal"})
-helper.set_keymap("n", "<leader>tl", "<cmd>TermSelect<cr>", {noremap = true, silent = true, desc = "List all open terminals"})
---
---}}
-
 local options = {
 	size = 20,
 	open_mapping = [[<a-t>]],
@@ -38,3 +28,13 @@ local options = {
 }
 
 toggleterm.setup(options)
+
+--{{ keymaps
+--
+helper.set_keymap("n", "<leader>cv", "<cmd>ToggleTerm direction=vertical size=80<cr>", {noremap = true, silent = true, desc = "Toggle vertical terminal"})
+helper.set_keymap("n", "<leader>ch", "<cmd>ToggleTerm direction=horizontal size=10<cr>", {noremap = true, silent = true, desc = "Toggle horizontal terminal"})
+helper.set_keymap("n", "<leader>ct", "<cmd>ToggleTerm direction=tab<cr>", {noremap = true, silent = true, desc = "Toggle horizontal terminal"})
+helper.set_keymap("n", "<leader>cf", "<cmd>ToggleTerm direction=float<cr>", {noremap = true, silent = true, desc = "Toggle horizontal terminal"})
+helper.set_keymap("n", "<leader>tl", "<cmd>TermSelect<cr>", {noremap = true, silent = true, desc = "List all open terminals"})
+--
+--}}

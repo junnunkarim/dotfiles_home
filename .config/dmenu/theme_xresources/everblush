@@ -1,0 +1,27 @@
+#define black #141b1e
+#define lighterblack #232a2d
+#define red #e57474
+#define green #8ccf7e
+#define yellow #e5c76b
+#define blue #67b0e8
+#define magenta #c47fd5
+#define cyan #6cbfbf
+#define gray #a3a9a8
+#define white #dadada
+
+dmenu.foreground:				white
+dmenu.background:				black
+
+dmenu.selforeground:		black
+dmenu.selbackground:		green
+
+dmenu.outforeground:		red
+dmenu.outbackground:		black
+
+dmenu.bordercolor:			red
+
+dmenu.selhlforeground:	yellow
+dmenu.selhlbackground:	green
+
+dmenu.hlforeground:			yellow
+dmenu.hlbackground:			black
