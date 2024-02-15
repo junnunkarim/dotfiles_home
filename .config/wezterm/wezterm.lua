@@ -7,7 +7,7 @@ return{
   font = wezterm.font 'Iosevka Nerd Font Mono',
   font_size = 14.0,
   colors = rose_pine,
-  --color_scheme = "Gruvbox Dark",
+  --color_scheme = "Catppuccin Mocha",
   window_frame = rose_pine_window,
   hide_tab_bar_if_only_one_tab = true,
   check_for_updates = false,

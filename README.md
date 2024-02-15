@@ -1,5 +1,7 @@
 <h1 align="center"><i><u>~/dotfiles</u></i></h1>
 
+<h2 align="center"><u>This repo will undergo a full restructuring process</u></h2>
+
 > Check the **Screenshot** section for updated screenshots
 
 ![img](/ss/dwm_gruvbox_cozy-night.png)

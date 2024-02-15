@@ -23,14 +23,20 @@ if status is-interactive
     print_center $COLUMNS '“My Lord increase me in knowledge”'\n
     print_center $COLUMNS '(Surah Ta-Ha:114)'
   else
-    print_center $COLUMNS '“Our Lord! Do not punish us if we forget or make a mistake.'\n
-    print_center $COLUMNS 'Our Lord! Do not place a burden on us-'
-    print_center $COLUMNS '-like the one you placed on those before us.'\n
-    print_center $COLUMNS 'Our Lord! Do not burden us with what we cannot bear.'\n
-    print_center $COLUMNS 'Pardon us, forgive us, and have mercy on us.'\n
-    print_center $COLUMNS 'You are our ˹only˺ Guardian.'\n
-    print_center $COLUMNS 'So grant us victory over the disbelieving people.”'\n
-    print_center $COLUMNS '(Surah Al-Baqarah - 2:286)'
+    # print_center $COLUMNS '“Our Lord! Do not punish us if we forget or make a mistake.'\n
+    # print_center $COLUMNS 'Our Lord! Do not place a burden on us-'
+    # print_center $COLUMNS '-like the one you placed on those before us.'\n
+    # print_center $COLUMNS 'Our Lord! Do not burden us with what we cannot bear.'\n
+    # print_center $COLUMNS 'Pardon us, forgive us, and have mercy on us.'\n
+    # print_center $COLUMNS 'You are our ˹only˺ Guardian.'\n
+    # print_center $COLUMNS 'So grant us victory over the disbelieving people.”'\n
+    # print_center $COLUMNS '(Surah Al-Baqarah - 2:286)'
+
+    print_center $COLUMNS '“O tranquil soul!'\n
+    print_center $COLUMNS 'Return to your Lord, well pleased and well pleasing.'\n
+    print_center $COLUMNS 'So join My servants,'\n
+    print_center $COLUMNS 'and enter My Paradise.”'\n
+    print_center $COLUMNS '(Surah Al-Fajr - 2:27-30)'
   end
 
   set -U fish_user_paths $fish_user_paths $HOME/.cargo/bin
@@ -96,6 +102,9 @@ if status is-interactive
   alias la='eza -a --icons'
   alias ll='eza -al'
   alias lt='eza -aT'
+
+  # felix-rs file manager
+  alias fx='felix'
 
   # dust
   alias dust='dust -r'
@@ -197,12 +206,16 @@ if status is-interactive
   alias uninstall='sudo pacman -Rcns'
   alias pklist='sudo pacman -Qe' # show package list
   alias pcc='sudo pacman -Sc' # clear package cache
+  alias psync='pacman -Sy' # sync arch repo
   alias cleanup='pcc && prcc && sudo pacman -Rns $(pacman -Qtdq)' # cleanup orphaned packages
   alias prcc='paru -Scc' # clear paru cache
   alias prupdate='paru -Sua' # update AUR packages
 
   # grub
   alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+  # jupyter
+  alias jpcd="jupyter lab --notebook-dir=."
 
   # fonts
   alias update-fonts='sudo fc-cache -fv'
@@ -262,7 +275,7 @@ if status is-interactive
   # texlive
   alias tlmgr='TEXMFDIST/scripts/texlive/tlmgr.pl --usermode'
 
-  #-------------------------End of Alias--------------------------------#
+  #---------------------------End of Alias------------------------------#
   #________________________________End__________________________________#
 
   # Launch at start
@@ -272,4 +285,6 @@ if status is-interactive
   # oh-my-posh init fish | source
   starship init fish | source
   # krabby random
+
+  zoxide init --cmd cd fish | source
 end
