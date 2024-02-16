@@ -1,2 +1,0 @@
-static void runautostart(void);
-

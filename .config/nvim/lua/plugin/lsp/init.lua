@@ -1,7 +1,0 @@
-require("plugin.lsp.cmp")
-require("plugin.lsp.luasnip")
-require("plugin.lsp.lsp")
-require("plugin.lsp.mason")
-require("plugin.lsp.mason_lspconfig")
-require("plugin.lsp.conform")
-require("plugin.lsp.clangd_extensions")

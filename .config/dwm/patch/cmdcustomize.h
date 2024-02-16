@@ -1,2 +1,0 @@
-static char* help();
-
