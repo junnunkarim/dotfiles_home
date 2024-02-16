@@ -1,0 +1,297 @@
+@define-color rosewater #f4dbd6;
+@define-color flamingo #f0c6c6;
+@define-color pink #f5bde6;
+@define-color mauve #c6a0f6;
+@define-color red #ed8796;
+@define-color maroon #ee99a0;
+@define-color peach #f5a97f;
+@define-color yellow #eed49f;
+@define-color green #a6da95;
+@define-color teal #8bd5ca;
+@define-color sky #91d7e3;
+@define-color sapphire #7dc4e4;
+@define-color blue #8aadf4;
+@define-color lavender #b7bdf8;
+@define-color text #cad3f5;
+@define-color subtext1 #b8c0e0;
+@define-color overlay1 #8087a2;
+@define-color surface1 #494d64;
+@define-color base #24273a;
+@define-color mantle #1e2030;
+@define-color crust #181926;
+@define-color transparent_crust rgba(24, 25, 38, 0.7);
+
+
+window#waybar {
+  font-family: Iosevka Nerd Font Mono;
+  border-radius: 0px 10px 10px 0px;
+
+  background-color: rgba(24, 25, 38, 0.7);
+}
+
+
+#custom-menu {
+  margin: 10px 10px 10px 10px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px;
+  border-bottom: 5px solid @red;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  background-color: @base;
+  color: @red;
+}
+
+
+#workspaces {
+  margin: 1px 1px 1px 1px;
+  padding: 8px 8px 8px 8px;
+  border-radius: 10px;
+
+  font-size: 25px;
+}
+
+#workspaces button {
+  margin: 5px 5px 5px 5px;
+
+  color: @text;
+  background-color: @base;
+
+  border-bottom: 5px solid @red;
+}
+
+#workspaces button.hover {
+  background: @maroon;
+  text-shadow: inherit;
+}
+
+#workspaces button.active {
+  color: @crust;
+  background-color: @red;
+  
+  font-weight: bold;
+
+  border-bottom: 5px solid @text;
+}
+
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset -3px 0px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 10px;
+}
+
+button:hover {
+  background: inherit;
+  box-shadow: inset 0px -3px @overlay1;
+}
+
+
+#network {
+  margin: 10px 10px 0px 10px;
+  padding: 0px 10px 0px 10px;
+  border-bottom: 5px solid @blue;
+  border-radius: 10px;
+
+  background-color: @base;
+  color: @blue;
+
+  font-size: 30px;
+}
+#network.disconnected {
+  background-color: @overlay1;
+
+  border-bottom: 5px solid @blue;
+}
+
+
+#pulseaudio {
+  margin: 10px 10px 0px 10px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px;
+  border-bottom: 5px solid @peach;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  background-color: @base;
+  color: @peach;
+}
+#pulseaudio.muted {
+  border-bottom: 5px solid @yellow;
+
+  background-color: @peach;
+  color: @base;
+}
+#custom-pulseaudio_percentage {
+  margin: 0px 10px 10px 10px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 0px 0px 10px 10px;
+  border-bottom: 5px solid @peach;
+
+  background-color: @base;
+  color: @peach;
+
+  font-size: 25px;
+  font-weight: bold;
+}
+
+
+#backlight {
+  margin: 10px 10px 0px 10px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px;
+  border-bottom: 5px solid @teal;
+
+  background-color: @base;
+  color: @teal;
+
+  font-size: 40px;
+  font-weight: bold;
+}
+
+
+#battery {
+  margin: 10px 10px 0px 10px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px 10px 0px 0px;
+
+  background-color: @mauve;
+  color: @base;
+
+  font-size: 30px;
+  font-weight: bold;
+}
+#custom-battery_percentage {
+  margin: 0px 10px 10px 10px;
+  padding: 5px;
+  border-radius: 0px 0px 10px 10px;
+  border-bottom: 5px solid @mauve;
+
+  background-color: @base;
+  color: @mauve;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+#battery.charging, #battery.plugged, #battery.full {
+
+  background-color: @mauve;
+  color: @base;
+}
+#battery.critical:not(.charging) {
+
+  background-color: @overlay1;
+  color: @base;
+  
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+#custom-clock_icon {
+  margin: 10px 10px 0px 10px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px 10px 0px 0px;
+
+  background-color: @red;
+  color: @base;
+
+  font-size: 40px;
+  font-weight: bold;
+}
+#clock {
+  margin: 0px 10px 0px 10px;
+  padding: 5px;
+  border-radius: 0px 0px 10px 10px;
+  border-bottom: 5px solid @red;
+
+  background-color: @base;
+  color: @red;
+
+  font-size: 30px;
+}
+
+
+#tray {
+  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  border-radius: 10px;
+
+  background-color: @red;
+  color: @base;
+
+  font-size: 20px;
+}
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+
+#custom-powermenu {
+  margin: 10px 10px 10px 10px;
+  padding: 5px;
+  border-radius: 10px;
+  border-bottom: 5px solid @red;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  background-color: @base;
+  color: @red;
+}
+
+
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}

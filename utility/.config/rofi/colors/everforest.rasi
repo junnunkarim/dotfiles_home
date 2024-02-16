@@ -1,0 +1,31 @@
+* {
+  transparent: #232a2e70;
+  white: #d3c6aa;
+  black: #2d353b;
+  black0: #232a2e;
+  gray1: #928374;
+  gray2: #859289;
+  red1: #e67e80;
+  red2: #fb4934;
+  green1: #a7c080;
+  green2: #b8bb26;
+  yellow1: #dbbc7f;
+  yellow2: #fabd2f;
+  blue1: #7fbbb3;
+  blue2: #3a94c5;
+  purple1: #b16286;
+  purple2: #d3869b;
+  aqua1: #83c092;
+  aqua2: #8ec07c;
+  orange1: #e69875;
+  orange2: #fe8019;
+
+  background: var(black0);
+  background-1: var(black);
+  foreground: var(white);
+  foreground-1: var(gray2);
+  selected: var(green1);
+  selected-1: var(blue1);
+  active: var(orange1);
+  urgent: var(red1);
+}

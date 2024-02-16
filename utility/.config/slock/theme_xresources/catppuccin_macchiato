@@ -1,0 +1,61 @@
+#define rosewater 	#f4dbd6
+#define flamingo 	#f0c6c6
+#define pink 	#f5bde6
+#define mauve 	#c6a0f6
+#define red 	#ed8796
+#define maroon 		#ee99a0
+#define peach 		#f5a97f
+#define yellow 	#eed49f
+#define green 	#a6da95
+#define teal #8bd5ca
+#define sky #91d7e3
+#define sapphire 	#7dc4e4
+#define blue 	#8aadf4
+#define lavender #b7bdf8
+#define text #cad3f5
+#define subtext1 	#b8c0e0
+#define overlay1 	#8087a2
+#define surface1 #494d64
+#define base #24273a
+#define mantle #1e2030
+#define crust #181926
+
+dwm.normfgcolor                : lavender
+dwm.normbgcolor                : crust
+dwm.normbordercolor            : crust
+dwm.normfloatcolor             : overlay1
+
+dwm.selfgcolor                 : blue
+dwm.selbgcolor                 : crust
+dwm.selbordercolor             : red
+dwm.selfloatcolor              : blue
+
+dwm.titlenormfgcolor           : overlay1
+dwm.titlenormbgcolor           : crust
+dwm.titlenormbordercolor       : crust
+dwm.titlenormfloatcolor        : overlay1
+
+dwm.titleselfgcolor            : rosewater
+dwm.titleselbgcolor            : crust
+dwm.titleselbordercolor        : yellow
+dwm.titleselfloatcolor         : blue
+
+dwm.tagsnormfgcolor		         : crust
+dwm.tagsnormbgcolor            : red
+dwm.tagsnormbordercolor        : yellow
+dwm.tagsnormfloatcolor         : crust
+
+dwm.tagsselfgcolor             : red
+dwm.tagsselbgcolor             : crust
+dwm.tagsselbordercolor         : green
+dwm.tagsselfloatcolor          : crust
+
+dwm.hidnormfgcolor             : maroon
+dwm.hidselfgcolor              : maroon
+dwm.hidnormbgcolor             : crust
+dwm.hidselbgcolor              : crust
+
+dwm.urgfgcolor								 : crust
+dwm.urgbgcolor								 : maroon
+dwm.urgbordercolor						 : maroon
+dwm.urgfloatcolor							 : red

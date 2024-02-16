@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+tdrop -ma -A \
+  -w 60% \
+  -h 60% \
+  -x 20% \
+  -y 6% \
+  -s dropdown keepassxc

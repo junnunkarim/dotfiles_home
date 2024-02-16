@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cliphist list | rofi -dmenu -theme $HOME/.config/rofi/script_menu_1.rasi | cliphist decode | wl-copy

@@ -1,0 +1,30 @@
+* {
+  transparent: #1a1b2670;
+  black_night: #1a1b26;
+  black_storm: #24283b;
+  black1: #414868;
+  black2: #565f89;
+  white: #cfc9c2;
+  white1: #9aa5ce;
+  white2: #a9b1d6;
+  white3: #c0caf5;
+  purple: #bb9af7;
+  blue1: #7aa2f7;
+  blue2: #7dcfff;
+  cyan: #2ac3de;
+  green1: #b4f9f8;
+  green2: #73daca;
+  green3: #9ece6a;
+  orange1: #e0af68;
+  orange2: #ff9e64;
+  red: #f7768e;
+
+  background: var(black_night);
+  background-1: var(black_storm);
+  foreground: var(white);
+  foreground-1: var(white3);
+  selected: var(purple);
+  selected-1: var(blue1);
+  active: var(black1);
+  urgent: var(red);
+}

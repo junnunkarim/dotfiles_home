@@ -1,0 +1,33 @@
+#define base #191724
+#define surface #1f1d2e
+#define overlay #26233a
+#define muted #6e6a86
+#define subtle #908caa
+#define text #e0def4
+#define love #eb6f92
+#define love_1 #b4637a
+#define gold #f6c177
+#define gold_1 #ea9d34
+#define rose #ebbcba
+#define rose_1 #d7827e
+#define foam #9ccfd8
+#define pine #31748f
+#define iris #c4a7e7
+#define iris_1 #907aa9
+
+dmenu.foreground:				text
+dmenu.background:				base
+
+dmenu.selforeground:		base
+dmenu.selbackground:		rose_1
+
+dmenu.outforeground:		love
+dmenu.outbackground:		base
+
+dmenu.bordercolor:			love
+
+dmenu.selhlforeground:	gold
+dmenu.selhlbackground:	iris_1
+
+dmenu.hlforeground:			gold
+dmenu.hlbackground:			base

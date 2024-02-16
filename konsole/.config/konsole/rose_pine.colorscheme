@@ -1,0 +1,78 @@
+# --- special colors ---
+
+[Background]
+Color=25,23,36
+
+[BackgroundIntense]
+Color=25,23,36
+
+[Foreground]
+Color=224,222,244
+
+[ForegroundIntense]
+Color=224,222,244
+Bold=true
+
+# --- standard colors ---
+
+# black
+[Color0]
+Color=38,35,58
+
+[Color0Intense]
+Color=110,106,134
+
+# red
+[Color1]
+Color=235,111,146
+
+[Color1Intense]
+Color=235,111,146
+
+# green
+[Color2]
+Color=49,116,143
+
+[Color2Intense]
+Color=49,116,143
+
+# yellow
+[Color3]
+Color=246,193,119
+
+[Color3Intense]
+Color=246,193,119
+
+# blue
+[Color4]
+Color=156,207,216
+
+[Color4Intense]
+Color=156,207,216
+
+# magenta
+[Color5]
+Color=196,167,231
+
+[Color5Intense]
+Color=196,167,231
+
+# cyan
+[Color6]
+Color=235,188,186
+
+[Color6Intense]
+Color=235,188,186
+
+# white
+[Color7]
+Color=224,222,244
+
+[Color7Intense]
+Color=224,222,244
+
+# --- general options ---
+
+[General]
+Description=Rosé Pine – All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+Opacity=1

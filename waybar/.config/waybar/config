@@ -1,0 +1,192 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "left", // Waybar position (top|bottom|left|right)
+    "height": 1060, // Waybar height (to be removed for auto height)
+    "width": 50, // Waybar width
+    //"spacing": 10, // Gaps between modules (4px)
+
+    "modules-left": [
+      "custom/menu",
+      "hyprland/workspaces"
+    ],
+    "modules-center": [],
+    "modules-right": [
+      "network",
+      "pulseaudio",
+      //"backlight",
+      "battery",
+      "custom/battery_percentage",
+      "custom/clock_icon",
+      "clock",
+      "tray",
+      "custom/powermenu"
+    ],
+
+    // Modules configuration
+    "custom/menu": {
+      "format": "<big><b>󰕰</b></big>",
+      "on-click": "~/.bin/rofi_run"
+    },
+
+
+    "wlr/workspaces": {
+      "sort-by-number": true,
+      "on-click": "activate",
+      "all-outputs": true,
+      "format": "{icon}",
+      "persistent_workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+      },
+      "format-icons": {
+        "1": "",
+        "2": "󰉋",
+        "3": "󰊯",
+        "4": "󰚓",
+        "5": "󰗚",
+        "6": "󰚢",
+        "7": "󰊖",
+        "8": "󰩮",
+      }
+    },
+
+
+    "network": {
+        "format-wifi": "<big><b></b></big>",
+        "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "format-linked": "{ifname} (No IP) 󰊗",
+        "format-disconnected": "󰖪",
+        "on-click": "networkmanager_dmenu",
+
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}",
+    },
+
+
+    "custom/pulseaudio_percentage":
+    {
+      "exec": "awk -F\"[][]\" '/Left:/ { print $2 }' <(amixer sget Master)",
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "<big><b>{icon}</b></big>",
+        "format-muted": "<big><b></b></big>",
+        "format-source": "<big><b></b></big>",
+        "format-source-muted": "<big><b></b></big>",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󰂑",
+            "headset": "󰂑",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+    },
+
+
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"],
+    },
+
+    "custom/backlight_percentage": {
+    },
+
+
+    "custom/battery_percentage":
+    {
+      "exec": "cat /sys/class/power_supply/BAT0/capacity",
+      "interval": 60,
+    },
+    "battery":
+    {
+        "states": {
+            "good": 80,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "<big><b>{icon}</b></big>",
+        "format-charging": "<big><b>󰂅</b></big>",
+        "format-plugged": "<big><b>󰂅</b></big>",
+        //"format-warning": "<big><b>󰂃</b></big>",
+
+        "format-icons": ["", "", "", "", ""],
+    },
+
+
+     "custom/clock_icon": {
+      "format": "<big><b>󰥔</b></big>"
+    },
+    "clock":
+    {
+        "format": "{:<b>%I</b>\n%M\n<small><b><i>%p</i></b></small>}",
+
+        "on-click": "pkill wezterm || wezterm start calcure",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+
+    "tray": {
+        // "icon-size": 21,
+        //"spacing": 10
+    },
+
+
+    "custom/powermenu": {
+      "format": "<big><b>󰐥</b></big>",
+      "on-click": "~/.bin/powermenu"
+    },
+
+
+    "custom/separator": {
+	    "format": "──────"
+    },
+
+
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["󰉬", "", "󰉪"]
+    },
+}

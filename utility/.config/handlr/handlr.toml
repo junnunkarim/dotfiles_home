@@ -1,0 +1,2 @@
+enable_selector = true
+selector = "rofi -dmenu -p 'Open With: ' -theme ~/.config/awesome/external_configs/rofi/script_menu.rasi"

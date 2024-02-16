@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# If you use pywal, you need to restore the scheme here
+# (cat ~/.cache/wal/sequences &)
+
+#export NNN_BMS="D:/mnt/main/main-download;v:$HOME/Videos"
+export NNN_COLORS="5236"
+export NNN_FIFO="/tmp/nnn.fifo"
+export NNN_OPTS="deH"
+export NNN_PLUG='t:mtpmount;p:preview-tabbed'
+export LC_COLLATE="C"
+
+alias nsel="cat ${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.selection | tr '\0' '\n'"
+
+# To use a CLI opener, specify the `-c` option to `nnn`
+# export NNN_OPENER="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/plugins/nuke"
+
+# Unmask ^Q (if required, see `stty -a`) to Quit nnn
+stty start undef
+stty stop undef
+
+# Start nnn with your preferred options
+alacritty -e nnn "$@" -T -v

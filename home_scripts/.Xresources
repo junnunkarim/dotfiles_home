@@ -1,0 +1,20 @@
+! source dwm colorscheme !
+#include ".config/dwm/theme_xresources/theme"
+
+! source dmenu colorscheme !
+#include ".config/dmenu/theme_xresources/theme"
+
+! fonts config !
+!Xft.dpi: 120
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.autohint:	0
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
+
+
+XTerm.vt100.background: black
+XTerm.vt100.foreground: grey
+xterm*faceName: Monospace
+xterm*faceSize: 12

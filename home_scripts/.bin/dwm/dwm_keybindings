@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+#prompt="dmenu -l 15 "
+prompt="rofi -dmenu -i -theme ~/.config/rofi/script_menu_1.rasi "
+
+option="
+super + b                     toggle bar on/off
+super + s                     switch a window form stack with master
+super + c                     close a program
+super + shift + q             quit dwm (only if all programs are closed)
+super + space                 toggle floating on/off
+super + left/right            increase/decrease window size
+super + shift + ctrl + space  cycle through all layouts
+super + tab                   move through active tags clockwise
+super + backtick              move through active tags anti-clockwise
+super + 0 (zero)              toggle gaps on/of
+super + shift + i             hide/unhide window
+super + shift + r             restart dwm
+super + f                     toggle fullscreen
+super + 0-9                   go to the specified tag
+super + shift + 0-9           move selected window to the specified tag
+alt + tab                     move through window focus clockwise
+alt + backtick                move through window focus anti-clockwise
+super + return/enter          open terminal
+super + shift + return/enter  open dropdown terminal
+super + l                     lock screen
+super + n                     open network menu
+super + t                     open theme switcher
+super + x                     open powermenu
+super + d                     open rofi
+super + h                     open clipboard manager (greenclip)
+super + r                     open calculator (rofi-calc)
+super + ctrl + r              turn on bluelight filter (redshift)
+super + ctrl + n              turn off bluelight filter (redshift)
+super + ctrl + p              turn on compositor (picom)
+super + ctrl + u              turn off compositor (picom)
+super + ctrl + g              open color picker (gpick)
+super + alt + f               open file manager (thunar)
+super + alt + n               open file manager (nnn)
+super + alt + b               open chromium
+super + alt + e               open firefox
+super + alt + e               open neovim
+super + alt + h               open btop
+prtsc                         take fullscreen screenshot now
+super + prtsc                 take interective screenshot
+alt + prtsc                   take fullscreen screenshot after 5 sec
+ctrl + prtsc                  take fullscreen screenshot after 10 sec
+super + F1                    increase brightness
+super + F2                    decrease brightness
+super + F5                    increase volume
+super + F6                    decrease volume
+super + F7                    toggle mute on/off
+"
+
+echo -e "$option" | $prompt -p "Keybindings"

@@ -1,0 +1,18 @@
+[submodule "qtile/.config/qtile"]
+	path = qtile/.config/qtile
+	url = https://github.com/junnunkarim/dotfiles_qtile
+[submodule "nvim/.config/nvim"]
+	path = nvim/.config/nvim
+	url = https://github.com/junnunkarim/dotfiles_nvim
+[submodule "awesome/.config/awesome"]
+	path = awesome/.config/awesome
+	url = https://github.com/junnunkarim/dotfiles_awesome
+[submodule "assets"]
+	path = assets
+	url = https://github.com/junnunkarim/dotfiles_assets
+[submodule "dwm/.config/dwm"]
+	path = dwm/.config/dwm
+	url = https://github.com/junnunkarim/dotfiles_dwm
+[submodule "hypr/.config/hypr"]
+	path = hypr/.config/hypr
+	url = https://github.com/junnunkarim/dotfiles_hyprland

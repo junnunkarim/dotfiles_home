@@ -1,0 +1,10 @@
+include theme.color
+
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+
+set adjust-open width
+set recolor true
+
+set smooth-scroll true
+set show-v-scrollbar true
