@@ -1,3 +1,0 @@
-[submodule ".config"]
-	path = .config
-	url = https://github.com/junnunkarim/dotfiles_config
