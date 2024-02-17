@@ -1,95 +1,78 @@
-[Background]
-Color=40,40,40
+# --- special colors ---
 
-[BackgroundFaint]
-Color=40,40,40
+[Background]
+Color=25,23,36
 
 [BackgroundIntense]
-Color=40,40,40
-
-[Color0]
-Color=40,40,40
-
-[Color0Faint]
-Color=40,40,40
-
-[Color0Intense]
-Color=146,131,116
-
-[Color1]
-Color=204,36,29
-
-[Color1Faint]
-Color=204,36,29
-
-[Color1Intense]
-Color=251,73,52
-
-[Color2]
-Color=152,151,26
-
-[Color2Faint]
-Color=152,151,26
-
-[Color2Intense]
-Color=184,187,38
-
-[Color3]
-Color=215,153,33
-
-[Color3Faint]
-Color=215,153,33
-
-[Color3Intense]
-Color=250,189,47
-
-[Color4]
-Color=69,133,136
-
-[Color4Faint]
-Color=69,133,136
-
-[Color4Intense]
-Color=131,165,152
-
-[Color5]
-Color=177,98,134
-
-[Color5Faint]
-Color=177,98,134
-
-[Color5Intense]
-Color=211,134,155
-
-[Color6]
-Color=104,157,106
-
-[Color6Faint]
-Color=104,157,106
-
-[Color6Intense]
-Color=142,192,124
-
-[Color7]
-Color=168,153,132
-
-[Color7Faint]
-Color=168,153,132
-
-[Color7Intense]
-Color=235,219,178
+Color=25,23,36
 
 [Foreground]
-Color=235,219,178
-
-[ForegroundFaint]
-Color=235,219,178
+Color=224,222,244
 
 [ForegroundIntense]
-Color=235,219,178
+Color=224,222,244
+Bold=true
+
+# --- standard colors ---
+
+# black
+[Color0]
+Color=38,35,58
+
+[Color0Intense]
+Color=110,106,134
+
+# red
+[Color1]
+Color=235,111,146
+
+[Color1Intense]
+Color=235,111,146
+
+# green
+[Color2]
+Color=49,116,143
+
+[Color2Intense]
+Color=49,116,143
+
+# yellow
+[Color3]
+Color=246,193,119
+
+[Color3Intense]
+Color=246,193,119
+
+# blue
+[Color4]
+Color=156,207,216
+
+[Color4Intense]
+Color=156,207,216
+
+# magenta
+[Color5]
+Color=196,167,231
+
+[Color5Intense]
+Color=196,167,231
+
+# cyan
+[Color6]
+Color=235,188,186
+
+[Color6Intense]
+Color=235,188,186
+
+# white
+[Color7]
+Color=224,222,244
+
+[Color7Intense]
+Color=224,222,244
+
+# --- general options ---
 
 [General]
-Blur=false
-Description=Gruvbox
+Description=Rosé Pine – All natural pine, faux fur and a bit of soho vibes for the classy minimalist
 Opacity=1
-Wallpaper=

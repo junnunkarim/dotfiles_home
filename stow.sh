@@ -142,6 +142,7 @@ case "$action" in
 
 
       # TODO: make the directory finding more dynamic
+      # TODO: need to handle files too
       if [ "$dir_name" = "assets" ]; then
         take_backup "wallpaper" "$HOME/.config"
         echo
