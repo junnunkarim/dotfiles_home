@@ -52,7 +52,9 @@ Here are some details about my setup:
 
 <details>
 <summary><h3>Setting up with Stow</h3></summary>
+
 - Clone this repo to your preferred directory and cd the cloned directory.
+
 ```sh
 git clone https://github.com/junnunkarim/dotfiles_home --recursive
 cd dotfiles_home
