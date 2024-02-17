@@ -1,4 +1,4 @@
-theme = "everforest_dark"
+theme = "gruvbox_dark_hard"
 
 [editor]
 line-number = "relative"
