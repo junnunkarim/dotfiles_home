@@ -69,7 +69,7 @@
 > `$HOME/.local/share/dotfiles_backup/`  
 > `$HOME/dotfiles_backup/`  
 
-- Clone this repo to your preferred directory and `cd` into the cloned directory.
+- Clone this repo to your preferred directory and `cd` into the cloned directory. (Don't miss the ```--recursive``` option)
 
 ```sh
 git clone https://github.com/junnunkarim/dotfiles_home --recursive
@@ -109,7 +109,7 @@ chmod +x stow.sh
 # TODO
 
 <details>
-<summary><h4>Reveal stuffs that need to be implemented</h4></summary>
+<summary><h4>Reveal stuffs that needs to be implemented</h4></summary>
 
 - [ ] Modify the `stow.sh` script to add options to setup dotfiles for specific window manager
 
