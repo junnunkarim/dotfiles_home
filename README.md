@@ -6,7 +6,7 @@
 
 # System Information
 
-## Here are some details about my setup:
+<h4 align="center">Here are some details about my setup:</h4>
 
 - **OS**: [Arch Linux](https://archlinux.org/)
 - **Terminal**: [Kitty](https://github.com/kovidgoyal/kitty)
@@ -110,5 +110,7 @@ chmod +x stow.sh
 
 <details>
 <summary><h4>Reveal stuffs that need to be implemented</h4></summary>
+
+- [ ] Modify the `stow.sh` script to add options to setup dotfiles for specific window manager
 
 </details>
