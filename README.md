@@ -42,16 +42,18 @@ Here are some details about my setup:
 
 # Setup
 
-> **Under-Construction**
-
 <details>
 <summary><h3>Installing Dependencies</h3></summary>
+> **Under Construction**
 </details>
 
 ## Automated Installation
 
 <details>
 <summary><h3>Setting up with Stow</h3></summary>
+
+> **Although the `stow.sh` script has been made to first backup config directories if they exist. But it has not been intensively tested.**  
+> **So be sure to backup your dotfiles from $HOME, $HOME/.config and $HOME/.local/share**  
 
 - Clone this repo to your preferred directory and cd the cloned directory.
 
@@ -75,3 +77,5 @@ chmod +x stow.sh
 </details>
 
 ## Manual Installation
+
+> **Under Construction**

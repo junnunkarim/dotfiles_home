@@ -1,78 +1,100 @@
-# --- special colors ---
-
 [Background]
-Color=25,23,36
+Color=39,46,51
+
+[BackgroundFaint]
+Color=39,46,51
 
 [BackgroundIntense]
-Color=25,23,36
+Color=39,46,51
 
-[Foreground]
-Color=224,222,244
-
-[ForegroundIntense]
-Color=224,222,244
-Bold=true
-
-# --- standard colors ---
-
-# black
 [Color0]
-Color=38,35,58
+Color=68,80,85
+
+[Color0Faint]
+Color=68,80,85
 
 [Color0Intense]
-Color=110,106,134
+Color=68,80,85
 
-# red
 [Color1]
-Color=235,111,146
+Color=230,126,128
+
+[Color1Faint]
+Color=230,126,128
 
 [Color1Intense]
-Color=235,111,146
+Color=230,126,128
 
-# green
 [Color2]
-Color=49,116,143
+Color=167,192,128
+
+[Color2Faint]
+Color=167,192,128
 
 [Color2Intense]
-Color=49,116,143
+Color=167,192,128
 
-# yellow
 [Color3]
-Color=246,193,119
+Color=219,188,127
+
+[Color3Faint]
+Color=219,188,127
 
 [Color3Intense]
-Color=246,193,119
+Color=219,188,127
 
-# blue
 [Color4]
-Color=156,207,216
+Color=127,187,179
+
+[Color4Faint]
+Color=127,187,179
 
 [Color4Intense]
-Color=156,207,216
+Color=127,187,179
 
-# magenta
 [Color5]
-Color=196,167,231
+Color=214,153,182
+
+[Color5Faint]
+Color=214,153,182
 
 [Color5Intense]
-Color=196,167,231
+Color=214,153,182
 
-# cyan
 [Color6]
-Color=235,188,186
+Color=131,192,146
+
+[Color6Faint]
+Color=131,192,146
 
 [Color6Intense]
-Color=235,188,186
+Color=131,192,146
 
-# white
 [Color7]
-Color=224,222,244
+Color=211,198,170
+
+[Color7Faint]
+Color=211,198,170
 
 [Color7Intense]
-Color=224,222,244
+Color=211,198,170
 
-# --- general options ---
+[Foreground]
+Color=211,198,170
+
+[ForegroundFaint]
+Color=211,198,170
+
+[ForegroundIntense]
+Color=211,198,170
 
 [General]
-Description=Rosé Pine – All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+Anchor=0.5,0.5
+Blur=false
+ColorRandomization=false
+Description=Everforest Hard Dark
+FillStyle=Tile
 Opacity=1
+Wallpaper=
+WallpaperFlipType=NoFlip
+WallpaperOpacity=1

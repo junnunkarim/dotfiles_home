@@ -1,41 +1,36 @@
-# https://github.com/rose-pine/rose-pine-theme
-# Soho vibes for Zathura: Rosé Pine
-#
-# Usage:
-# Copy contents of this file to ~/.config/zathura/zathurarc
-#
-# Change 'recolor' and 'recolor-keephue' to true to change
-# the document colors for a more uniform viewing experience.
+set default-fg              "#d8dee9"
+set default-bg              "#2b3339"
 
-set default-bg                  "#191724"
-set default-fg                  "#e0def4"
+set completion-bg           "#4c566a"
+set completion-fg           "#d8dee9"
+set completion-highlight-bg "#88c0d0"
+set completion-highlight-fg "#2e3440"
+set completion-group-bg     "#4c566a"
+set completion-group-fg     "#d8dee9"
 
-set statusbar-fg                "#e0def4"
-set statusbar-bg                "#555169"
+set statusbar-fg            "#d8dee9"
+set statusbar-bg            "#3b4252"
 
-set inputbar-bg                 "#6e6a86"
-set inputbar-fg                 "#ebbcba"
+set notification-bg         "#4c566a"
+set notification-fg         "#d8dee9"
+set notification-error-bg   "#bf616a"
+set notification-error-fg   "#d8dee9"
+set notification-warning-bg "#ebcb8b"
+set notification-warning-fg "#2e3440"
 
-set notification-bg             "#e0def4"
-set notification-fg             "#555169"
+set inputbar-fg             "#d8dee9"
+set inputbar-bg             "#3b4252"
 
-set notification-error-bg       "#f6c177"
-set notification-error-fg       "#555169"
+set recolor-lightcolor      "#2b3339"
+set recolor-darkcolor       "#d8dee9"
 
-set notification-warning-bg     "#ebbcba"
-set notification-warning-fg     "#555169"
+set index-fg                "#d8dee9"
+set index-bg                "#2b3339"
+set index-active-fg         "#d8dee9"
+set index-active-bg         "#3b4252"
 
-set highlight-color             "#ebbcba"
-set highlight-active-color      "#eb6f92"
+set render-loading-bg		"#2b3339"
+set render-loading-fg		"#d8dee9"
 
-set completion-bg               "#6e6a86"
-set completion-fg               "#ebbcba"
-
-set completion-highlight-fg     "#26233a"
-set completion-highlight-bg     "#ebbcba"
-
-set recolor-lightcolor          "#191724"
-set recolor-darkcolor           "#e0def4"
-
-set recolor                     "false"
-set recolor-keephue             "false"
+set highlight-color		    "#a3be8c"
+set highlight-active-color	"#b48ead"
