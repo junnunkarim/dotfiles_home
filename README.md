@@ -55,16 +55,16 @@
 <details>
 <summary><h4>Setting up with Stow</h4></summary>
 
-> [!WARNING]  
->  
+> [!WARNING]
+>
 > **Although the `stow.sh` script has been made to first backup existing dotfile directories if they exist, but it has not been intensively tested.**  
->  
+>
 > **So be sure to backup your dotfiles from `$HOME/`, `$HOME/.config/` and `$HOME/.local/share/` first.**  
 
 > [!IMPORTANT]
 >
 > **Backup of existing dotfiles produced by the `stow.sh` script will be available in the following directories:**  
->  
+>
 > `$HOME/.config/dotfiles_backup/`  
 > `$HOME/.local/share/dotfiles_backup/`  
 > `$HOME/dotfiles_backup/`  
