@@ -1,78 +1,68 @@
-# --- special colors ---
+# Copyright (c) 2016-present Sven Greb <development@svengreb.de>
+# This source code is licensed under the MIT license found in the license file.
 
 [Background]
-Color=25,23,36
+Color=46,52,64
 
 [BackgroundIntense]
-Color=25,23,36
+Color=46,52,64
 
 [Foreground]
-Color=224,222,244
+Color=216,222,233
 
 [ForegroundIntense]
-Color=224,222,244
+Color=216,222,233
 Bold=true
 
-# --- standard colors ---
-
-# black
 [Color0]
-Color=38,35,58
+Color=59,66,82
 
 [Color0Intense]
-Color=110,106,134
+Color=76,86,106
 
-# red
 [Color1]
-Color=235,111,146
+Color=191,97,106
 
 [Color1Intense]
-Color=235,111,146
+Color=191,97,106
 
-# green
 [Color2]
-Color=49,116,143
+Color=163,190,140
 
 [Color2Intense]
-Color=49,116,143
+Color=163,190,140
 
-# yellow
 [Color3]
-Color=246,193,119
+Color=235,203,139
 
 [Color3Intense]
-Color=246,193,119
+Color=235,203,139
 
-# blue
 [Color4]
-Color=156,207,216
+Color=129,161,193
 
 [Color4Intense]
-Color=156,207,216
+Color=129,161,193
 
-# magenta
 [Color5]
-Color=196,167,231
+Color=180,142,173
 
 [Color5Intense]
-Color=196,167,231
+Color=180,142,173
 
-# cyan
 [Color6]
-Color=235,188,186
+Color=136,192,208
 
 [Color6Intense]
-Color=235,188,186
+Color=143,188,187
 
-# white
 [Color7]
-Color=224,222,244
+Color=229,233,240
 
 [Color7Intense]
-Color=224,222,244
-
-# --- general options ---
+Color=236,239,244
 
 [General]
-Description=Rosé Pine – All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+Description=Nord
 Opacity=1
+Wallpaper=

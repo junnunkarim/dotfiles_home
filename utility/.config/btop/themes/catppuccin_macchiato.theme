@@ -1,5 +1,5 @@
 # Main background, empty for terminal default, need to be empty if you want transparent background
-theme[main_bg]="#24273A"
+theme[main_bg]="#181926"
 
 # Main text color
 theme[main_fg]="#CAD3F5"
@@ -29,8 +29,8 @@ theme[meter_bg]="#494D64"
 theme[proc_misc]="#F4DBD6"
 
 # CPU, Memory, Network, Proc box outline colors
-theme[cpu_box]="#c6a0f6" #Mauve
-theme[mem_box]="#a6da95" #Green
+theme[cpu_box]="#f0c6c6" #Mauve
+theme[mem_box]="#f5a97f" #Green
 theme[net_box]="#ee99a0" #Maroon
 theme[proc_box]="#8aadf4" #Blue
 
