@@ -1,4 +1,4 @@
-theme = "rose_pine"
+theme = "nord"
 
 [editor]
 line-number = "relative"

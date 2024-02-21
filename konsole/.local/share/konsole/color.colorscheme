@@ -1,68 +1,100 @@
-# Copyright (c) 2016-present Sven Greb <development@svengreb.de>
-# This source code is licensed under the MIT license found in the license file.
-
 [Background]
-Color=46,52,64
+Color=39,46,51
+
+[BackgroundFaint]
+Color=39,46,51
 
 [BackgroundIntense]
-Color=46,52,64
-
-[Foreground]
-Color=216,222,233
-
-[ForegroundIntense]
-Color=216,222,233
-Bold=true
+Color=39,46,51
 
 [Color0]
-Color=59,66,82
+Color=68,80,85
+
+[Color0Faint]
+Color=68,80,85
 
 [Color0Intense]
-Color=76,86,106
+Color=68,80,85
 
 [Color1]
-Color=191,97,106
+Color=230,126,128
+
+[Color1Faint]
+Color=230,126,128
 
 [Color1Intense]
-Color=191,97,106
+Color=230,126,128
 
 [Color2]
-Color=163,190,140
+Color=167,192,128
+
+[Color2Faint]
+Color=167,192,128
 
 [Color2Intense]
-Color=163,190,140
+Color=167,192,128
 
 [Color3]
-Color=235,203,139
+Color=219,188,127
+
+[Color3Faint]
+Color=219,188,127
 
 [Color3Intense]
-Color=235,203,139
+Color=219,188,127
 
 [Color4]
-Color=129,161,193
+Color=127,187,179
+
+[Color4Faint]
+Color=127,187,179
 
 [Color4Intense]
-Color=129,161,193
+Color=127,187,179
 
 [Color5]
-Color=180,142,173
+Color=214,153,182
+
+[Color5Faint]
+Color=214,153,182
 
 [Color5Intense]
-Color=180,142,173
+Color=214,153,182
 
 [Color6]
-Color=136,192,208
+Color=131,192,146
+
+[Color6Faint]
+Color=131,192,146
 
 [Color6Intense]
-Color=143,188,187
+Color=131,192,146
 
 [Color7]
-Color=229,233,240
+Color=211,198,170
+
+[Color7Faint]
+Color=211,198,170
 
 [Color7Intense]
-Color=236,239,244
+Color=211,198,170
+
+[Foreground]
+Color=211,198,170
+
+[ForegroundFaint]
+Color=211,198,170
+
+[ForegroundIntense]
+Color=211,198,170
 
 [General]
-Description=Nord
+Anchor=0.5,0.5
+Blur=false
+ColorRandomization=false
+Description=Everforest Hard Dark
+FillStyle=Tile
 Opacity=1
 Wallpaper=
+WallpaperFlipType=NoFlip
+WallpaperOpacity=1

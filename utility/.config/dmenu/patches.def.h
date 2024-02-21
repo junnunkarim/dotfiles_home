@@ -46,8 +46,8 @@
 #define DYNAMIC_OPTIONS_PATCH 0
 
 /* This patch will allow for emojis on the left side with a colored background
- * when selected. To test this try running: $ echo -e ":b here\n:p
- * there\n:r and here" | ./dmenu -p "Search..." -W 400 -l 20 -i -h -1 NB:
+ * when selected. To test this try running: $ echo -e ":b 󰍹here\n:p
+ * 󰍹there\n:r 󰍹and here" | ./dmenu -p "Search..." -W 400 -l 20 -i -h -1 NB:
  * the original patch came embedded with the the xyw patch, the morecolors patch
  * and the line height patch and as such is intended to be combined with these.
  * https://tools.suckless.org/dmenu/patches/emoji-highlight/
