@@ -1,0 +1,11 @@
+*{
+  transparent: #282a3670;
+  background: {{colors.surface_container_low.dark.hex}};
+  background-1: {{colors.surface_container_high.dark.hex}};
+  foreground: {{colors.on_surface.dark.hex}};
+  foreground-1: {{colors.outline.dark.hex}};
+  selected: {{colors.primary.dark.hex}};
+  selected-1: {{colors.secondary.dark.hex}};
+  active: {{colors.tertiary.dark.hex}};
+  urgent: {{colors.error.light.hex}};
+}

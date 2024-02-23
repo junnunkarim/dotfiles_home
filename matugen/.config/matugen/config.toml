@@ -1,0 +1,13 @@
+[config]
+reload_apps = true
+set_wallpaper = false
+
+[config.reload_apps_list]
+waybar = false
+kitty = false
+gtk_theme = false
+dunst = false
+
+[templates]
+kitty = { input_path = '~/.config/matugen/templates/kitty.conf', output_path = '~/.config/kitty/colorschemes/matugen.conf'}
+rofi = { input_path = '~/.config/matugen/templates/rofi.rasi', output_path = '~/.config/qtile/external_configs/rofi/colorschemes/matugen.rasi'}

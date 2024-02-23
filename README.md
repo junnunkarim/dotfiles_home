@@ -9,9 +9,8 @@
 <h4 align="center">Here are some details about my setup:</h4>
 
 - **OS**: [Arch Linux](https://archlinux.org/)
-- **Terminal**: [Kitty](https://github.com/kovidgoyal/kitty)
+- **Terminal**: [Kitty](https://github.com/kovidgoyal/kitty) and [Konsole](https://konsole.kde.org/)
 - **Shell**: [Fish](https://fishshell.com/)
-- **WM**: [Qtile](https://github.com/qtile/qtile)
 - **Login Manager**: [sddm](https://github.com/sddm/sddm)
 - **Editor**: [nvim](https://github.com/neovim/neovim)
 

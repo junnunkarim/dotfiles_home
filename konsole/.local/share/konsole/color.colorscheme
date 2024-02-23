@@ -1,100 +1,95 @@
 [Background]
-Color=39,46,51
+Color=40,40,40
 
 [BackgroundFaint]
-Color=39,46,51
+Color=40,40,40
 
 [BackgroundIntense]
-Color=39,46,51
+Color=40,40,40
 
 [Color0]
-Color=68,80,85
+Color=40,40,40
 
 [Color0Faint]
-Color=68,80,85
+Color=40,40,40
 
 [Color0Intense]
-Color=68,80,85
+Color=146,131,116
 
 [Color1]
-Color=230,126,128
+Color=204,36,29
 
 [Color1Faint]
-Color=230,126,128
+Color=204,36,29
 
 [Color1Intense]
-Color=230,126,128
+Color=251,73,52
 
 [Color2]
-Color=167,192,128
+Color=152,151,26
 
 [Color2Faint]
-Color=167,192,128
+Color=152,151,26
 
 [Color2Intense]
-Color=167,192,128
+Color=184,187,38
 
 [Color3]
-Color=219,188,127
+Color=215,153,33
 
 [Color3Faint]
-Color=219,188,127
+Color=215,153,33
 
 [Color3Intense]
-Color=219,188,127
+Color=250,189,47
 
 [Color4]
-Color=127,187,179
+Color=69,133,136
 
 [Color4Faint]
-Color=127,187,179
+Color=69,133,136
 
 [Color4Intense]
-Color=127,187,179
+Color=131,165,152
 
 [Color5]
-Color=214,153,182
+Color=177,98,134
 
 [Color5Faint]
-Color=214,153,182
+Color=177,98,134
 
 [Color5Intense]
-Color=214,153,182
+Color=211,134,155
 
 [Color6]
-Color=131,192,146
+Color=104,157,106
 
 [Color6Faint]
-Color=131,192,146
+Color=104,157,106
 
 [Color6Intense]
-Color=131,192,146
+Color=142,192,124
 
 [Color7]
-Color=211,198,170
+Color=168,153,132
 
 [Color7Faint]
-Color=211,198,170
+Color=168,153,132
 
 [Color7Intense]
-Color=211,198,170
+Color=235,219,178
 
 [Foreground]
-Color=211,198,170
+Color=235,219,178
 
 [ForegroundFaint]
-Color=211,198,170
+Color=235,219,178
 
 [ForegroundIntense]
-Color=211,198,170
+Color=235,219,178
 
 [General]
-Anchor=0.5,0.5
 Blur=false
-ColorRandomization=false
-Description=Everforest Hard Dark
-FillStyle=Tile
+Description=Gruvbox
 Opacity=1
 Wallpaper=
-WallpaperFlipType=NoFlip
-WallpaperOpacity=1

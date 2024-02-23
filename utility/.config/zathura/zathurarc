@@ -1,10 +1,15 @@
-include theme.color
+include colorschemes/rose_pine
 
-set window-title-basename "true"
-set selection-clipboard "clipboard"
+set font "Iosevka Nerd Font Mono 18"
 
 set adjust-open width
 set recolor true
 
-set smooth-scroll true
-set show-v-scrollbar true
+set window-title-basename true
+set statusbar-basename false
+set statusbar-home-tilde true
+
+set selection-clipboard "primary"
+set database "sqlite"
+set double-click-follow true
+set smooth-reload true

@@ -1,4 +1,4 @@
-theme = "nord"
+theme = "gruvbox"
 
 [editor]
 line-number = "relative"

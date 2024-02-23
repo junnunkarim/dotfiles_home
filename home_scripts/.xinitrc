@@ -1,6 +1,6 @@
 #!/bin/bash
 
-session=${1:-dwm}
+session=${1:-qtile}
 
 [[ -f ~/.Xresources  ]] && xrdb -merge -I"$HOME" ~/.Xresources
 
@@ -10,7 +10,7 @@ case $session in
       /usr/bin/pipewire-pulse &
       /usr/bin/pipewire-media-session &
 
-      ~/.bin/dwm/./dwm_statusbar_wrapper &
+      ~/.config/dwm/scripts/./dwm_statusbar_wrapper &
 
       exec dwm 2> ~/.dwm.log
       ;;
