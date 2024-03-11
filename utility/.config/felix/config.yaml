@@ -1,7 +1,7 @@
 # Default exec command when opening file.
 # If not set, will default to $EDITOR.
 default: nvim
-#
+
 # Whether to match the behavior of Vim's exit keybindings.
 # false -> `ZZ` exits without `cd` to LWD(Last Working Directory) While `ZQ` to LWD
 # true  -> vice versa
@@ -14,7 +14,11 @@ exec:
   zathura: [pdf, epub]
   # 'feh -.':
   qview: [jpg, jpeg, png, gif, svg, hdr]
-  mpv: [mp3, m4a, mp4, mkv, webm]
+  mpv: [mp4, mkv, webm]
+  'mpv --audio-display=no': [mp3, m4a]
+
+ignore_case: true
+
 # The foreground color of directory, file and symlink.
 # Pick one of the following:
 #     Black            // 0

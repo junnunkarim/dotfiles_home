@@ -4,6 +4,11 @@
 >
 > <h4>Repo under heavy-reconstruction</h4>
 
+> [!INFO]
+>
+> Currently very busy with University.  
+> I will update the readme as soon as I get some free time.  
+
 # System Information
 
 <h4 align="center">Here are some details about my setup:</h4>

@@ -1,4 +1,4 @@
-include colorschemes/rose_pine
+include colorschemes/dracula
 
 set font "Iosevka Nerd Font Mono 18"
 
@@ -9,7 +9,7 @@ set window-title-basename true
 set statusbar-basename false
 set statusbar-home-tilde true
 
-set selection-clipboard "primary"
+set selection-clipboard "clipboard"
 set database "sqlite"
 set double-click-follow true
 set smooth-reload true
