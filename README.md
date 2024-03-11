@@ -4,7 +4,7 @@
 >
 > <h4>Repo under heavy-reconstruction</h4>
 
-> [!INFO]
+> [!IMPORTANT]
 >
 > Currently very busy with University.  
 > I will update the readme as soon as I get some free time.  
