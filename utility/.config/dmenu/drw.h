@@ -55,7 +55,7 @@ void drw_free(Drw *drw);
 
 /* Fnt abstraction */
 #if PANGO_PATCH
-Fnt *drw_font_create(Drw* drw, const char font[]);
+Fnt *drw_font_create(Drw* drw, const char *font);
 void drw_font_free(Fnt* set);
 unsigned int drw_font_getwidth(Drw *drw, const char *text, Bool markup);
 unsigned int drw_fontset_getwidth_clamp(Drw *drw, const char *text, unsigned int n);

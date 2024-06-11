@@ -1,5 +1,5 @@
-Similar to [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch) this dmenu 5.1 (33685b0,
-2022-03-28) project has a different take on patching. It uses preprocessor directives to decide
+Similar to [dwm-flexipatch](https://github.com/bakkeby/dwm-flexipatch) this dmenu 5.3 (7be720c,
+2024-03-19) project has a different take on patching. It uses preprocessor directives to decide
 whether or not to include a patch during build time. Essentially this means that this build, for
 better or worse, contains both the patched _and_ the original code. The aim being that you can
 select which patches to include and the build will contain that code and nothing more.
@@ -27,6 +27,15 @@ Browsing patches? There is a [map of patches](https://coggle.it/diagram/YjT2DD6j
 ---
 
 ### Changelog:
+
+2023-06-15 - Added the caret width patch
+
+2022-09-05 - Removed the json patch due to maintenance and compatibility reasons, added the
+             separator patch
+
+2022-09-04 - Added the fzfexpect patch
+
+2022-06-21 - Adding barpadding patch and relative input width patch
 
 2022-03-02 - Bump to 5.1
 
@@ -64,8 +73,15 @@ Browsing patches? There is a [map of patches](https://coggle.it/diagram/YjT2DD6j
    - [alpha](https://github.com/bakkeby/patches/blob/master/dmenu/dmenu-alpha-5.0_20210725_523aa08.diff)
       - adds transparency for the dmenu window
 
+   - [barpadding](https://github.com/bakkeby/patches/wiki/barpadding)
+      - adds padding for dmenu in similar fashion to the [barpadding](https://dwm.suckless.org/patches/barpadding/)
+        patch for dwm
+
    - [border](http://tools.suckless.org/dmenu/patches/border/)
       - adds a border around the dmenu window
+
+   - [caret-width](https://github.com/DarkSamus669/dmenu-patches/blob/main/dmenu-caretwidth-5.2.diff)
+      - makes the caret width configurable and overridable via a command line option
 
    - [case-insensitive](http://tools.suckless.org/dmenu/patches/case-insensitive/)
       - makes dmenu case-insensitive by default, replacing the case-insensitive `-i` option with a
@@ -96,6 +112,9 @@ Browsing patches? There is a [map of patches](https://coggle.it/diagram/YjT2DD6j
       - adds support for fuzzy-matching to dmenu, allowing users to type non-consecutive portions
         of the string to be matched
 
+   - [fzfexpect](https://github.com/DAFF0D11/dafmenu/blob/master/patches/dmenu-fzfexpect-5.1.diff)
+      - adds fzf expect functionality in dmenu
+
    - [grid](https://tools.suckless.org/dmenu/patches/grid/)
       - allows dmenu's entries to be rendered in a grid by adding a new `-g` flag to specify the
         number of grid columns
@@ -121,8 +140,8 @@ Browsing patches? There is a [map of patches](https://coggle.it/diagram/YjT2DD6j
       - adds a flag that will cause dmenu to select an item immediately if there is only one
         matching option left
 
-   - [json](https://tools.suckless.org/dmenu/patches/json/)
-      - adds basic support for json files
+   - [~json~](https://tools.suckless.org/dmenu/patches/json/)
+      - ~adds basic support for json files~
 
    - [line-height](http://tools.suckless.org/dmenu/patches/line-height/)
       - adds a `-h` option which sets the minimum height of a dmenu line
@@ -203,6 +222,14 @@ Browsing patches? There is a [map of patches](https://coggle.it/diagram/YjT2DD6j
       - adds a new flag to dmenu with which text input will be rejected if it would result in no
         matching item
 
+   - relative_input_width
+      - prior to commit [e1e1de7](https://git.suckless.org/dmenu/commit/e1e1de7b3b8399cba90ddca9613f837b2dbef7b9.html)
+        the input width was calculated based on the input options
+      - this feature was removed in favour of hardcoding the input width to always take up 1/3rd of
+        the available space
+      - this patch adds that feature back in with some bespoke performance optimisations at the cost
+        of accuracy and correctness
+
    - [restrict-return](https://tools.suckless.org/dmenu/patches/restrict-return/)
       - adds a `-1` option which disables Shift-Return and Ctrl-Return
       - this guarantees that dmenu will only output one item, and that item was read from stdin
@@ -210,6 +237,10 @@ Browsing patches? There is a [map of patches](https://coggle.it/diagram/YjT2DD6j
    - [scroll](https://tools.suckless.org/dmenu/patches/scroll/)
       - this patch adds support for text scrolling
       - it doesn't append `...` for long input anymore as it can handle long text
+
+   - [separator](https://tools.suckless.org/dmenu/patches/separator/)
+      - adds `-d` and `-D` flags which separates the input into two halves; one half to be
+        displayed in dmenu and the other to be printed to stdout
 
    - [symbols](https://tools.suckless.org/dmenu/patches/symbols/)
       - allows the symbols, which are printed in dmenu to indicate that either the input is too

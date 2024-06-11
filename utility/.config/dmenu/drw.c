@@ -191,7 +191,7 @@ xfont_create(Drw *drw, const char *fontname, FcPattern *fontpattern)
 		die("no font specified.");
 	}
 
-	#if !COLOR_EMOJI_PATCH
+	#if NO_COLOR_EMOJI_PATCH
 	/* Do not allow using color fonts. This is a workaround for a BadLength
 	 * error from Xft with color glyphs. Modelled on the Xterm workaround. See
 	 * https://bugzilla.redhat.com/show_bug.cgi?id=1498269
@@ -204,7 +204,7 @@ xfont_create(Drw *drw, const char *fontname, FcPattern *fontpattern)
 		XftFontClose(drw->dpy, xfont);
 		return NULL;
 	}
-	#endif // COLOR_EMOJI_PATCH
+	#endif // NO_COLOR_EMOJI_PATCH
 
 	font = ecalloc(1, sizeof(Fnt));
 	font->xfont = xfont;
@@ -234,7 +234,7 @@ xfont_free(Fnt *font)
 
 #if PANGO_PATCH
 Fnt*
-drw_font_create(Drw* drw, const char font[])
+drw_font_create(Drw* drw, const char *font)
 {
 	Fnt *fnt = NULL;
 
@@ -365,10 +365,10 @@ int
 drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lpad, const char *text, int invert, Bool markup)
 {
 	char buf[1024];
-	int ty;
-	unsigned int ew;
+	int i, ty, th;
+	unsigned int ew, eh;
 	XftDraw *d = NULL;
-	size_t i, len;
+	size_t len;
 	int render = x || y || w || h;
 
 	if (!drw || (render && !drw->scheme) || !text || !drw->font)
@@ -393,10 +393,14 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 	len = strlen(text);
 
 	if (len) {
-		drw_font_getexts(drw->font, text, len, &ew, NULL, markup);
+		drw_font_getexts(drw->font, text, len, &ew, &eh, markup);
+		th = eh;
 		/* shorten text if necessary */
-		for (len = MIN(len, sizeof(buf) - 1); len && ew > w; len--)
-			drw_font_getexts(drw->font, text, len, &ew, NULL, markup);
+		for (len = MIN(len, sizeof(buf) - 1); len && ew > w; len--) {
+			drw_font_getexts(drw->font, text, len, &ew, &eh, markup);
+			if (eh > th)
+				th = eh;
+		}
 
 		if (len) {
 			memcpy(buf, text, len);
@@ -406,7 +410,7 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 					; /* NOP */
 
 			if (render) {
-				ty = y + (h - drw->font->h) / 2;
+				ty = y + (h - th) / 2;
 				if (markup)
 					pango_layout_set_markup(drw->font->layout, buf, len);
 				else
@@ -430,8 +434,8 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 int
 drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lpad, const char *text, int invert)
 {
-	int i, ty, ellipsis_x = 0;
-	unsigned int tmpw, ew, ellipsis_w = 0, ellipsis_len;
+	int ty, ellipsis_x = 0;
+	unsigned int tmpw, ew, ellipsis_w = 0, ellipsis_len, hash, h0, h1;
 	XftDraw *d = NULL;
 	Fnt *usedfont, *curfont, *nextfont;
 	int utf8strlen, utf8charlen, render = x || y || w || h;
@@ -443,10 +447,8 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 	XftResult result;
 	int charexists = 0, overflow = 0;
 	/* keep track of a couple codepoints for which we have no match. */
-	enum { nomatches_len = 64 };
-	static struct { long codepoint[nomatches_len]; unsigned int idx; } nomatches;
+	static unsigned int nomatches[128], ellipsis_width;
 	const char *ellipsis = "...";
-	static unsigned int ellipsis_width = 0;
 
 	if (!drw || (render && (!drw->scheme || !w)) || !text || !drw->fonts)
 		return 0;
@@ -535,11 +537,14 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 			 * character must be drawn. */
 			charexists = 1;
 
-			for (i = 0; i < nomatches_len; ++i) {
-				/* avoid calling XftFontMatch if we know we won't find a match */
-				if (utf8codepoint == nomatches.codepoint[i])
-					goto no_match;
-			}
+			hash = (unsigned int)utf8codepoint;
+			hash = ((hash >> 16) ^ hash) * 0x21F0AAAD;
+			hash = ((hash >> 15) ^ hash) * 0xD35A2D97;
+			h0 = ((hash >> 15) ^ hash) % LENGTH(nomatches);
+			h1 = (hash >> 17) % LENGTH(nomatches);
+			/* avoid expensive XftFontMatch call when we know we won't find a match */
+			if (nomatches[h0] == utf8codepoint || nomatches[h1] == utf8codepoint)
+				goto no_match;
 
 			fccharset = FcCharSetCreate();
 			FcCharSetAddChar(fccharset, utf8codepoint);
@@ -552,7 +557,9 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 			fcpattern = FcPatternDuplicate(drw->fonts->pattern);
 			FcPatternAddCharSet(fcpattern, FC_CHARSET, fccharset);
 			FcPatternAddBool(fcpattern, FC_SCALABLE, FcTrue);
+			#if NO_COLOR_EMOJI_PATCH
 			FcPatternAddBool(fcpattern, FC_COLOR, FcFalse);
+			#endif // NO_COLOR_EMOJI_PATCH
 
 			FcConfigSubstitute(NULL, fcpattern, FcMatchPattern);
 			FcDefaultSubstitute(fcpattern);
@@ -569,7 +576,7 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 					curfont->next = usedfont;
 				} else {
 					xfont_free(usedfont);
-					nomatches.codepoint[++nomatches.idx % nomatches_len] = utf8codepoint;
+					nomatches[nomatches[h0] ? h1 : h0] = utf8codepoint;
 no_match:
 					usedfont = drw->fonts;
 				}
@@ -647,7 +654,7 @@ drw_font_getexts(Fnt *font, const char *text, unsigned int len, unsigned int *w,
 	if (w)
 		*w = r.width / PANGO_SCALE;
 	if (h)
-		*h = font->h;
+		*h = r.height / PANGO_SCALE;
 }
 #else
 void

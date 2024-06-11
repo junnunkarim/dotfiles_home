@@ -1,5 +1,5 @@
 # dmenu version
-VERSION = 5.1
+VERSION = 5.3
 
 # paths
 PREFIX = /usr/local
@@ -17,10 +17,8 @@ FREETYPELIBS = -lfontconfig -lXft
 FREETYPEINC = /usr/include/freetype2
 # OpenBSD (uncomment)
 #FREETYPEINC = $(X11INC)/freetype2
+#MANPREFIX = ${PREFIX}/man
 
-# Uncomment this for the json patch / JSON_PATCH
-#JANSSONINC = `pkg-config --cflags jansson`
-#JANSSONLIBS = `pkg-config --libs jansson`
 # uncomment on RHEL for strcasecmp
 #EXTRAFLAGS=-D_GNU_SOURCE
 
@@ -32,8 +30,8 @@ XRENDER = -lXrender
 #PANGOLIB = `pkg-config --libs xft pango pangoxft`
 
 # includes and libs
-INCS = -I$(X11INC) -I$(FREETYPEINC) $(JANSSONINC) ${PANGOINC}
-LIBS = -L$(X11LIB) -lX11 $(XINERAMALIBS) $(FREETYPELIBS) $(JANSSONLIBS) -lm $(XRENDER) ${PANGOLIB}
+INCS = -I$(X11INC) -I$(FREETYPEINC) ${PANGOINC}
+LIBS = -L$(X11LIB) -lX11 $(XINERAMALIBS) $(FREETYPELIBS) -lm $(XRENDER) ${PANGOLIB}
 
 # flags
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE=200809L -DVERSION=\"$(VERSION)\" $(XINERAMAFLAGS) $(EXTRAFLAGS)

@@ -9,11 +9,20 @@ drawhighlights(struct item *item, int x, int y, int maxw)
 	int indentx, highlightlen;
 	#if EMOJI_HIGHLIGHT_PATCH
 	char *itemtext = output;
-	#elif TSV_PATCH
+	#elif TSV_PATCH && !SEPARATOR_PATCH
 	char *itemtext = item->stext;
 	#else
 	char *itemtext = item->text;
-	#endif // TSV_PATCH
+	#endif // EMOJI_HIGHLIGHT_PATCH | TSV_PATCH
+
+	/* Do not highlight items scheduled for output */
+	#if MULTI_SELECTION_PATCH
+	if (issel(item->id))
+		return;
+	#else
+	if (item->out)
+		return;
+	#endif // MULTI_SELECTION_PATCH
 
 	drw_setscheme(drw, scheme[item == sel ? SchemeSelHighlight : SchemeNormHighlight]);
 	strcpy(tokens, text);

@@ -33,7 +33,20 @@ readstream(FILE* stream)
 			*p = '\0';
 		if (!(items[i].text = strdup(buf)))
 			die("cannot strdup %u bytes:", strlen(buf) + 1);
-		#if TSV_PATCH
+		#if SEPARATOR_PATCH
+		if (separator && (p = separator_greedy ?
+			strrchr(items[i].text, separator) : strchr(items[i].text, separator))) {
+			*p = '\0';
+			items[i].text_output = ++p;
+		} else {
+			items[i].text_output = items[i].text;
+		}
+		if (separator_reverse) {
+			p = items[i].text;
+			items[i].text = items[i].text_output;
+			items[i].text_output = p;
+		}
+		#elif TSV_PATCH
 		if ((p = strchr(buf, '\t')))
 			*p = '\0';
 		if (!(items[i].stext = strdup(buf)))

@@ -102,5 +102,14 @@ fuzzymatch(void)
 	}
 	#endif // HIGHPRIORITY_PATCH
 	curr = sel = matches;
+
+	#if INSTANT_PATCH
+	if (instant && matches && matches==matchend) {
+		puts(matches->text);
+		cleanup();
+		exit(0);
+	}
+	#endif // INSTANT_PATCH
+
 	calcoffsets();
 }

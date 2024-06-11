@@ -36,9 +36,13 @@ drw_text_align(Drw *drw, int x, int y, unsigned int w, unsigned int h, const cha
 	} else {
 		XSetForeground(drw->dpy, drw->gc, drw->scheme[ColBg].pixel);
 		XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, h);
+		#if ALPHA_PATCH
+		d = XftDrawCreate(drw->dpy, drw->drawable, drw->visual, drw->cmap);
+		#else
 		d = XftDrawCreate(drw->dpy, drw->drawable,
 		                  DefaultVisual(drw->dpy, drw->screen),
 		                  DefaultColormap(drw->dpy, drw->screen));
+		#endif // ALPHA_PATCH
 	}
 
 	usedfont = drw->fonts;

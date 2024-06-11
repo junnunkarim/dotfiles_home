@@ -22,7 +22,7 @@ physical_cores = true
 #  if theme path is /home/foo/.config/macchina/themes/Sodium.toml
 #  theme should be uncommented and set to "Sodium"
 #
-theme = "Hydrogen_1"
+theme = "Lithium"
 
 # Displays only the specified readouts.
 # Accepted values (case-sensitive):

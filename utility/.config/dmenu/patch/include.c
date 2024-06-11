@@ -1,9 +1,6 @@
 #if CENTER_PATCH
 #include "center.c"
 #endif
-#if DYNAMIC_OPTIONS_PATCH
-#include "dynamicoptions.c"
-#endif
 #if FUZZYHIGHLIGHT_PATCH
 #include "fuzzyhighlight.c"
 #elif HIGHLIGHT_PATCH
@@ -12,14 +9,17 @@
 #if FUZZYMATCH_PATCH
 #include "fuzzymatch.c"
 #endif
+#if FZFEXPECT_PATCH
+#include "fzfexpect.c"
+#endif
 #if HIGHPRIORITY_PATCH
 #include "highpriority.c"
 #endif
+#if DYNAMIC_OPTIONS_PATCH
+#include "dynamicoptions.c"
+#endif
 #if MULTI_SELECTION_PATCH
 #include "multiselect.c"
-#endif
-#if JSON_PATCH
-#include "json.c"
 #endif
 #if MOUSE_SUPPORT_PATCH
 #include "mousesupport.c"

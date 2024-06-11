@@ -1,4 +1,4 @@
-include colorschemes/dracula
+include colorschemes/gruvbox
 
 set font "Iosevka Nerd Font Mono 18"
 
