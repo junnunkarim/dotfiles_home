@@ -24,10 +24,10 @@ dmenu.selbackground:		rose_1
 dmenu.outforeground:		love
 dmenu.outbackground:		base
 
-dmenu.bordercolor:			love
+dmenu.bordercolor:			rose_1
 
 dmenu.selhlforeground:	gold
-dmenu.selhlbackground:	iris_1
+dmenu.selhlbackground:	base
 
 dmenu.hlforeground:			gold
 dmenu.hlbackground:			base

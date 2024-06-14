@@ -23,10 +23,6 @@ fuzzymatch(void)
 	char c;
 	int number_of_matches = 0, i, pidx, sidx, eidx;
 	int text_len = strlen(text), itext_len;
-	#if HIGHPRIORITY_PATCH
-	struct item *lhpprefix, *hpprefixend;
-	lhpprefix = hpprefixend = NULL;
-	#endif // HIGHPRIORITY_PATCH
 	matches = matchend = NULL;
 
 	/* walk through all items */
@@ -71,45 +67,17 @@ fuzzymatch(void)
 			fuzzymatches[i] = it;
 		}
 
-		#if NO_SORT_PATCH
-		if (sortmatches)
-		#endif // NO_SORT_PATCH
 		/* sort matches according to distance */
 		qsort(fuzzymatches, number_of_matches, sizeof(struct item*), compare_distance);
 		/* rebuild list of matches */
 		matches = matchend = NULL;
 		for (i = 0, it = fuzzymatches[i];  i < number_of_matches && it && \
 				it->text; i++, it = fuzzymatches[i]) {
-			#if HIGHPRIORITY_PATCH
-			#if NO_SORT_PATCH
-			if (sortmatches && it->hp)
-			#else
-			if (it->hp)
-			#endif // NO_SORT_PATCH
-				appenditem(it, &lhpprefix, &hpprefixend);
-			else
-				appenditem(it, &matches, &matchend);
-			#else
 			appenditem(it, &matches, &matchend);
-			#endif // HIGHPRIORITY_PATCH
 		}
 		free(fuzzymatches);
 	}
-	#if HIGHPRIORITY_PATCH
-	if (lhpprefix) {
-		hpprefixend->right = matches;
-		matches = lhpprefix;
-	}
-	#endif // HIGHPRIORITY_PATCH
 	curr = sel = matches;
-
-	#if INSTANT_PATCH
-	if (instant && matches && matches==matchend) {
-		puts(matches->text);
-		cleanup();
-		exit(0);
-	}
-	#endif // INSTANT_PATCH
 
 	calcoffsets();
 }

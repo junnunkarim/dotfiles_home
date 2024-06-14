@@ -14,10 +14,7 @@ all: dmenu stest
 config.h:
 	cp config.def.h $@
 
-patches.h:
-	cp patches.def.h $@
-
-$(OBJ): arg.h config.h config.mk drw.h patches.h
+$(OBJ): arg.h config.h config.mk drw.h
 
 dmenu: dmenu.o drw.o util.o
 	$(CC) -o $@ dmenu.o drw.o util.o $(LDFLAGS)
@@ -26,7 +23,7 @@ stest: stest.o
 	$(CC) -o $@ stest.o $(LDFLAGS)
 
 clean:
-	rm -f dmenu stest $(OBJ) dmenu-$(VERSION).tar.gz
+	rm -f dmenu $(OBJ) dmenu-$(VERSION).tar.gz
 	rm -f *.o
 
 dist: clean

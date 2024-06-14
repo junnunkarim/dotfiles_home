@@ -24,10 +24,10 @@ dmenu.selbackground:		frost3
 dmenu.outforeground:		aurora1
 dmenu.outbackground:		pn1
 
-dmenu.bordercolor:			frost2
+dmenu.bordercolor:			aurora2
 
 dmenu.selhlforeground:	aurora2
-dmenu.selhlbackground:	frost4
+dmenu.selhlbackground:	pn1
 
 dmenu.hlforeground:			aurora2
 dmenu.hlbackground:			pn1

@@ -22,15 +22,15 @@ dmenu.foreground:				white
 dmenu.background:				black
 
 dmenu.selforeground:		black
-dmenu.selbackground:		green1
+dmenu.selbackground:		orange2
 
 dmenu.outforeground:		red1
 dmenu.outbackground:		black
 
-dmenu.bordercolor:			orange2
+dmenu.bordercolor:			yellow2
 
-dmenu.selhlforeground:	orange1
-dmenu.selhlbackground:	green1
+dmenu.selhlforeground:	yellow2
+dmenu.selhlbackground:	black
 
-dmenu.hlforeground:			orange1
+dmenu.hlforeground:			yellow2
 dmenu.hlbackground:			black

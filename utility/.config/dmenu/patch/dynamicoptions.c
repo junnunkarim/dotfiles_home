@@ -33,38 +33,8 @@ readstream(FILE* stream)
 			*p = '\0';
 		if (!(items[i].text = strdup(buf)))
 			die("cannot strdup %u bytes:", strlen(buf) + 1);
-		#if SEPARATOR_PATCH
-		if (separator && (p = separator_greedy ?
-			strrchr(items[i].text, separator) : strchr(items[i].text, separator))) {
-			*p = '\0';
-			items[i].text_output = ++p;
-		} else {
-			items[i].text_output = items[i].text;
-		}
-		if (separator_reverse) {
-			p = items[i].text;
-			items[i].text = items[i].text_output;
-			items[i].text_output = p;
-		}
-		#elif TSV_PATCH
-		if ((p = strchr(buf, '\t')))
-			*p = '\0';
-		if (!(items[i].stext = strdup(buf)))
-			die("cannot strdup %u bytes:", strlen(buf) + 1);
-		#endif // TSV_PATCH
-		#if MULTI_SELECTION_PATCH
-		items[i].id = i;
-		#else
 		items[i].out = 0;
-		#endif // MULTI_SELECTION_PATCH
-		#if HIGHPRIORITY_PATCH
-		items[i].hp = arrayhas(hpitems, hplength, items[i].text);
-		#endif // HIGHPRIORITY_PATCH
-		#if PANGO_PATCH
-		drw_font_getexts(drw->font, buf, strlen(buf), &tmpmax, NULL, True);
-		#else
 		drw_font_getexts(drw->fonts, buf, strlen(buf), &tmpmax, NULL);
-		#endif // PANGO_PATCH
 		if (tmpmax > inputw) {
 			inputw = tmpmax;
 			imax = i;
@@ -77,11 +47,7 @@ readstream(FILE* stream)
 
 	if (items)
 		items[i].text = NULL;
-	#if PANGO_PATCH
-	inputw = items ? TEXTWM(items[imax].text) : 0;
-	#else
 	inputw = items ? TEXTW(items[imax].text) : 0;
-	#endif // PANGO_PATCH
 	if (!dynamic || !*dynamic)
 		lines = MIN(lines, i);
 	else {

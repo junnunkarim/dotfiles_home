@@ -20,8 +20,8 @@ dmenu.outbackground:		black
 
 dmenu.bordercolor:			red
 
-dmenu.selhlforeground:	yellow
-dmenu.selhlbackground:	green
+dmenu.selhlforeground:	red
+dmenu.selhlbackground:	black
 
-dmenu.hlforeground:			yellow
+dmenu.hlforeground:			red
 dmenu.hlbackground:			black
