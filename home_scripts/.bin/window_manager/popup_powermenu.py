@@ -2,6 +2,7 @@
 
 import sys
 import subprocess
+import argparse
 
 from pathlib import Path as path
 
@@ -9,36 +10,18 @@ from pathlib import Path as path
 # ----------------
 # helper functions
 # ----------------
-def usage(script_name: str, wm_fail="", menu_fail="") -> None:
-    if wm_fail:
-        print(f"  Error! '{wm_fail}' is not supported!")
-    if menu_fail:
-        print(f"  Error! '{menu_fail}' is not supported!")
-        print()
-
-    print("  description:")
-    print("\tspawn a popup powermenu.")
-    print("\tNOTE: both '-w' and '-m' arguments must be provided.")
-    print("  usage:")
-    print(f"\t{script_name} [option]")
-    print()
-    print("  arguments:")
-    print("\t-h, --help")
-    print("\t\tshow this help message.")
-    print()
-    print("\t-w, --window-manager")
-    print("\t\tset the window manager.")
-    print()
-    print("\t-m, --menu")
-    print("\t\tset the menu launcher.")
-
-    sys.exit()
-
-
 def get_uptime() -> str:
-    return subprocess.run(
+    output = subprocess.run(
         ["uptime", "-p"], text=True, capture_output=True, check=True
-    ).stdout.strip()[3:]
+    ).stdout.strip()
+
+    return (
+        output.replace("up ", "")
+        .replace("hours", "h")
+        .replace("hour", "h")
+        .replace("minutes", "min")
+        .replace("minute", "min")
+    )
 
 
 def get_hostname() -> str:
@@ -128,24 +111,30 @@ def logout(wm: str) -> None:
 # --------------
 # main functions
 # --------------
-def powermenu(wm: str, menu: str) -> None:
-    uptime = "Uptime: " + get_uptime()
+def powermenu(menu: str, wm: str | None = None) -> bool:
+    uptime = f"Uptime - {get_uptime()}:"
     host = get_hostname()
 
+    # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
         screen_res = get_screen_resolution()
 
         if screen_res:
+            # calculate screen dimensions to
+            # display the menu at the center of the screen
             res_x, res_y = int(screen_res[0]), int(screen_res[1])
             width = 500
             height = 40 * 10
+            # 'x' is the x-position of the window's upper left corner
+            # 'y' is the y-position of the window's upper left corner
             x = (res_x // 2) - (width // 2)
             y = (res_y // 2) - (height // 2)
 
+            # main prompt
             prompt = [
                 "dmenu",
                 "-h",
-                "40",
+                "45",
                 "-l",
                 "10",
                 "-W",
@@ -156,30 +145,43 @@ def powermenu(wm: str, menu: str) -> None:
                 f"{y}",
             ]
         else:
-            prompt = ["dmenu", "-h", "40", "-l", "12"]
+            # if can't get screen resolution, use the default prompt
+            # main prompt
+            prompt = ["dmenu", "-h", "45", "-l", "12"]
 
         prompt_extra = ["-p", uptime]
     elif menu == "rofi":
+        # if 'wm' is not given, the if statment will be false
         script_path = path(
             f"~/.config/{wm}/external_configs/rofi/script_menu.rasi"
         ).expanduser()
 
-        prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
+        if script_path.is_file():
+            # if config is found at specific directory, use it
+            prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
+        else:
+            # else use default config
+            prompt = ["rofi", "-dmenu", "-i"]
+
         prompt_extra = ["-p", host, "-mesg", uptime]
     else:
-        print(f"Error! '{menu}' not found!")
-        sys.exit()
+        return False
 
     entries = {
+        "cancel": " Cancel",
         "hibernate": " Hibernate",
         "shutdown": " Shutdown",
         "reboot": "󰜉 Reboot",
         "suspend": "󰒲 Suspend",
         "lock": " Lock",
-        "logout": "󰗽 Logout",
-        "cancel": "󰖭 Cancel",
     }
 
+    # if 'wm' is given show logout option
+    if wm:
+        entries["logout"] = "󰗽 Logout"
+
+    # encode every entry in the dictionary with as a
+    # string with newline at the end of each entry
     options = "\n".join(entries.values())
 
     selection = subprocess.run(
@@ -200,47 +202,56 @@ def powermenu(wm: str, menu: str) -> None:
             subprocess.run(["systemctl", "suspend"], text=True, check=False)
         elif choice == "lock":
             subprocess.run(["betterlockscreen", "-l"], text=True, check=False)
-        elif choice == "logout":
-            logout(wm)
+        elif wm:
+            if choice == "logout":
+                logout(wm)
+
+    return True
 
 
-def main(argc: int, argv: list) -> None:
-    arg_help = ["-h", "--help"]
-    arg_wm = ["-w", "--window-manager"]
-    arg_menu = ["-m", "--menu"]
-
+def main() -> None:
     wms = ["dwm", "qtile"]
     menus = ["dmenu", "rofi"]
 
-    fail = False
+    arg_parser = argparse.ArgumentParser(description="spawn a popup clipboard")
+    # define necessary cli arguments
+    arg_parser.add_argument(
+        "-m",
+        "--menu",
+        help="specify the menu launcher",
+        choices=menus,
+        required=True,
+    )
+    arg_parser.add_argument(
+        "-w",
+        "--window-manager",
+        help="specify the window manager",
+        choices=wms,
+    )
 
-    if argc <= 1:
-        fail = True
-    elif (argv[1] in arg_help) or (argc <= 4):
-        fail = True
-    elif (argv[1] in arg_wm) and (argv[3] in arg_menu):
-        if (argv[2] in wms) and (argv[4] in menus):
-            powermenu(wm=argv[2], menu=argv[4])
-        else:
-            usage(script_name=argv[0], wm_fail=argv[2], menu_fail=argv[4])
-    elif (argv[1] in arg_menu) and (argv[3] in arg_wm):
-        if (argv[2] in menus) and (argv[4] in wms):
-            powermenu(wm=argv[4], menu=argv[2])
-        else:
-            usage(script_name=argv[0], wm_fail=argv[4], menu_fail=argv[2])
+    # if no cli arguments are provided, show the help message and exit
+    if len(sys.argv) <= 1:
+        arg_parser.print_help()
+        sys.exit(1)
+
+    # parse all cli arguments
+    args = arg_parser.parse_args()
+
+    # 'window-manager' is accessed by 'window_manager'
+    if args.menu and args.window_manager:
+        status_success = powermenu(menu=args.menu, wm=args.window_manager)
+    elif args.menu:
+        status_success = powermenu(menu=args.menu)
     else:
-        sys.exit()
+        arg_parser.print_help()
+        sys.exit(1)
 
-    if fail:
-        usage(script_name=argv[0])
+    if not status_success:
+        print("Error!")
+        sys.exit(1)
     else:
         sys.exit()
 
 
 if __name__ == "__main__":
-    # all cli arguments
-    argv = sys.argv
-    # number of cli arguments
-    argc = len(argv)
-
-    main(argc, argv)
+    main()

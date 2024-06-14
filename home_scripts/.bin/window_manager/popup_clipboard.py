@@ -30,7 +30,7 @@ def get_screen_resolution() -> list[str] | None:
 # --------------
 # main functions
 # --------------
-def clipboard(menu: str, wm=None) -> bool:
+def clipboard(menu: str, wm: str | None = None) -> bool:
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
         screen_res = get_screen_resolution()
@@ -50,8 +50,9 @@ def clipboard(menu: str, wm=None) -> bool:
             prompt = [
                 "dmenu",
                 "-h",
-                "40",
+                "45",
                 "-l",
+                # "0",
                 "10",
                 "-W",
                 f"{width}",
@@ -61,8 +62,8 @@ def clipboard(menu: str, wm=None) -> bool:
                 f"{y}",
             ]
         else:
-            # if can't get screen resolution, use the default prompt
-            # main prompt
+            # if can't get screen resolution,
+            # use the default prompt
             prompt = ["dmenu", "-h", "40", "-l", "12"]
 
         # extra things to add to the prompt
@@ -102,13 +103,13 @@ def clipboard(menu: str, wm=None) -> bool:
             check=True,
         )
     elif menu == "rofi":
-        if wm:
-            # if window-manager name is given,
-            # use specific path for 'rofi' theme
-            script_path = path(
-                f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
-            ).expanduser()
+        # if 'wm' is not given, the if statment will be false
+        script_path = path(
+            f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
+        ).expanduser()
 
+        if script_path.is_file():
+            # if config is found at specific directory, use it
             prompt = [
                 "rofi",
                 "-modi",

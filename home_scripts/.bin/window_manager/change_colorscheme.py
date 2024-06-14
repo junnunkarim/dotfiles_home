@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-import random
 import os
 import sys
-
-# import json
 import subprocess
+import argparse
+import random
+# import json
 
 from fileinput import FileInput
 from pathlib import Path as path
@@ -385,22 +385,29 @@ def change_colorscheme(colorscheme: str, wm: str) -> None:
 # --------------
 # main functions
 # --------------
-def handle_colorscheme(wm: str, menu: str) -> None:
+def handle_colorscheme(menu: str, wm: str | None = None) -> bool:
+    # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
         screen_res = get_screen_resolution()
 
         if screen_res:
+            # calculate screen dimensions to
+            # display the menu at the center of the screen
             res_x, res_y = int(screen_res[0]), int(screen_res[1])
             width = 500
             height = 40 * 10
+            # 'x' is the x-position of the window's upper left corner
+            # 'y' is the y-position of the window's upper left corner
             x = (res_x // 2) - (width // 2)
             y = (res_y // 2) - (height // 2)
 
+            # main prompt
             prompt = [
                 "dmenu",
                 "-h",
-                "40",
+                "45",
                 "-l",
+                # "0",
                 "10",
                 "-W",
                 f"{width}",
@@ -410,19 +417,34 @@ def handle_colorscheme(wm: str, menu: str) -> None:
                 f"{y}",
             ]
         else:
+            # if can't get screen resolution, use the default prompt
+            # main prompt
             prompt = ["dmenu", "-h", "40", "-l", "12"]
 
-        prompt_extra = ["-p", "Choose a Colorscheme:"]
+        # extra things to add to the prompt
+        prompt_extra = ["-p", "Colorscheme:"]
     elif menu == "rofi":
-        script_path = path(
-            f"~/.config/{wm}/external_configs/rofi/script_menu.rasi"
-        ).expanduser()
+        if wm:
+            # if window-manager name is given,
+            # use specific path for 'rofi' theme
+            script_path = path(
+                f"~/.config/{wm}/external_configs/rofi/script_menu.rasi"
+            ).expanduser()
 
-        prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
+            prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
+        else:
+            # if window-manager name is not given,
+            # use default 'rofi' theme
+            prompt = [
+                "rofi",
+                "-dmenu",
+                "-i",
+            ]
+
+            # extra things to add to the prompt
         prompt_extra = ["-p", "Choose a colorscheme: "]
     else:
-        print(f"Error! '{menu}' not found!")
-        sys.exit()
+        return False
 
     if wm == "dwm":
         colorschemes = {
@@ -430,7 +452,7 @@ def handle_colorscheme(wm: str, menu: str) -> None:
             "catppuccin_macchiato": " Catppuccin (Macchiato)",
             "dracula": " Dracula",
             "everblush": " Everblush",
-            # "everforest": " Everforest",
+            "everforest": " Everforest",
             "gruvbox": " Gruvbox",
             # "matugen": " Matugen (Material-You Color Generator)",
             "nord": " Nord",
@@ -449,7 +471,7 @@ def handle_colorscheme(wm: str, menu: str) -> None:
             "rose_pine": " Rose Pine",
         }
     else:
-        colorschemes = {}
+        return False
 
     # variable to pass to dmenu or rofi
     option = "\n".join(colorschemes.values())
@@ -473,46 +495,53 @@ def handle_colorscheme(wm: str, menu: str) -> None:
         reload_wm(wm)
         reload_kitty()
 
+    return True
 
-def main(argc: int, argv: list) -> None:
-    arg_help = ["-h", "--help"]
-    arg_wm = ["-w", "--window-manager"]
-    arg_menu = ["-m", "--menu"]
 
+def main() -> None:
     wms = ["dwm", "qtile"]
     menus = ["dmenu", "rofi"]
 
-    fail = False
+    arg_parser = argparse.ArgumentParser(description="spawn a popup clipboard")
+    # define necessary cli arguments
+    arg_parser.add_argument(
+        "-m",
+        "--menu",
+        help="specify the menu launcher",
+        choices=menus,
+        # nargs=1,
+        required=True,
+    )
+    arg_parser.add_argument(
+        "-w",
+        "--window-manager",
+        help="specify the window manager",
+        choices=wms,
+        # nargs=1,
+        # required=True,
+    )
 
-    if argc <= 1:
-        fail = True
-    elif (argv[1] in arg_help) or (argc <= 4):
-        fail = True
-    # if first argument is '-w' and second argument is '-m'
-    elif (argv[1] in arg_wm) and (argv[3] in arg_menu):
-        if (argv[2] in wms) and (argv[4] in menus):
-            handle_colorscheme(wm=argv[2], menu=argv[4])
-        else:
-            usage(script_name=argv[0], wm_fail=argv[2], menu_fail=argv[4])
-    # if first argument is '-m' and second argument is '-w'
-    elif (argv[1] in arg_menu) and (argv[3] in arg_wm):
-        if (argv[2] in menus) and (argv[4] in wms):
-            handle_colorscheme(wm=argv[4], menu=argv[2])
-        else:
-            usage(script_name=argv[0], wm_fail=argv[4], menu_fail=argv[2])
+    # if no cli arguments are provided, show the help message and exit
+    if len(sys.argv) <= 1:
+        arg_parser.print_help()
+        sys.exit(1)
+
+    # parse all cli arguments
+    args = arg_parser.parse_args()
+
+    # 'window-manager' is accessed by 'window_manager'
+    if args.menu and args.window_manager:
+        status_success = handle_colorscheme(menu=args.menu, wm=args.window_manager)
     else:
-        sys.exit()
+        arg_parser.print_help()
+        sys.exit(1)
 
-    if fail:
-        usage(script_name=argv[0])
+    if not status_success:
+        print("Error!")
+        sys.exit(1)
     else:
         sys.exit()
 
 
 if __name__ == "__main__":
-    # all cli arguments
-    argv = sys.argv
-    # number of cli arguments
-    argc = len(argv)
-
-    main(argc, argv)
+    main()
