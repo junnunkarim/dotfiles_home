@@ -64,7 +64,7 @@ def keybindings_to_string(keybindings, max_length=200):
         space_available = max_length - len(key) - 1
 
         if len(value) > space_available:
-            value = value[: space_available - 3] + "..."  # Truncate value if necessary
+            value = value[: space_available - 3] + "..."  # truncate value if necessary
 
         # format each line
         formatted_line = f"{key.ljust(max_length - len(value) - 1)}{value}"
@@ -76,14 +76,14 @@ def keybindings_to_string(keybindings, max_length=200):
 # -------------------------------
 # functions creating menu prompts
 # -------------------------------
-def dmenu_prompt() -> list:
+def dmenu_prompt(width: int = 1000) -> list:
     screen_res = get_screen_resolution()
 
     if screen_res:
         # calculate screen dimensions to
         # display the menu at the center of the screen
         res_x, res_y = int(screen_res[0]), int(screen_res[1])
-        width = 1000
+
         height = 45 * 10
         # 'x' is the x-position of the window's upper left corner
         # 'y' is the y-position of the window's upper left corner
@@ -122,8 +122,7 @@ def rofi_prompt(wm: None | str) -> list:
         # if config is found at specific directory, use it
         prompt = [
             "rofi",
-            "-show",
-            "drun",
+            "-dmenu",
             "-theme",
             f"{script_path}",
         ]
@@ -132,8 +131,7 @@ def rofi_prompt(wm: None | str) -> list:
         # use default 'rofi' theme
         prompt = [
             "rofi",
-            "-show",
-            "drun",
+            "-dmenu",
         ]
 
     return prompt
@@ -152,7 +150,7 @@ def keybindings(menu: str, wm: str, file_path: path | None = None) -> bool:
 
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
-        prompt = dmenu_prompt()
+        prompt = dmenu_prompt(950)
         # extra things to add to the prompt
         prompt_extra = ["-p", "Keybindings:"]
     elif menu == "rofi":
