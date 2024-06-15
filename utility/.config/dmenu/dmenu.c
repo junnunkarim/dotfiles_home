@@ -599,6 +599,7 @@ insert:
 		}
 		break;
   // dragoonfx: modified to change behavior of 'grave' nd 'tab' keys
+  case XK_ISO_Left_Tab:
   case XK_grave:
 		if (sel && sel->left && (sel = sel->left)->right == curr) {
 			curr = prev;
