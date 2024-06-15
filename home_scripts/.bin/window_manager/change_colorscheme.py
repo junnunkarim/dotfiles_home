@@ -14,32 +14,6 @@ from pathlib import Path as path
 # ----------------
 # helper functions
 # ----------------
-def usage(script_name: str, wm_fail="", menu_fail="") -> None:
-    if wm_fail:
-        print(f"  Error! '{wm_fail}' is not supported!")
-    if menu_fail:
-        print(f"  Error! '{menu_fail}' is not supported!")
-        print()
-
-    print("  description:")
-    print("\tspawn a popup powermenu.")
-    print("\tNOTE: both '-w' and '-m' arguments must be provided.")
-    print("  usage:")
-    print(f"\t{script_name} [option]")
-    print()
-    print("  arguments:")
-    print("\t-h, --help")
-    print("\t\tshow this help message.")
-    print()
-    print("\t-w, --window-manager")
-    print("\t\tset the window manager.")
-    print()
-    print("\t-m, --menu")
-    print("\t\tset the menu launcher.")
-
-    sys.exit()
-
-
 def get_screen_resolution():
     command = ["xrandr"]
     output = subprocess.check_output(command).decode()
@@ -208,7 +182,7 @@ def nvim_color(replace: str) -> None:
     replace_string(replace, start_concatenate, end_concatenate, file_path)
 
 
-def rofi_color(replace: str, wm: str) -> None:
+def rofi_color(replace: str, wm: str | None) -> None:
     start_concatenate = f'@import "~/.config/{wm}/external_configs/rofi/colorschemes/'
     file_path = "~/.config/dwm/external_configs/rofi/colors.rasi"
 
@@ -311,6 +285,67 @@ def reload_wm(wm: str) -> None:
         reload_dwm()
 
 
+# -------------------------------
+# functions creating menu prompts
+# -------------------------------
+def dmenu_prompt() -> list:
+    screen_res = get_screen_resolution()
+
+    if screen_res:
+        # calculate screen dimensions to
+        # display the menu at the center of the screen
+        res_x, res_y = int(screen_res[0]), int(screen_res[1])
+        width = 500
+        height = 40 * 10
+        # 'x' is the x-position of the window's upper left corner
+        # 'y' is the y-position of the window's upper left corner
+        x = (res_x // 2) - (width // 2)
+        y = (res_y // 2) - (height // 2)
+
+        # main prompt
+        prompt = [
+            "dmenu",
+            "-h",
+            "45",
+            "-l",
+            # "0",
+            "10",
+            "-W",
+            f"{width}",
+            "-X",
+            f"{x}",
+            "-Y",
+            f"{y}",
+        ]
+    else:
+        # if can't get screen resolution, use the default prompt
+        # main prompt
+        prompt = ["dmenu", "-h", "40", "-l", "12"]
+
+    return prompt
+
+
+def rofi_prompt(wm: None | str) -> list:
+    # if 'wm' is not given, the if statment will be false
+    script_path = path(
+        f"~/.config/{wm}/external_configs/rofi/launcher.rasi"
+    ).expanduser()
+
+    if script_path.is_file():
+        # if config is found at specific directory, use it
+        prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
+    else:
+        # if window-manager name is not given,
+        # use default 'rofi' theme
+        prompt = [
+            "rofi",
+            "-dmenu",
+            "-i",
+        ]
+
+    return prompt
+
+
 # --------------------------------------------
 # functions for changing lockscreen wallpapers
 # --------------------------------------------
@@ -346,7 +381,7 @@ def change_wallpaper(colorscheme: str, wm: str, random_wall: str) -> None:
 # ---------------------------------
 # all colorscheme switcher function
 # ---------------------------------
-def change_colorscheme(colorscheme: str, wm: str) -> None:
+def modify_colorscheme(colorscheme: str, wm: str | None) -> None:
     if colorscheme == "catppuccin_macchiato":
         nvim_color("base16-catppuccin-macchiato")
     elif colorscheme == "dracula":
@@ -385,63 +420,15 @@ def change_colorscheme(colorscheme: str, wm: str) -> None:
 # --------------
 # main functions
 # --------------
-def handle_colorscheme(menu: str, wm: str | None = None) -> bool:
+def change_colorscheme(menu: str, wm: str | None = None) -> bool:
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
-        screen_res = get_screen_resolution()
-
-        if screen_res:
-            # calculate screen dimensions to
-            # display the menu at the center of the screen
-            res_x, res_y = int(screen_res[0]), int(screen_res[1])
-            width = 500
-            height = 40 * 10
-            # 'x' is the x-position of the window's upper left corner
-            # 'y' is the y-position of the window's upper left corner
-            x = (res_x // 2) - (width // 2)
-            y = (res_y // 2) - (height // 2)
-
-            # main prompt
-            prompt = [
-                "dmenu",
-                "-h",
-                "45",
-                "-l",
-                # "0",
-                "10",
-                "-W",
-                f"{width}",
-                "-X",
-                f"{x}",
-                "-Y",
-                f"{y}",
-            ]
-        else:
-            # if can't get screen resolution, use the default prompt
-            # main prompt
-            prompt = ["dmenu", "-h", "40", "-l", "12"]
-
+        prompt = dmenu_prompt()
         # extra things to add to the prompt
         prompt_extra = ["-p", "Colorscheme:"]
     elif menu == "rofi":
-        if wm:
-            # if window-manager name is given,
-            # use specific path for 'rofi' theme
-            script_path = path(
-                f"~/.config/{wm}/external_configs/rofi/script_menu.rasi"
-            ).expanduser()
-
-            prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
-        else:
-            # if window-manager name is not given,
-            # use default 'rofi' theme
-            prompt = [
-                "rofi",
-                "-dmenu",
-                "-i",
-            ]
-
-            # extra things to add to the prompt
+        prompt = rofi_prompt(wm)
+        # extra things to add to the prompt
         prompt_extra = ["-p", "Choose a colorscheme: "]
     else:
         return False
@@ -488,7 +475,7 @@ def handle_colorscheme(menu: str, wm: str | None = None) -> bool:
         wallpaper_list = get_wallpapers(colorscheme=choice)
         random_wall = random.choice(wallpaper_list)
 
-        change_colorscheme(choice, wm)
+        modify_colorscheme(choice, wm)
         change_wallpaper(choice, wm, random_wall)
         change_lockscreen(colorscheme=choice, random_wall=random_wall)
 
@@ -531,7 +518,7 @@ def main() -> None:
 
     # 'window-manager' is accessed by 'window_manager'
     if args.menu and args.window_manager:
-        status_success = handle_colorscheme(menu=args.menu, wm=args.window_manager)
+        status_success = change_colorscheme(menu=args.menu, wm=args.window_manager)
     else:
         arg_parser.print_help()
         sys.exit(1)

@@ -108,6 +108,61 @@ def logout(wm: str) -> None:
         )
 
 
+# -------------------------------
+# functions creating menu prompts
+# -------------------------------
+def dmenu_prompt() -> list:
+    screen_res = get_screen_resolution()
+
+    if screen_res:
+        # calculate screen dimensions to
+        # display the menu at the center of the screen
+        res_x, res_y = int(screen_res[0]), int(screen_res[1])
+        width = 500
+        height = 40 * 10
+        # 'x' is the x-position of the window's upper left corner
+        # 'y' is the y-position of the window's upper left corner
+        x = (res_x // 2) - (width // 2)
+        y = (res_y // 2) - (height // 2)
+
+        # main prompt
+        prompt = [
+            "dmenu",
+            "-h",
+            "45",
+            "-l",
+            "10",
+            "-W",
+            f"{width}",
+            "-X",
+            f"{x}",
+            "-Y",
+            f"{y}",
+        ]
+    else:
+        # if can't get screen resolution, use the default prompt
+        # main prompt
+        prompt = ["dmenu", "-h", "45", "-l", "12"]
+
+    return prompt
+
+
+def rofi_prompt(wm: None | str) -> list:
+    # if 'wm' is not given, the if statment will be false
+    script_path = path(
+        f"~/.config/{wm}/external_configs/rofi/script_menu.rasi"
+    ).expanduser()
+
+    if script_path.is_file():
+        # if config is found at specific directory, use it
+        prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
+    else:
+        # else use default config
+        prompt = ["rofi", "-dmenu", "-i"]
+
+    return prompt
+
+
 # --------------
 # main functions
 # --------------
@@ -117,52 +172,12 @@ def powermenu(menu: str, wm: str | None = None) -> bool:
 
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
-        screen_res = get_screen_resolution()
-
-        if screen_res:
-            # calculate screen dimensions to
-            # display the menu at the center of the screen
-            res_x, res_y = int(screen_res[0]), int(screen_res[1])
-            width = 500
-            height = 40 * 10
-            # 'x' is the x-position of the window's upper left corner
-            # 'y' is the y-position of the window's upper left corner
-            x = (res_x // 2) - (width // 2)
-            y = (res_y // 2) - (height // 2)
-
-            # main prompt
-            prompt = [
-                "dmenu",
-                "-h",
-                "45",
-                "-l",
-                "10",
-                "-W",
-                f"{width}",
-                "-X",
-                f"{x}",
-                "-Y",
-                f"{y}",
-            ]
-        else:
-            # if can't get screen resolution, use the default prompt
-            # main prompt
-            prompt = ["dmenu", "-h", "45", "-l", "12"]
-
+        prompt = dmenu_prompt()
+        # extra things to add to the prompt
         prompt_extra = ["-p", uptime]
     elif menu == "rofi":
-        # if 'wm' is not given, the if statment will be false
-        script_path = path(
-            f"~/.config/{wm}/external_configs/rofi/script_menu.rasi"
-        ).expanduser()
-
-        if script_path.is_file():
-            # if config is found at specific directory, use it
-            prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
-        else:
-            # else use default config
-            prompt = ["rofi", "-dmenu", "-i"]
-
+        prompt = rofi_prompt(wm)
+        # extra things to add to the prompt
         prompt_extra = ["-p", host, "-mesg", uptime]
     else:
         return False

@@ -40,7 +40,7 @@ def clipboard(menu: str, wm: str | None = None) -> bool:
             # display the menu at the center of the screen
             res_x, res_y = int(screen_res[0]), int(screen_res[1])
             width = 1000
-            height = 40 * 10
+            height = 45 * 10
             # 'x' is the x-position of the window's upper left corner
             # 'y' is the y-position of the window's upper left corner
             x = (res_x // 2) - (width // 2)
