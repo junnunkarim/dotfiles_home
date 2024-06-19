@@ -1,0 +1,74 @@
+! need to add a prefix or else there will be conflict
+<* for name, value in colors *>#define mat_dwm_{{name}} {{value.dark.hex}}
+<* endfor *>
+
+! changes icon fg color of the bar
+dwm.normfgcolor                : mat_dwm_tertiary
+! changes icon bg color of the bar
+dwm.normbgcolor                : mat_dwm_on_primary_fixed
+! changes border color of the bar
+dwm.normbordercolor            : mat_dwm_on_primary_fixed
+! not needed
+dwm.normfloatcolor             : mat_dwm_primary
+
+! not needed
+dwm.selfgcolor                 : mat_dwm_primary
+! not needed
+dwm.selbgcolor                 : mat_dwm_primary
+! changes window border color
+dwm.selbordercolor             : mat_dwm_primary
+! changes floating window border color
+dwm.selfloatcolor              : mat_dwm_tertiary
+
+! changes titlebar fg color when window is not focused or there is no window
+dwm.titlenormfgcolor           : mat_dwm_on_surface_variant
+! changes titlebar bg color when window is not focused or there is no window
+dwm.titlenormbgcolor           : mat_dwm_on_primary_fixed
+! not needed
+dwm.titlenormbordercolor       : mat_dwm_primary
+! not needed
+dwm.titlenormfloatcolor        : mat_dwm_primary
+
+! changes titlebar fg color when window is focused
+dwm.titleselfgcolor            : mat_dwm_primary
+! changes titlebar bg color when window is focused
+dwm.titleselbgcolor            : mat_dwm_on_primary_fixed
+! not needed
+dwm.titleselbordercolor        : mat_dwm_primary
+! not needed
+dwm.titleselfloatcolor         : mat_dwm_primary
+
+! changes tag fg color when tag is not focused
+dwm.tagsnormfgcolor            : mat_dwm_on_primary_fixed
+! changes tag bg color when tag is not focused
+dwm.tagsnormbgcolor            : mat_dwm_primary
+! not needed
+dwm.tagsnormbordercolor        : mat_dwm_primary
+! not needed
+dwm.tagsnormfloatcolor         : mat_dwm_primary
+
+! changes tag fg color when tag is focused
+dwm.tagsselfgcolor             : mat_dwm_on_primary_container
+! changes tag bg color when tag is focused
+dwm.tagsselbgcolor             : mat_dwm_primary_container
+! not needed
+dwm.tagsselbordercolor         : mat_dwm_primary
+! not needed
+dwm.tagsselfloatcolor          : mat_dwm_primary
+
+! changes titlebar fg color when window is hidden and not focused
+dwm.hidnormfgcolor             : mat_dwm_outline
+! changes titlebar bg color when window is hidden and not focused
+dwm.hidnormbgcolor             : mat_dwm_on_primary
+
+! changes titlebar fg color when window is hidden and focused
+dwm.hidselfgcolor              : mat_dwm_error
+! changes titlebar bg color when window is hidden and focused
+dwm.hidselbgcolor              : mat_dwm_on_primary
+
+! changes tag fg color when there is a urgent window on that tag
+dwm.urgfgcolor                 : mat_dwm_on_error
+! changes tag bg color when there is a urgent window on that tag
+dwm.urgbgcolor                 : mat_dwm_error
+dwm.urgbordercolor             : mat_dwm_error
+dwm.urgfloatcolor              : mat_dwm_error

@@ -1,0 +1,30 @@
+! need to add a prefix or else there will be conflict
+
+<* for name, value in colors *>#define mat_dmenu_{{name}} {{value.dark.hex}}
+<* endfor *>
+
+! changes fg color of non-selected entries
+dmenu.foreground: mat_dmenu_primary_fixed
+! changes bg color of non-selected entries
+dmenu.background: mat_dmenu_on_primary_fixed
+
+! changes fg color of selected entry
+dmenu.selforeground: mat_dmenu_on_primary
+! changes bg color of selected entry
+dmenu.selbackground: mat_dmenu_primary
+
+dmenu.outforeground: mat_dmenu_primary
+dmenu.outbackground: mat_dmenu_on_primary
+
+! changes dmenu border color
+dmenu.bordercolor: mat_dmenu_primary
+
+! changes highlight fg color of non-selected entry
+dmenu.hlforeground: mat_dmenu_error
+! changes highlight bg color of non-selected entry
+dmenu.hlbackground: mat_dmenu_on_primary_fixed
+
+! changes highlight fg color of selected entry
+dmenu.selhlforeground: mat_dmenu_error
+! changes highlight bg color of selected entry
+dmenu.selhlbackground: mat_dmenu_on_primary

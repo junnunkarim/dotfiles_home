@@ -8,15 +8,23 @@ kitty = false
 gtk_theme = false
 dunst = false
 
-[config.colors_to_harmonize]
-red = "#fb4934"
-orange = "#fe8019"
-yellow = "#fabd2f"
-green = "#b8bb26"
-blue = "#83a598"
-cyan = "#94e2d5"
-magenta = "#d3869b"
+[config.custom_colors]
+red = { color = "#ff0000", blend = false }
+orange = { color = "#ffa500", blend = false }
+yellow = { color = "#ffff00", blend = false }
+green = { color = "#008000", blend = false }
+blue = { color = "#0000ff", blend = false }
+cyan = { color = "#00ffff", blend = false }
+purple = { color = "#800080", blend = false }
+magenta = { color = "#ff00ff", blend = false }
 
 [templates]
-kitty = { input_path = '~/.config/matugen/templates/kitty.conf', output_path = '~/.config/kitty/colorschemes/matugen.conf'}
-rofi = { input_path = '~/.config/matugen/templates/rofi.rasi', output_path = '~/.config/qtile/external_configs/rofi/colorschemes/matugen.rasi'}
+kitty = {input_path = '~/.config/matugen/templates/kitty.conf', output_path = '~/.config/kitty/colorschemes/matugen.conf'}
+
+rofi = {input_path = '~/.config/matugen/templates/rofi.rasi', output_path = '~/.config/qtile/external_configs/rofi/colorschemes/matugen.rasi'}
+
+dwm = {input_path = '~/.config/matugen/templates/dwm.xresources', output_path = '~/.config/dwm/xcolors_dwm/matugen'}
+luastatus_colors = {input_path = '~/.config/matugen/templates/luastatus_colors.lua', output_path = '~/.config/dwm/luastatus/colorscheme/helper/matugen_colors.lua'}
+luastatus_modules = {input_path = '~/.config/matugen/templates/luastatus_modules.lua', output_path = '~/.config/dwm/luastatus/colorscheme/matugen.lua'}
+
+dmenu = {input_path = '~/.config/matugen/templates/dmenu.xresources', output_path = '~/.config/dmenu/xcolors_dmenu/matugen'}
