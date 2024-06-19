@@ -54,6 +54,7 @@ def dmenu_prompt() -> list:
             f"{x}",
             "-Y",
             f"{y}",
+            "-i",
         ]
     else:
         # if can't get screen resolution,

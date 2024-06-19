@@ -1,30 +1,17 @@
 #!/usr/bin/env python
 
-import sys
-import subprocess
-import argparse
-import re
+from sys import argv
+from argparse import ArgumentParser
+from pathlib import Path
+from re import compile as re_compile
 
-from pathlib import Path as path
+from helper.class_dmenu import Dmenu
+from helper.functions import fail_exit
 
 
 # ----------------
 # helper functions
 # ----------------
-def get_screen_resolution():
-    command = ["xrandr"]
-    output = subprocess.check_output(command).decode()
-
-    for line in output.splitlines():
-        if "current" in line:
-            resolution = line.split("current ")[1].split(",")[0].strip().split(" x ")
-            break
-    else:
-        resolution = None
-
-    return resolution
-
-
 def keybindings_to_string(key: str, description: str, max_length: int) -> str:
     # calculate available space for the description
     space_available = max_length - len(key) - 1
@@ -39,25 +26,27 @@ def keybindings_to_string(key: str, description: str, max_length: int) -> str:
 
 
 def parse_keybindings(
-    wm: str, file_path: path | None = None, max_length: int = 200
+    wm: str, file_path: Path | None = None, max_length: int = 200
 ) -> list[str]:
     if not file_path:
         if wm == "dwm":
-            file_path = path("~/.config/dwm/src/config.h").expanduser()
+            file_path = Path("~/.config/dwm/src/config.h").expanduser()
         # elif wm == "qtile":
         #     file_path = f"{path('~/.config/dwm/src/config.h').expanduser()}"
         else:
-            file_path = path("~/.config/dwm/src/config.h").expanduser()
+            fail_exit(error=f"{wm} config file with keybindings not found!")
+            return []
 
     if not file_path.is_file():
-        return []
+        fail_exit(error=f"{wm} config file with keybindings not found!")
 
     # Regular expression to match the desired comment pattern
     if wm == "dwm":
-        pattern = re.compile(r"//desc:\s*(.+?)\s*\|\s*(.+)")
+        pattern = re_compile(r"//desc:\s*(.+?)\s*\|\s*(.+)")
     elif wm == "qtile":
-        pattern = re.compile(r"#desc:\s*(.+?)\s*\|\s*(.+)")
+        pattern = re_compile(r"#desc:\s*(.+?)\s*\|\s*(.+)")
     else:
+        fail_exit(error=f"Window manager - {wm} is not supported!")
         return []
 
     keybindings = []
@@ -80,43 +69,9 @@ def parse_keybindings(
 # -------------------------------
 # functions creating menu prompts
 # -------------------------------
-def dmenu_prompt(width: int = 1000) -> list:
-    screen_res = get_screen_resolution()
-
-    if not screen_res:
-        # if can't get screen resolution,
-        # use the default prompt
-        return ["dmenu", "-l", "12"]
-
-    # calculate screen dimensions to
-    # display the menu at the center of the screen
-    res_x, res_y = int(screen_res[0]), int(screen_res[1])
-
-    height = 45 * 10
-    # 'x' is the x-position of the window's upper left corner
-    # 'y' is the y-position of the window's upper left corner
-    x = (res_x // 2) - (width // 2)
-    y = (res_y // 2) - (height // 2)
-
-    # main prompt
-    return [
-        "dmenu",
-        "-h",
-        "45",
-        "-l",
-        "10",
-        "-W",
-        f"{width}",
-        "-X",
-        f"{x}",
-        "-Y",
-        f"{y}",
-    ]
-
-
 def rofi_prompt(wm: None | str) -> list:
     # if 'wm' is not given, the if statment will be false
-    script_path = path(
+    script_path = Path(
         f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
     ).expanduser()
 
@@ -132,38 +87,41 @@ def rofi_prompt(wm: None | str) -> list:
 # --------------
 # main functions
 # --------------
-def keybindings(menu: str, wm: str, file_path: path | None = None) -> bool:
+def keybindings(menu: str, wm: str, file_path: Path | None = None) -> None:
     str_width = 85
     keybindings = parse_keybindings(wm, file_path, str_width)
 
     if not keybindings:
-        return False
+        fail_exit(error="Keybindings for {wm} is empty")
+        return
 
     keybindings = "\n".join(keybindings) + "\n"
 
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
-        dmenu_width = 950
-        prompt = dmenu_prompt(dmenu_width)
-        # extra things to add to the prompt
-        prompt_extra = ["-p", "Keybindings:"]
-    elif menu == "rofi":
-        prompt = rofi_prompt(wm)
-        # extra things to add to the prompt
-        prompt_extra = ["-p", "Keybindings"]
+        menu_obj = Dmenu(
+            width=950,
+            line=12,
+        )
+    # elif menu == "rofi":
+    #     prompt = rofi_prompt(wm)
+    #     # extra things to add to the prompt
+    #     prompt_extra = ["-p", "Keybindings"]
     else:
-        return False
+        fail_exit(error=f"Menu - '{menu}' is not recognized!")
+        return  # for supressing warnings
 
-    subprocess.run(prompt + prompt_extra, input=keybindings, text=True)
-
-    return True
+    menu_obj.show(
+        entries=keybindings,
+        prompt_name="Keybindings:",
+    )
 
 
 def main() -> None:
     wms = ["dwm", "qtile"]
     menus = ["dmenu", "rofi"]
 
-    arg_parser = argparse.ArgumentParser(description="show all keybindings")
+    arg_parser = ArgumentParser(description="show all keybindings")
     # define necessary cli arguments
     arg_parser.add_argument(
         "-m",
@@ -187,31 +145,25 @@ def main() -> None:
     )
 
     # if no cli arguments are provided, show the help message and exit
-    if len(sys.argv) <= 1:
+    if len(argv) <= 1:
         arg_parser.print_help()
-        sys.exit(1)
+        fail_exit()
 
     # parse all cli arguments
     args = arg_parser.parse_args()
 
     # 'window-manager' is accessed by 'window_manager'
     if args.menu and args.window_manager and args.file_path:
-        status_success = keybindings(
+        keybindings(
             menu=args.menu,
             wm=args.window_manager,
-            file_path=path(args.key_file).expanduser(),
+            file_path=Path(args.key_file).expanduser(),
         )
     elif args.menu and args.window_manager:
-        status_success = keybindings(menu=args.menu, wm=args.window_manager)
+        keybindings(menu=args.menu, wm=args.window_manager)
     else:
         arg_parser.print_help()
-        sys.exit(1)
-
-    if not status_success:
-        print("Error!")
-        sys.exit(1)
-    else:
-        sys.exit()
+        fail_exit()
 
 
 if __name__ == "__main__":

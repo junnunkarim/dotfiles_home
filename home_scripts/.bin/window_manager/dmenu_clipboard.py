@@ -1,111 +1,33 @@
 #!/usr/bin/env python
 
-import sys
-import subprocess
-import argparse
+from sys import argv
+from argparse import ArgumentParser
+from pathlib import Path
+from subprocess import run, check_output
 
-from pathlib import Path as path
-
-
-# ----------------
-# helper functions
-# ----------------
-def get_screen_resolution() -> list[str] | None:
-    # use xrandr to get screen information
-    # was tested on 'xrandr' version 1.5.2
-    command = ["xrandr"]
-    output = subprocess.check_output(command).decode()
-
-    for line in output.splitlines():
-        if "current" in line:
-            # extract screen resolution from 'xrandr' output
-            resolution = line.split("current ")[1].split(",")[0].strip().split(" x ")
-            break
-    else:
-        resolution = None
-
-    return resolution
-
-
-# -------------------------------
-# functions creating menu prompts
-# -------------------------------
-def dmenu_prompt(width: int = 1000) -> list:
-    screen_res = get_screen_resolution()
-
-    if screen_res:
-        # calculate screen dimensions to
-        # display the menu at the center of the screen
-        res_x, res_y = int(screen_res[0]), int(screen_res[1])
-        width = 1000
-        height = 45 * 10
-        # 'x' is the x-position of the window's upper left corner
-        # 'y' is the y-position of the window's upper left corner
-        x = (res_x // 2) - (width // 2)
-        y = (res_y // 2) - (height // 2)
-
-        # main prompt
-        prompt = [
-            "dmenu",
-            "-h",
-            "45",
-            "-l",
-            # "0",
-            "10",
-            "-W",
-            f"{width}",
-            "-X",
-            f"{x}",
-            "-Y",
-            f"{y}",
-        ]
-    else:
-        # if can't get screen resolution,
-        # use the default prompt
-        prompt = ["dmenu", "-h", "40", "-l", "12"]
-
-    return prompt
-
-
-def rofi_prompt(wm: None | str) -> list:
-    # if 'wm' is not given, the if statment will be false
-    script_path = path(
-        f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
-    ).expanduser()
-
-    if not script_path.is_file():
-        # if window-manager name is not given,
-        # use default 'rofi' theme
-        return ["rofi", "-dmenu"]
-
-    # if config is found at specific directory, use it
-    return ["rofi", "-dmenu", "-theme", f"{script_path}"]
+from helper.class_dmenu import Dmenu
+from helper.functions import fail_exit
 
 
 # --------------
 # main functions
 # --------------
-def clipboard(menu: str, wm: str | None = None) -> bool:
+def clipboard(menu: str, wm: str | None = None) -> None:
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
-        dmenu_width = 950
-        prompt = dmenu_prompt(dmenu_width)
-        # extra things to add to the prompt
-        prompt_extra = ["-p", "Clipboard:"]
+        menu_obj = Dmenu(
+            width=950,
+            line=12,
+        )
 
         greenclip_history_cmd = ["greenclip", "print"]
         # get clipboard history from greenclip
-        greenclip_history = subprocess.run(
-            greenclip_history_cmd, text=True, capture_output=True, check=True
-        )
+        greenclip_history = check_output(greenclip_history_cmd)
 
         # user selected history
-        selection = subprocess.run(
-            prompt + prompt_extra,
-            input=greenclip_history.stdout,
-            text=True,
-            capture_output=True,
-            check=True,
+        selection = menu_obj.get_selection(
+            entries=greenclip_history.decode(),
+            prompt_name="Clipboard:",
         )
 
         greenclip_execute_cmd = [
@@ -119,15 +41,15 @@ def clipboard(menu: str, wm: str | None = None) -> bool:
             "print",
             "{}",
         ]
-        subprocess.run(
+
+        run(
             greenclip_execute_cmd,
-            input=selection.stdout,
+            input=selection,
             text=True,
-            check=True,
         )
     elif menu == "rofi":
         # if 'wm' is not given, the if statment will be false
-        script_path = path(
+        script_path = Path(
             f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
         ).expanduser()
 
@@ -157,18 +79,17 @@ def clipboard(menu: str, wm: str | None = None) -> bool:
                 "'{cmd}'",
             ]
 
-        subprocess.run(prompt, text=True, check=True)
+        run(prompt, text=True, check=True)
     else:
-        return False
-
-    return True
+        fail_exit(error=f"Menu - '{menu}' is not recognized!")
+        return  # for supressing warnings
 
 
 def main() -> None:
     wms = ["dwm", "qtile"]
     menus = ["dmenu", "rofi"]
 
-    arg_parser = argparse.ArgumentParser(description="spawn a popup clipboard")
+    arg_parser = ArgumentParser(description="spawn a popup clipboard")
     # define necessary cli arguments
     arg_parser.add_argument(
         "-m",
@@ -188,27 +109,21 @@ def main() -> None:
     )
 
     # if no cli arguments are provided, show the help message and exit
-    if len(sys.argv) <= 1:
+    if len(argv) <= 1:
         arg_parser.print_help()
-        sys.exit(1)
+        fail_exit()
 
     # parse all cli arguments
     args = arg_parser.parse_args()
 
     # 'window-manager' is accessed by 'window_manager'
     if args.menu and args.window_manager:
-        status_success = clipboard(menu=args.menu, wm=args.window_manager)
+        clipboard(menu=args.menu, wm=args.window_manager)
     elif args.menu:
-        status_success = clipboard(menu=args.menu)
+        clipboard(menu=args.menu)
     else:
         arg_parser.print_help()
-        sys.exit(1)
-
-    if not status_success:
-        print("Error!")
-        sys.exit(1)
-    else:
-        sys.exit()
+        fail_exit()
 
 
 if __name__ == "__main__":

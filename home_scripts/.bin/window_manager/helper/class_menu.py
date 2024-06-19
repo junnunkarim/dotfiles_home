@@ -78,11 +78,16 @@ class Menu:
     def show(
         self,
         entries: str,
+        prompt_name: str = "",
         extra_prompt: list = [],
         *args,
         **kargs,
     ) -> None:
-        output = run(self._main_prompt + extra_prompt, input=entries, encoding="utf-8")
+        output = run(
+            self._main_prompt + ["-p", prompt_name] + extra_prompt,
+            input=entries,
+            encoding="utf-8",
+        )
 
         if output.returncode:
             fail_exit(exit_code=output.returncode)

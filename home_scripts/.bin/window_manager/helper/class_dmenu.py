@@ -4,9 +4,10 @@ from .class_menu import Menu
 class Dmenu(Menu):
     def __init__(
         self,
+        main_prompt=["dmenu", "-h", "40", "-l", "12"],
         width: int = 500,
-        height: int = 45 * 10,
-        line: int = 10,
+        height: int = 45,
+        line: int = 12,
     ) -> None:
         screen_res = self._get_screen_resolution()
 
@@ -17,7 +18,7 @@ class Dmenu(Menu):
             # 'x' is the x-position of the window's upper left corner
             # 'y' is the y-position of the window's upper left corner
             x = (res_x // 2) - (width // 2)
-            y = (res_y // 2) - (height // 2)
+            y = (res_y // 2) - (height * line // 2)
 
             # main prompt
             main_prompt = [
@@ -33,10 +34,7 @@ class Dmenu(Menu):
                 f"{x}",
                 "-Y",
                 f"{y}",
+                "-i",
             ]
-        else:
-            # if can't get screen resolution, use the default prompt
-            # main prompt
-            main_prompt = ["dmenu", "-h", "40", "-l", "12"]
 
         super().__init__(main_prompt)

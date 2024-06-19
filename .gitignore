@@ -1,2 +1,4 @@
 lazy-lock.json
 *.o
+__pycache__
+.ruff_cache
