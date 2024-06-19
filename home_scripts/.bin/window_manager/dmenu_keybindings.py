@@ -25,7 +25,22 @@ def get_screen_resolution():
     return resolution
 
 
-def parse_keybindings(wm: str, file_path: path | None = None) -> dict:
+def keybindings_to_string(key: str, description: str, max_length: int) -> str:
+    # calculate available space for the description
+    space_available = max_length - len(key) - 1
+
+    if len(description) > space_available:
+        description = (
+            description[: space_available - 3] + "..."
+        )  # truncate value if necessary
+
+    # return formatted line
+    return f"{key.ljust(max_length - len(description) - 1)}{description}"
+
+
+def parse_keybindings(
+    wm: str, file_path: path | None = None, max_length: int = 200
+) -> list[str]:
     if not file_path:
         if wm == "dwm":
             file_path = path("~/.config/dwm/src/config.h").expanduser()
@@ -34,43 +49,32 @@ def parse_keybindings(wm: str, file_path: path | None = None) -> dict:
         else:
             file_path = path("~/.config/dwm/src/config.h").expanduser()
 
-    keybindings = {}
+    if not file_path.is_file():
+        return []
 
-    if file_path.is_file():
-        # Regular expression to match the desired comment pattern
-        if wm == "dwm":
-            pattern = re.compile(r"//desc:\s*(.+?)\s*\|\s*(.+)")
-        elif wm == "qtile":
-            pattern = re.compile(r"#desc:\s*(.+?)\s*\|\s*(.+)")
-        else:
-            pattern = re.compile(r"//desc:\s*(.+?)\s*\|\s*(.+)")
+    # Regular expression to match the desired comment pattern
+    if wm == "dwm":
+        pattern = re.compile(r"//desc:\s*(.+?)\s*\|\s*(.+)")
+    elif wm == "qtile":
+        pattern = re.compile(r"#desc:\s*(.+?)\s*\|\s*(.+)")
+    else:
+        return []
 
-        with open(file_path, "r") as file:
-            for line in file:
-                match = pattern.search(line)
-                if match:
-                    key_combination = match.group(1).strip()
-                    description = match.group(2).strip()
-                    keybindings[key_combination] = description
+    keybindings = []
+
+    with open(file_path, "r") as file:
+        for line in file:
+            match = pattern.search(line)
+
+            if match:
+                key_combination = match.group(1).strip()
+                description = match.group(2).strip()
+
+                keybindings.append(
+                    keybindings_to_string(key_combination, description, max_length)
+                )
 
     return keybindings
-
-
-def keybindings_to_string(keybindings, max_length=200):
-    result = []
-
-    for key, value in keybindings.items():
-        # calculate available space for the description
-        space_available = max_length - len(key) - 1
-
-        if len(value) > space_available:
-            value = value[: space_available - 3] + "..."  # truncate value if necessary
-
-        # format each line
-        formatted_line = f"{key.ljust(max_length - len(value) - 1)}{value}"
-        result.append(formatted_line)
-
-    return "\n".join(result) + "\n"
 
 
 # -------------------------------
@@ -79,37 +83,35 @@ def keybindings_to_string(keybindings, max_length=200):
 def dmenu_prompt(width: int = 1000) -> list:
     screen_res = get_screen_resolution()
 
-    if screen_res:
-        # calculate screen dimensions to
-        # display the menu at the center of the screen
-        res_x, res_y = int(screen_res[0]), int(screen_res[1])
-
-        height = 45 * 10
-        # 'x' is the x-position of the window's upper left corner
-        # 'y' is the y-position of the window's upper left corner
-        x = (res_x // 2) - (width // 2)
-        y = (res_y // 2) - (height // 2)
-
-        # main prompt
-        prompt = [
-            "dmenu",
-            "-h",
-            "45",
-            "-l",
-            "10",
-            "-W",
-            f"{width}",
-            "-X",
-            f"{x}",
-            "-Y",
-            f"{y}",
-        ]
-    else:
+    if not screen_res:
         # if can't get screen resolution,
         # use the default prompt
-        prompt = ["dmenu", "-h", "45", "-l", "12"]
+        return ["dmenu", "-l", "12"]
 
-    return prompt
+    # calculate screen dimensions to
+    # display the menu at the center of the screen
+    res_x, res_y = int(screen_res[0]), int(screen_res[1])
+
+    height = 45 * 10
+    # 'x' is the x-position of the window's upper left corner
+    # 'y' is the y-position of the window's upper left corner
+    x = (res_x // 2) - (width // 2)
+    y = (res_y // 2) - (height // 2)
+
+    # main prompt
+    return [
+        "dmenu",
+        "-h",
+        "45",
+        "-l",
+        "10",
+        "-W",
+        f"{width}",
+        "-X",
+        f"{x}",
+        "-Y",
+        f"{y}",
+    ]
 
 
 def rofi_prompt(wm: None | str) -> list:
@@ -118,39 +120,31 @@ def rofi_prompt(wm: None | str) -> list:
         f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
     ).expanduser()
 
-    if script_path.is_file():
-        # if config is found at specific directory, use it
-        prompt = [
-            "rofi",
-            "-dmenu",
-            "-theme",
-            f"{script_path}",
-        ]
-    else:
+    if not script_path.is_file():
         # if window-manager name is not given,
         # use default 'rofi' theme
-        prompt = [
-            "rofi",
-            "-dmenu",
-        ]
+        return ["rofi", "-dmenu"]
 
-    return prompt
+    # if config is found at specific directory, use it
+    return ["rofi", "-dmenu", "-theme", f"{script_path}"]
 
 
 # --------------
 # main functions
 # --------------
 def keybindings(menu: str, wm: str, file_path: path | None = None) -> bool:
-    keybindings = parse_keybindings(wm, file_path)
+    str_width = 85
+    keybindings = parse_keybindings(wm, file_path, str_width)
 
     if not keybindings:
         return False
 
-    keybindigs_str = keybindings_to_string(keybindings, max_length=85)
+    keybindings = "\n".join(keybindings) + "\n"
 
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
-        prompt = dmenu_prompt(950)
+        dmenu_width = 950
+        prompt = dmenu_prompt(dmenu_width)
         # extra things to add to the prompt
         prompt_extra = ["-p", "Keybindings:"]
     elif menu == "rofi":
@@ -160,7 +154,7 @@ def keybindings(menu: str, wm: str, file_path: path | None = None) -> bool:
     else:
         return False
 
-    subprocess.run(prompt + prompt_extra, input=keybindigs_str, text=True)
+    subprocess.run(prompt + prompt_extra, input=keybindings, text=True)
 
     return True
 

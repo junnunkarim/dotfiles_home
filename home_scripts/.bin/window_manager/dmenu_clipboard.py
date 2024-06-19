@@ -27,49 +27,87 @@ def get_screen_resolution() -> list[str] | None:
     return resolution
 
 
+# -------------------------------
+# functions creating menu prompts
+# -------------------------------
+def dmenu_prompt(width: int = 1000) -> list:
+    screen_res = get_screen_resolution()
+
+    if screen_res:
+        # calculate screen dimensions to
+        # display the menu at the center of the screen
+        res_x, res_y = int(screen_res[0]), int(screen_res[1])
+        width = 1000
+        height = 45 * 10
+        # 'x' is the x-position of the window's upper left corner
+        # 'y' is the y-position of the window's upper left corner
+        x = (res_x // 2) - (width // 2)
+        y = (res_y // 2) - (height // 2)
+
+        # main prompt
+        prompt = [
+            "dmenu",
+            "-h",
+            "45",
+            "-l",
+            # "0",
+            "10",
+            "-W",
+            f"{width}",
+            "-X",
+            f"{x}",
+            "-Y",
+            f"{y}",
+        ]
+    else:
+        # if can't get screen resolution,
+        # use the default prompt
+        prompt = ["dmenu", "-h", "40", "-l", "12"]
+
+    return prompt
+
+
+def rofi_prompt(wm: None | str) -> list:
+    # if 'wm' is not given, the if statment will be false
+    script_path = path(
+        f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
+    ).expanduser()
+
+    if not script_path.is_file():
+        # if window-manager name is not given,
+        # use default 'rofi' theme
+        return ["rofi", "-dmenu"]
+
+    # if config is found at specific directory, use it
+    return ["rofi", "-dmenu", "-theme", f"{script_path}"]
+
+
 # --------------
 # main functions
 # --------------
 def clipboard(menu: str, wm: str | None = None) -> bool:
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
-        screen_res = get_screen_resolution()
-
-        if screen_res:
-            # calculate screen dimensions to
-            # display the menu at the center of the screen
-            res_x, res_y = int(screen_res[0]), int(screen_res[1])
-            width = 1000
-            height = 45 * 10
-            # 'x' is the x-position of the window's upper left corner
-            # 'y' is the y-position of the window's upper left corner
-            x = (res_x // 2) - (width // 2)
-            y = (res_y // 2) - (height // 2)
-
-            # main prompt
-            prompt = [
-                "dmenu",
-                "-h",
-                "45",
-                "-l",
-                # "0",
-                "10",
-                "-W",
-                f"{width}",
-                "-X",
-                f"{x}",
-                "-Y",
-                f"{y}",
-            ]
-        else:
-            # if can't get screen resolution,
-            # use the default prompt
-            prompt = ["dmenu", "-h", "40", "-l", "12"]
-
+        dmenu_width = 950
+        prompt = dmenu_prompt(dmenu_width)
         # extra things to add to the prompt
         prompt_extra = ["-p", "Clipboard:"]
 
         greenclip_history_cmd = ["greenclip", "print"]
+        # get clipboard history from greenclip
+        greenclip_history = subprocess.run(
+            greenclip_history_cmd, text=True, capture_output=True, check=True
+        )
+
+        # user selected history
+        selection = subprocess.run(
+            prompt + prompt_extra,
+            input=greenclip_history.stdout,
+            text=True,
+            capture_output=True,
+            check=True,
+        )
+
         greenclip_execute_cmd = [
             "xargs",
             "-r",
@@ -81,24 +119,9 @@ def clipboard(menu: str, wm: str | None = None) -> bool:
             "print",
             "{}",
         ]
-
-        # get clipboard history from greenclip
-        greenclip_history = subprocess.run(
-            greenclip_history_cmd, text=True, capture_output=True, check=True
-        ).stdout.strip()
-
-        # user selected history
-        selection = subprocess.run(
-            prompt + prompt_extra,
-            input=greenclip_history,
-            text=True,
-            capture_output=True,
-            check=True,
-        ).stdout.strip()
-
         subprocess.run(
             greenclip_execute_cmd,
-            input=selection,
+            input=selection.stdout,
             text=True,
             check=True,
         )
