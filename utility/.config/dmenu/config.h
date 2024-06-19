@@ -4,8 +4,8 @@ static int fuzzy = 1;                       /* -F  option; if 0, dmenu doesn't u
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static char *fonts[] =
 {
-  // "Iosevka:style=Medium:size=17",
-  "Iosevka Nerd Font Mono:style=Medium:size=17"
+  "Iosevka:style=Medium:size=17",
+  "Iosevka Nerd Font Mono:style=Medium:size=24"
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *dynamic     = NULL;      /* -dy option; dynamic command to run on input change */
@@ -33,4 +33,3 @@ static const char worddelimiters[] = " ";
 
 /* Size of the window border */
 static unsigned int border_width = 0;
-

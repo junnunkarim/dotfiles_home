@@ -18,19 +18,29 @@
 #define orange1 #e69875
 #define orange2 #f57d26
 
+
+! changes fg color of non-selected entries
 dmenu.foreground: white
+! changes bg color of non-selected entries
 dmenu.background: black
 
+! changes fg color of selected entry
 dmenu.selforeground: black
+! changes bg color of selected entry
 dmenu.selbackground: green1
 
 dmenu.outforeground: red1
 dmenu.outbackground: black
 
+! changes dmenu border color
 dmenu.bordercolor: orange1
 
-dmenu.selhlforeground: orange1
-dmenu.selhlbackground: black
-
+! changes highlight fg color of non-selected entry
 dmenu.hlforeground: orange1
+! changes highlight bg color of non-selected entry
 dmenu.hlbackground: black
+
+! changes highlight fg color of selected entry
+dmenu.selhlforeground: orange1
+! changes highlight bg color of selected entry
+dmenu.selhlbackground: black

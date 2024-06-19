@@ -1,0 +1,126 @@
+! need to add a prefix or else there will be conflict
+
+#define mat_dmenu_background #111318
+#define mat_dmenu_blue #bec2ff
+#define mat_dmenu_blue_container #3e4278
+#define mat_dmenu_blue_source #0000ff
+#define mat_dmenu_blue_value #0000ff
+#define mat_dmenu_cyan #80d5d4
+#define mat_dmenu_cyan_container #004f4f
+#define mat_dmenu_cyan_source #00ffff
+#define mat_dmenu_cyan_value #00ffff
+#define mat_dmenu_error #ffb4ab
+#define mat_dmenu_error_container #93000a
+#define mat_dmenu_green #a5d396
+#define mat_dmenu_green_container #285020
+#define mat_dmenu_green_source #008000
+#define mat_dmenu_green_value #008000
+#define mat_dmenu_inverse_on_surface #2e3036
+#define mat_dmenu_inverse_primary #435e91
+#define mat_dmenu_inverse_surface #e2e2e9
+#define mat_dmenu_magenta #f1b3e6
+#define mat_dmenu_magenta_container #653661
+#define mat_dmenu_magenta_source #ff00ff
+#define mat_dmenu_magenta_value #ff00ff
+#define mat_dmenu_on_background #e2e2e9
+#define mat_dmenu_on_blue #272b60
+#define mat_dmenu_on_blue_container #e0e0ff
+#define mat_dmenu_on_cyan #003737
+#define mat_dmenu_on_cyan_container #9cf1f0
+#define mat_dmenu_on_error #690005
+#define mat_dmenu_on_error_container #ffdad6
+#define mat_dmenu_on_green #11380b
+#define mat_dmenu_on_green_container #c0efb0
+#define mat_dmenu_on_magenta #4c1f49
+#define mat_dmenu_on_magenta_container #ffd7f5
+#define mat_dmenu_on_orange #462a00
+#define mat_dmenu_on_orange_container #ffddb7
+#define mat_dmenu_on_primary #0e2f60
+#define mat_dmenu_on_primary_container #d7e2ff
+#define mat_dmenu_on_primary_fixed #001a40
+#define mat_dmenu_on_primary_fixed_variant #2a4678
+#define mat_dmenu_on_purple #4c1f49
+#define mat_dmenu_on_purple_container #ffd7f5
+#define mat_dmenu_on_red #561e16
+#define mat_dmenu_on_red_container #ffdad4
+#define mat_dmenu_on_secondary #283041
+#define mat_dmenu_on_secondary_container #dae2f9
+#define mat_dmenu_on_secondary_fixed #131c2c
+#define mat_dmenu_on_secondary_fixed_variant #3f4759
+#define mat_dmenu_on_surface #e2e2e9
+#define mat_dmenu_on_surface_variant #c4c6d0
+#define mat_dmenu_on_tertiary #3f2844
+#define mat_dmenu_on_tertiary_container #fbd7fc
+#define mat_dmenu_on_tertiary_fixed #29132e
+#define mat_dmenu_on_tertiary_fixed_variant #573e5b
+#define mat_dmenu_on_yellow #323200
+#define mat_dmenu_on_yellow_container #e8e78f
+#define mat_dmenu_orange #f7bb70
+#define mat_dmenu_orange_container #653e00
+#define mat_dmenu_orange_source #ffa500
+#define mat_dmenu_orange_value #ffa500
+#define mat_dmenu_outline #8e9099
+#define mat_dmenu_outline_variant #44474e
+#define mat_dmenu_primary #acc7ff
+#define mat_dmenu_primary_container #2a4678
+#define mat_dmenu_primary_fixed #d7e2ff
+#define mat_dmenu_primary_fixed_dim #acc7ff
+#define mat_dmenu_purple #f1b3e6
+#define mat_dmenu_purple_container #653661
+#define mat_dmenu_purple_source #800080
+#define mat_dmenu_purple_value #800080
+#define mat_dmenu_red #ffb4a8
+#define mat_dmenu_red_container #73342a
+#define mat_dmenu_red_source #ff0000
+#define mat_dmenu_red_value #ff0000
+#define mat_dmenu_scrim #000000
+#define mat_dmenu_secondary #bec6dc
+#define mat_dmenu_secondary_container #3f4759
+#define mat_dmenu_secondary_fixed #dae2f9
+#define mat_dmenu_secondary_fixed_dim #bec6dc
+#define mat_dmenu_shadow #000000
+#define mat_dmenu_source_color #20519a
+#define mat_dmenu_surface #111318
+#define mat_dmenu_surface_bright #37393e
+#define mat_dmenu_surface_container #1e2025
+#define mat_dmenu_surface_container_high #282a2f
+#define mat_dmenu_surface_container_highest #33353a
+#define mat_dmenu_surface_container_low #1a1b20
+#define mat_dmenu_surface_container_lowest #0c0e13
+#define mat_dmenu_surface_dim #111318
+#define mat_dmenu_surface_variant #44474e
+#define mat_dmenu_tertiary #debcdf
+#define mat_dmenu_tertiary_container #573e5b
+#define mat_dmenu_tertiary_fixed #fbd7fc
+#define mat_dmenu_tertiary_fixed_dim #debcdf
+#define mat_dmenu_yellow #cbcb76
+#define mat_dmenu_yellow_container #494900
+#define mat_dmenu_yellow_source #ffff00
+#define mat_dmenu_yellow_value #ffff00
+
+
+! changes fg color of non-selected entries
+dmenu.foreground: mat_dmenu_primary_fixed
+! changes bg color of non-selected entries
+dmenu.background: mat_dmenu_on_primary_fixed
+
+! changes fg color of selected entry
+dmenu.selforeground: mat_dmenu_on_primary
+! changes bg color of selected entry
+dmenu.selbackground: mat_dmenu_primary
+
+dmenu.outforeground: mat_dmenu_primary
+dmenu.outbackground: mat_dmenu_on_primary
+
+! changes dmenu border color
+dmenu.bordercolor: mat_dmenu_primary
+
+! changes highlight fg color of non-selected entry
+dmenu.hlforeground: mat_dmenu_error
+! changes highlight bg color of non-selected entry
+dmenu.hlbackground: mat_dmenu_on_primary_fixed
+
+! changes highlight fg color of selected entry
+dmenu.selhlforeground: mat_dmenu_error
+! changes highlight bg color of selected entry
+dmenu.selhlbackground: mat_dmenu_on_primary

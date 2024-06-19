@@ -1,0 +1,42 @@
+#define base #191724
+#define surface #1f1d2e
+#define overlay #26233a
+#define muted #6e6a86
+#define subtle #908caa
+#define text #e0def4
+#define love #eb6f92
+#define love_1 #b4637a
+#define gold #f6c177
+#define gold_1 #ea9d34
+#define rose #ebbcba
+#define rose_1 #d7827e
+#define foam #9ccfd8
+#define pine #31748f
+#define iris #c4a7e7
+#define iris_1 #907aa9
+
+! changes fg color of non-selected entries
+dmenu.foreground:       text
+! changes bg color of non-selected entries
+dmenu.background:       base
+
+! changes fg color of selected entry
+dmenu.selforeground:    base
+! changes bg color of selected entry
+dmenu.selbackground:    rose_1
+
+dmenu.outforeground:    love
+dmenu.outbackground:    base
+
+! changes dmenu border color
+dmenu.bordercolor:      rose_1
+
+! changes highlight fg color of non-selected entry
+dmenu.hlforeground:     gold
+! changes highlight bg color of non-selected entry
+dmenu.hlbackground:     base
+
+! changes highlight fg color of selected entry
+dmenu.selhlforeground:  gold
+! changes highlight bg color of selected entry
+dmenu.selhlbackground:  base

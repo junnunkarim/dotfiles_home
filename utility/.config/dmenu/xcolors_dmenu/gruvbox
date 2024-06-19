@@ -1,0 +1,45 @@
+#define white   #ebdbb2
+#define black   #282828
+#define black0  #1d2021
+#define gray1   #928374
+#define gray2   #a89984
+#define red1    #cc241d
+#define red2    #fb4934
+#define green1  #98971a
+#define green2  #b8bb26
+#define yellow1 #d79921
+#define yellow2 #fabd2f
+#define blue1   #458488
+#define blue2   #83a598
+#define purple1 #b16286
+#define purple2 #d3869b
+#define aqua1   #689d6a
+#define aqua2   #8ec07c
+#define orange1 #d65d0e
+#define orange2 #fe8019
+
+! changes fg color of non-selected entries
+dmenu.foreground:       white
+! changes bg color of non-selected entries
+dmenu.background:       black
+
+! changes fg color of selected entry
+dmenu.selforeground:    black
+! changes bg color of selected entry
+dmenu.selbackground:    orange2
+
+dmenu.outforeground:    red1
+dmenu.outbackground:    black
+
+! changes dmenu border color
+dmenu.bordercolor:      yellow2
+
+! changes highlight fg color of non-selected entry
+dmenu.hlforeground:     yellow2
+! changes highlight bg color of non-selected entry
+dmenu.hlbackground:     black
+
+! changes highlight fg color of selected entry
+dmenu.selhlforeground:  yellow2
+! changes highlight bg color of selected entry
+dmenu.selhlbackground:  black
