@@ -8,6 +8,7 @@ class Dmenu(Menu):
         width: int = 500,
         height: int = 45,
         line: int = 12,
+        dmenu_run: bool = False,
     ) -> None:
         screen_res = self._get_screen_resolution()
 
@@ -18,11 +19,15 @@ class Dmenu(Menu):
             # 'x' is the x-position of the window's upper left corner
             # 'y' is the y-position of the window's upper left corner
             x = (res_x // 2) - (width // 2)
-            y = (res_y // 2) - (height * line // 2)
+            y = (res_y // 2) - (height * line // 2)  # - 20
+
+            if not dmenu_run:
+                run_program = ["dmenu"]
+            else:
+                run_program = ["dmenu_run"]
 
             # main prompt
-            main_prompt = [
-                "dmenu",
+            main_prompt = run_program + [
                 "-h",
                 "45",
                 "-l",

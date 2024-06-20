@@ -47,47 +47,47 @@ def clipboard(menu: str, wm: str | None = None) -> None:
             input=selection,
             text=True,
         )
-    elif menu == "rofi":
-        # if 'wm' is not given, the if statment will be false
-        script_path = Path(
-            f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
-        ).expanduser()
-
-        if script_path.is_file():
-            # if config is found at specific directory, use it
-            prompt = [
-                "rofi",
-                "-modi",
-                '"clipboard:greenclip print"',
-                "-show",
-                "clipboard",
-                "-run-command",
-                "'{cmd}'",
-                "-theme",
-                f"{script_path}",
-            ]
-        else:
-            # if window-manager name is not given,
-            # use default 'rofi' theme
-            prompt = [
-                "rofi",
-                "-modi",
-                '"clipboard:greenclip print"',
-                "-show",
-                "clipboard",
-                "-run-command",
-                "'{cmd}'",
-            ]
-
-        run(prompt, text=True, check=True)
+    # elif menu == "rofi":
+    #     # if 'wm' is not given, the if statment will be false
+    #     script_path = Path(
+    #         f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
+    #     ).expanduser()
+    #
+    #     if script_path.is_file():
+    #         # if config is found at specific directory, use it
+    #         prompt = [
+    #             "rofi",
+    #             "-modi",
+    #             '"clipboard:greenclip print"',
+    #             "-show",
+    #             "clipboard",
+    #             "-run-command",
+    #             "'{cmd}'",
+    #             "-theme",
+    #             f"{script_path}",
+    #         ]
+    #     else:
+    #         # if window-manager name is not given,
+    #         # use default 'rofi' theme
+    #         prompt = [
+    #             "rofi",
+    #             "-modi",
+    #             '"clipboard:greenclip print"',
+    #             "-show",
+    #             "clipboard",
+    #             "-run-command",
+    #             "'{cmd}'",
+    #         ]
+    #
+    #     run(prompt, text=True, check=True)
     else:
         fail_exit(error=f"Menu - '{menu}' is not recognized!")
         return  # for supressing warnings
 
 
 def main() -> None:
-    wms = ["dwm", "qtile"]
-    menus = ["dmenu", "rofi"]
+    wms = ["dwm"]
+    menus = ["dmenu"]
 
     arg_parser = ArgumentParser(description="spawn a popup clipboard")
     # define necessary cli arguments
@@ -96,7 +96,6 @@ def main() -> None:
         "--menu",
         help="specify the menu launcher",
         choices=menus,
-        # nargs=1,
         required=True,
     )
     arg_parser.add_argument(
@@ -104,7 +103,6 @@ def main() -> None:
         "--window-manager",
         help="specify the window manager",
         choices=wms,
-        # nargs=1,
         # required=True,
     )
 

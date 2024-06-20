@@ -76,27 +76,30 @@ def apply_colorscheme(menu: str, wm: str) -> None:
         ],
     }
 
+    colorschemes = {
+        "cancel": " Cancel",
+        "catppuccin_macchiato": " Catppuccin (Macchiato)",
+        "dracula": " Dracula",
+        "everblush": " Everblush",
+        "everforest": " Everforest",
+        "gruvbox": " Gruvbox",
+        "matugen": " Matugen (Material-You Color Generator)",
+        "nord": " Nord",
+        "rose_pine": " Rose Pine",
+    }
+
     if menu == "dmenu":
-        menu_obj = Dmenu(width=600)
-    elif menu == "rofi":
-        menu_obj = Rofi()
+        menu_obj = Dmenu(
+            width=600,
+            line=len(colorschemes),
+        )
+    # elif menu == "rofi":
+    #     menu_obj = Rofi()
     else:
         fail_exit(error=f"Menu - '{menu}' is not recognized!")
         return  # for supressing warnings
 
     if wm == "dwm":
-        colorschemes = {
-            "cancel": " Cancel",
-            "catppuccin_macchiato": " Catppuccin (Macchiato)",
-            "dracula": " Dracula",
-            "everblush": " Everblush",
-            "everforest": " Everforest",
-            "gruvbox": " Gruvbox",
-            "matugen": " Matugen (Material-You Color Generator)",
-            "nord": " Nord",
-            "rose_pine": " Rose Pine",
-        }
-
         wm_obj = Dwm(
             menu=menu_obj,
             wallpaper_dict=wallpaper_dict,
@@ -104,18 +107,7 @@ def apply_colorscheme(menu: str, wm: str) -> None:
         )
     # elif wm == "qtile":
     #     wm_obj = Qtile(menu_obj)
-    #
-    #     colorschemes = {
-    #         "cancel": " Cancel",
-    #         "catppuccin_macchiato": " Catppuccin (Macchiato)",
-    #         "dracula": " Dracula",
-    #         "everblush": " Everblush",
-    #         "everforest": " Everforest",
-    #         "gruvbox": " Gruvbox",
-    #         "matugen": " Matugen (Material-You Color Generator)",
-    #         "nord": " Nord",
-    #         "rose_pine": " Rose Pine",
-    #     }
+
     else:
         fail_exit(error=f"Window manager - '{wm}' is not recognized!")
         return  # for supressing warnings
@@ -124,8 +116,8 @@ def apply_colorscheme(menu: str, wm: str) -> None:
 
 
 def main():
-    wms = ["dwm", "qtile"]
-    menus = ["dmenu", "rofi"]
+    wms = ["dwm"]
+    menus = ["dmenu"]
 
     arg_parser = ArgumentParser(description="change colorscheme")
     # define necessary cli arguments

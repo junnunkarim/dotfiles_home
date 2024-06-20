@@ -95,7 +95,7 @@ def keybindings(menu: str, wm: str, file_path: Path | None = None) -> None:
         fail_exit(error="Keybindings for {wm} is empty")
         return
 
-    keybindings = "\n".join(keybindings) + "\n"
+    keybindings = "\n".join(keybindings)
 
     # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
@@ -118,8 +118,8 @@ def keybindings(menu: str, wm: str, file_path: Path | None = None) -> None:
 
 
 def main() -> None:
-    wms = ["dwm", "qtile"]
-    menus = ["dmenu", "rofi"]
+    wms = ["dwm"]
+    menus = ["dmenu"]
 
     arg_parser = ArgumentParser(description="show all keybindings")
     # define necessary cli arguments

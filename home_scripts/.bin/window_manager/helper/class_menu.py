@@ -5,7 +5,12 @@ from .functions import fail_exit
 class Menu:
     _main_prompt = []
 
-    def __init__(self, main_prompt: list) -> None:
+    def __init__(
+        self,
+        main_prompt: list,
+        *args,
+        **kargs,
+    ) -> None:
         self._main_prompt = main_prompt
 
     # ----------------
@@ -74,6 +79,20 @@ class Menu:
             fail_exit(exit_code=output.returncode)
 
         return output.stdout.strip()
+
+    def show_app_launcher(
+        self,
+        prompt_name: str = "",
+        extra_prompt: list = [],
+        *args,
+        **kargs,
+    ) -> None:
+        output = run(
+            self._main_prompt + ["-p", prompt_name] + extra_prompt,
+        )
+
+        if output.returncode:
+            fail_exit(exit_code=output.returncode)
 
     def show(
         self,
