@@ -69,19 +69,20 @@ def parse_keybindings(
 # -------------------------------
 # functions creating menu prompts
 # -------------------------------
-def rofi_prompt(wm: None | str) -> list:
-    # if 'wm' is not given, the if statment will be false
-    script_path = Path(
-        f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
-    ).expanduser()
-
-    if not script_path.is_file():
-        # if window-manager name is not given,
-        # use default 'rofi' theme
-        return ["rofi", "-dmenu"]
-
-    # if config is found at specific directory, use it
-    return ["rofi", "-dmenu", "-theme", f"{script_path}"]
+# def rofi_prompt(wm: None | str) -> list:
+#     # if 'wm' is not given, the if statment will be false
+#     script_path = Path(
+#         f"~/.config/{wm}/external_configs/rofi/script_menu_1.rasi"
+#     ).expanduser()
+#
+#     if not script_path.is_file():
+#         # if window-manager name is not given,
+#         # use default 'rofi' theme
+#         return ["rofi", "-dmenu"]
+#
+#     # if config is found at specific directory, use it
+#     return ["rofi", "-dmenu", "-theme", f"{script_path}"]
+#
 
 
 # --------------
@@ -97,7 +98,6 @@ def keybindings(menu: str, wm: str, file_path: Path | None = None) -> None:
 
     keybindings = "\n".join(keybindings)
 
-    # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
         menu_obj = Dmenu(
             width=950,

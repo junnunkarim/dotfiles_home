@@ -13,7 +13,6 @@ from helper.functions import fail_exit
 # main functions
 # --------------
 def clipboard(menu: str, wm: str | None = None) -> None:
-    # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
         menu_obj = Dmenu(
             width=950,

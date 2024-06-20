@@ -74,20 +74,20 @@ def logout(wm: str) -> None:
 # -------------------------------
 # functions creating menu prompts
 # -------------------------------
-def rofi_prompt(wm: None | str) -> list:
-    # if 'wm' is not given, the if statment will be false
-    script_path = Path(
-        f"~/.config/{wm}/external_configs/rofi/script_menu.rasi"
-    ).expanduser()
-
-    if script_path.is_file():
-        # if config is found at specific directory, use it
-        prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
-    else:
-        # else use default config
-        prompt = ["rofi", "-dmenu", "-i"]
-
-    return prompt
+# def rofi_prompt(wm: None | str) -> list:
+#     # if 'wm' is not given, the if statment will be false
+#     script_path = Path(
+#         f"~/.config/{wm}/external_configs/rofi/script_menu.rasi"
+#     ).expanduser()
+#
+#     if script_path.is_file():
+#         # if config is found at specific directory, use it
+#         prompt = ["rofi", "-dmenu", "-i", "-theme", f"{script_path}"]
+#     else:
+#         # else use default config
+#         prompt = ["rofi", "-dmenu", "-i"]
+#
+#     return prompt
 
 
 # --------------
@@ -108,7 +108,6 @@ def powermenu(menu: str, wm: str | None = None) -> None:
     if wm:
         entries["logout"] = "󰗽 Logout"
 
-    # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
         menu_obj = Dmenu(
             width=500,

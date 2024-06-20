@@ -9,6 +9,8 @@ class Dmenu(Menu):
         height: int = 45,
         line: int = 12,
         dmenu_run: bool = False,
+        fuzzy: bool = True,
+        case_insensitive: bool = True,
     ) -> None:
         screen_res = self._get_screen_resolution()
 
@@ -22,12 +24,12 @@ class Dmenu(Menu):
             y = (res_y // 2) - (height * line // 2)  # - 20
 
             if not dmenu_run:
-                run_program = ["dmenu"]
+                main_prompt = ["dmenu"]
             else:
-                run_program = ["dmenu_run"]
+                main_prompt = ["dmenu_run"]
 
             # main prompt
-            main_prompt = run_program + [
+            main_prompt += [
                 "-h",
                 "45",
                 "-l",
@@ -39,7 +41,12 @@ class Dmenu(Menu):
                 f"{x}",
                 "-Y",
                 f"{y}",
-                "-i",
             ]
+
+            if case_insensitive:
+                main_prompt += ["-i"]
+
+            if not fuzzy:
+                main_prompt += ["-F"]
 
         super().__init__(main_prompt)

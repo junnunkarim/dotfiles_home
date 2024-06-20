@@ -11,38 +11,37 @@ from helper.functions import fail_exit
 # -------------------------------
 # functions creating menu prompts
 # -------------------------------
-def rofi_prompt(wm: None | str) -> list:
-    # if 'wm' is not given, the if statment will be false
-    script_path = Path(
-        f"~/.config/{wm}/external_configs/rofi/launcher.rasi"
-    ).expanduser()
-
-    if script_path.is_file():
-        # if config is found at specific directory, use it
-        prompt = [
-            "rofi",
-            "-show",
-            "drun",
-            "-theme",
-            f"{script_path}",
-        ]
-    else:
-        # if window-manager name is not given,
-        # use default 'rofi' theme
-        prompt = [
-            "rofi",
-            "-show",
-            "drun",
-        ]
-
-    return prompt
+# def rofi_prompt(wm: None | str) -> list:
+#     # if 'wm' is not given, the if statment will be false
+#     script_path = Path(
+#         f"~/.config/{wm}/external_configs/rofi/launcher.rasi"
+#     ).expanduser()
+#
+#     if script_path.is_file():
+#         # if config is found at specific directory, use it
+#         prompt = [
+#             "rofi",
+#             "-show",
+#             "drun",
+#             "-theme",
+#             f"{script_path}",
+#         ]
+#     else:
+#         # if window-manager name is not given,
+#         # use default 'rofi' theme
+#         prompt = [
+#             "rofi",
+#             "-show",
+#             "drun",
+#         ]
+#
+#     return prompt
 
 
 # --------------
 # main functions
 # --------------
 def launcher(menu: str, wm: str | None = None) -> None:
-    # currently only specifically patched 'dmenu' works
     if menu == "dmenu":
         menu_obj = Dmenu(
             width=500,
