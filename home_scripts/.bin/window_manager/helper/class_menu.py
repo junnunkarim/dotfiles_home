@@ -53,7 +53,11 @@ class Menu:
         )
 
         if output.returncode:
-            fail_exit(exit_code=output.returncode)
+            fail_exit(
+                exit_code=output.returncode,
+                stderr=output.stderr,
+                error="Couldn't get user confirmation!",
+            )
 
         if output.stdout.strip() == positive:
             return True
@@ -76,9 +80,31 @@ class Menu:
         )
 
         if output.returncode:
-            fail_exit(exit_code=output.returncode)
+            fail_exit(
+                exit_code=output.returncode,
+                stderr=output.stderr,
+                error="Couldn't get user selection!",
+            )
 
         return output.stdout.strip()
+
+    def show_message(
+        self,
+        entries: str,
+        prompt_name: str = "Error:",
+    ) -> None:
+        output = run(
+            self._main_prompt + ["-p", prompt_name],
+            input=entries,
+            encoding="utf-8",
+        )
+
+        if output.returncode:
+            fail_exit(
+                exit_code=output.returncode,
+                stderr=output.stderr,
+                error="Couldn't display message!",
+            )
 
     def show_app_launcher(
         self,
@@ -92,7 +118,11 @@ class Menu:
         )
 
         if output.returncode:
-            fail_exit(exit_code=output.returncode)
+            fail_exit(
+                exit_code=output.returncode,
+                stderr=output.stderr,
+                error="Couldn't display app launcher!",
+            )
 
     def show(
         self,
@@ -109,4 +139,8 @@ class Menu:
         )
 
         if output.returncode:
-            fail_exit(exit_code=output.returncode)
+            fail_exit(
+                exit_code=output.returncode,
+                stderr=output.stderr,
+                error="Couldn't display entries",
+            )

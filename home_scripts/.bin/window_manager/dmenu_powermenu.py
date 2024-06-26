@@ -169,7 +169,7 @@ def main() -> None:
     wms = ["dwm"]
     menus = ["dmenu"]
 
-    arg_parser = ArgumentParser(description="spawn a popup clipboard")
+    arg_parser = ArgumentParser(description="open powermenu")
     # define necessary cli arguments
     arg_parser.add_argument(
         "-m",

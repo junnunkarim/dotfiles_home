@@ -2,40 +2,9 @@
 
 from sys import argv
 from argparse import ArgumentParser
-from pathlib import Path
 
 from helper.class_dmenu import Dmenu
 from helper.functions import fail_exit
-
-
-# -------------------------------
-# functions creating menu prompts
-# -------------------------------
-# def rofi_prompt(wm: None | str) -> list:
-#     # if 'wm' is not given, the if statment will be false
-#     script_path = Path(
-#         f"~/.config/{wm}/external_configs/rofi/launcher.rasi"
-#     ).expanduser()
-#
-#     if script_path.is_file():
-#         # if config is found at specific directory, use it
-#         prompt = [
-#             "rofi",
-#             "-show",
-#             "drun",
-#             "-theme",
-#             f"{script_path}",
-#         ]
-#     else:
-#         # if window-manager name is not given,
-#         # use default 'rofi' theme
-#         prompt = [
-#             "rofi",
-#             "-show",
-#             "drun",
-#         ]
-#
-#     return prompt
 
 
 # --------------
@@ -48,10 +17,6 @@ def launcher(menu: str, wm: str | None = None) -> None:
             line=10,
             dmenu_run=True,
         )
-    # elif menu == "rofi":
-    #     prompt = rofi_prompt(wm)
-    #     # extra things to add to the prompt
-    #     prompt_extra = []
     else:
         fail_exit(error=f"Menu - '{menu}' is not recognized!")
         return  # for supressing warnings
@@ -65,7 +30,7 @@ def main() -> None:
     wms = ["dwm"]
     menus = ["dmenu"]
 
-    arg_parser = ArgumentParser(description="spawn a popup clipboard")
+    arg_parser = ArgumentParser(description="open app launcher")
     # define necessary cli arguments
     arg_parser.add_argument(
         "-m",

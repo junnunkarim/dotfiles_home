@@ -93,7 +93,7 @@ def keybindings(menu: str, wm: str, file_path: Path | None = None) -> None:
     keybindings = parse_keybindings(wm, file_path, str_width)
 
     if not keybindings:
-        fail_exit(error="Keybindings for {wm} is empty")
+        fail_exit(error=f"Keybindings for {wm} is empty")
         return
 
     keybindings = "\n".join(keybindings)

@@ -35,9 +35,12 @@ def apply_colorscheme(menu: str, wm: str) -> None:
             "forest_stairs.jpg",
         ],
         "gruvbox": [
-            # "pixelart_forest_spirits_girl_adventure_updated.png",
             "pixelart_house_chibi_person_game_jmw327.png",
             "pixelart_house_inside_girl_book_dog_jmw327.png",
+            "pixelart_farm_farmer_warm-color_jmw327.png",
+            # "pixelart_flower_clouds_castle.png",
+            "pixelart_forest_camp_children_maolow-paoPao.jpg",
+            # "pixelart_forest_spirits_girl_adventure_updated.png",
         ],
         "matugen": [
             "afternoon_light_philip_straub.jpg",
@@ -60,7 +63,9 @@ def apply_colorscheme(menu: str, wm: str) -> None:
             "scenery_field_farmland_wheat_clouds.jpg",
             "scenery_flowers_hill_clouds_colorful_dmitryalexander.jpg",
             "scenery_green_grass_aesthetic_relaxing.jpg",
+            "scenery_night_forest_fairy.jpg",
             "scenery_pastel_clouds_dreamlike.jpg",
+            "scenery_pokemon_akari_hisuian_growlithe_snorunt_wyrdeer__pixiescout.jpg",
             "scenery_space_portal_galaxy.jpg",
             "scenery_star_sky_galaxy.jpg",
             "scenery_tower_sky_landscape.jpg",
@@ -68,6 +73,7 @@ def apply_colorscheme(menu: str, wm: str) -> None:
         "nord": [
             "mist_forest_nord.jpg",
             "pixelart_night_train_cozy_gas_RoyalNaym_nord.png",
+            "scenery_pokemon_akari_hisuian_growlithe_snorunt_wyrdeer__pixiescout.jpg",
         ],
         "rose_pine": [
             "pixelart_evening_trees_pole_wires_makrustic.png",

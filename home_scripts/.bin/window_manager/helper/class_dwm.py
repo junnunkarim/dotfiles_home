@@ -20,10 +20,22 @@ class Dwm(Window_manager):
             start_concat='import = ["~/.config/alacritty/colorschemes/',
             end_concat='.toml"]',
         )
+
+        btop_colorscheme_map = {
+            "catppuccin_macchiato": "catppuccin_macchiato",
+            "dracula": "dracula",
+            "everblush": "everblush",
+            "everforest": "everforest",
+            "gruvbox": "gruvbox",
+            "matugen": "TTY",
+            "nord": "nord",
+            "rose_pine": "rose_pine",
+        }
         btop = Program_color(
             file="~/.config/btop/btop.conf",
             start_concat='color_theme = "',
             end_concat='"',
+            colorscheme_map=btop_colorscheme_map,
         )
 
         gtk_colorscheme_map = {
@@ -191,6 +203,7 @@ class Dwm(Window_manager):
         colorscheme = self._choose_colorscheme()
         allowed_programs = {
             "matugen": [
+                "btop",
                 "dwm",
                 "dmenu",
                 "luastatus",

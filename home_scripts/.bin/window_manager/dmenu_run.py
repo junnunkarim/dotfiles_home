@@ -21,7 +21,6 @@ def process_file(file_path: Path) -> tuple[str, dict] | None:
     generic_name = None
     keywords = None
     comment = None
-    # categories = None
     no_display = None
 
     with open(file_path, "r", encoding="utf-8") as file:
@@ -36,8 +35,6 @@ def process_file(file_path: Path) -> tuple[str, dict] | None:
                 )
             elif (not comment) and line.startswith("Comment="):
                 comment = line.strip().split("=", 1)[1]
-            # elif (not categories) and line.startswith("Categories="):
-            # categories = line.strip().split("=", 1)[1].replace(";", " ").strip()
             elif line.startswith("NoDisplay="):
                 no_display = line.strip().split("=", 1)[1].lower() == "true"
 
@@ -49,7 +46,6 @@ def process_file(file_path: Path) -> tuple[str, dict] | None:
             "generic_name": generic_name,
             "keywords": keywords,
             "comment": comment,
-            # "categories": categories,
             "file_path": file_path,
         }
     return None
@@ -59,7 +55,8 @@ def get_desktop_entries() -> dict:
     # define the directories to search
     directories = [
         "/usr/share/applications/",
-        path.expanduser("~/.local/share/applications"),
+        "/usr/local/share/applications/",
+        Path("~/.local/share/applications").expanduser(),
     ]
 
     desktop_files_dict = {}
@@ -142,7 +139,7 @@ def main() -> None:
     wms = ["dwm"]
     menus = ["dmenu"]
 
-    arg_parser = ArgumentParser(description="spawn a popup clipboard")
+    arg_parser = ArgumentParser(description="spawn app launcher")
     # define necessary cli arguments
     arg_parser.add_argument(
         "-m",
