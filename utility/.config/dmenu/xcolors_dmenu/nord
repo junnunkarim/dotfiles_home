@@ -29,7 +29,7 @@ dmenu.outforeground:    aurora1
 dmenu.outbackground:    pn1
 
 ! changes dmenu border color
-dmenu.bordercolor:      aurora2
+dmenu.bordercolor:      frost3
 
 ! changes highlight fg color of non-selected entry
 dmenu.hlforeground:     aurora2

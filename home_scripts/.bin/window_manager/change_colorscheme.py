@@ -30,9 +30,9 @@ def apply_colorscheme(menu: str, wm: str) -> None:
             # "pixelart_forest_ruins_castle.png",
         ],
         "everforest": [
+            "forest_stairs.jpg",
             "everforest-walls_fog_forest_1.jpg",
             "everforest-walls_foggy_valley_1.png",
-            "forest_stairs.jpg",
         ],
         "gruvbox": [
             "pixelart_house_chibi_person_game_jmw327.png",
@@ -43,7 +43,6 @@ def apply_colorscheme(menu: str, wm: str) -> None:
             # "pixelart_forest_spirits_girl_adventure_updated.png",
         ],
         "matugen": [
-            "afternoon_light_philip_straub.jpg",
             "anime_Sunset.jpg",
             "floating_flower.jpg",
             "forest_hut.jpg",
@@ -60,8 +59,13 @@ def apply_colorscheme(menu: str, wm: str) -> None:
             "pixelart_thron_dark_someone.png",
             "scenery_blue_sea_beach_summer.jpg",
             "scenery_bridge_river_city.jpg",
+            "scenery_fantasy_clouds_field_donkey_afternoon__kiararbre.jpg",
+            "scenery_fantasy_clouds_field_donkey_cloudy__kiararbre.jpg",
+            "scenery_fantasy_clouds_field_donkey_morning__kiararbre.jpg",
+            "scenery_fantasy_clouds_field_donkey_night__kiararbre.jpg",
             "scenery_field_farmland_wheat_clouds.jpg",
             "scenery_flowers_hill_clouds_colorful_dmitryalexander.jpg",
+            "scenery_flower_white_bloom_dark.png",
             "scenery_green_grass_aesthetic_relaxing.jpg",
             "scenery_night_forest_fairy.jpg",
             "scenery_pastel_clouds_dreamlike.jpg",
@@ -69,6 +73,7 @@ def apply_colorscheme(menu: str, wm: str) -> None:
             "scenery_space_portal_galaxy.jpg",
             "scenery_star_sky_galaxy.jpg",
             "scenery_tower_sky_landscape.jpg",
+            "scenery_village_cottege_boat__dmitryalexander.jpg",
         ],
         "nord": [
             "mist_forest_nord.jpg",

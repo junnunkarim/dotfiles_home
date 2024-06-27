@@ -1,1 +1,1 @@
-import = ["/home/dragoonfx/.config/alacritty/colorschemes/dracula.toml"]
+import = ["~/.config/alacritty/colorschemes/gruvbox.toml"]

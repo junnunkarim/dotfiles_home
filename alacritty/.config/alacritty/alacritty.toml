@@ -1,4 +1,4 @@
-import = ["/home/dragoonfx/.config/alacritty/colors.toml", "/home/dragoonfx/.config/alacritty/font.toml"]
+import = ["~/.config/alacritty/colors.toml", "~/.config/alacritty/font.toml"]
 live_config_reload = true
 # "window.opacity" = 1.0
 

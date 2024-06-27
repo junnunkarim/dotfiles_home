@@ -32,7 +32,7 @@ dmenu.outforeground:    red1
 dmenu.outbackground:    black
 
 ! changes dmenu border color
-dmenu.bordercolor:      yellow2
+dmenu.bordercolor:      orange2
 
 ! changes highlight fg color of non-selected entry
 dmenu.hlforeground:     yellow2

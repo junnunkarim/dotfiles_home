@@ -23,7 +23,7 @@ dmenu.outforeground:    red
 dmenu.outbackground:    black
 
 ! changes dmenu border color
-dmenu.bordercolor:      red
+dmenu.bordercolor:      green
 
 ! changes highlight fg color of non-selected entry
 dmenu.hlforeground:     red

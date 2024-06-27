@@ -1,2 +1,2 @@
 enable_selector = true
-selector = "rofi -dmenu -p 'Open With: ' -theme ~/.config/qtile/external_configs/rofi/script_menu.rasi"
+selector = "dmenu -i -F -p 'Open With: '"

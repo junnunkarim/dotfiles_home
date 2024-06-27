@@ -148,7 +148,7 @@ class Dwm(Window_manager):
             f"{xresource_path}",
         ]
 
-        run(xrdb_command, text=True, check=False)
+        run(xrdb_command)
 
         xsetroot_command = [
             "xsetroot",
@@ -156,7 +156,7 @@ class Dwm(Window_manager):
             "fsignal:2",
         ]
 
-        run(xsetroot_command, text=True, check=False)
+        run(xsetroot_command)
 
         restart_luastatus = [
             f"{Path('~/.config/dwm/scripts/dwm_statusbar').expanduser()}",
