@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=dracula
+ColorScheme=gruvbox
 Font=Iosevka Nerd Font Mono,16,-1,5,50,0,0,0,0,0
 LineSpacing=0
 UseFontLineChararacters=true

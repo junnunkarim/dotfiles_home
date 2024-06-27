@@ -6,12 +6,6 @@ session=${1:-qtile}
 
 case $session in
 dwm)
-  # /usr/bin/pipewire &
-  # /usr/bin/pipewire-pulse &
-  # /usr/bin/pipewire-media-session &
-  #
-  # ~/.config/dwm/scripts/./dwm_statusbar_wrapper &
-  #
   # exec dwm 2>~/.dwm.log
   exec dwm
   ;;
