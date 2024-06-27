@@ -4,7 +4,6 @@ import sys
 import argparse
 import pathlib
 
-from helper.class_menu import Menu
 from helper.class_dmenu import Dmenu
 from helper.class_buku_dmenu import BukuDmenu
 from helper.functions import fail_exit

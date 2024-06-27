@@ -86,7 +86,7 @@ class BukuDmenu:
         formatted_str += id.ljust(max_id_len, " ")
 
         max_attr_str_len = (
-            self._max_str_len - max_id_len - sep_space_count
+            self._max_str_len - max_id_len - (attr_count * sep_space_count)
         ) // attr_count
 
         # TODO: dynamically check if attr is the last element of the
@@ -184,7 +184,6 @@ class BukuDmenu:
             entry_add_title = "Add Title 󰏪"
             entry_add_tags = "Add Tags (optional) 󰏪"
             entry_add_desc = "Add Description (optional) 󰏪"
-            entry_editor = self._icon_menu + " Add using editor " + self._icon_enter
         else:
             entry_add_url = f"Url: {url} 󰏪"
 
@@ -203,17 +202,13 @@ class BukuDmenu:
             else:
                 entry_add_desc = f"Description (optional): 󰏪"
 
-            entry_editor = ""
-
+        entry_editor = self._icon_menu + " Add using editor " + self._icon_enter
         entry_save = "Save? 󰆓"
 
         while True:
-            if mode == "add":
-                menu_entries_1 = [self._return_str, entry_editor]
-            else:
-                menu_entries_1 = [self._return_str]
-
-            menu_entries_2 = [
+            menu_entries = [
+                self._return_str,
+                entry_editor,
                 "",
                 entry_add_url,
                 entry_add_title,
@@ -222,7 +217,6 @@ class BukuDmenu:
                 "",
                 entry_save,
             ]
-            menu_entries = menu_entries_1 + menu_entries_2
 
             menu_entries_str = "\n".join(menu_entries)
 
@@ -240,21 +234,16 @@ class BukuDmenu:
                 return
             elif selection == entry_editor:  # editor
                 if mode == "add":
-                    # for key, value in os.environ.items():
-                    #     print(f"{key}: {value}")
                     editor = os.environ.get("EDITOR", "vim")
                     shell_cmd = f"kitty -e buku -w '{editor}'"
 
-                    status = subprocess.run(shell_cmd, shell=True, capture_output=True)
+                    status = subprocess.run(shell_cmd, shell=True)
+                else:
+                    shell_cmd = f"kitty -e buku -w {id}"
 
-                    # if status.returncode != 0:
-                    #     self._menu.show_message("Couldn't add bookmark!")
-                    # else:
-                    #     self._menu.show_message(
-                    #         "Successfully added bookmark!", "Success:"
-                    #     )
+                    subprocess.run(shell_cmd, shell=True)
 
-                    return
+                return
             elif selection == entry_add_url:  # url
                 if url:
                     self._copy_to_clipboard(url)
@@ -437,7 +426,7 @@ class BukuDmenu:
             elif not (selected_tag in menu_entries):
                 tag = selected_tag.split("(")[0].strip()
                 bookmarks = self.get_bookmarks(tags=tag)
-                new_entries_str = "\n".join(menu_entries) + bookmarks
+                new_entries_str = "\n".join(menu_entries) + "\n" + bookmarks
 
                 selected_bookmark = self._menu.get_selection(
                     entries=new_entries_str,
