@@ -11,24 +11,26 @@ class BukuDmenu:
         self,
         menu: Menu,
         database_path: pathlib.Path | None = None,
+        editor_cmd: str = "emacs",
         attr_to_show: list[str] = ["id", "title", "tags"],
         max_str_len: int = 150,
-        mode_of_operation: str = "online",
+        online_status: str = "online",
         return_str: str = " Return",
         icon_menu: str = "󰍜",
         icon_tips: str = "󰔨",
         icon_enter: str = "",
     ):
         if database_path:
-            self._buku = buku.BukuDb(dbfile=str(database_path))
+            self._buku = buku.BukuDb(dbfile=str(database_path), colorize=False)
         else:
             self._buku = buku.BukuDb()
 
         self._menu = menu
+        self._editor_cmd = editor_cmd
         self._attr_to_show = attr_to_show
         self._max_str_len = max_str_len
         self._return_str = return_str
-        self._mode_of_operation = mode_of_operation
+        self._online_status = online_status
 
         self._icon_menu = icon_menu
         self._icon_tips = icon_tips
@@ -181,11 +183,13 @@ class BukuDmenu:
 
         if mode == "add":
             entry_add_url = "Add Url 󰏪"
+            entry_editor = self._icon_menu + " Add using editor " + self._icon_enter
             entry_add_title = "Add Title 󰏪"
             entry_add_tags = "Add Tags (optional) 󰏪"
             entry_add_desc = "Add Description (optional) 󰏪"
         else:
             entry_add_url = f"Url: {url} 󰏪"
+            entry_editor = self._icon_menu + " Edit using editor " + self._icon_enter
 
             if title:
                 entry_add_title = f"Title: {title} 󰏪"
@@ -202,7 +206,6 @@ class BukuDmenu:
             else:
                 entry_add_desc = f"Description (optional): 󰏪"
 
-        entry_editor = self._icon_menu + " Add using editor " + self._icon_enter
         entry_save = "Save? 󰆓"
 
         while True:
@@ -230,21 +233,26 @@ class BukuDmenu:
                 prompt_name=prompt_name,
             )
 
-            if selection == self._return_str:  # return
+            # if return was chosen
+            if selection == self._return_str:
                 return
-            elif selection == entry_editor:  # editor
+            # editor
+            elif selection == entry_editor:
                 if mode == "add":
-                    editor = os.environ.get("EDITOR", "vim")
-                    shell_cmd = f"kitty -e buku -w '{editor}'"
+                    if self._online_status == "online":
+                        shell_cmd = f"kitty -e buku -w '{self._editor_cmd}'"
+                    else:
+                        shell_cmd = f"kitty -e buku --offline -w '{self._editor_cmd}'"
 
                     status = subprocess.run(shell_cmd, shell=True)
                 else:
                     shell_cmd = f"kitty -e buku -w {id}"
 
-                    subprocess.run(shell_cmd, shell=True)
+                    status = subprocess.run(shell_cmd, shell=True)
 
                 return
-            elif selection == entry_add_url:  # url
+            # url
+            elif selection == entry_add_url:
                 if url:
                     self._copy_to_clipboard(url)
 
@@ -256,7 +264,8 @@ class BukuDmenu:
                 if input and (input != self._return_str):
                     url = input
                     entry_add_url = f"Added url: '{url}' 󰄬"
-            elif selection == entry_add_title:  # title
+            # title
+            elif selection == entry_add_title:
                 if title:
                     self._copy_to_clipboard(title)
 
@@ -268,7 +277,8 @@ class BukuDmenu:
                 if input and (input != self._return_str):
                     title = input
                     entry_add_title = f"Added title: '{title}' 󰄬"
-            elif selection == entry_add_tags:  # tags
+            # tags
+            elif selection == entry_add_tags:
                 if tags:
                     self._copy_to_clipboard(tags.strip(","))
 
@@ -284,7 +294,8 @@ class BukuDmenu:
                     # buku needs this
                     tags = tags.strip(",")
                     tags = "," + tags + ","
-            elif selection == entry_add_desc:  # description
+            # description
+            elif selection == entry_add_desc:
                 if description:
                     self._copy_to_clipboard(description)
 
@@ -296,15 +307,16 @@ class BukuDmenu:
                 if input and (input != self._return_str):
                     description = input
                     entry_add_desc = f"Added tags: '{description}' 󰄬"
-            elif selection == entry_save:  # save
+            # save
+            elif selection == entry_save:
                 if not (url and title):
                     self._menu.show_message("Input of 'Url' and 'Title' are mandatory!")
                     continue
 
-                if self._mode_of_operation == "online":
-                    mode_of_op_status = True
+                if self._online_status == "online":
+                    online_status = True
                 else:
-                    mode_of_op_status = False
+                    online_status = False
 
                 if mode == "add":
                     status = self._buku.add_rec(
@@ -312,9 +324,19 @@ class BukuDmenu:
                         title,
                         tags,
                         description,
-                        immutable=mode_of_op_status,
-                        fetch=mode_of_op_status,
+                        immutable=online_status,
+                        fetch=online_status,
                     )
+
+                    # if not online_status:
+                    #     shell_cmd = f"buku --nostdin --nc --np --offline -a {url} --title '{title}' --tag '{tags}' --comment '{description}'"
+                    # else:
+                    #     shell_cmd = (
+                    #         f"buku --nostdin --nc --np -a {url} --title '{title}' --tag '{tags}' --comment "
+                    #         + f"{description}"
+                    #     )
+                    #
+                    # status = subprocess.run(shell_cmd, shell=True)
 
                     if not status:
                         self._menu.show_message(
@@ -332,7 +354,7 @@ class BukuDmenu:
                         title,
                         tags,
                         description,
-                        immutable=mode_of_op_status,
+                        immutable=online_status,
                     )
 
                     if not status:

@@ -1,4 +1,3 @@
-import pathlib
 import os
 import json
 import subprocess
@@ -11,7 +10,10 @@ class ZKDmenu:
         self,
         menu: Menu,
         notebook_dir: str = "/mnt/main/work/notebook/",
+        editor_type: str = "gui",
         terminal: str = "kitty",
+        editor: str = "nvim",
+        gui_editor: str = "code",
         fixed_args: list[str] = ["--no-input", "-P", "--quiet"],
         max_str_len: int = 150,
         return_str: str = " Return",
@@ -19,9 +21,18 @@ class ZKDmenu:
         icon_tips: str = "󰔨",
         icon_enter: str = "",
     ):
+        if not (editor_type in ["cli", "gui"]):
+            fail_exit(error="'editor_type' must be either 'cli' or 'gui'!")
+        else:
+            self._editor_type = editor_type
+
         self._menu = menu
         self._notebook_dir = notebook_dir
+
         self._terminal = terminal
+        self._editor = editor
+        self._gui_editor = gui_editor
+
         self._fixed_args = fixed_args + [f"--notebook-dir={notebook_dir}"]
         self._max_str_len = max_str_len
         self._return_str = return_str
@@ -34,7 +45,7 @@ class ZKDmenu:
         wayland = os.environ.get("WAYLAND_DISPLAY", None)
 
         if wayland:
-            print(wayland)
+            # print(wayland)
             command = ["wl-copy"]
         else:
             command = ["xclip", "-selection", "'clipboard'"]
@@ -113,7 +124,7 @@ class ZKDmenu:
         for entry in json_list:
             title = entry["title"].strip()
             tags = ""
-            full_path = entry["absPath"].strip()
+            full_path = f'({entry["absPath"].strip()}'
 
             for tag in entry["tags"]:
                 tags += f"#{tag} "
@@ -148,15 +159,26 @@ class ZKDmenu:
         return output.stdout.strip()
 
     def open_note(self, file_path: str) -> None:
-        command = [
-            self._terminal,
-            "-e",
-            "zk",
-            "edit",
-            file_path,
-            f"--notebook-dir={self._notebook_dir}",
-        ]
-        # command = f"{self._terminal} -e zk edit {file_path} -n 1 --notebook-dir={self._notebook_dir}"
+        if self._editor_type == "cli":
+            command = [
+                self._terminal,
+                "-e",
+                self._editor,
+                file_path,
+            ]
+            # command = f"{self._terminal} -e zk edit {file_path} -n 1 --notebook-dir={self._notebook_dir}"
+        else:  # gui
+            if self._gui_editor == "emacsclient -nc":
+                command = [
+                    "emacsclient",
+                    "-nc",
+                    file_path,
+                ]
+            else:
+                command = [
+                    self._gui_editor,
+                    file_path,
+                ]
 
         subprocess.run(command)
 
@@ -171,7 +193,7 @@ class ZKDmenu:
             else:
                 return False
 
-            command = f"{self._terminal} -e zk new --no-input {self._notebook_dir}/{dir} --notebook-dir={self._notebook_dir}"
+            get_filepath_cmd = f"zk new --no-input {self._notebook_dir}/{dir} --notebook-dir={self._notebook_dir} --print-path"
 
         elif note_type == "new":
             menu_entries = [
@@ -188,9 +210,26 @@ class ZKDmenu:
             if title == menu_entries[0]:
                 return False
 
-            command = f"{self._terminal} -e zk new --no-input --title '{title}' --working-dir={self._notebook_dir}/ --notebook-dir={self._notebook_dir}"
+            get_filepath_cmd = f'zk new --no-input --title "{title}" --working-dir={self._notebook_dir} --print-path'
 
-        subprocess.run(command, shell=True)
+        file_path = subprocess.run(get_filepath_cmd, shell=True, capture_output=True)
+
+        if file_path.returncode != 0:
+            fail_exit(error="Could not create new note!")
+
+        print(file_path)
+
+        if self._editor_type == "cli":
+            command = [
+                self._terminal,
+                "-e",
+                self._editor,
+                f"{file_path.stdout.strip()}",
+            ]
+        else:
+            command = self._gui_editor.split(" ") + [file_path.stdout.strip()]
+
+        subprocess.run(command)
 
         return True
 
@@ -211,7 +250,9 @@ class ZKDmenu:
             if selected_note == menu_entries[0]:
                 return False
             elif not (selected_note in menu_entries):
-                file_path = selected_note.split(")")[-1].strip()
+                print(f"'{selected_note}'\n")
+                file_path = selected_note.split("(")[-1].strip()
+                print(f"'{file_path}'")
 
                 self.open_note(file_path=file_path)
                 return True
@@ -251,7 +292,7 @@ class ZKDmenu:
             if selected_note == menu_entries[0]:
                 return False
             elif not (selected_note in menu_entries):
-                file_path = selected_note.split(")")[-1].strip()
+                file_path = selected_note.split("(")[-1].strip()
 
                 confirmation = self._menu.get_confirmation()
 
@@ -302,7 +343,7 @@ class ZKDmenu:
                 )
 
                 if not (selected_note in menu_entries):
-                    file_path = selected_note.split(")")[-1].strip()
+                    file_path = selected_note.split("(")[-1].strip()
 
                     self.open_note(file_path=file_path)
                     return True
@@ -335,7 +376,7 @@ class ZKDmenu:
             if selected_note == menu_entries[0]:
                 return False
             elif not (selected_note in menu_entries):
-                file_path = selected_note.split(")")[-1].strip()
+                file_path = selected_note.split("(")[-1].strip()
 
                 self.open_note(file_path=file_path)
                 return True

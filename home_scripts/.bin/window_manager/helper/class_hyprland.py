@@ -6,7 +6,7 @@ from .class_menu import Menu
 from .class_program_color import Program_color
 
 
-class Dwm(Window_manager):
+class Hyprland(Window_manager):
     def __init__(
         self,
         menu: Menu,
@@ -15,12 +15,6 @@ class Dwm(Window_manager):
     ) -> None:
         # programs with universally defined location
         # ------------------------------------------
-        alacritty = Program_color(
-            file="~/.config/alacritty/colors.toml",
-            start_concat='import = ["~/.config/alacritty/colorschemes/',
-            end_concat='.toml"]',
-        )
-
         btop_colorscheme_map = {
             "catppuccin_macchiato": "catppuccin_macchiato",
             "dracula": "dracula",
@@ -44,7 +38,7 @@ class Dwm(Window_manager):
             "everblush": "everblush",
             "everforest": "everforest",
             "gruvbox": "gruvbox",
-            "matugen": "materia",
+            "matugen": "adw-gtk3",
             "nord": "nord",
             "rose_pine": "rose_pine",
         }
@@ -77,21 +71,16 @@ class Dwm(Window_manager):
 
         # programs with user defined location
         # -----------------------------------
-        dwm = Program_color(
-            file="~/.Xresources",
-            start_concat='#include ".config/dwm/xcolors_dwm/',
+        hyprland = Program_color(
+            file="~/.config/hypr/external_configs/ags/user_options.json",
+            start_concat='  "colorscheme": "',
             end_concat='"',
         )
-        dmenu = Program_color(
-            file="~/.Xresources",
-            start_concat='#include ".config/dmenu/xcolors_dmenu/',
-            end_concat='"',
-        )
-        luastatus = Program_color(
-            file="~/.config/dwm/luastatus/colorscheme/color.lua",
-            start_concat='local color = require("',
-            end_concat='")',
-        )
+        # dmenu = Program_color(
+        #     file="~/.Xresources",
+        #     start_concat='#include ".config/dmenu/xcolors_dmenu/',
+        #     end_concat='"',
+        # )
 
         nvim_colorscheme_map = {
             "catppuccin_macchiato": "base16-catppuccin-macchiato",
@@ -109,27 +98,16 @@ class Dwm(Window_manager):
             end_concat='"',
             colorscheme_map=nvim_colorscheme_map,
         )
-        # rofi = Program_color(
-        #     file="~/.config/dwm/external_configs/rofi/colors.rasi",
-        #     start_concat=(
-        #         f'@import "~/.config/dwm/external_configs/rofi/colorschemes/'
-        #     ),
-        #     end_concat='.rasi"',
-        # )
 
         programs_to_manage = {
-            "alacritty": alacritty,
             "btop": btop,
             "gtk": gtk,
             "helix": helix,
             "kitty": kitty,
             "konsole": konsole,
             "zathura": zathura,
-            "dwm": dwm,
-            "dmenu": dmenu,
-            "luastatus": luastatus,
+            "hyprland": hyprland,
             "nvim": nvim,
-            # rofi,
         }
 
         super().__init__(menu, programs_to_manage, wallpaper_dict, colorscheme_dict)
@@ -137,31 +115,31 @@ class Dwm(Window_manager):
     # ------------------------------------
     # functions for hot reloading programs
     # ------------------------------------
-    def reload_dwm(
-        self,
-        xresource_path: Path = Path("~/.Xresources").expanduser(),
-    ) -> None:
-        xrdb_command = [
-            "xrdb",
-            "-merge",
-            f"-I'$HOME'",
-            f"{xresource_path}",
-        ]
-
-        run(xrdb_command)
-
-        xsetroot_command = [
-            "xsetroot",
-            "-name",
-            "fsignal:2",
-        ]
-
-        run(xsetroot_command)
-
-        restart_luastatus = [
-            f"{Path('~/.config/dwm/scripts/dwm_statusbar').expanduser()}",
-        ]
-        Popen(restart_luastatus, start_new_session=True)
+    # def reload_dwm(
+    #     self,
+    #     xresource_path: Path = Path("~/.Xresources").expanduser(),
+    # ) -> None:
+    #     xrdb_command = [
+    #         "xrdb",
+    #         "-merge",
+    #         f"-I'$HOME'",
+    #         f"{xresource_path}",
+    #     ]
+    #
+    #     run(xrdb_command)
+    #
+    #     xsetroot_command = [
+    #         "xsetroot",
+    #         "-name",
+    #         "fsignal:2",
+    #     ]
+    #
+    #     run(xsetroot_command)
+    #
+    #     restart_luastatus = [
+    #         f"{Path('~/.config/dwm/scripts/dwm_statusbar').expanduser()}",
+    #     ]
+    #     Popen(restart_luastatus, start_new_session=True)
 
     # -----------------------------------
     # functions for applying stuffs
@@ -173,21 +151,28 @@ class Dwm(Window_manager):
         self,
         wallpaper: str,
     ) -> None:
-        wallpaper_path = Path("~/.config/wallpaper/" + wallpaper).expanduser()
+        command = [
+            f'{Path("~/.config/hypr/scripts/change_wallpaper.py").expanduser()}',
+            "--wallpaper",
+            wallpaper,
+        ]
 
-        command = ["feh", "--bg-fill", wallpaper_path]
+        output = Popen(command, start_new_session=True)
 
-        Popen(command, start_new_session=True)
+        print(output)
 
     def apply_lockscreen_wallpaper(
         self,
         wallpaper: str,
     ) -> None:
-        wallpaper_path = Path("~/.config/wallpaper/" + wallpaper).expanduser()
+        lock_wall = Program_color(
+            file="~/.config/hypr/hyprlock.conf",
+            start_concat="$lockscreen_wall = ",
+            end_concat="",
+        )
+        wallpaper_path = "~/.config/wallpaper/" + wallpaper
 
-        command = ["betterlockscreen", "--fx", " ", "-u", wallpaper_path]
-
-        Popen(command, start_new_session=True)
+        lock_wall.apply(wallpaper_path)
 
     def choose_and_apply_wallpaper(self):
         wallpaper = self._choose_wallpaper()
@@ -234,5 +219,5 @@ class Dwm(Window_manager):
         self.apply_wallpaper(wallpaper)
         self.apply_lockscreen_wallpaper(wallpaper)
 
-        self.reload_dwm()
+        # self.reload_dwm()
         self.reload_kitty()

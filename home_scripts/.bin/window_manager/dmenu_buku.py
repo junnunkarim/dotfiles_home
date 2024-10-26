@@ -5,12 +5,13 @@ import argparse
 import pathlib
 
 from helper.class_dmenu import Dmenu
+from helper.class_fuzzel import Fuzzel
 from helper.class_buku_dmenu import BukuDmenu
 from helper.functions import fail_exit
 
 
 def buku(
-    menu: str, mode_of_operation: str, database_path: pathlib.Path | None = None
+    menu: str, online_status: str, database_path: pathlib.Path | None = None
 ) -> None:
     max_str_len = 150
 
@@ -21,10 +22,16 @@ def buku(
             fuzzy=False,
             # original_dmenu=True,
         )
+    elif menu == "fuzzel":
+        menu_obj = Fuzzel(
+            width=120,
+            line=16,
+        )
     else:
         fail_exit(error=f"Menu - '{menu}' is not recognized!")
         return  # for supressing warnings
 
+    editor_cmd = "emacs"
     return_str = " Return"
     icon_menu: str = "󰍜"
     icon_tips: str = "󰔨"
@@ -33,42 +40,49 @@ def buku(
     buku = BukuDmenu(
         menu=menu_obj,
         database_path=database_path,
+        editor_cmd=editor_cmd,
         attr_to_show=["id", "title", "tags"],
         max_str_len=max_str_len,
-        mode_of_operation=mode_of_operation,
+        online_status=online_status,
         return_str=return_str,
         icon_menu=icon_menu,
         icon_tips=icon_tips,
         icon_enter=icon_enter,
     )
 
+    entry_new_bookmark = icon_menu + " add new bookmark "
+    entry_edit_bookmark = icon_menu + " edit bookmark "
+    entry_delete_bookmark = icon_menu + " delete bookmark "
+    entry_all_tags = icon_menu + " show all tags "
+
     menu_entries = [
-        icon_menu + " add new bookmark ",
-        icon_menu + " edit bookmark ",
-        icon_menu + " delete bookmark ",
-        icon_menu + " show all tags ",
+        entry_new_bookmark,
+        entry_edit_bookmark,
+        entry_delete_bookmark,
+        entry_all_tags,
         "",  # for adding an empty line
     ]
 
     while True:
         selection = buku.get_selection(
             menu_entries=menu_entries,
-            prompt_name="Bookmarks",
+            prompt_name="Bookmarks: ",
         )
 
         if selection in menu_entries:
-            if selection == menu_entries[0]:
+            if selection == entry_new_bookmark:
                 buku.add_edit_bookmark()
-            elif selection == menu_entries[1]:
+            elif selection == entry_edit_bookmark:
                 buku.edit_bookmark()
-            elif selection == menu_entries[2]:
+            elif selection == entry_delete_bookmark:
                 buku.delete_bookmark()
-            elif selection == menu_entries[3]:
+            elif selection == entry_all_tags:
                 status = buku.show_tags()
 
                 if status:
                     break
         elif not (selection in menu_entries):
+            # get the id from the selected bookmark string
             bookmark_id = int(selection.split(" ")[0])
 
             buku.open_bookmark(id=bookmark_id)
@@ -76,7 +90,7 @@ def buku(
 
 
 def main() -> None:
-    menus = ["dmenu"]
+    menus = ["dmenu", "fuzzel"]
     modes = ["online", "offline"]
 
     arg_parser = argparse.ArgumentParser(description="buku bookmark manager")
@@ -89,9 +103,9 @@ def main() -> None:
         required=True,
     )
     arg_parser.add_argument(
-        "-md",
-        "--mode",
-        help="specify the mode to operate when adding new bookmarks",
+        "-os",
+        "--online-status",
+        help="specify if you want buku to fetch from online when adding new bookmarks",
         choices=modes,
         required=True,
     )
@@ -110,16 +124,16 @@ def main() -> None:
     args = arg_parser.parse_args()
 
     # 'window-manager' is accessed by 'window_manager'
-    if args.menu and args.mode and args.db_path:
+    if args.menu and args.online_status and args.db_path:
         buku(
             menu=args.menu,
-            mode_of_operation=args.mode,
+            online_status=args.online_status,
             database_path=pathlib.Path(args.key_file).expanduser(),
         )
-    elif args.menu and args.mode:
+    elif args.menu and args.online_status:
         buku(
             menu=args.menu,
-            mode_of_operation=args.mode,
+            online_status=args.online_status,
         )
     else:
         arg_parser.print_help()

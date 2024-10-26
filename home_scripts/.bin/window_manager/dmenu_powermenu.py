@@ -6,6 +6,7 @@ from pathlib import Path
 from subprocess import run
 
 from helper.class_dmenu import Dmenu
+from helper.class_fuzzel import Fuzzel
 from helper.functions import fail_exit
 
 
@@ -113,6 +114,11 @@ def powermenu(menu: str, wm: str | None = None) -> None:
             width=500,
             line=len(entries),
         )
+    elif menu == "fuzzel":
+        menu_obj = Fuzzel(
+            width=38,
+            line=7,
+        )
     # elif menu == "rofi":
     #     prompt = rofi_prompt(wm)
     #     # extra things to add to the prompt
@@ -127,7 +133,7 @@ def powermenu(menu: str, wm: str | None = None) -> None:
 
     selection = menu_obj.get_selection(
         entries=options,
-        prompt_name="(" + host + ") " + uptime,
+        prompt_name="(" + host + ") " + uptime + " ",
     )
 
     # selected option
@@ -155,8 +161,13 @@ def powermenu(menu: str, wm: str | None = None) -> None:
                 text=True,
             )
         elif choice == "lock":
+            if wm == "hyprland":
+                lock_program = ["hyprlock"]
+            else:
+                lock_program = ["betterlockscreen", "-l"]
+
             run(
-                ["betterlockscreen", "-l"],
+                lock_program,
                 text=True,
                 check=False,
             )
@@ -166,8 +177,8 @@ def powermenu(menu: str, wm: str | None = None) -> None:
 
 
 def main() -> None:
-    wms = ["dwm"]
-    menus = ["dmenu"]
+    wms = ["dwm", "hyprland"]
+    menus = ["dmenu", "fuzzel"]
 
     arg_parser = ArgumentParser(description="open powermenu")
     # define necessary cli arguments

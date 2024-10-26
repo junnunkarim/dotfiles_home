@@ -133,7 +133,7 @@ class Window_manager:
     # ------------------------------------------------
     def _choose_colorscheme(self) -> str:
         menu_entries = "\n".join(self._colorscheme_dict.values())
-        prompt_name = "Colorscheme:"
+        prompt_name = "Colorscheme: "
 
         selected_entry = self._menu.get_selection(menu_entries, prompt_name)
 

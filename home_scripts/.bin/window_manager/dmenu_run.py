@@ -10,6 +10,7 @@ from argparse import ArgumentParser
 from pathlib import Path
 
 from helper.class_dmenu import Dmenu
+from helper.class_fuzzel import Fuzzel
 from helper.functions import fail_exit
 
 
@@ -57,6 +58,7 @@ def get_desktop_entries() -> dict:
         "/usr/share/applications/",
         "/usr/local/share/applications/",
         Path("~/.local/share/applications").expanduser(),
+        "/var/lib/flatpak/exports/share/applications/",
     ]
 
     desktop_files_dict = {}
@@ -82,13 +84,13 @@ def get_desktop_entries() -> dict:
                 comment = data.get("comment", None)
 
                 if keywords:
-                    name = f"{name} [{keywords}]"
+                    name = f"{name}  [{keywords}]"
 
                 if not keywords and generic_name:
-                    name = f"{name} [{generic_name}]"
+                    name = f"{name}  [{generic_name}]"
 
                 if comment:
-                    name = f"{name} ({comment})"
+                    name = f"{name}  ({comment})"
 
                 desktop_files_dict[name] = data
 
@@ -107,6 +109,11 @@ def run(menu: str, term: str, wm: str | None = None) -> None:
             line=10,
             fuzzy=False,
         )
+    elif menu == "fuzzel":
+        menu_obj = Fuzzel(
+            width=100,
+            line=15,
+        )
     # elif menu == "rofi":
     #     prompt = rofi_prompt(wm)
     #     # extra things to add to the prompt
@@ -119,7 +126,7 @@ def run(menu: str, term: str, wm: str | None = None) -> None:
 
     selection = menu_obj.get_selection(
         entries=entries,
-        prompt_name="App Launcher:",
+        prompt_name="App Launcher: ",
     )
 
     execute_cmd = [
@@ -136,8 +143,7 @@ def run(menu: str, term: str, wm: str | None = None) -> None:
 
 
 def main() -> None:
-    wms = ["dwm"]
-    menus = ["dmenu"]
+    menus = ["dmenu", "fuzzel"]
 
     arg_parser = ArgumentParser(description="spawn app launcher")
     # define necessary cli arguments
@@ -154,12 +160,12 @@ def main() -> None:
         help="specify the terminal to open programs that depend on terminal",
         required=True,
     )
-    arg_parser.add_argument(
-        "-w",
-        "--window-manager",
-        help="specify the window manager",
-        choices=wms,
-    )
+    # arg_parser.add_argument(
+    #     "-w",
+    #     "--window-manager",
+    #     help="specify the window manager",
+    #     choices=wms,
+    # )
 
     # if no cli arguments are provided, show the help message and exit
     if len(argv) <= 1:
@@ -170,9 +176,9 @@ def main() -> None:
     args = arg_parser.parse_args()
 
     # 'window-manager' is accessed by 'window_manager'
-    if args.menu and args.window_manager:
-        run(menu=args.menu, term=args.terminal, wm=args.window_manager)
-    elif args.menu:
+    # if args.menu and args.window_manager:
+    #     run(menu=args.menu, term=args.terminal, wm=args.window_manager)
+    if args.menu:
         run(menu=args.menu, term=args.terminal)
     else:
         arg_parser.print_help()

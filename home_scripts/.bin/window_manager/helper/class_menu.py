@@ -8,10 +8,12 @@ class Menu:
     def __init__(
         self,
         main_prompt: list,
+        prompt_flag: str = "-p",
         *args,
         **kargs,
     ) -> None:
         self._main_prompt = main_prompt
+        self._prompt_flag = prompt_flag
 
     # ----------------
     # helper functions
@@ -35,14 +37,14 @@ class Menu:
     # -------------------
     def get_confirmation(
         self,
-        question: str = "Are you sure?",
+        question: str = "Are you sure? ",
         positive=" Yes",
         negative=" No",
         extra_prompts: list = [],
         *args,
         **kargs,
     ) -> bool:
-        prompt_question = ["-p", question]
+        prompt_question = [self._prompt_flag, question]
 
         output = run(
             self._main_prompt + prompt_question + extra_prompts,
@@ -52,7 +54,7 @@ class Menu:
             check=True,
         )
 
-        if output.returncode:
+        if output.returncode or (output.stdout.strip() not in [positive, negative]):
             fail_exit(
                 exit_code=output.returncode,
                 stderr=output.stderr,
@@ -73,7 +75,7 @@ class Menu:
         **kargs,
     ) -> str:
         output = run(
-            self._main_prompt + ["-p", prompt_name] + extra_args,
+            self._main_prompt + [self._prompt_flag, prompt_name] + extra_args,
             input=entries,
             capture_output=True,
             encoding="utf-8",
@@ -94,7 +96,7 @@ class Menu:
         prompt_name: str = "Error:",
     ) -> None:
         output = run(
-            self._main_prompt + ["-p", prompt_name],
+            self._main_prompt + [self._prompt_flag, prompt_name],
             input=entries,
             encoding="utf-8",
         )
@@ -114,7 +116,7 @@ class Menu:
         **kargs,
     ) -> None:
         output = run(
-            self._main_prompt + ["-p", prompt_name] + extra_prompt,
+            self._main_prompt + [self._prompt_flag, prompt_name] + extra_prompt,
         )
 
         if output.returncode:
@@ -133,7 +135,7 @@ class Menu:
         **kargs,
     ) -> None:
         output = run(
-            self._main_prompt + ["-p", prompt_name] + extra_prompt,
+            self._main_prompt + [self._prompt_flag, prompt_name] + extra_prompt,
             input=entries,
             encoding="utf-8",
         )
