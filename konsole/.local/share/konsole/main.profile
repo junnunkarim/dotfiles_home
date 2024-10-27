@@ -1,8 +1,9 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=gruvbox
-Font=Iosevka Nerd Font Mono,16,-1,5,50,0,0,0,0,0
+ColorScheme=matugen
+Font=Iosevka Nerd Font Mono,18,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+IgnoreWcWidth=true
 LineSpacing=0
 UseFontLineChararacters=true
 WordModeBrahmic=true
