@@ -1,0 +1,31 @@
+{
+  "label_fg": "{{colors.on_surface_variant.default.hex}}",
+
+  "bar_bg": "{{colors.surface_container.default.hex}}",
+
+  "clock_container_bg": "{{colors.secondary_container.default.hex}}",
+  "clock_icon_bg": "{{colors.on_secondary_container.default.hex}}",
+  "clock_icon_fg": "{{colors.secondary_container.default.hex}}",
+  "clock_label_fg": "{{colors.on_secondary_container.default.hex}}",
+  "clock_border": "{{colors.on_secondary_container.default.hex}}",
+
+  "window_title_border": "{{colors.on_surface.default.hex}}",
+
+  "workspace_item_active_icon_bg": "{{colors.primary.default.hex}}",
+  "workspace_item_active_icon_fg": "{{colors.on_primary.default.hex}}",
+  "workspace_item_active_container_bg": "{{colors.on_primary.default.hex}}",
+  "workspace_item_active_label_fg": "{{colors.primary.default.hex}}",
+  "workspace_border": "{{colors.primary.default.hex}}",
+
+  "systray_bg": "{{colors.tertiary_container.default.hex}}",
+
+  "battery_container_bg": "{{colors.on_tertiary.default.hex}}",
+  "battery_container_charging_bg": "{{colors.on_error.default.hex}}",
+  "battery_label_fg": "{{colors.tertiary.default.hex}}",
+  "battery_label_charging_fg": "{{colors.error.default.hex}}",
+  "battery_icon_fg": "{{colors.on_tertiary.default.hex}}",
+  "battery_icon_bg": "{{colors.tertiary.default.hex}}",
+  "battery_icon_charging_bg": "{{colors.error.default.hex}}",
+  "battery_border": "{{colors.tertiary.default.hex}}",
+  "battery_border_charging": "{{colors.error.default.hex}}"
+}
