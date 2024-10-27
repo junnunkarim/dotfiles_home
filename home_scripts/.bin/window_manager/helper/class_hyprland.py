@@ -63,6 +63,11 @@ class Hyprland(Window_manager):
             start_concat="ColorScheme=",
             end_concat="",
         )
+        konsole = Program_color(
+            file="~/.local/share/konsole/main.profile",
+            start_concat="ColorScheme=",
+            end_concat="",
+        )
         zathura = Program_color(
             file="~/.config/zathura/zathurarc",
             start_concat="include colorschemes/",
@@ -76,11 +81,11 @@ class Hyprland(Window_manager):
             start_concat='  "colorscheme": "',
             end_concat='"',
         )
-        # dmenu = Program_color(
-        #     file="~/.Xresources",
-        #     start_concat='#include ".config/dmenu/xcolors_dmenu/',
-        #     end_concat='"',
-        # )
+        fuzzel = Program_color(
+            file="~/.config/fuzzel/fuzzel.ini",
+            start_concat="include=~/.config/fuzzel/colors/",
+            end_concat=".ini",
+        )
 
         nvim_colorscheme_map = {
             "catppuccin_macchiato": "base16-catppuccin-macchiato",
@@ -101,13 +106,14 @@ class Hyprland(Window_manager):
 
         programs_to_manage = {
             "btop": btop,
+            "fuzzel": fuzzel,
             "gtk": gtk,
             "helix": helix,
+            "hyprland": hyprland,
             "kitty": kitty,
             "konsole": konsole,
-            "zathura": zathura,
-            "hyprland": hyprland,
             "nvim": nvim,
+            "zathura": zathura,
         }
 
         super().__init__(menu, programs_to_manage, wallpaper_dict, colorscheme_dict)
@@ -115,31 +121,6 @@ class Hyprland(Window_manager):
     # ------------------------------------
     # functions for hot reloading programs
     # ------------------------------------
-    # def reload_dwm(
-    #     self,
-    #     xresource_path: Path = Path("~/.Xresources").expanduser(),
-    # ) -> None:
-    #     xrdb_command = [
-    #         "xrdb",
-    #         "-merge",
-    #         f"-I'$HOME'",
-    #         f"{xresource_path}",
-    #     ]
-    #
-    #     run(xrdb_command)
-    #
-    #     xsetroot_command = [
-    #         "xsetroot",
-    #         "-name",
-    #         "fsignal:2",
-    #     ]
-    #
-    #     run(xsetroot_command)
-    #
-    #     restart_luastatus = [
-    #         f"{Path('~/.config/dwm/scripts/dwm_statusbar').expanduser()}",
-    #     ]
-    #     Popen(restart_luastatus, start_new_session=True)
 
     # -----------------------------------
     # functions for applying stuffs
@@ -181,6 +162,28 @@ class Hyprland(Window_manager):
 
     # for applying colorscheme
     # ------------------------
+    def apply_gtk_theme_wayland(self, colorscheme: str):
+        gtk_colorscheme_map = {
+            "catppuccin_macchiato": "catppuccin_macchiato",
+            "dracula": "dracula",
+            "everblush": "everblush",
+            "everforest": "everforest",
+            "gruvbox": "gruvbox",
+            "matugen": "adw-gtk3",
+            "nord": "nord",
+            "rose_pine": "rose_pine",
+        }
+
+        command = [
+            "gsettings",
+            "set",
+            "org.gnome.desktop.interface",
+            "gtk-theme",
+            gtk_colorscheme_map[colorscheme],
+        ]
+
+        Popen(command, start_new_session=True)
+
     def apply(
         self,
         choose_wallpaper=False,
@@ -189,19 +192,19 @@ class Hyprland(Window_manager):
         allowed_programs = {
             "matugen": [
                 "btop",
-                "dwm",
-                "dmenu",
+                "fuzzel",
                 "gtk",
+                "hyprland",
                 "luastatus",
                 "kitty",
+                "konsole",
                 "nvim",
             ],
         }
-        super()._apply(colorscheme, allowed_programs)
 
         if choose_wallpaper:
             selection = self._menu.get_confirmation(
-                question="Do you want to choose a wallpaper?",
+                question="Do you want to choose a wallpaper? ",
                 positive=" Yes",
                 negative=" No (random wallpaper choosen)",
             )
@@ -216,6 +219,8 @@ class Hyprland(Window_manager):
         if colorscheme == "matugen":
             self.matugen_generate(wallpaper)
 
+        self.apply_gtk_theme_wayland(colorscheme)
+        super()._apply(colorscheme, allowed_programs)
         self.apply_wallpaper(wallpaper)
         self.apply_lockscreen_wallpaper(wallpaper)
 

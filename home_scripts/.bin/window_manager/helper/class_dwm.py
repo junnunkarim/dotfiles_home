@@ -212,7 +212,6 @@ class Dwm(Window_manager):
                 "nvim",
             ],
         }
-        super()._apply(colorscheme, allowed_programs)
 
         if choose_wallpaper:
             selection = self._menu.get_confirmation(
@@ -231,6 +230,7 @@ class Dwm(Window_manager):
         if colorscheme == "matugen":
             self.matugen_generate(wallpaper)
 
+        super()._apply(colorscheme, allowed_programs)
         self.apply_wallpaper(wallpaper)
         self.apply_lockscreen_wallpaper(wallpaper)
 
