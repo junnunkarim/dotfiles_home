@@ -4,7 +4,7 @@ cursor_text_color {{colors.on_surface_variant.dark.hex}}
 
 # Main colors
 foreground            {{colors.on_surface.default.hex}}
-background            {{colors.on_secondary_fixed.default.hex}}
+background            {{colors.background.default.hex}}
 selection_foreground  {{colors.on_primary.default.hex}}
 selection_background  {{colors.primary_fixed_dim.default.hex}}
 url_color             {{colors.tertiary.default.hex}}
