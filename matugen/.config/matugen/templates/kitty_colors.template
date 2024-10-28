@@ -10,24 +10,24 @@ selection_background  {{colors.primary_fixed_dim.default.hex}}
 url_color             {{colors.tertiary.default.hex}}
 
 # black
-color0  {{colors.surface.dark.hex}}
+color0  {{colors.background.dark.hex}}
 color8  {{colors.surface_bright.dark.hex}}
 
 # red
-color1  {{colors.red.dark.hex}}
-color9  {{colors.red.dark.hex}}
+color1  {{colors.error.dark.hex}}
+color9  {{colors.error.dark.hex}}
 
 # green
-color2  {{colors.green.dark.hex}}
-color10  {{colors.green.dark.hex}}
+color2  {{colors.tertiary.dark.hex}}
+color10  {{colors.tertiary.dark.hex}}
 
 # yellow
-color3  {{colors.yellow.dark.hex}}
-color14  {{colors.yellow.dark.hex}}
+color3  {{colors.primary.dark.hex}}
+color14  {{colors.primary.dark.hex}}
 
 # blue
-color4  {{colors.blue.dark.hex}}
-color12  {{colors.blue.dark.hex}}
+color4  {{colors.secondary.dark.hex}}
+color12  {{colors.secondary.dark.hex}}
 
 # magenta
 color5  {{colors.purple.dark.hex}}
