@@ -1,8 +1,8 @@
 ! source dwm colorscheme !
-#include ".config/dwm/xcolors_dwm/matugen"
+#include ".config/dwm/xcolors_dwm/rose_pine"
 
 ! source dmenu colorscheme !
-#include ".config/dmenu/xcolors_dmenu/matugen"
+#include ".config/dmenu/xcolors_dmenu/rose_pine"
 
 ! fonts config !
 ! Xft.dpi: 120
@@ -12,8 +12,8 @@
 ! Xft.hintstyle: hintslight
 ! Xft.rgba: rgb
 ! Xft.lcdfilter: lcddefault
-!
+
 XTerm.vt100.background: black
 XTerm.vt100.foreground: grey
-xterm*faceName: Iosevka
+xterm*faceName: Iosevka Nerd Font Mono
 xterm*faceSize: 18
