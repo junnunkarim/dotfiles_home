@@ -19,23 +19,23 @@ purple = { color = "#bf77f6", blend = false }
 magenta = { color = "#ffd1df", blend = false }
 
 [templates]
-kitty = {input_path = '~/.config/matugen/templates/kitty.conf', output_path = '~/.config/kitty/colorschemes/matugen.conf'}
-konsole = {input_path = '~/.config/matugen/templates/konsole.colorscheme', output_path = '~/.local/share/konsole/matugen.colorscheme'}
+kitty = {input_path = '~/.config/matugen/templates/kitty_colors.template', output_path = '~/.config/kitty/colorschemes/matugen.conf'}
+konsole = {input_path = '~/.config/matugen/templates/konsole_colors.template', output_path = '~/.local/share/konsole/matugen.colorscheme'}
 
-rofi = {input_path = '~/.config/matugen/templates/rofi.rasi', output_path = '~/.config/qtile/external_configs/rofi/colorschemes/matugen.rasi'}
-fuzzel = {input_path = '~/.config/matugen/templates/fuzzel_colors.ini', output_path = '~/.config/fuzzel/colors/matugen.ini'}
+rofi = {input_path = '~/.config/matugen/templates/rofi_colors.template', output_path = '~/.config/qtile/external_configs/rofi/colorschemes/matugen.rasi'}
+fuzzel = {input_path = '~/.config/matugen/templates/fuzzel_colors.template', output_path = '~/.config/fuzzel/colors/matugen.ini'}
 
-ags = {input_path = '~/.config/matugen/templates/ags_colorscheme.json', output_path = '~/.config/hypr/external_configs/ags/themes/roundish_circle/styles/colorscheme_matugen.json'}
-dwm = {input_path = '~/.config/matugen/templates/dwm.xresources', output_path = '~/.config/dwm/xcolors_dwm/matugen'}
-luastatus_colors = {input_path = '~/.config/matugen/templates/luastatus_colors.lua', output_path = '~/.config/dwm/luastatus/colorscheme/helper/matugen_colors.lua'}
-luastatus_modules = {input_path = '~/.config/matugen/templates/luastatus_modules.lua', output_path = '~/.config/dwm/luastatus/colorscheme/matugen.lua'}
+ags = {input_path = '~/.config/matugen/templates/ags_colors.template', output_path = '~/.config/hypr/external_configs/ags/themes/roundish_circle/styles/colorscheme_matugen.json'}
+dwm = {input_path = '~/.config/matugen/templates/dwm_xresources_colors.template', output_path = '~/.config/dwm/xcolors_dwm/matugen'}
+luastatus_colors = {input_path = '~/.config/matugen/templates/luastatus_colors.template', output_path = '~/.config/dwm/luastatus/colorscheme/helper/matugen_colors.lua'}
+luastatus_modules = {input_path = '~/.config/matugen/templates/luastatus_modules_colors.template', output_path = '~/.config/dwm/luastatus/colorscheme/matugen.lua'}
 
-dmenu = {input_path = '~/.config/matugen/templates/dmenu.xresources', output_path = '~/.config/dmenu/xcolors_dmenu/matugen'}
+dmenu = {input_path = '~/.config/matugen/templates/dmenu_xresources_colors.template', output_path = '~/.config/dmenu/xcolors_dmenu/matugen'}
 
 [templates.gtk3]
-input_path = '~/.config/matugen/templates/gtk.css'
+input_path = '~/.config/matugen/templates/gtk_colors.template'
 output_path = '~/.config/gtk-3.0/gtk.css'
 
 [templates.gtk4]
-input_path = '~/.config/matugen/templates/gtk.css'
+input_path = '~/.config/matugen/templates/gtk_colors.template'
 output_path = '~/.config/gtk-4.0/gtk.css'

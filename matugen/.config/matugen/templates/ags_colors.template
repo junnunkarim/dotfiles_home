@@ -27,5 +27,7 @@
   "battery_icon_bg": "{{colors.tertiary.default.hex}}",
   "battery_icon_charging_bg": "{{colors.error.default.hex}}",
   "battery_border": "{{colors.tertiary.default.hex}}",
-  "battery_border_charging": "{{colors.error.default.hex}}"
+  "battery_border_charging": "{{colors.error.default.hex}}",
+
+  "hyprland_border": "{{colors.primary.default.hex | replace: "#", ""}}"
 }
