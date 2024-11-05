@@ -8,8 +8,10 @@ set completion-highlight-bg "#81a1c1"
 set completion-highlight-fg "#2e3440"
 set default-bg "#1c2027"
 set default-fg "#eceff4"
-set highlight-active-color "#88c0d0"
-set highlight-color "#81a1c1"
+
+set highlight-color rgba(129,161,193,0.5)
+set highlight-active-color rgba(235,203,139,0.5)
+
 set index-active-bg "#81a1c1"
 set index-active-fg "#2e3440"
 set index-bg "#2e3440"

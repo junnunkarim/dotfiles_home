@@ -29,8 +29,8 @@ set index-bg                "#2b3339"
 set index-active-fg         "#d8dee9"
 set index-active-bg         "#3b4252"
 
-set render-loading-bg		"#2b3339"
-set render-loading-fg		"#d8dee9"
+set render-loading-bg   "#2b3339"
+set render-loading-fg   "#d8dee9"
 
-set highlight-color		    "#a3be8c"
-set highlight-active-color	"#b48ead"
+set highlight-color       rgba(163,190,140,0.5)
+set highlight-active-color  rgba(180,142,173,0.5)

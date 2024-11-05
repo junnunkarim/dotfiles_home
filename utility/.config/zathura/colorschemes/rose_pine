@@ -1,20 +1,16 @@
-# https://github.com/rose-pine/rose-pine-theme
-# Soho vibes for Zathura: Rosé Pine
-#
-# Usage:
-# Copy contents of this file to ~/.config/zathura/zathurarc
-#
-# Change 'recolor' and 'recolor-keephue' to true to change
-# the document colors for a more uniform viewing experience.
-
 set default-bg                  "#191724"
 set default-fg                  "#e0def4"
 
 set statusbar-fg                "#e0def4"
 set statusbar-bg                "#555169"
 
-set inputbar-bg                 "#6e6a86"
-set inputbar-fg                 "#ebbcba"
+set inputbar-bg                 "#555169"
+set inputbar-fg                 "#e0def4"
+
+set index-bg                    "#191724"
+set index-fg                    "#e0def4"
+set index-active-bg             "#eb6f92"
+set index-active-fg             "#191724"
 
 set notification-bg             "#e0def4"
 set notification-fg             "#555169"
@@ -25,17 +21,17 @@ set notification-error-fg       "#555169"
 set notification-warning-bg     "#ebbcba"
 set notification-warning-fg     "#555169"
 
-set highlight-color             "#ebbcba"
-set highlight-active-color      "#eb6f92"
+set highlight-color             rgba(235,188,186,0.5)
+set highlight-active-color      rgba(235,111,146,0.5)
 
-set completion-bg               "#6e6a86"
-set completion-fg               "#ebbcba"
+set completion-bg               "#555169"
+set completion-fg               "#e0def4"
 
 set completion-highlight-fg     "#26233a"
 set completion-highlight-bg     "#ebbcba"
 
+set recolor                     "true"
 set recolor-lightcolor          "#191724"
 set recolor-darkcolor           "#e0def4"
 
-set recolor                     "false"
 set recolor-keephue             "false"

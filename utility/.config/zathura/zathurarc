@@ -1,4 +1,4 @@
-include colorschemes/dracula
+include colorschemes/matugen
 
 set font "Iosevka Nerd Font Mono 18"
 
