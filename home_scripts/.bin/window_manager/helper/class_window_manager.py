@@ -117,7 +117,7 @@ class Window_manager:
             ]
         )
         colorscheme_names = self._wallpaper_dict.keys()
-        prompt_name = "Wallpapers:"
+        prompt_name = "Wallpapers: "
 
         selected_wallpaper = self._menu.get_selection(menu_entries, prompt_name)
 

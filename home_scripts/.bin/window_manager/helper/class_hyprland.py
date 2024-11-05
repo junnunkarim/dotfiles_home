@@ -15,38 +15,40 @@ class Hyprland(Window_manager):
     ) -> None:
         # programs with universally defined location
         # ------------------------------------------
-        btop_colorscheme_map = {
-            "catppuccin_macchiato": "catppuccin_macchiato",
-            "dracula": "dracula",
-            "everblush": "everblush",
-            "everforest": "everforest",
-            "gruvbox": "gruvbox",
-            "matugen": "TTY",
-            "nord": "nord",
-            "rose_pine": "rose_pine",
-        }
         btop = Program_color(
             file="~/.config/btop/btop.conf",
             start_concat='color_theme = "',
             end_concat='"',
-            colorscheme_map=btop_colorscheme_map,
+            colorscheme_map={
+                "catppuccin_macchiato": "catppuccin_macchiato",
+                "dracula": "dracula",
+                "everblush": "everblush",
+                "everforest": "everforest",
+                "gruvbox": "gruvbox",
+                "matugen": "Default",
+                "nord": "nord",
+                "rose_pine": "rose_pine",
+            },
         )
-
-        gtk_colorscheme_map = {
-            "catppuccin_macchiato": "catppuccin_macchiato",
-            "dracula": "dracula",
-            "everblush": "everblush",
-            "everforest": "everforest",
-            "gruvbox": "gruvbox",
-            "matugen": "adw-gtk3",
-            "nord": "nord",
-            "rose_pine": "rose_pine",
-        }
+        fuzzel = Program_color(
+            file="~/.config/fuzzel/fuzzel.ini",
+            start_concat="include=~/.config/fuzzel/colors/",
+            end_concat=".ini",
+        )
         gtk = Program_color(
             file="~/.config/gtk-3.0/settings.ini",
             start_concat="gtk-theme-name=",
             end_concat="",
-            colorscheme_map=gtk_colorscheme_map,
+            colorscheme_map={
+                "catppuccin_macchiato": "catppuccin_macchiato",
+                "dracula": "dracula",
+                "everblush": "everblush",
+                "everforest": "everforest",
+                "gruvbox": "gruvbox",
+                "matugen": "adw-gtk3",
+                "nord": "nord",
+                "rose_pine": "rose_pine",
+            },
         )
         helix = Program_color(
             file="~/.config/helix/config.toml",
@@ -63,15 +65,20 @@ class Hyprland(Window_manager):
             start_concat="ColorScheme=",
             end_concat="",
         )
-        konsole = Program_color(
-            file="~/.local/share/konsole/main.profile",
-            start_concat="ColorScheme=",
-            end_concat="",
-        )
         zathura = Program_color(
             file="~/.config/zathura/zathurarc",
             start_concat="include colorschemes/",
             end_concat="",
+            colorscheme_map={
+                "catppuccin_macchiato": "catppuccin_macchiato",
+                "dracula": "dracula",
+                "everblush": "everblush",
+                "everforest": "everforest",
+                "gruvbox": "gruvbox",
+                "matugen": "matugen",
+                "nord": "nord",
+                "rose_pine": "rose_pine",
+            },
         )
 
         # programs with user defined location
@@ -81,27 +88,20 @@ class Hyprland(Window_manager):
             start_concat='  "colorscheme": "',
             end_concat='"',
         )
-        fuzzel = Program_color(
-            file="~/.config/fuzzel/fuzzel.ini",
-            start_concat="include=~/.config/fuzzel/colors/",
-            end_concat=".ini",
-        )
-
-        nvim_colorscheme_map = {
-            "catppuccin_macchiato": "base16-catppuccin-macchiato",
-            "dracula": "base16-dracula",
-            "everblush": "everblush",
-            "everforest": "base16-everforest",
-            "gruvbox": "base16-gruvbox-dark-medium",
-            "matugen": "base16-default-dark",
-            "nord": "base16-nord",
-            "rose_pine": "base16-rose-pine",
-        }
         nvim = Program_color(
             file="~/.config/nvim/lua/core/colorscheme.lua",
             start_concat='local color = "',
             end_concat='"',
-            colorscheme_map=nvim_colorscheme_map,
+            colorscheme_map={
+                "catppuccin_macchiato": "base16-catppuccin-macchiato",
+                "dracula": "base16-dracula",
+                "everblush": "everblush",
+                "everforest": "base16-everforest",
+                "gruvbox": "base16-gruvbox-dark-medium",
+                "matugen": "base16-default-dark",
+                "nord": "base16-nord",
+                "rose_pine": "base16-rose-pine",
+            },
         )
 
         programs_to_manage = {
@@ -199,6 +199,7 @@ class Hyprland(Window_manager):
                 "kitty",
                 "konsole",
                 "nvim",
+                "zathura",
             ],
         }
 
