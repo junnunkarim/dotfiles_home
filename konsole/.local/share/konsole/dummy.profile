@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=matugen
+ColorScheme=Breeze
 Font=Iosevka Nerd Font Mono,18,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 IgnoreWcWidth=true
 LineSpacing=0
@@ -10,7 +10,7 @@ WordModeBrahmic=true
 
 [General]
 Icon=konsole
-Name=main
+Name=dummy
 Parent=FALLBACK/
 TerminalMargin=16
 
