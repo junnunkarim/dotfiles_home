@@ -1,4 +1,4 @@
-from subprocess import run, Popen
+from subprocess import run, Popen, check_output
 from pathlib import Path
 from getpass import getuser
 from random import choice as random_choice
@@ -6,6 +6,8 @@ from random import choice as random_choice
 from .class_menu import Menu
 from .class_program_color import Program_color
 from .functions import fail_exit, safe_exit
+
+import time
 
 
 class Window_manager:
@@ -67,6 +69,54 @@ class Window_manager:
 
         Popen(command, start_new_session=True)
 
+    def reload_konsole(
+        self,
+        change_colors_to: str,
+        main_profile: str,
+        dummy_profile: str = "dummy",
+        delay: float = 0.05,
+    ):
+        # get all konsole instances
+        konsole_instances = check_output(["qdbus"], text=True).splitlines()
+        konsole_instances = [i for i in konsole_instances if "org.kde.konsole" in i]
+
+        # `dummy` must be at the start
+        profiles = [dummy_profile, main_profile]
+
+        for instance in konsole_instances:
+            # aet all sessions for the instance
+            sessions = check_output(
+                ["qdbus", f"{instance.strip()}"], text=True
+            ).splitlines()
+            sessions = [s for s in sessions if s.startswith("/Sessions/")]
+
+            for session in sessions:
+                for profile in profiles:
+                    command_1 = [
+                        "qdbus",
+                        f"{instance.strip()}",
+                        f"{session.strip()}",
+                        "org.kde.konsole.Session.setProfile",
+                        f"{profile}",
+                    ]
+                    run(command_1, start_new_session=True, check=True)
+
+                    time.sleep(delay)
+
+                # apply each colorscheme to the session
+                set_colors = [
+                    "qdbus",
+                    f"{instance.strip()}",
+                    f"{session.strip()}",
+                    "org.kde.konsole.Session.runCommand",
+                    f"konsoleprofile colors={change_colors_to}",
+                ]
+                run(set_colors, start_new_session=True, check=True)
+
+                time.sleep(delay)
+
+        # print(f"Successfully applied color profiles: {colors}")
+
     # ------------------------------
     # functions for color generation
     # ------------------------------
@@ -90,7 +140,7 @@ class Window_manager:
         ]
 
         # run the command
-        output = run(command, text=True, check=True)
+        output = run(command, start_new_session=True, text=True, check=True)
 
         return output.returncode
 
@@ -160,7 +210,7 @@ class Window_manager:
 
             for program in program_list:
                 if program in self._programs_to_manage.keys():
-                    print(f"{program}: {self._programs_to_manage[program]}")
+                    # print(f"{program}: {self._programs_to_manage[program]}")
                     self._programs_to_manage[program].apply(colorscheme)
         else:
             for program_obj in self._programs_to_manage.values():

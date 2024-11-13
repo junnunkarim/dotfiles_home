@@ -140,7 +140,7 @@ class Hyprland(Window_manager):
 
         output = Popen(command, start_new_session=True)
 
-        print(output)
+        # print(output)
 
     def apply_lockscreen_wallpaper(
         self,
@@ -227,3 +227,4 @@ class Hyprland(Window_manager):
 
         # self.reload_dwm()
         self.reload_kitty()
+        self.reload_konsole(change_colors_to=colorscheme, main_profile="main")
