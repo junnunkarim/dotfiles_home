@@ -1,0 +1,12 @@
+[manager]
+prepend_keymap = [
+  { on = "<Enter>", run = "plugin --sync smart-enter", desc = "enter the child directory, or open the file" },
+  # { on = "<S-Enter>", run = "open --interactive", desc = "open selected files interactively" },
+  { on = [
+    "n",
+    "o",
+  ], run = '''shell 'ripdrag "$@" -x 2>/dev/null &' --confirm''', desc = "drag and drop files (ripdrag)" },
+  # { on = "y", run = '''shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm''', desc = "copy to clipboard (x11)" },
+  { on = "y", run = '''shell 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' --confirm''', desc = "copy to clipboard (wayland)" },
+  { on = "?", run = "help", desc = "open help" },
+]

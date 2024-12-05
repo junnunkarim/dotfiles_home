@@ -21,21 +21,20 @@ class Dwm(Window_manager):
             end_concat='.toml"]',
         )
 
-        btop_colorscheme_map = {
-            "catppuccin_macchiato": "catppuccin_macchiato",
-            "dracula": "dracula",
-            "everblush": "everblush",
-            "everforest": "everforest",
-            "gruvbox": "gruvbox",
-            "matugen": "TTY",
-            "nord": "nord",
-            "rose_pine": "rose_pine",
-        }
         btop = Program_color(
             file="~/.config/btop/btop.conf",
             start_concat='color_theme = "',
             end_concat='"',
-            colorscheme_map=btop_colorscheme_map,
+            colorscheme_map={
+                "catppuccin_macchiato": "catppuccin_macchiato",
+                "dracula": "dracula",
+                "everblush": "everblush",
+                "everforest": "everforest",
+                "gruvbox": "gruvbox",
+                "matugen": "Default",
+                "nord": "nord",
+                "rose_pine": "rose_pine",
+            },
         )
 
         gtk_colorscheme_map = {

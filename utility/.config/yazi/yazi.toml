@@ -1,0 +1,27 @@
+[manager]
+show_hidden = true
+sort_by = "natural"
+sort_dir_first = true
+show_symlink = true
+
+[opener]
+play = [
+  { run = 'mpv --force-window "$@"', orphan = true, for = "unix", desc = "open in media player" },
+]
+edit = [
+  { run = '$EDITOR "$@"', block = true, for = "unix", desc = "open in editor" },
+]
+open = [{ run = 'handlr open "$@"', desc = "open in" }]
+
+[open]
+prepend_rules = [
+  { name = "*.mp4", use = ["play", "open"] },
+  { name = "*.mkv", use = ["play", "open"] },
+  { name = "*.mp3", use = ["play", "open"] },
+  { name = "*.ogg", use = ["play", "open"] },
+  { name = "*.json", use = ["edit", "open"] },
+
+  # multiple openers for a single rule
+  { name = "*.html", use = ["edit", "open"] },
+]
+append_rules = [{ name = "*", use = "my-fallback" }]

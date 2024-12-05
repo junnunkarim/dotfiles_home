@@ -98,7 +98,7 @@ class Hyprland(Window_manager):
                 "everblush": "everblush",
                 "everforest": "base16-everforest",
                 "gruvbox": "base16-gruvbox-dark-medium",
-                "matugen": "base16-default-dark",
+                "matugen": "matugen",
                 "nord": "base16-nord",
                 "rose_pine": "base16-rose-pine",
             },

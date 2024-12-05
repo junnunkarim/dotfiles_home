@@ -103,17 +103,18 @@ class Window_manager:
 
                     time.sleep(delay)
 
-                # apply each colorscheme to the session
-                set_colors = [
-                    "qdbus",
-                    f"{instance.strip()}",
-                    f"{session.strip()}",
-                    "org.kde.konsole.Session.runCommand",
-                    f"konsoleprofile colors={change_colors_to}",
-                ]
-                run(set_colors, start_new_session=True, check=True)
-
-                time.sleep(delay)
+                # inserts the cammond into all open konsole clients
+                # creates issues
+                # set_colors = [
+                #     "qdbus",
+                #     f"{instance.strip()}",
+                #     f"{session.strip()}",
+                #     "org.kde.konsole.Session.runCommand",
+                #     f"konsoleprofile colors={change_colors_to}",
+                # ]
+                # run(set_colors, start_new_session=True, check=True)
+                #
+                # time.sleep(delay)
 
         # print(f"Successfully applied color profiles: {colors}")
 

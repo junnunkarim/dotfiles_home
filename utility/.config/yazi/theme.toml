@@ -1,0 +1,15 @@
+[manager]
+count_copied = { fg = "#202020", bg = "#cdcdcd", italic = true }
+count_cut = { fg = "#202020", bg = "#cdcdcd", italic = true }
+count_selected = { fg = "#202020", bg = "#cdcdcd", italic = true }
+
+[status]
+# Mode
+mode_normal = { fg = "#202020", bg = "#bcbcbc", bold = true }
+mode_select = { fg = "#202020", bg = "#bcbcbc", bold = true }
+mode_unset = { fg = "#202020", bg = "#bcbcbc", bold = true }
+
+# Progress
+progress_label = { fg = "#ffffff", bold = true }
+progress_normal = { fg = "#b96290", bg = "#45475a" }
+progress_error = { fg = "#ff7677", bg = "#45475a" }

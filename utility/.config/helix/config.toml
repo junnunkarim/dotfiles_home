@@ -1,4 +1,4 @@
-theme = "nord"
+theme = "catppuccin_macchiato"
 
 [editor]
 line-number = "relative"
