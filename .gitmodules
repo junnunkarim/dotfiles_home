@@ -16,3 +16,6 @@
 [submodule "hypr/.config/hypr"]
 	path = hypr/.config/hypr
 	url = https://github.com/junnunkarim/dotfiles_hyprland
+[submodule "home_scripts/.bin/menu_agnostic__utilities"]
+	path = home_scripts/.bin/menu_agnostic__utilities
+	url = https://github.com/junnunkarim/menu_agnostic__utilities

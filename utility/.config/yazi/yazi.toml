@@ -23,5 +23,7 @@ prepend_rules = [
 
   # multiple openers for a single rule
   { name = "*.html", use = ["edit", "open"] },
+
+  { name = "*.pdf", use = ["open", "edit"] },
 ]
 append_rules = [{ name = "*", use = "my-fallback" }]

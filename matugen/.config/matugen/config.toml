@@ -32,7 +32,7 @@ magenta = { color = "#ffd1df", blend = true }
 # window managers / bars / widgets
 [templates.ags]
 input_path = '~/.config/matugen/templates/ags_colors.template'
-output_path = '~/.config/hypr/external_configs/ags/themes/roundish_circle/styles/colorscheme_matugen.json'
+output_path = '~/.config/hypr/external_configs/ags_v1/themes/roundish_circle/styles/colorscheme_matugen.json'
 
 [templates.dwm]
 input_path = '~/.config/matugen/templates/dwm_xresources_colors.template'
@@ -85,3 +85,9 @@ output_path = '~/.config/nvim/lua/colors/matugen.lua'
 [templates.zathura]
 input_path = '~/.config/matugen/templates/zathura.template'
 output_path = '~/.config/zathura/colorschemes/matugen'
+
+
+[templates.ax-shell]
+input_path = '~/.config/matugen/templates/ax-shell.css'
+output_path = '~/.config/Ax-Shell/styles/colors.css'
+# post_hook = ("fabric-cli exec ax-shell 'app.set_css()' &")
