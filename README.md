@@ -6,26 +6,30 @@
 
 > [!IMPORTANT]
 >
-> Currently very busy with University.  
-> I will update the readme as soon as I get some free time.  
+> Currently very busy with University.\
+> I will update the readme as soon as I get some free time.
 
 # System Information
 
 <h4 align="center">Here are some details about my setup:</h4>
 
 - **OS**: [Arch Linux](https://archlinux.org/)
-- **Terminal**: [Kitty](https://github.com/kovidgoyal/kitty) and [Konsole](https://konsole.kde.org/)
+- **Terminal**: [Kitty](https://github.com/kovidgoyal/kitty) and
+  [Konsole](https://konsole.kde.org/)
 - **Shell**: [Fish](https://fishshell.com/)
 - **Login Manager**: [sddm](https://github.com/sddm/sddm)
 - **Editor**: [nvim](https://github.com/neovim/neovim)
 
 ---
 
-- **Lock Screen**: [betterlockscreen](https://github.com/bakkeby/slock-flexipatch)
+- **Lock Screen**:
+  [betterlockscreen](https://github.com/bakkeby/slock-flexipatch)
 - **App Menu**: [rofi](https://github.com/davatorium/rofi)
-- **Network Menu**: [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
+- **Network Menu**:
+  [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu)
 - **AUR helper**: [Paru](https://github.com/Morganamilo/paru)
-- **Brightness Control**: [brightnessctl](https://github.com/Hummer12007/brightnessctl)
+- **Brightness Control**:
+  [brightnessctl](https://github.com/Hummer12007/brightnessctl)
 
 ---
 
@@ -35,7 +39,8 @@
 
 ---
 
-- **File Manager**: [felix](https://github.com/kyoheiu/felix) and [Thunar](https://docs.xfce.org/xfce/thunar/start)
+- **File Manager**: [felix](https://github.com/kyoheiu/felix) and
+  [Thunar](https://docs.xfce.org/xfce/thunar/start)
 - **Ebook Reader**: [zathura](https://github.com/pwmt/zathura)
 - **Image Viewer**: [qView](https://github.com/jurplel/qView)
 - **Video Player**: [mpv](https://github.com/mpv-player/mpv)
@@ -61,19 +66,23 @@
 
 > [!WARNING]
 >
-> **Although the `stow.sh` script has been made to first backup existing dotfile directories if they exist, but it has not been intensively tested.**  
+> **Although the `stow.sh` script has been made to first backup existing dotfile
+> directories if they exist, but it has not been intensively tested.**
 >
-> **So be sure to backup your dotfiles from `$HOME/`, `$HOME/.config/` and `$HOME/.local/share/` first.**  
+> **So be sure to backup your dotfiles from `$HOME/`, `$HOME/.config/` and
+> `$HOME/.local/share/` first.**
 
 > [!IMPORTANT]
 >
-> **Backup of existing dotfiles produced by the `stow.sh` script will be available in the following directories:**  
+> **Backup of existing dotfiles produced by the `stow.sh` script will be
+> available in the following directories:**
 >
-> `$HOME/.config/dotfiles_backup/`  
-> `$HOME/.local/share/dotfiles_backup/`  
-> `$HOME/dotfiles_backup/`  
+> `$HOME/.config/dotfiles_backup/`\
+> `$HOME/.local/share/dotfiles_backup/`\
+> `$HOME/dotfiles_backup/`
 
-- Clone this repo to your preferred directory and `cd` into the cloned directory. (Don't miss the ```--recursive``` option)
+- Clone this repo to your preferred directory and `cd` into the cloned
+  directory. (Don't miss the `--recursive` option)
 
 ```sh
 git clone https://github.com/junnunkarim/dotfiles_home --recursive
@@ -98,13 +107,11 @@ chmod +x stow.sh
 
 > **Under Construction**
 
-
 # Rices
 
 <details>
 <summary><h4>Reveal the rices</h4></summary>
 
-<h3 align="center"><a href="https://github.com/junnunkarim/dotfiles_awesome">AwesomeWM</a></h3>
 <h3 align="center"><a href="https://github.com/junnunkarim/dotfiles_dwm">dwm</a></h3>
 <h3 align="center"><a href="https://github.com/junnunkarim/dotfiles_qtile">Qtile</a></h3>
 
@@ -115,6 +122,7 @@ chmod +x stow.sh
 <details>
 <summary><h4>Reveal stuffs that needs to be implemented</h4></summary>
 
-- [ ] Modify the `stow.sh` script to add options to setup dotfiles for specific window manager
+- [x] rewrite `stow.sh` script to python and add options to setup dotfiles for
+      specific window manager
 
 </details>

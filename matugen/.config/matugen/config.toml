@@ -79,7 +79,7 @@ output_path = '~/.local/share/konsole/matugen.colorscheme'
 
 # applications
 [templates.neovim]
-input_path = '~/.config/matugen/templates/matugen.template'
+input_path = '~/.config/matugen/templates/neovim.template'
 output_path = '~/.config/nvim/lua/colors/matugen.lua'
 
 [templates.zathura]

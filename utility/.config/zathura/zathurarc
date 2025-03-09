@@ -1,6 +1,6 @@
-include colorschemes/matugen
+include colorschemes/catppuccin_macchiato
 
-set font "Iosevka Nerd Font Mono 18"
+set font "Iosevka 18"
 
 set adjust-open width
 set recolor true

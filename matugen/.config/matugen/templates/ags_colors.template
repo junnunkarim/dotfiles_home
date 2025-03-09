@@ -1,7 +1,7 @@
 {
   "label_fg": "{{colors.on_surface_variant.default.hex}}",
 
-  "bar_bg": "{{colors.surface_container.default.hex}}",
+  "bar_bg": "{{colors.on_primary_fixed.default.hex}}",
 
   "clock_container_bg": "{{colors.secondary_container.default.hex}}",
   "clock_icon_bg": "{{colors.on_secondary_container.default.hex}}",

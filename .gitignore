@@ -6,3 +6,4 @@ __pycache__/*
 *.pyc
 .ruff_cache
 *.log
+btop.log
