@@ -1,0 +1,36 @@
+/* system-tray widget */
+// contains all systray icons
+.systray_container__box {
+  @include unset;
+
+  background: $systray_bg;
+  border-radius: $border_radius;
+}
+// contains individual systray icon
+.systray_button_icon__btn {
+  @include unset;
+  @include create_button;
+
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+// individual systray icon
+.systray_icon__icn {
+  @include unset;
+
+  font-size: $icon_size;
+}
+// button to reveal the systray revealer
+.systray_reveal_button__btn {
+  @include unset;
+  @include create_button;
+
+  background: $systray_bg;
+
+  border-radius: $border_radius;
+
+  font-size: $icon_glyph_size * 0.8;
+  margin-top: 0.2rem;
+
+  margin-bottom: 0.5rem;
+}

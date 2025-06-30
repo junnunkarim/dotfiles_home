@@ -1,0 +1,18 @@
+// brightness widget
+.brightness_button_container__btn {
+  @include unset;
+  @include create_button;
+
+  padding-top: 0.4rem;
+  padding-bottom: 0.2rem;
+
+  margin-bottom: 0.5rem;
+}
+.brightness_icon__icn {
+  font-size: $icon_size;
+  padding-bottom: 0.4rem;
+}
+.brightness_level__lbl {
+  color: $label_fg;
+  font-size: $font_size;
+}

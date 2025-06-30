@@ -1,0 +1,46 @@
+// workspace widget
+// contains all workspace items;
+.workspace_container__box {
+  @include unset;
+
+  @include create_border($workspace_border);
+
+  margin-bottom: 0.5rem;
+}
+// button widget that contains a workspace item
+.workspace_item_container__btn {
+  @include unset;
+  @include create_button;
+
+  &:hover {
+    color: $workspace_item_active_icon_bg;
+    border-color: $workspace_item_active_icon_bg;
+  }
+}
+// contains a workspace's icon and client-count
+.workspace_item__box {
+  border-radius: $border_radius;
+
+  // for the workspace item that is currently focused
+  &.workspace_item_active__box {
+    background: $workspace_item_active_container_bg;
+
+    .workspace_icon__lbl {
+      background: $workspace_item_active_icon_bg;
+      color: $workspace_item_active_icon_fg;
+    }
+  }
+}
+// a workspace's icon
+.workspace_icon__lbl {
+  font-size: $icon_glyph_size;
+  border-radius: $border_radius;
+}
+// a workspace's client-count
+.workspace_client_count__lbl {
+  color: $workspace_item_active_label_fg;
+
+  font-size: $font_size * 1;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}

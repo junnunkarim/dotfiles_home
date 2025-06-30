@@ -1,0 +1,23 @@
+@import "./_clock.scss";
+@import "./_window_title.scss";
+@import "./_workspace.scss";
+@import "./_systray.scss";
+@import "./_wifi.scss";
+@import "./_volume.scss";
+@import "./_brightness.scss";
+@import "./_battery.scss";
+
+/* window { */
+/*   background-color: rgba($bar_bg, $bar_opacity); */
+/* } */
+
+* {
+  transition: $transition_animation;
+}
+
+.window_bar {
+  background-color: rgba($bar_bg, $bar_opacity);
+  color: $label_fg;
+
+  border-radius: $bar_border_radius;
+}

@@ -1,0 +1,19 @@
+// window title widget
+.window_title__btn {
+  @include unset;
+  @include create_button;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.window_title__lbl {
+  color: $label_fg;
+  /* @include create_border($window_title_border); */
+
+  font-size: $font_size * 0.9;
+  font-style: italic;
+  font-weight: 600;
+}

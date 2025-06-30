@@ -1,0 +1,32 @@
+// clock subwidget
+.clock_button_container__btn {
+  @include unset;
+  @include create_button;
+
+  background: $clock_container_bg;
+
+  /* margin-top: 0.25rem; */
+  margin-bottom: 0.5rem;
+  border-radius: $top_edge_border_radius;
+
+  /* &:hover { */
+  /*   border-color: $clock_border; */
+  /* } */
+}
+.clock_icon__lbl {
+  background: $clock_icon_bg;
+  color: $clock_icon_fg;
+
+  font-size: $icon_glyph_size;
+  border-radius: $top_edge_border_radius;
+}
+.clock_string__lbl {
+  @include unset;
+
+  color: $clock_label_fg;
+  @include create_border($clock_border);
+
+  font-size: $font_size * 1;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}

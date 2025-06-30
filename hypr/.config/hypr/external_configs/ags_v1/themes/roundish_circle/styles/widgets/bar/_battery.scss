@@ -1,0 +1,42 @@
+// battery widget
+.battery_container__box {
+  border-radius: $border_radius;
+
+  /* margin-bottom: 0.25rem; */
+  border-radius: $bottom_edge_border_radius;
+
+  &:not(.battery_container_charging__box) {
+    background: $battery_container_bg;
+  }
+  &.battery_container_charging__box {
+    background: $battery_container_charging_bg;
+  }
+}
+.battery_level__lbl {
+  font-size: $font_size;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+
+  &:not(.battery_level_charging__lbl) {
+    color: $battery_label_fg;
+    @include create_border($battery_border);
+  }
+  &.battery_level_charging__lbl {
+    color: $battery_label_charging_fg;
+    @include create_border($battery_border_charging);
+  }
+}
+.battery_icon__icn {
+  font-size: $icon_size * 1.2;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: $bottom_edge_border_radius;
+
+  &:not(.battery_icon_charging__icn) {
+    color: $battery_icon_fg;
+    background: $battery_icon_bg;
+  }
+  &.battery_icon_charging__icn {
+    background: $battery_icon_charging_bg;
+  }
+}
