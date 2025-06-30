@@ -1,9 +1,3 @@
-[submodule "qtile/.config/qtile"]
-	path = qtile/.config/qtile
-	url = https://github.com/junnunkarim/dotfiles_qtile
-[submodule "nvim/.config/nvim"]
-	path = nvim/.config/nvim
-	url = https://github.com/junnunkarim/dotfiles_nvim
 [submodule "awesome/.config/awesome"]
 	path = awesome/.config/awesome
 	url = https://github.com/junnunkarim/dotfiles_awesome
