@@ -1,0 +1,157 @@
+/*---------- Main Config ----------*/
+configuration {
+  modi:                       "drun,run,window";
+    show-icons:                 true;
+    display-drun:               " Apps";
+    display-run:                " Run";
+    display-filebrowser:        " Files";
+    display-window:             " Windows";
+  window-format:              "{w} · {c} · {t}";
+
+  icon-theme: "Papirus";
+
+  kb-mode-next: "Shift+Right,Alt+Tab";
+  kb-element-next: "Tab";
+  kb-element-prev: "grave";
+  kb-toggle-case-sensitivity: "ISO_Left_Tab,dead_grave";
+  kb-mode-previous: "Shift+Left,Alt+grave";
+  kb-toggle-sort: "Control+grave";
+}
+
+
+/*---------- Theme Config ----------*/
+@import "~/.config/qtile/external_configs/rofi/colors.rasi"
+
+* {
+  font: "Iosevka Nerd Font Mono Bold 15";
+}
+
+window {
+  /* properties for just the window widget */
+  location: center;
+  anchor: center;
+  fullscreen: true;
+
+  // 1 field: all
+  // 2 fields: top&bottom left&right
+  // 3 fields: top, left&right, bottom
+  // 4 fields: top, right, bottom, left
+  padding: 220px 680px 220px 680px;
+
+  transparency: "real";
+  background-color: var(transparent);
+}
+
+mainbox {
+  children: [ "message", "inputbar", "listview" ];
+
+  padding: 40px 40px 30px 40px;
+  border: 1px 1px 4px 1px;
+
+  text-color: var(foreground);
+  border-color: var(selected);
+  background-color: var(background);
+}
+
+listview {
+  children: [ "scrollbar", "element" ];
+
+  cycle: true;
+  scrollbar: true;
+
+  padding: 5px 0px; // top-bottom left-right
+  margin: 15px 0px 5px 0px;
+
+  text-color: var(foreground);
+  background-color: var(background-1);
+}
+  scrollbar {
+    handle-width: 8px;
+    padding: 20px 0px 20px 0px;
+
+    handle-color: var(selected);
+    background-color: inherit;
+  }
+  element {
+    padding: 10px 0px; // top-bottom left-right
+    margin: 8px 10px; // top-bottom left-right
+
+    background-color: inherit;
+  }
+  element-text {
+    padding: 2px 0px;
+
+    text-color: inherit;
+    background-color: transparent;
+  }
+  element.normal.normal, element.alternate.normal {
+
+    text-color: var(foreground);
+    background-color: inherit;
+  }
+  element.selected.normal {
+
+    text-color: var(background-1);
+    background-color: var(selected);
+  }
+  element.normal.active, element.normal.urgent, element.alternate.active, element.alternate.urgent, element.selected.active, element.selected.urgent {
+    text-color: var(background);
+    background-color: var(urgent);
+  }
+  element-icon {
+    size: 0px;
+    padding: 0px 0px 0px 10px;
+
+    text-color: inherit;
+    background-color: transparent;
+  }
+
+
+message {
+  padding: 15px;
+  margin: 0px 0px 10px 0px;
+  border: 0px 0px 0px 5px solid;
+
+  border-color: var(urgent);
+  text-color: var(foreground);
+  background-color: var(background-1);
+}
+textbox {
+  blink: true;
+  markup: true;
+
+  text-color: inherit;
+  background-color: inherit;
+}
+
+
+inputbar {
+  children: [ "entry", "prompt" ];
+
+  padding: 5px 0px; // top-bottom left-right
+  border: 0px 0px 0px 6px solid;
+
+  border-color: var(active);
+  text-color: var(foreground);
+  background-color: var(background-1);
+}
+  textbox-prompt-colon {
+    str: "";
+
+    text-color: inherit;
+    background-color: inherit;
+  }
+  entry {
+    placeholder: " Search...";
+    padding: 10px 10px 10px 20px;
+
+    background-color: inherit;
+    text-color: inherit;
+  }
+  prompt {
+    padding: 10px;
+    margin: 0px 10px;
+
+    background-color: var(active);
+    text-color: var(background);
+  }

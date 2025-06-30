@@ -1,0 +1,2 @@
+/* using colors.rasi as a middle-man because multiple rofi configs depend on it */
+@import "~/.config/qtile/external_configs/rofi/colorschemes/gruvbox.rasi"

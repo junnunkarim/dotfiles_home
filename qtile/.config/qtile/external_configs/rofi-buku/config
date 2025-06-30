@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+_rofi () {
+    rofi -dmenu -i -theme $HOME/.config/qtile/external_configs/rofi/buku.rasi -no-levenshtein-sort -width 1000 "$@"
+}
+
+# display settings
+display_type=3
+max_str_width=30
+
+# keybindings
+switch_view="Alt+Tab"
+new_bookmark="Alt+n"
+actions="Alt+a"
+edit="Alt+e"
+delete="Alt+d"
+
+# colors
+help_color="#2d7ed8"
