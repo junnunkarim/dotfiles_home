@@ -1,4 +1,4 @@
-include colorschemes/catppuccin_macchiato
+include colorschemes/matugen
 
 set font "Iosevka 18"
 

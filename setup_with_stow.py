@@ -171,7 +171,7 @@ def main():
         ],
     }
 
-    stow_profiles_available = [pack for pack in stow_profiles.keys()]
+    stow_profiles_available = [profile_pack for profile_pack in stow_profiles.keys()]
 
     parser = argparse.ArgumentParser(
         description="Manage stow symlinks and backups for your dotfiles."

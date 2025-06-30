@@ -1,1 +1,1 @@
-import = ["~/.config/alacritty/colorschemes/rose_pine.toml"]
+import = ["~/.config/alacritty/colorschemes/catppuccin_macchiato.toml"]

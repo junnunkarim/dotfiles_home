@@ -85,9 +85,3 @@ output_path = '~/.config/nvim/lua/colors/matugen.lua'
 [templates.zathura]
 input_path = '~/.config/matugen/templates/zathura.template'
 output_path = '~/.config/zathura/colorschemes/matugen'
-
-
-[templates.ax-shell]
-input_path = '~/.config/matugen/templates/ax-shell.css'
-output_path = '~/.config/Ax-Shell/styles/colors.css'
-# post_hook = ("fabric-cli exec ax-shell 'app.set_css()' &")

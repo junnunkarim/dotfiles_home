@@ -29,7 +29,7 @@
   "battery_border": "{{colors.tertiary.default.hex}}",
   "battery_border_charging": "{{colors.red.default.hex}}",
 
-  "bar_opacity": "0.6",
+  "bar_opacity": "0.8",
 
   "hyprland_border": "{{colors.primary.default.hex | replace: "#", ""}}"
 }

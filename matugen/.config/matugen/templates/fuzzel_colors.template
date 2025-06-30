@@ -1,6 +1,6 @@
 [colors]
 # Background color. Default: _fdf6e3ff_.
-background={{colors.on_primary.default.hex | replace: "#", ""}}ee
+background={{colors.on_primary.default.hex | set_lightness: -3.0 | replace: "#", ""}}ee
 # Text (foreground) color of unselected entries. Default: _657b83ff_.
 text={{colors.on_background.default.hex | replace: "#", ""}}ff
 # Text (foreground) color of prompt character(s). Default: _586e75ff_.

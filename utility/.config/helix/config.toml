@@ -1,4 +1,4 @@
-theme = "catppuccin_macchiato"
+theme = "gruvbox"
 
 [editor]
 line-number = "relative"
