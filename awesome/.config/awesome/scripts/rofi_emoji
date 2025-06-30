@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+rofi -modi emoji \
+  -show emoji \
+  -theme $HOME/.config/awesome/external_configs/rofi/script_menu_1.rasi

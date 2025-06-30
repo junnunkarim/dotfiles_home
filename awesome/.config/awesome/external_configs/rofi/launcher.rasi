@@ -1,0 +1,169 @@
+/*---------- Main Config ----------*/
+configuration {
+  modi:                       "drun,run,window";
+    show-icons:                 true;
+    display-drun:               " Apps";
+    display-run:                " Run";
+    display-filebrowser:        " Files";
+    display-window:             " Windows";
+  window-format:              "{w} · {c} · {t}";
+
+  icon-theme: "Papirus";
+
+  kb-mode-next: "Shift+Right,Alt+Tab";
+  kb-element-next: "Tab";
+  kb-element-prev: "grave";
+  kb-toggle-case-sensitivity: "ISO_Left_Tab,dead_grave";
+  kb-mode-previous: "Shift+Left,Alt+grave";
+  kb-toggle-sort: "Control+grave";
+}
+
+
+/*---------- Theme Config ----------*/
+@import "~/.config/awesome/external_configs/rofi/colors/colors.rasi"
+
+* {
+  font: "Iosevka Nerd Font Mono Bold 15";
+}
+
+window {
+  /* properties for window widget */
+  location: center;
+  anchor: center;
+  fullscreen: true;
+
+  // 1 field: all
+  // 2 fields: top&bottom left&right
+  // 3 fields: top, left&right, bottom
+  // 4 fields: top, right, bottom, left
+  padding: 180px 580px 220px 580px;
+
+  transparency: "real";
+  background-color: var(transparent);
+}
+
+mainbox {
+  children: [ "inputbar", "listview" ];
+
+  padding: 40px 40px 30px 40px;
+  border-radius: 30px;
+  border: 1px 1px 4px 1px;
+
+  text-color: var(foreground);
+  border-color: var(selected);
+  background-color: var(background);
+}
+
+listview {
+  children: [ "scrollbar", "element" ];
+
+  cycle: true;
+  scrollbar: true;
+
+  padding: 5px 0px; // top-bottom left-right
+  margin: 15px 0px;
+  border-radius: 30px;
+
+  text-color: var(foreground);
+  background-color: var(background-1);
+}
+  scrollbar {
+    handle-width: 8px;
+    padding: 20px 0px 20px 0px;
+
+    handle-color: var(selected);
+    background-color: inherit;
+  }
+  element {
+    padding: 10px 0px; // top-bottom left-right
+    margin: 8px 10px; // top-bottom left-right
+    border-radius: 20px;
+
+    background-color: inherit;
+  }
+  element-text {
+    padding: 5px 0px;
+
+    text-color: inherit;
+    background-color: transparent;
+  }
+  element.normal.normal, element.alternate.normal {
+    border-radius: 20px;
+
+    text-color: var(foreground);
+    background-color: inherit;
+  }
+  element.selected.normal {
+    border-radius: 20px;
+
+    text-color: var(background-1);
+    background-color: var(selected);
+  }
+  element.normal.active, element.normal.urgent, element.alternate.active, element.alternate.urgent, element.selected.active, element.selected.urgent {
+    text-color: var(background);
+    background-color: var(urgent);
+  }
+  element-icon {
+    size: 40px;
+    padding: 0px 10px 0px 20px;
+
+    text-color: inherit;
+    background-color: transparent;
+  }
+
+
+inputbar {
+  children: [ "entry", "mode-switcher" ];
+
+  padding: 5px 0px; // top-bottom left-right
+  margin: 10px 0px; // top-bottom left-right
+  border: 0px 0px 1px 6px solid;
+  border-radius: 30px;
+
+  border-color: var(active);
+  text-color: var(foreground);
+  background-color: var(background-1);
+}
+  textbox-prompt-colon {
+    str: "";
+    font: "Iosevka Nerd Font Mono Bold 20";
+
+    margin: 10px 10px 5px 10px;
+    padding: 0px;
+
+    text-color: inherit;
+    background-color: inherit;
+  }
+  entry {
+    placeholder: " Search...";
+    padding: 13px 10px 10px 20px;
+
+    background-color: inherit;
+    text-color: inherit;
+  }
+  mode-switcher {
+    children: [ "button" ];
+
+    spacing: 10px;
+    padding: 5px 15px 5px 10px;
+    border-radius: inherit;
+
+    background-color: var(background-1);
+  }
+    button {
+      width: 125px;
+      padding: inherit;
+      border: 0px 0px 2px 2px solid;
+      border-radius: inherit;
+
+      border-color: var(active);
+      background-color: var(background-1);
+      text-color: var(foreground);
+    }
+    button.selected {
+      border: 0px 0px 6px 2px solid;
+
+      border-color: var(active);
+      background-color: var(background);
+      text-color: var(foreground);
+    }

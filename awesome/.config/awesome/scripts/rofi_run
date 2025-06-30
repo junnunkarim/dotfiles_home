@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+rofi \
+  -show drun \
+  -theme ~/.config/awesome/external_configs/rofi/launcher.rasi

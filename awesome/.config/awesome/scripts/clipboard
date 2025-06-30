@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+rofi \
+  -modi "clipboard:greenclip print" \
+  -show clipboard \
+  -run-command '{cmd}' \
+  -theme $HOME/.config/awesome/external_configs/rofi/script_menu_1.rasi

@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+
+# Directory
+dmenu_dir="$HOME/.config/dmenu"
+rofi_dir="$HOME/.config/awesome/external_configs/rofi"
+alacritty_dir="$HOME/.config/alacritty"
+konsole_dir="$HOME/.local/share/konsole"
+kitty_dir="$HOME/.config/kitty"
+zathura_dir="$HOME/.config/zathura"
+
+# launcher
+prompt="rofi -dmenu -i -theme $HOME/.config/awesome/external_configs/rofi/script_menu.rasi"
+
+switch_theme()
+{
+  cp ${rofi_dir}/colors/$1.rasi ${rofi_dir}/colors/colors.rasi
+  cp ${kitty_dir}/colorscheme/$1.conf ${kitty_dir}/color.conf
+  cp ${zathura_dir}/theme/$1 ${zathura_dir}/theme.color
+  cp ${konsole_dir}/$1.colorscheme ${konsole_dir}/color.colorscheme
+
+  switch_awesomewm_colorscheme $1
+  pkill -HUP awesome
+}
+switch_awesomewm_colorscheme() {
+  sed "s/\(COLORSCHEME = \)\".*\"/\1\"$1\"/" -i ~/.config/awesome/visual/options.lua
+}
+switch_gtk_theme() {
+   sed -e "s/^gtk-theme-name=.*/gtk-theme-name="$@"/" -i ~/.config/gtk-3.0/settings.ini
+   sed -e "s/^gtk-theme-name=.*/gtk-theme-name=\""$@"\"/" -i ~/.gtkrc-2.0 
+}
+switch_wzterm_colorscheme()
+{
+	sed -i "/color_scheme/s/ = ".*"/ = \"$1\",/" -i $HOME/.config/wezterm/wezterm.lua
+}
+switch_alacritty_colorscheme()
+{
+	cp ${alacritty_dir}/colorscheme/$1.toml ${alacritty_dir}/color.toml
+}
+#switch_rofi_theme()
+#{
+#  sed "s/\.config\/awesome\/external_configs\/rofi\/colors.*.rasi/\.config\/rofi\/colors\/$1.rasi/" -i ~/.config/awesome/external_configs/rofi/launcher.rasi
+#  sed "s/\.config\/awesome\/external_configs\/rofi\/colors.*.rasi/\.config\/rofi\/colors\/$1.rasi/" -i ~/.config/awesome/external_configs/rofi/script_menu.rasi
+#  sed "s/\.config\/awesome\/external_configs\/rofi\/colors.*.rasi/\.config\/rofi\/colors\/$1.rasi/" -i ~/.config/awesome/external_configs/rofi/script_menu_1.rasi
+#}
+switch_nvim_colorscheme()
+{
+  #sed "/switch_colorscheme(\"/s/(".*")/(\"$1\")/" -i ~/.config/nvim/lua/core/colorscheme.lua
+  #sed "s/\(change_colorscheme(\)\"[^\"]*\"/\1\"$1\"/" -i ~/.config/nvim/lua/core/colorscheme.lua
+  sed "s/\(color\ =\ \)\"[^\"]*\"/\1\"$1\"/" -i ~/.config/nvim/lua/core/colorscheme.lua
+}
+switch_btop_colorscheme()
+{
+  sed -e "s@color_theme = .*@color_theme = \"$HOME/.config/btop/themes/$1.theme\"@" -i $HOME/.config/btop/btop.conf
+}
+switch_helix_colorscheme()
+{
+  sed -i "/theme/s/ = ".*"/ = \"$1\"/" -i $HOME/.config/helix/config.toml
+}
+
+
+# Theme
+cancel=" Cancel"
+colorscheme1=" Catppuccin (Macchiato)"
+colorscheme2=" Dracula"
+colorscheme3=" Everblush"
+colorscheme4=" Everforest"
+colorscheme5=" Gruvbox"
+colorscheme6=" Nord"
+colorscheme7=" Rosé Pine"
+
+# Variable to pass to dmenu or rofi
+option="$cancel\n$colorscheme3\n$colorscheme4\n$colorscheme5\n$colorscheme6\n$colorscheme7"
+
+select="$(echo -e "$option" | $prompt -p "Choose a theme" )"
+
+case $select in
+  $colorscheme1)
+    switch_theme catppuccin_macchiato
+    switch_gtk_theme Catppuccin
+    switch_alacritty_colorscheme catppuccin_macchiato
+    switch_nvim_colorscheme base16-catppuccin
+    switch_btop_colorscheme catppuccin_macchiato
+    switch_helix_colorscheme catppuccin_mocha
+    ;;
+  $colorscheme2)
+    switch_theme dracula
+    switch_gtk_theme Dracula
+    switch_wzterm_colorscheme "Dracula"
+    switch_alacritty_colorscheme dracula
+    switch_nvim_colorscheme base16-dracula
+    switch_btop_colorscheme dracula
+    switch_helix_colorscheme dracula
+    ;;
+  $colorscheme3)
+    switch_theme everblush
+    switch_gtk_theme everblush
+    switch_alacritty_colorscheme everblush
+    switch_nvim_colorscheme everblush
+    ;;
+  $colorscheme4)
+    switch_theme everforest
+    switch_gtk_theme Everforest-Dark-B
+    switch_alacritty_colorscheme everforest_hard
+    switch_nvim_colorscheme base16-everforest
+    switch_btop_colorscheme everforest_dark_hard
+    switch_helix_colorscheme everforest_dark
+    ;;
+  $colorscheme5)
+    switch_theme gruvbox
+    switch_gtk_theme Gruvbox-Dark
+    switch_alacritty_colorscheme gruvbox
+    switch_nvim_colorscheme base16-gruvbox-dark-medium
+    switch_btop_colorscheme gruvbox_dark
+    switch_helix_colorscheme gruvbox_dark_hard
+    ;;
+  $colorscheme6)
+    switch_theme nord
+    switch_gtk_theme Nord
+    #switch_wzterm_colorscheme "nord"
+    switch_alacritty_colorscheme nord
+    switch_nvim_colorscheme base16-nord
+    switch_btop_colorscheme nord
+    switch_helix_colorscheme nord
+    ;;
+  $colorscheme7)
+    switch_theme rose_pine
+    switch_gtk_theme rose-pine-gtk
+    switch_wzterm_colorscheme "Catppuccin Mocha"
+    switch_alacritty_colorscheme rose-pine
+    switch_nvim_colorscheme base16-rose-pine
+    switch_btop_colorscheme catppuccin_mocha
+    switch_helix_colorscheme rose_pine
+    ;;
+  esac

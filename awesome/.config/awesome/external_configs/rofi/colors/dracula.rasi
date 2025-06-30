@@ -1,0 +1,23 @@
+* {
+  transparent: #282a3670;
+  black0: #282a36;
+  black1: #44475a;
+  white: #f8f8f2;
+  black2: #6272a4;
+  cyan: #8be9fd;
+  green: #50fa7b;
+  orange: #ffb86c;
+  pink: #ff79c6;
+  purple: #bd93f9;
+  red: #ff5555;
+  yellow: #f1fa8c;
+
+  background: var(black0);
+  background-1: var(black1);
+  foreground: var(white);
+  foreground-1: var(white);
+  selected: var(purple);
+  selected-1: var(cyan);
+  active: var(green);
+  urgent: var(red);
+}
