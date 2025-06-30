@@ -119,7 +119,8 @@ def remove_symlinks(stow_directory: str, stow_packages: list):
 
 def setup(stow_directory: str, stow_packages: list):
     for entry in os.listdir(stow_directory):
-        if os.path.isdir(entry) and (entry in stow_packages):
+        #if os.path.isdir(entry) and (entry in stow_packages):
+        if entry in stow_packages:
             package = entry
 
             backup(package, stow_directory)
