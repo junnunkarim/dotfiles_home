@@ -1,0 +1,59 @@
+#define white #d3c6aa
+#define black #272e33
+#define black0 #1e2326
+#define gray1 #859289
+#define gray2 #7a8478
+#define red1 #e67e80
+#define red2 #f85552
+#define green1 #a7c080
+#define green2 #8da101
+#define yellow1 #dbbc7f
+#define yellow2 #dfa000
+#define blue1 #7fbbb3
+#define blue2 #3a94c5
+#define purple1 #d699b6
+#define purple2 #df69ba
+#define aqua1 #83c092
+#define aqua2 #35a77c
+#define orange1 #e69875
+#define orange2 #f57d26
+
+dwm.normfgcolor                : orange1
+dwm.normbgcolor                : black
+dwm.normbordercolor            : black
+dwm.normfloatcolor             : black
+
+dwm.selfgcolor                 : black
+dwm.selbgcolor                 : black
+dwm.selbordercolor             : orange1
+dwm.selfloatcolor              : green1
+
+dwm.titlenormfgcolor           : black1
+dwm.titlenormbgcolor           : black
+dwm.titlenormbordercolor       : black
+dwm.titlenormfloatcolor        : white
+
+dwm.titleselfgcolor            : white
+dwm.titleselbgcolor            : black
+dwm.titleselbordercolor        : black
+dwm.titleselfloatcolor         : white
+
+dwm.tagsnormfgcolor            : black
+dwm.tagsnormbgcolor            : green1
+dwm.tagsnormbordercolor        : green1
+dwm.tagsnormfloatcolor         : black
+
+dwm.tagsselfgcolor             : green1
+dwm.tagsselbgcolor             : black
+dwm.tagsselbordercolor         : green1
+dwm.tagsselfloatcolor          : black
+
+dwm.hidnormfgcolor             : purple
+dwm.hidselfgcolor              : purple
+dwm.hidnormbgcolor             : black
+dwm.hidselbgcolor              : black
+
+dwm.urgfgcolor                 : black
+dwm.urgbgcolor                 : red1
+dwm.urgbordercolor             : red1
+dwm.urgfloatcolor              : red2

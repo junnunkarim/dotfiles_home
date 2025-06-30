@@ -1,0 +1,16 @@
+#!/bin/sh
+
+run() {
+  if ! pgrep -f "$1"; then
+    "$@"
+  fi
+}
+
+pkill -x luastatus
+
+run "luastatus" -b dwm -B separator= \
+  ~/.config/dwm/luastatus/module/backlight.lua \
+  ~/.config/dwm/luastatus/module/alsa.lua \
+  ~/.config/dwm/luastatus/module/battery.lua \
+  ~/.config/dwm/luastatus/module/wifi.lua \
+  ~/.config/dwm/luastatus/module/time_date.lua

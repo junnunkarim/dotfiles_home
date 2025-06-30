@@ -1,0 +1,219 @@
+! need to add a prefix or else there will be conflict
+#define mat_dwm_aqua #82d3e2
+#define mat_dwm_aqua_container #004e59
+#define mat_dwm_aqua_source #80ffff
+#define mat_dwm_aqua_value #80ffff
+#define mat_dwm_background #101418
+#define mat_dwm_blue #95cdf8
+#define mat_dwm_blue_container #004b6f
+#define mat_dwm_blue_source #addfff
+#define mat_dwm_blue_value #addfff
+#define mat_dwm_cyan #81d3e0
+#define mat_dwm_cyan_container #004f57
+#define mat_dwm_cyan_source #acfffc
+#define mat_dwm_cyan_value #acfffc
+#define mat_dwm_dark_yellow #cacb77
+#define mat_dwm_dark_yellow_container #484a00
+#define mat_dwm_dark_yellow_source #b29700
+#define mat_dwm_dark_yellow_value #b29700
+#define mat_dwm_error #ffb4ab
+#define mat_dwm_error_container #93000a
+#define mat_dwm_green #91d5ad
+#define mat_dwm_green_container #035233
+#define mat_dwm_green_source #90ee90
+#define mat_dwm_green_value #90ee90
+#define mat_dwm_inverse_on_surface #2d3135
+#define mat_dwm_inverse_primary #2e628c
+#define mat_dwm_inverse_surface #e0e2e8
+#define mat_dwm_light_orange #e8c26c
+#define mat_dwm_light_orange_container #5a4300
+#define mat_dwm_light_orange_source #fdc47b
+#define mat_dwm_light_orange_value #fdc47b
+#define mat_dwm_lime #92d5ab
+#define mat_dwm_lime_container #065232
+#define mat_dwm_lime_source #80ff80
+#define mat_dwm_lime_value #80ff80
+#define mat_dwm_magenta #f7b1de
+#define mat_dwm_magenta_container #69345a
+#define mat_dwm_magenta_source #ffd1df
+#define mat_dwm_magenta_value #ffd1df
+#define mat_dwm_maroon #ffb1c4
+#define mat_dwm_maroon_container #703345
+#define mat_dwm_maroon_source #c08080
+#define mat_dwm_maroon_value #c08080
+#define mat_dwm_navy #b2c5ff
+#define mat_dwm_navy_container #314578
+#define mat_dwm_navy_source #8080c0
+#define mat_dwm_navy_value #8080c0
+#define mat_dwm_olive #b8cf84
+#define mat_dwm_olive_container #3b4d10
+#define mat_dwm_olive_source #c0c080
+#define mat_dwm_olive_value #c0c080
+#define mat_dwm_on_aqua #00363e
+#define mat_dwm_on_aqua_container #a0efff
+#define mat_dwm_on_background #e0e2e8
+#define mat_dwm_on_blue #00344e
+#define mat_dwm_on_blue_container #cae6ff
+#define mat_dwm_on_cyan #00363d
+#define mat_dwm_on_cyan_container #9eeffd
+#define mat_dwm_on_dark_yellow #313300
+#define mat_dwm_on_dark_yellow_container #e6e890
+#define mat_dwm_on_error #690005
+#define mat_dwm_on_error_container #ffdad6
+#define mat_dwm_on_green #003822
+#define mat_dwm_on_green_container #acf2c8
+#define mat_dwm_on_light_orange #3f2e00
+#define mat_dwm_on_light_orange_container #ffdf9a
+#define mat_dwm_on_lime #003921
+#define mat_dwm_on_lime_container #adf2c6
+#define mat_dwm_on_magenta #4f1e42
+#define mat_dwm_on_magenta_container #ffd8ee
+#define mat_dwm_on_maroon #551d2f
+#define mat_dwm_on_maroon_container #ffd9e1
+#define mat_dwm_on_navy #182e60
+#define mat_dwm_on_navy_container #dae2ff
+#define mat_dwm_on_olive #263500
+#define mat_dwm_on_olive_container #d4ec9d
+#define mat_dwm_on_orange #512400
+#define mat_dwm_on_orange_container #ffdbc7
+#define mat_dwm_on_primary #003353
+#define mat_dwm_on_primary_container #cee5ff
+#define mat_dwm_on_primary_fixed #001d32
+#define mat_dwm_on_primary_fixed_variant #0d4a73
+#define mat_dwm_on_purple #35275d
+#define mat_dwm_on_purple_container #e8ddff
+#define mat_dwm_on_red #551d2c
+#define mat_dwm_on_red_container #ffd9df
+#define mat_dwm_on_secondary #233240
+#define mat_dwm_on_secondary_container #d5e4f7
+#define mat_dwm_on_secondary_fixed #0e1d2a
+#define mat_dwm_on_secondary_fixed_variant #3a4857
+#define mat_dwm_on_surface #e0e2e8
+#define mat_dwm_on_surface_variant #c2c7cf
+#define mat_dwm_on_teal #00363e
+#define mat_dwm_on_teal_container #a2eeff
+#define mat_dwm_on_tertiary #382a49
+#define mat_dwm_on_tertiary_container #eedbff
+#define mat_dwm_on_tertiary_fixed #231533
+#define mat_dwm_on_tertiary_fixed_variant #4f4061
+#define mat_dwm_on_yellow #323200
+#define mat_dwm_on_yellow_container #e7e790
+#define mat_dwm_orange #ffb689
+#define mat_dwm_orange_container #6e380f
+#define mat_dwm_orange_source #fdaa48
+#define mat_dwm_orange_value #fdaa48
+#define mat_dwm_outline #8c9198
+#define mat_dwm_outline_variant #42474e
+#define mat_dwm_primary #9bcbfa
+#define mat_dwm_primary_container #0d4a73
+#define mat_dwm_primary_fixed #cee5ff
+#define mat_dwm_primary_fixed_dim #9bcbfa
+#define mat_dwm_purple #cfbdfe
+#define mat_dwm_purple_container #4c3e75
+#define mat_dwm_purple_source #bf77f6
+#define mat_dwm_purple_value #bf77f6
+#define mat_dwm_red #ffb1c0
+#define mat_dwm_red_container #713342
+#define mat_dwm_red_source #ff474c
+#define mat_dwm_red_value #ff474c
+#define mat_dwm_scrim #000000
+#define mat_dwm_secondary #b9c8da
+#define mat_dwm_secondary_container #3a4857
+#define mat_dwm_secondary_fixed #d5e4f7
+#define mat_dwm_secondary_fixed_dim #b9c8da
+#define mat_dwm_shadow #000000
+#define mat_dwm_source_color #3f6c93
+#define mat_dwm_surface #101418
+#define mat_dwm_surface_bright #36393e
+#define mat_dwm_surface_container #1c2024
+#define mat_dwm_surface_container_high #272a2f
+#define mat_dwm_surface_container_highest #323539
+#define mat_dwm_surface_container_low #181c20
+#define mat_dwm_surface_container_lowest #0b0f12
+#define mat_dwm_surface_dim #101418
+#define mat_dwm_surface_tint #9bcbfa
+#define mat_dwm_surface_variant #42474e
+#define mat_dwm_teal #83d2e3
+#define mat_dwm_teal_container #004e5a
+#define mat_dwm_teal_source #80c0c0
+#define mat_dwm_teal_value #80c0c0
+#define mat_dwm_tertiary #d3bfe6
+#define mat_dwm_tertiary_container #4f4061
+#define mat_dwm_tertiary_fixed #eedbff
+#define mat_dwm_tertiary_fixed_dim #d3bfe6
+#define mat_dwm_yellow #cbcb77
+#define mat_dwm_yellow_container #494a00
+#define mat_dwm_yellow_source #ffd700
+#define mat_dwm_yellow_value #ffd700
+
+
+! changes icon fg color of the bar
+dwm.normfgcolor                : mat_dwm_tertiary
+! changes icon bg color of the bar
+dwm.normbgcolor                : mat_dwm_on_primary_fixed
+! changes border color of the bar
+dwm.normbordercolor            : mat_dwm_on_primary_fixed
+! not needed
+dwm.normfloatcolor             : mat_dwm_primary
+
+! not needed
+dwm.selfgcolor                 : mat_dwm_primary
+! not needed
+dwm.selbgcolor                 : mat_dwm_primary
+! changes window border color
+dwm.selbordercolor             : mat_dwm_primary
+! changes floating window border color
+dwm.selfloatcolor              : mat_dwm_tertiary
+
+! changes titlebar fg color when window is not focused or there is no window
+dwm.titlenormfgcolor           : mat_dwm_on_surface_variant
+! changes titlebar bg color when window is not focused or there is no window
+dwm.titlenormbgcolor           : mat_dwm_on_primary_fixed
+! not needed
+dwm.titlenormbordercolor       : mat_dwm_primary
+! not needed
+dwm.titlenormfloatcolor        : mat_dwm_primary
+
+! changes titlebar fg color when window is focused
+dwm.titleselfgcolor            : mat_dwm_primary
+! changes titlebar bg color when window is focused
+dwm.titleselbgcolor            : mat_dwm_on_primary_fixed
+! not needed
+dwm.titleselbordercolor        : mat_dwm_primary
+! not needed
+dwm.titleselfloatcolor         : mat_dwm_primary
+
+! changes tag fg color when tag is not focused
+dwm.tagsnormfgcolor            : mat_dwm_on_primary_fixed
+! changes tag bg color when tag is not focused
+dwm.tagsnormbgcolor            : mat_dwm_primary
+! not needed
+dwm.tagsnormbordercolor        : mat_dwm_primary
+! not needed
+dwm.tagsnormfloatcolor         : mat_dwm_primary
+
+! changes tag fg color when tag is focused
+dwm.tagsselfgcolor             : mat_dwm_on_primary_container
+! changes tag bg color when tag is focused
+dwm.tagsselbgcolor             : mat_dwm_primary_container
+! not needed
+dwm.tagsselbordercolor         : mat_dwm_primary
+! not needed
+dwm.tagsselfloatcolor          : mat_dwm_primary
+
+! changes titlebar fg color when window is hidden and not focused
+dwm.hidnormfgcolor             : mat_dwm_outline
+! changes titlebar bg color when window is hidden and not focused
+dwm.hidnormbgcolor             : mat_dwm_on_primary
+
+! changes titlebar fg color when window is hidden and focused
+dwm.hidselfgcolor              : mat_dwm_error
+! changes titlebar bg color when window is hidden and focused
+dwm.hidselbgcolor              : mat_dwm_on_primary
+
+! changes tag fg color when there is a urgent window on that tag
+dwm.urgfgcolor                 : mat_dwm_on_error
+! changes tag bg color when there is a urgent window on that tag
+dwm.urgbgcolor                 : mat_dwm_error
+dwm.urgbordercolor             : mat_dwm_error
+dwm.urgfloatcolor              : mat_dwm_error
