@@ -115,18 +115,22 @@ def remove_symlinks(stow_directory: str, stow_packages: list):
             if result.returncode != 0:
                 print("Failed to remove stow symlinks...")
                 sys.exit(1)
+        else:
+            print(f"`{stow_directory}{entry}` is not a stow package!")
 
 
 def setup(stow_directory: str, stow_packages: list):
     for entry in os.listdir(stow_directory):
-        #if os.path.isdir(entry) and (entry in stow_packages):
-        if entry in stow_packages:
+        if os.path.isdir(entry) and (entry in stow_packages):
+            # if entry in stow_packages:
             package = entry
 
             backup(package, stow_directory)
             stow_symlink(package, stow_directory)
 
             print("\n---\n")
+        else:
+            print(f"`{stow_directory}{entry}` is not a stow package!")
 
 
 def main():
