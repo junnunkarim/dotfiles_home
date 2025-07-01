@@ -51,14 +51,17 @@ class WindowManager:
 
         return wallpaper_list[random.randint(0, len(wallpaper_list) - 1)]
 
-    def choose_wallpaper(self) -> str:
+    def choose_wallpaper(self, colorscheme: str) -> str:
         menu_entries = "\n".join(
             [
-                f"{colorscheme}:\n"
-                + "\n".join([f"  {wallpaper}" for wallpaper in wallpaper_list])
-                for colorscheme, wallpaper_list in self.wallpaper_dict.items()
+                # f"{colorscheme}:\n"
+                # + "\n".join([f"  {wallpaper}" for wallpaper in wallpaper_list])
+                # for colorscheme, wallpaper_list in self.wallpaper_dict.items()
+                "\n".join(self.wallpaper_dict[f"{colorscheme}"])
             ]
         )
+        print(menu_entries)
+        # print(self.wallpaper_dict)
         colorscheme_names = self.wallpaper_dict.keys()
         prompt_name = "Wallpapers: "
 
@@ -145,7 +148,7 @@ class WindowManager:
             )
 
             if selection:
-                wallpaper = self.choose_wallpaper()
+                wallpaper = self.choose_wallpaper(colorscheme)
             else:
                 wallpaper = self.choose_random_wallpaper(colorscheme)
         else:
