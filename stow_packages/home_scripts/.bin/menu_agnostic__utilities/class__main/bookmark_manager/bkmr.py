@@ -129,7 +129,7 @@ class BkmrMenu:
 
     def get_all_tags(
         self,
-        with_id: bool = True,
+        with_count: bool = True,
     ) -> str:
         result = subprocess.run(
             ["bkmr", "tags"],
@@ -139,15 +139,15 @@ class BkmrMenu:
 
         output = result.stdout.strip()
 
-        if with_id:
+        if with_count:
             tags = "\n".join(
-                f"{tag.strip()} [{count.strip()}]"
-                for count, tag in (line.split(":", 1) for line in output.splitlines())
+                f"{tag_info.split('(')[0].strip()} [{tag_info.split('(')[-1].rstrip(')')}]"
+                for tag_info in output.splitlines()
             )
         else:
             tags = "\n".join(
-                f"{tag.strip()}"
-                for _, tag in (line.split(":", 1) for line in output.splitlines())
+                f"{tag_info.split('(')[0].strip()}"
+                for tag_info in output.splitlines()
             )
 
         return tags
@@ -179,7 +179,7 @@ class BkmrMenu:
         else:
             copy_to_clipboard(url)
 
-        all_tags = self.get_all_tags(with_id=False)
+        all_tags = self.get_all_tags(with_count=False)
 
         tags = self._menu.get_selection(
             entries=all_tags,
