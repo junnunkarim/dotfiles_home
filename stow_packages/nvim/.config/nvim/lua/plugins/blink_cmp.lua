@@ -1,15 +1,9 @@
--- add blink.cmp capabilities to all servers without lspconfig
--- vim.lsp.config('*', {
---   capabilities = require('blink.cmp').get_lsp_capabilities(),
--- })
-
 local options = {
   keymap = {
-    -- set to 'none' to disable the 'default' preset
     preset = "cmdline",
 
     ["<CR>"] = { "accept", "fallback" },
-    ["<Esc>"] = { "hide", "fallback" },
+    ["<Esc>"] = { "fallback" },
     ['<Tab>'] = { "select_next", "fallback" },
     ['<S-Tab>'] = { "select_prev", "fallback" },
 
