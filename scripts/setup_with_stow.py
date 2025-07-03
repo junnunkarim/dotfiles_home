@@ -96,7 +96,9 @@ def stow_symlink(package: str, stow_directory: str):
 
 def remove_symlinks(stow_directory: str, stow_packages: list):
     for entry in os.listdir(stow_directory):
-        if os.path.isdir(os.path.join(stow_directory, entry)) and (entry in stow_packages):
+        if os.path.isdir(os.path.join(stow_directory, entry)) and (
+            entry in stow_packages
+        ):
             print(f"Removing stow symlinks for package {entry}")
 
             result = subprocess.run(
@@ -116,12 +118,16 @@ def remove_symlinks(stow_directory: str, stow_packages: list):
                 print("Failed to remove stow symlinks...")
                 sys.exit(1)
         else:
-            print(f"`{stow_directory}{entry}` is not a stow package listed in the package profile!")
+            print(
+                f"`{stow_directory}{entry}` is not a stow package listed in the package profile!"
+            )
 
 
 def setup(stow_directory: str, stow_packages: list):
     for entry in os.listdir(stow_directory):
-        if os.path.isdir(os.path.join(stow_directory, entry)) and (entry in stow_packages):
+        if os.path.isdir(os.path.join(stow_directory, entry)) and (
+            entry in stow_packages
+        ):
             package = entry
 
             backup(package, stow_directory)
@@ -129,7 +135,9 @@ def setup(stow_directory: str, stow_packages: list):
 
             print("\n---\n")
         else:
-            print(f"`{stow_directory}{entry}` is not a stow package listed in the package profile!")
+            print(
+                f"`{stow_directory}{entry}` is not a stow package listed in the package profile!"
+            )
 
 
 def main():
@@ -172,6 +180,10 @@ def main():
         ],
         "hyprland_only": [
             "hypr",
+        ],
+        "termux": [
+            "nvim",
+            "utility",
         ],
     }
 
