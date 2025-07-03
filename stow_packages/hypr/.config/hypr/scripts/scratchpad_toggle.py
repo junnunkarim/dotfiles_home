@@ -56,7 +56,7 @@ def handle_scratchpad(
     class_names = get_class_names(client_info)
     print(class_names)
 
-    if not match_name in class_names:
+    if match_name not in class_names:
         toggle_scratchpad(
             scratch_name,
             program_cmd=program_cmd,
