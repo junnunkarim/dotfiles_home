@@ -1,31 +1,38 @@
 local keymaps = {
   -- navigation related
-  {
-    "<leader>te",
-    function()
-      Snacks.explorer.open()
-    end,
-    desc = "File Explorer",
-  },
-  {
-    "<leader>tr",
-    function()
-      local explorer_pickers = Snacks.picker.get({ source = "explorer" })
-
-      for _, picker in pairs(explorer_pickers) do
-        if picker:is_focused() then
-          picker:close()
-        else
-          picker:focus()
-        end
-      end
-
-      if #explorer_pickers == 0 then
-        Snacks.picker.explorer()
-      end
-    end,
-    desc = "File Explorer",
-  },
+  -- {
+  --   "<leader>tr",
+  --   function()
+  --     Snacks.explorer.open()
+  --   end,
+  --   desc = "File Explorer",
+  -- },
+  -- {
+  --   "<leader>te",
+  --   function()
+  --     if Snacks.picker.get({ source = "explorer" })[1] == nil then
+  --       Snacks.picker.explorer()
+  --     elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == true then
+  --       Snacks.picker.explorer()
+  --     elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == false then
+  --       Snacks.picker.get({ source = "explorer" })[1]:focus()
+  --     end
+  --   end,
+  --   desc = "File Explorer (focus)",
+  -- },
+  -- {
+  --   "<leader>t/",
+  --   function()
+  --     if Snacks.picker.get({ source = "explorer" })[1] == nil then
+  --       Snacks.picker.explorer()
+  --     elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == true then
+  --       Snacks.picker.explorer()
+  --     elseif Snacks.picker.get({ source = "explorer" })[1]:is_focused() == false then
+  --       Snacks.picker.get({ source = "explorer" })[1]:focus()
+  --     end
+  --   end,
+  --   desc = "File Explorer (focus)",
+  -- },
   {
     "<leader>tb",
     function()
@@ -85,9 +92,9 @@ local keymaps = {
   },
   -- project related
   {
-    "<leader>pf",
+    "<leader>/",
     function()
-      Snacks.picker.files()
+      Snacks.picker.files({ hidden = true })
     end,
     desc = "Workspace Files",
   },

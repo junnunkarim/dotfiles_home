@@ -18,7 +18,7 @@ local function change_colorscheme(colorscheme)
   vim.cmd.colorscheme(colorscheme or "default")
 end
 
-local color = "rose-pine"
+local color = "nord"
 
 if color == "matugen" then
   local colors = require("colors.matugen")
