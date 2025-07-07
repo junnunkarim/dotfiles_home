@@ -20,6 +20,11 @@ local options = {
   },
 
   completion = {
+    accept = {
+      auto_brackets = {
+        enabled = true,
+      },
+    },
     documentation = {
       auto_show = true,
       auto_show_delay_ms = 100,
@@ -49,6 +54,10 @@ local options = {
   },
   signature = {
     enabled = true,
+    triger = {
+      enabled = true,
+      show_on_insert = false,
+    },
     window = {
       border = "single",
       show_documentation = true,
@@ -60,7 +69,7 @@ local options = {
       preset = "cmdline",
 
       ["<CR>"] = { "accept", "fallback" },
-      -- ["<Esc>"] = { "hide", "fallback" },
+      ["<Esc>"] = { "fallback" },
     },
     completion = {
       list = {
@@ -70,7 +79,7 @@ local options = {
         },
       },
       menu = {
-        auto_show = false,
+        auto_show = true,
         draw = {
           columns = {
             { "kind_icon", "label", "label_description", gap = 1 },
@@ -84,13 +93,6 @@ local options = {
   -- elsewhere in your config, without redefining it, due to `opts_extend`
   sources = {
     default = { "lsp", "path", "snippets", "buffer" },
-    providers = {
-      -- markdown = {
-      --   name = "RenderMarkdown",
-      --   module = "render-markdown.integ.blink",
-      --   fallbacks = { "lsp" },
-      -- },
-    },
   },
 
   -- Blink.cmp uses a Rust fuzzy matcher by default for typo resistance and significantly better performance

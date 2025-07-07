@@ -75,6 +75,8 @@ local indent_options = {
 -- window splitting settings
 -----------------------------------------------------------
 local split_options = {
+  -- keep the text on the same screen line
+  splitkeep = "screen",
   -- force horizontal splits to open below current window
   splitbelow = true,
   -- force vertical splits to open to the right of current window
@@ -88,7 +90,7 @@ local misc_options = {
   -- reveal markdown syntax (e.g., backticks remain visible)
   conceallevel = 0,
   -- time in milliseconds to wait for a mapped sequence to complete
-  timeoutlen = 100,
+  timeoutlen = 500,
   -- faster completion by reducing the time to trigger events
   updatetime = 50,
   -- use the system clipboard for copy/paste operations
@@ -118,7 +120,14 @@ local misc_options = {
 -----------------------------------------------------------
 local options = {}
 
-for _, group in ipairs({ file_options, ui_options, search_options, indent_options, split_options, misc_options }) do
+for _, group in ipairs({
+  file_options,
+  ui_options,
+  search_options,
+  indent_options,
+  split_options,
+  misc_options,
+}) do
   for option, value in pairs(group) do
     options[option] = value
   end
@@ -157,5 +166,3 @@ end
 -----------------------------------------------------------
 -- additional global settings
 -----------------------------------------------------------
--- set php lsp to intelephense for lazyvim
---vim.g.lazyvim_php_lsp = "intelephense"

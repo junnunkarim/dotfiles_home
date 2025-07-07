@@ -1,0 +1,16 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "quarto",
+        "pandoc",
+        "io",
+        "string",
+        "print",
+        "require",
+        "table",
+        "awesome",
+        "screen",
+        "client",
+        "detail"
+    ]
+}

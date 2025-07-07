@@ -1,5 +1,9 @@
-local util = require("util")
-util.set_keymap("n", "<leader>pc", "<cmd>CsvViewToggle<cr>", { desc = "Toggle CSV view" })
+vim.keymap.set(
+  "n",
+  "<leader>uc",
+  "<cmd>CsvViewToggle<cr>",
+  { noremap = true, silent = true, desc = "Toggle CSV view" }
+)
 
 return {
   "hat0uma/csvview.nvim",

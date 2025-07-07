@@ -1,64 +1,15 @@
 local sources = require("plugins.snacks.pickers")
+local layouts = require("plugins.snacks.config.layouts")
 
--- border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
-
+  -- default layout
 local default_layout = {
   preset = "custom_dropdown",
-}
-
-local layouts = {
-  custom_dropdown = {
-    filter = { cwd = true },
-    layout = {
-      backdrop = true,
-      row = 1,
-      width = 0.9,
-      min_width = 80,
-      height = 0.9,
-      border = "",
-      box = "vertical",
-      {
-        box = "vertical",
-        border = { " ", " ", " ", " ", " ", " ", " ", " " },
-        title = "{title} {live} {flags}",
-        title_pos = "center",
-        { win = "input", height = 1,     border = "bottom" },
-        { win = "list",  border = "none" },
-      },
-      {
-        win = "preview",
-        title = "{preview}",
-        height = 0.5,
-        border = "rounded",
-      },
-    },
-  },
-  custom_sidebar = {
-    layout = {
-      backdrop = false,
-      width = 40,
-      min_width = 40,
-      height = 0,
-      position = "left",
-      border = "none",
-      box = "vertical",
-      {
-        win = "input",
-        height = 1,
-        -- border = "rounded",
-        border = { " ", " ", " ", " ", " ", "", " ", " " },
-        title = "{title} {live} {flags}",
-        title_pos = "center",
-      },
-      { win = "list",    border = "none" },
-      { win = "preview", title = "{preview}", height = 0.4, border = "top" },
-    },
-  },
 }
 
 local win = {
   -- input window
   input = {
+    -- keymaps in insert mode of the picker
     keys = {
       ["<S-Tab>"] = { "list_up", mode = { "i", "n" } },
       ["<Tab>"] = { "list_down", mode = { "i", "n" } },
@@ -76,8 +27,9 @@ local win = {
       ["<S-CR>"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
     },
   },
-  -- result list window
+  -- output/result list window
   list = {
+    -- keymaps in normal mode of the picker
     keys = {
       ["<S-Tab>"] = { "list_up", mode = { "n", "x" } },
       ["<Tab>"] = { "list_down", mode = { "n", "x" } },
@@ -101,7 +53,9 @@ return {
   enabled = true,
   prompt = "  ",
   -- ui_select = false,
+  -- default layout
   layout = default_layout,
+  -- all layouts available
   layouts = layouts,
   sources = sources,
   win = win,

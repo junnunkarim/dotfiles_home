@@ -10,13 +10,8 @@ local keys = {
     "<leader>_",
     mode = { "n", "v" },
     "<cmd>Yazi<cr>",
-    desc = "Open yazi at the current file",
+    desc = "Open file picker at current buf dir (yazi)",
   },
-  -- {
-  --   "<c-up>",
-  --   "<cmd>Yazi toggle<cr>",
-  --   desc = "Resume the last yazi session",
-  -- },
 }
 
 return {
@@ -27,4 +22,6 @@ return {
   },
   keys = keys,
   opts = options,
+  cmd = "Yazi",
+  lazy = true,
 }

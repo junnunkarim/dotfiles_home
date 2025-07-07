@@ -63,7 +63,8 @@ local options = {
     lualine_y = {
       {
         "diff",
-        separator = { left = "", right = "" },
+        -- separator = { left = "", right = "" },
+        separator = { left = "", right = "" },
       },
     },
     lualine_z = {
@@ -71,7 +72,8 @@ local options = {
         "filename",
         -- 4: filename and parent dir, with tilde as the home directory
         path = 4,
-        separator = { left = "", right = "" },
+        -- separator = { left = "", right = "" },
+        separator = { left = "", right = "" },
         file_status = true,
         symbols = {
           modified = "[]",
@@ -116,7 +118,8 @@ local options = {
         "filename",
         -- 4: filename and parent dir, with tilde as the home directory
         path = 4,
-        separator = { left = "", right = "" },
+        -- separator = { left = "", right = "" },
+        separator = { left = "", right = "" },
         file_status = true,
         symbols = {
           modified = "[]",
@@ -140,7 +143,8 @@ local options = {
     lualine_b = {
       {
         "branch",
-        separator = { left = "", right = "" },
+        -- separator = { left = "", right = "" },
+        separator = { left = "", right = "" },
       },
     },
     lualine_c = {
@@ -165,7 +169,8 @@ local options = {
       { "searchcount" },
     },
     lualine_y = {
-      { "location", separator = { left = "", right = "" } },
+      -- { "location", separator = { left = "", right = "" } },
+      { "location", separator = { left = "", right = "" } },
     },
     lualine_z = {
       {
