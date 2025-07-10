@@ -18,7 +18,7 @@ local function change_colorscheme(colorscheme)
   vim.cmd.colorscheme(colorscheme or "default")
 end
 
-local color = "base16-gruvbox-dark-medium"
+local color = "rose-pine"
 
 if color == "matugen" then
   local colors = require("colors.matugen")

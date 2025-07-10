@@ -16,10 +16,11 @@ vim.lsp.config("*", {
 })
 
 vim.lsp.enable({
-  "lua_ls",
   "basedpyright",
-  "rust-analyzer",
   "gopls",
+  "lua_ls",
+  -- "postgres_lsp",
+  "rust-analyzer",
   "svelte",
   "ts_ls",
 })
@@ -92,6 +93,20 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Prev diagnostic" }
 )
 
+vim.keymap.set(
+  "n",
+  "gd",
+  vim.lsp.buf.definition,
+  { noremap = true, silent = true, desc = "Goto symbol definition" }
+)
+
+vim.keymap.set(
+  "n",
+  "gD",
+  vim.lsp.buf.declaration,
+  { noremap = true, silent = true, desc = "Goto symbol declaration" }
+)
+
 -- document symbols
 vim.keymap.set(
   "n",
@@ -151,12 +166,5 @@ vim.keymap.set(
   "n",
   "<leader>r",
   "<cmd>lua vim.lsp.buf.rename()<cr>",
-  { desc = "Rename selected symbol" }
-)
-
-vim.keymap.set(
-  "n",
-  "<leader>el",
-  function() vim.print(vim.lsp.get_clients()[1].server_capabilities) end,
   { desc = "Rename selected symbol" }
 )

@@ -58,6 +58,19 @@ local search_options = {
 }
 
 -----------------------------------------------------------
+-- fold settings
+-----------------------------------------------------------
+local fold_options = {
+  foldmethod = "expr",
+  foldexpr = "v:lua.vim.treesitter.foldexpr()",
+  foldenable = false,
+  foldcolumn = "0",
+  foldtext = "",
+  foldnestmax = 1,
+  foldlevel = 99,
+}
+
+-----------------------------------------------------------
 -- indentation & tab settings
 -----------------------------------------------------------
 local indent_options = {
@@ -124,6 +137,7 @@ for _, group in ipairs({
   file_options,
   ui_options,
   search_options,
+  fold_options,
   indent_options,
   split_options,
   misc_options,
@@ -144,6 +158,11 @@ end
 
 -- remove the '~' symbols from empty lines
 vim.opt.fillchars:append({ eob = " " })
+
+-----------------------------------------------------------
+-- global configurations
+-----------------------------------------------------------
+vim.g.health = { style = "float" }
 
 -----------------------------------------------------------
 -- neovide specific settings

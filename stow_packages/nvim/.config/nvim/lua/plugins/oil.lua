@@ -52,11 +52,9 @@ local keys = {
 
 return {
   "stevearc/oil.nvim",
-  -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
   opts = options,
   keys = keys,
-  -- lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
   cmd = "Oil",
-  event = { "VimEnter */*,.*", "BufNew */*,.*" },
+  event = { "VimEnter */*,.*" },
   lazy = true,
 }

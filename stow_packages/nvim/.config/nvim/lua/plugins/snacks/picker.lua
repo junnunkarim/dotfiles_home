@@ -9,7 +9,7 @@ local default_layout = {
 local win = {
   -- input window
   input = {
-    -- keymaps in insert mode of the picker
+    -- when there is input field in the picker
     keys = {
       ["<S-Tab>"] = { "list_up", mode = { "i", "n" } },
       ["<Tab>"] = { "list_down", mode = { "i", "n" } },
@@ -29,7 +29,7 @@ local win = {
   },
   -- output/result list window
   list = {
-    -- keymaps in normal mode of the picker
+    -- when there is no input field in the picker
     keys = {
       ["<S-Tab>"] = { "list_up", mode = { "n", "x" } },
       ["<Tab>"] = { "list_down", mode = { "n", "x" } },

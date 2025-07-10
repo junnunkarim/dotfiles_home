@@ -1,7 +1,5 @@
 local function trunc(length)
-  return function(str)
-    return string.sub(str, 1, length)
-  end
+  return function(str) return string.sub(str, 1, length) end
 end
 
 local options = {
@@ -171,6 +169,7 @@ local options = {
     lualine_y = {
       -- { "location", separator = { left = "", right = "" } },
       { "location", separator = { left = "", right = "" } },
+      { "filetype", separator = { left = "", right = "" } },
     },
     lualine_z = {
       {

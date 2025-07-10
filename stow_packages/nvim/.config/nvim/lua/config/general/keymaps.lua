@@ -2,7 +2,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- native keymaps
 --- better window management
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
@@ -10,10 +9,19 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
+-- navigate in insert and normal modes with alt + u/d
 vim.keymap.set("n", "<a-d>", "<C-d>zz")
 vim.keymap.set("i", "<a-d>", "<esc><C-d>zzi")
 vim.keymap.set("n", "<a-u>", "<C-u>zz")
 vim.keymap.set("i", "<a-u>", "<esc><C-u>zzi")
+
+-- edit
+vim.keymap.set(
+  "i",
+  "<C-BS>",
+  "<C-o>db",
+  { desc = "Delete word with backspace" }
+)
 
 -- buffers
 vim.keymap.set(
@@ -35,6 +43,26 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Goto last buffer" }
 )
 
+-- error/debug
+vim.keymap.set(
+  "n",
+  "<leader>el",
+  function() vim.print(vim.lsp.get_clients()[1].server_capabilities) end,
+  { desc = "Show capabilities of current attached LSP" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>ech",
+  "<cmd>checkhealth<cr>",
+  { desc = "Run all healthchecks" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>ecl",
+  "<cmd>checkhealth lsp<cr>",
+  { desc = "Run LSP healthcheck" }
+)
+
 -- ui
 vim.keymap.set(
   "n",
@@ -52,8 +80,9 @@ vim.keymap.set(
 )
 
 -- terminal
--- if vim.fn.exists(":SelfTerm") ~= 0 then -- won't work because plugin is sourced after keymaps
-local file_exists = vim.uv.fs_stat(vim.fn.expand("~/.config/nvim/plugin/term.lua")) ~= nil
+local file_exists = vim.uv.fs_stat(
+  vim.fn.expand("~/.config/nvim/plugin/term.lua")
+) ~= nil
 if file_exists then
   vim.keymap.set(
     "n",

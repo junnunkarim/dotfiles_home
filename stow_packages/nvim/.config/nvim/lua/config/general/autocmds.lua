@@ -13,11 +13,8 @@ create_autocmd("BufReadPost", {
 
 -- suppress exit code when closing terminal (if terminal outputs non-zero code)
 vim.api.nvim_create_autocmd("TermClose", {
-  callback = function()
-    vim.api.nvim_input("<CR>")
-  end,
+  callback = function() vim.api.nvim_input("<CR>") end,
 })
-
 
 -- LSP
 -- ----------------------------------------------------------------------------

@@ -19,8 +19,9 @@ local options = {
 return {
   "zk-org/zk-nvim",
   lazy = true,
-  ft = "markdown",
   config = function()
     require("zk").setup(options)
-  end
+  end,
+  ft = "markdown",
+  cmd = "ZkNotes",
 }

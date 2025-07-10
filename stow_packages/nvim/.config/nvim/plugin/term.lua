@@ -238,6 +238,9 @@ local function toggle_terminal(terminal_type)
           -- start terminal in the buffer
           vim.cmd("terminal")
         end)
+
+        -- exclude terminal buffer from buffer list
+        vim.bo[result.buf].buflisted = false
       end
     end
 

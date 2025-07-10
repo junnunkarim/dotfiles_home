@@ -34,10 +34,44 @@ return {
     function() Snacks.picker.undo() end,
     desc = "Undo history",
   },
+
+  -- git
+  {
+    "<leader>gd",
+    function() Snacks.picker.git_diff() end,
+    desc = "Show git diff of changed files",
+  },
+  {
+    "<leader>gc",
+    function() Snacks.picker.git_branches() end,
+    desc = "Show git branches",
+  },
+  {
+    "<leader>gl",
+    function() Snacks.picker.git_log() end,
+    desc = "Show git logs",
+  },
+  {
+    "<leader>gs",
+    function()
+      Snacks.picker.git_status({
+        win = {
+          input = {
+            keys = {
+              ["<S-Tab>"] = { "list_up", mode = { "i", "n" } },
+              ["<Tab>"] = { "list_down", mode = { "i", "n" } },
+            },
+          },
+        },
+      })
+    end,
+    desc = "Show git status of changed files",
+  },
+
   -- project related
   {
     "<leader>f",
-    function() Snacks.picker.files({ hidden = true }) end,
+    function() Snacks.picker.files({ ignored = false, hidden = true }) end,
     desc = "Open file picker",
   },
   {
@@ -46,9 +80,9 @@ return {
       local buffer_dir = vim.fn.expand("%:p:h")
 
       if vim.fn.isdirectory(buffer_dir) == 1 then
-        Snacks.picker.files({ cwd = buffer_dir, hidden = true })
+        Snacks.picker.files({ cwd = buffer_dir, ignored = false, hidden = true })
       else
-        Snacks.picker.files({ hidden = true })
+        Snacks.picker.files({ ignored = false, hidden = true })
         vim.notify(
           "[ERROR] This is not a file buffer.\nOpening file picker in current working directory.",
           vim.log.levels.WARN
@@ -67,6 +101,12 @@ return {
     function() Snacks.picker.jumps() end,
     desc = "Open jump list",
   },
+  {
+    "<leader>z",
+    function() Snacks.picker.zoxide() end,
+    desc = "Open projects (zoxide)",
+  },
+
   -- lsp related
   {
     "<leader>dd",
@@ -88,6 +128,7 @@ return {
     function() Snacks.picker.lsp_workspace_symbols() end,
     desc = "Open symbols picker (workspace)",
   },
+
   -- ui related
   {
     "<leader>wc",
@@ -99,12 +140,14 @@ return {
     function() Snacks.zen() end,
     desc = "Toggle zen mode",
   },
+
   -- misc
   {
     "<leader>mn",
     function() Snacks.notifier.hide() end,
     desc = "Hide notifications",
   },
+
   -- others
   {
     "]]",
