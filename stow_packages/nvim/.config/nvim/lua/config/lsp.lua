@@ -17,11 +17,13 @@ vim.lsp.config("*", {
 
 vim.lsp.enable({
   "basedpyright",
+  "cssls",
   "gopls",
+  "html",
   "lua_ls",
-  -- "postgres_lsp",
   "rust-analyzer",
   "svelte",
+  "tailwindcss",
   "ts_ls",
 })
 
@@ -45,126 +47,132 @@ vim.diagnostic.config({
 -- keymaps
 -- ----------------------------------------------------------------------------
 
-local function jump_virtual_lines(jump_count)
-  -- prevent autocmd for repeated jumps
-  pcall(vim.api.nvim_del_augroup_by_name, "jump_virtual_lines")
+-- only activate the keymaps when lsp is attached
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("LspConfig", {}),
+  callback = function()
+    local function jump_virtual_lines(jump_count)
+      -- prevent autocmd for repeated jumps
+      pcall(vim.api.nvim_del_augroup_by_name, "jump_virtual_lines")
 
-  vim.diagnostic.jump({ count = jump_count })
+      vim.diagnostic.jump({ count = jump_count })
 
-  local initial_state = {
-    virt_text = vim.diagnostic.config().virtual_text,
-    virt_lines = vim.diagnostic.config().virtual_lines,
-  }
+      local initial_state = {
+        virt_text = vim.diagnostic.config().virtual_text,
+        virt_lines = vim.diagnostic.config().virtual_lines,
+      }
 
-  vim.diagnostic.config({
-    virtual_text = false,
-    virtual_lines = { current_line = true },
-  })
+      vim.diagnostic.config({
+        virtual_text = false,
+        virtual_lines = { current_line = true },
+      })
 
-  -- deferred to not trigger by jump itself
-  vim.defer_fn(function()
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      desc = "User(once): Reset diagnostics virtual lines",
-      once = true,
-      group = vim.api.nvim_create_augroup("jump_virtual_lines", {}),
-      callback = function()
+      -- deferred to not trigger by jump itself
+      vim.defer_fn(function()
+        vim.api.nvim_create_autocmd("CursorMoved", {
+          desc = "User(once): Reset diagnostics virtual lines",
+          once = true,
+          group = vim.api.nvim_create_augroup("jump_virtual_lines", {}),
+          callback = function()
+            vim.diagnostic.config({
+              virtual_lines = initial_state.virt_lines,
+              virtual_text = initial_state.virt_text,
+            })
+          end,
+        })
+      end, 1)
+    end
+
+    -- go to next diagnostic
+    vim.keymap.set(
+      "n",
+      "ge",
+      function() jump_virtual_lines(1) end,
+      { noremap = true, silent = true, desc = "Next diagnostic" }
+    )
+
+    -- go to previous diagnostic
+    vim.keymap.set(
+      "n",
+      "gE",
+      function() jump_virtual_lines(-1) end,
+      { noremap = true, silent = true, desc = "Prev diagnostic" }
+    )
+
+    vim.keymap.set(
+      "n",
+      "gd",
+      vim.lsp.buf.definition,
+      { noremap = true, silent = true, desc = "Goto symbol definition" }
+    )
+
+    vim.keymap.set(
+      "n",
+      "gD",
+      vim.lsp.buf.declaration,
+      { noremap = true, silent = true, desc = "Goto symbol declaration" }
+    )
+
+    -- document symbols
+    vim.keymap.set(
+      "n",
+      "gO",
+      function() vim.lsp.buf.document_symbol() end,
+      { noremap = true, silent = true, desc = "Open document symbols picker" }
+    )
+
+    -- toggle between diagnostics `virtual_lines` and `virtual_text`
+    vim.keymap.set(
+      "n",
+      "<leader>dt",
+      function()
         vim.diagnostic.config({
-          virtual_lines = initial_state.virt_lines,
-          virtual_text = initial_state.virt_text,
+          virtual_lines = not vim.diagnostic.config().virtual_lines,
+          virtual_text = not vim.diagnostic.config().virtual_text,
         })
       end,
-    })
-  end, 1)
-end
+      {
+        noremap = true,
+        silent = true,
+        desc = "Toggle diagnostic lines/text",
+      }
+    )
 
--- go to next diagnostic
-vim.keymap.set(
-  "n",
-  "ge",
-  function() jump_virtual_lines(1) end,
-  { noremap = true, silent = true, desc = "Next diagnostic" }
-)
+    -- vim.keymap.set(
+    --   "n",
+    --   "<leader>=",
+    --   function() vim.lsp.buf.format() end,
+    --   { noremap = true, silent = true, desc = "format with LSP" }
+    -- )
 
--- go to previous diagnostic
-vim.keymap.set(
-  "n",
-  "gE",
-  function() jump_virtual_lines(-1) end,
-  { noremap = true, silent = true, desc = "Prev diagnostic" }
-)
+    -- can also be used with `gra`
+    vim.keymap.set(
+      "n",
+      "<leader>a",
+      "<cmd>lua vim.lsp.buf.code_action()<cr>",
+      { desc = "Perform code actions" }
+    )
 
-vim.keymap.set(
-  "n",
-  "gd",
-  vim.lsp.buf.definition,
-  { noremap = true, silent = true, desc = "Goto symbol definition" }
-)
+    --- `K` will show hover information (function signatures, docs etc.)
+    -- `KK` will jump inside the floting window, press `q` to dismiss
+    vim.keymap.set(
+      "n",
+      "K",
+      "<cmd>lua vim.lsp.buf.hover({ border = 'rounded' }) <cr>",
+      { desc = "Show docs for item under cursor" }
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>k",
+      "<cmd>lua vim.lsp.buf.hover({ border = 'rounded' }) <cr>",
+      { desc = "Show docs for item under cursor" }
+    )
 
-vim.keymap.set(
-  "n",
-  "gD",
-  vim.lsp.buf.declaration,
-  { noremap = true, silent = true, desc = "Goto symbol declaration" }
-)
-
--- document symbols
-vim.keymap.set(
-  "n",
-  "gO",
-  function() vim.lsp.buf.document_symbol() end,
-  { noremap = true, silent = true, desc = "Open document symbols picker" }
-)
-
--- toggle between diagnostics `virtual_lines` and `virtual_text`
-vim.keymap.set(
-  "n",
-  "<leader>dt",
-  function()
-    vim.diagnostic.config({
-      virtual_lines = not vim.diagnostic.config().virtual_lines,
-      virtual_text = not vim.diagnostic.config().virtual_text,
-    })
+    vim.keymap.set(
+      "n",
+      "<leader>r",
+      "<cmd>lua vim.lsp.buf.rename()<cr>",
+      { desc = "Rename selected symbol" }
+    )
   end,
-  {
-    noremap = true,
-    silent = true,
-    desc = "Toggle diagnostic lines/text",
-  }
-)
-
--- vim.keymap.set(
---   "n",
---   "<leader>=",
---   function() vim.lsp.buf.format() end,
---   { noremap = true, silent = true, desc = "format with LSP" }
--- )
-
--- can also be used with `gra`
-vim.keymap.set(
-  "n",
-  "<leader>a",
-  "<cmd>lua vim.lsp.buf.code_action()<cr>",
-  { desc = "Perform code actions" }
-)
-
---- `K` will show hover information (function signatures, docs etc.)
--- `KK` will jump inside the floting window, press `q` to dismiss
-vim.keymap.set(
-  "n",
-  "K",
-  "<cmd>lua vim.lsp.buf.hover({ border = 'rounded' }) <cr>",
-  { desc = "Show docs for item under cursor" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>k",
-  "<cmd>lua vim.lsp.buf.hover({ border = 'rounded' }) <cr>",
-  { desc = "Show docs for item under cursor" }
-)
-
-vim.keymap.set(
-  "n",
-  "<leader>r",
-  "<cmd>lua vim.lsp.buf.rename()<cr>",
-  { desc = "Rename selected symbol" }
-)
+})
