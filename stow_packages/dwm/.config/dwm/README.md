@@ -6,8 +6,8 @@
 > <h4>Documentation and Screenshots are OUTDATED!</h4>
 > <h4>Need to re-write documentation and upload new screenshots!</h4>
 
-![img](/ss/dwm_gruvbox_cozy-night.png)
-![img](/ss/dwm_nord_catppuccin-macchiato.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_gruvbox_cozy-night.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_nord_catppuccin-macchiato.png)
 
 # Information
 
@@ -323,32 +323,32 @@ Type=XSession
 
 <h3 align="center"><u>Catppuccin (Macchiato)</u></h3>
 
-![img](/ss/dwm_catppuccin_macchiato_1.png)
-![img](/ss/dwm_catppuccin_macchiato_2.png)
-![img](/ss/dwm_catppuccin_macchiato_3.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_catppuccin_macchiato_1.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_catppuccin_macchiato_2.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_catppuccin_macchiato_3.png)
 
 <h3 align="center"><u>Cozy-Night</u></h3>
 
-![img](/ss/dwm_cozy-night_1.png)
-![img](/ss/dwm_cozy-night_4.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_cozy-night_1.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_cozy-night_4.png)
 
 <h3 align="center"><u>Dracula</u></h3>
 
-![img](/ss/dwm_dracula_1.png)
-![img](/ss/dwm_dracula_2.png)
-![img](/ss/dwm_dracula_3.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_dracula_1.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_dracula_2.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_dracula_3.png)
 
 <h3 align="center"><u>Gruvbox</u></h3>
 
-![img](/ss/dwm_gruvbox_1.png)
-![img](/ss/dwm_gruvbox_2.png)
-![img](/ss/dwm_gruvbox_3.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_gruvbox_1.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_gruvbox_2.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_gruvbox_3.png)
 
 <h3 align="center"><u>Nord</u></h3>
 
-![img](/ss/dwm_nord_1.png)
-![img](/ss/dwm_nord_2.png)
-![img](/ss/dwm_nord_3.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_nord_1.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_nord_2.png)
+![img](/stow_packages/dwm/.config/dwm/ss/dwm_nord_3.png)
 
 </details>
 

@@ -5,7 +5,7 @@
 >
 > <h4>Rewrite Needed!</h4>
 
-![img](/ss/qtile_unixporn.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_unixporn.png)
 
 # System Information
 
@@ -165,54 +165,54 @@
 
 <h3 align="center"><u>Catppuccin</u></h3>
 
-![img](/ss/qtile_catppuccin_1.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_catppuccin_1.png)
 
-![img](/ss/qtile_catppuccin_2.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_catppuccin_2.png)
 
-![img](/ss/qtile_catppuccin_3.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_catppuccin_3.png)
 
 
 <h3 align="center"><u>Dracula</u></h3>
 
-![img](/ss/qtile_dracula_1.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_dracula_1.png)
 
-![img](/ss/qtile_dracula_2.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_dracula_2.png)
 
-![img](/ss/qtile_dracula_3.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_dracula_3.png)
 
 
 <h3 align="center"><u>Everforest</u></h3>
 
-![img](/ss/qtile_everforest_1.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_everforest_1.png)
 
-![img](/ss/qtile_everforest_2.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_everforest_2.png)
 
-![img](/ss/qtile_everforest_3.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_everforest_3.png)
 
 
 <h3 align="center"><u>Gruvbox</u></h3>
 
-![img](/ss/qtile_gruvbox_1.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_gruvbox_1.png)
 
-![img](/ss/qtile_gruvbox_2.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_gruvbox_2.png)
 
-![img](/ss/qtile_gruvbox_3.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_gruvbox_3.png)
 
 <h3 align="center"><u>Nord</u></h3>
 
-![img](/ss/qtile_nord_1.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_nord_1.png)
 
-![img](/ss/qtile_nord_2.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_nord_2.png)
 
-![img](/ss/qtile_nord_3.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_nord_3.png)
 
 <h3 align="center"><u>Rose Pine</u></h3>
 
-![img](/ss/qtile_rose-pine_1.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_rose-pine_1.png)
 
-![img](/ss/qtile_rose-pine_2.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_rose-pine_2.png)
 
-![img](/ss/qtile_rose-pine_3.png)
+![img](/stow_packages/qtile/.config/qtile/ss/qtile_rose-pine_3.png)
 
 </details>
 
