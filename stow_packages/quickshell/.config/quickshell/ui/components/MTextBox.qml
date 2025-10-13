@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 
+import qs.configs
 import qs.ui.components.containers
 
 MContainer {
@@ -18,16 +19,17 @@ MContainer {
   property alias fontFamily: textItem.fontFamily
   property alias fontSize: textItem.fontSize
   property alias fontWeight: textItem.fontWeight
-  property alias animation: textItem.animation
-  property alias animationProperty: textItem.animationProperty
-  property alias animationFrom: textItem.animationFrom
-  property alias animationTo: textItem.animationTo
+  property alias fitMode: textItem.fitMode
+  property alias useAnimation: textItem.useAnimation
   property alias animationDuration: textItem.animationDuration
 
   property string bgColor: "transparent"
+  property string orientation: "horizontal"
+  readonly property bool isVertical: orientation == "vertical"
 
-  implicitHeight: textItem.text != "" ? boxHeight : 0
-  implicitWidth: textItem.text != "" ? boxWidth : 0
+  implicitHeight: textItem.text != "" ? boxHeight * Config.styles.unit : 0
+  implicitWidth: textItem.text != "" ? boxWidth * Config.styles.unit : 0
+
   color: bgColor
 
   // [DEBUG]: this makes it easy to debug layout issues
@@ -40,7 +42,8 @@ MContainer {
 
     anchors.centerIn: parent
 
-    height: parent.height
-    width: parent.width
+    rotation: isVertical ? -90 : 0
+    width: isVertical ? parent.height : parent.width
+    height: isVertical ? parent.width : parent.height
   }
 }

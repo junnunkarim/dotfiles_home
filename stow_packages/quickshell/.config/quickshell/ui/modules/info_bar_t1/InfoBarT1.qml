@@ -1,140 +1,107 @@
-import Quickshell
+pragma ComponentBehavior: Bound
+
 import QtQuick
-import QtQuick.Layouts
-import QtQuick.Effects
 
 import qs.configs
-import qs.ui.components
 import qs.ui.components.containers
-import qs.ui.modules.info_bar_t1.components
+import qs.ui.modules.info_bar_t1
 
-Variants {
-  id: infoBar
+MContainer {
+  id: root
 
-  // contains list of all available screens
-  model: Quickshell.screens
-
-  // default properties
-  property real textBoxSize: (isVertical ? 30 : 27)
+  property real textBoxSize: (isVertical ? 28 : 22)
   property color barBgColor: "#272e33"
   property color barSeparatorColor: "#9da9a0"
   property color clockFgColor: "#272e33"
   property color clockBgColor: "#a7c080"
   property color dateFgColor: "#272e33"
   property color dateBgColor: "#7fbbb3"
+
+  property string orientation: "vertical"
   property real rounding: Config.styles.roundings.large
+  property list<bool> contCornersToRound: [true, true, true, true]
+
   property bool includeSeparator: true
   property real barSepThickness: 3
   property real componentSepThickness: 2
   property real scale: 1
 
-  readonly property bool isVertical: Config.options.orientation === "vertical"
+  readonly property bool isVertical: orientation === "vertical"
 
   // config to share to other components of this bar
   property QtObject sharedConfig: QtObject {
-    property real textBoxSize: infoBar.textBoxSize
-    property color barBgColor: infoBar.barBgColor
-    property color barSeparatorColor: infoBar.barSeparatorColor
-    property color clockFgColor: infoBar.clockFgColor
-    property color clockBgColor: infoBar.clockBgColor
-    property color dateFgColor: infoBar.dateFgColor
-    property color dateBgColor: infoBar.dateBgColor
-    property real rounding: infoBar.rounding
-    property bool includeSeparator: infoBar.includeSeparator
-    property real barSepThickness: infoBar.barSepThickness
-    property real componentSepThickness: infoBar.componentSepThickness
-    property real scale: infoBar.scale
-    property bool isVertical: infoBar.isVertical
+    property alias textBoxSize: root.textBoxSize
+    property alias barBgColor: root.barBgColor
+    property alias barSeparatorColor: root.barSeparatorColor
+    property alias clockFgColor: root.clockFgColor
+    property alias clockBgColor: root.clockBgColor
+    property alias dateFgColor: root.dateFgColor
+    property alias dateBgColor: root.dateBgColor
+
+    property alias orientation: root.orientation
+    property alias rounding: root.rounding
+    property alias includeSeparator: root.includeSeparator
+    property alias barSepThickness: root.barSepThickness
+    property alias componentSepThickness: root.componentSepThickness
+    property alias scale: root.scale
+    property alias isVertical: root.isVertical
   }
 
-  PanelWindow {
-    // individual data from the "model" property can be accessed as "modelData"
-    required property var modelData
+  implicitHeight: {
+    let horiPadding = Config.styles.paddings.extraSmall
+    let vertPadding = Config.styles.paddings.regular
+    let paddings = root.isVertical ? vertPadding : horiPadding
 
-    // exclusiveZone: 0
+    return Math.round(loader.item.implicitHeight + paddings)
+  }
+  implicitWidth: {
+    let horiPadding = Config.styles.paddings.regular
+    let vertPadding = Config.styles.paddings.small * 0.7
+    let paddings = root.isVertical ? vertPadding : horiPadding
 
-    // set individual screen from the "model" property
-    screen: modelData
+    return Math.round(loader.item.implicitWidth + paddings)
+  }
 
-    // attach the window to specific sides of the screen
-    anchors {
-      top: !infoBar.isVertical
-      bottom: false
-      left: false
-      right: infoBar.isVertical
+  bottomLeftRadius: Config.options.useRounding ? (contCornersToRound[0] ? rounding : 0) : 0
+  bottomRightRadius: Config.options.useRounding ? (contCornersToRound[1] ? rounding : 0) : 0
+  topRightRadius: Config.options.useRounding ? (contCornersToRound[2] ? rounding : 0) : 0
+  topLeftRadius: Config.options.useRounding ? (contCornersToRound[3] ? rounding : 0) : 0
+
+  color: root.barBgColor
+  useAnimation: Config.options.useAnimation
+
+  Component {
+    id: horiBarComponents
+
+    HoriBarComponents {
+      config: root.sharedConfig
     }
-    // [TODO]: handle case where implicitHeight or implicitHeight is greater
-    implicitHeight: barContainer.implicitHeight
-    implicitWidth: barContainer.implicitWidth
+  }
 
-    color: "transparent"
+  Component {
+    id: vertBarComponents
 
-    // debug
-    Component.onCompleted: {
-      console.log(`[INFO] barContainer.implicitHeight: ${barContainer.implicitHeight}`)
-      console.log(`[INFO] barContainer.implicitWidth: ${barContainer.implicitWidth}`)
+    VertBarComponents {
+      config: root.sharedConfig
     }
+  }
 
-    // background container inside bar window
-    MContainer {
-      id: barContainer
+  Loader {
+    id: loader
 
-      anchors.fill: parent
+    // centers inside the container
+    anchors.centerIn: parent
 
-      // than screen size
-      implicitHeight: {
-        var margins = infoBar.isVertical ? Config.styles.margins.regular : Config.styles.margins.extraSmall
-
-        return loader.item.implicitHeight + margins
-      }
-      implicitWidth: {
-        var margins = infoBar.isVertical ? Config.styles.margins.extraSmall + 1 : Config.styles.margins.extraLarge
-
-        return loader.item.implicitWidth + margins
-      }
-
-      color: infoBar.barBgColor
-      // when orientation is vertical set top-left and bottom-left radius
-      topLeftRadius: Config.options.useRounding ? (infoBar.isVertical ? infoBar.rounding : 0) : 0
-      bottomLeftRadius: Config.options.useRounding ? (infoBar.isVertical ? infoBar.rounding : infoBar.rounding) : 0
-      // when orientation is horizontal set top-right and bottom-right radius
-      topRightRadius: 0
-      bottomRightRadius: Config.options.useRounding ? (infoBar.isVertical ? 0 : infoBar.rounding) : 0
-
-      Component {
-        id: horiBarComponents
-
-        HoriBarComponents {
-          config: sharedConfig
-        }
-      }
-
-      Component {
-        id: vertBarComponents
-
-        VertBarComponents {
-          config: sharedConfig
-        }
-      }
-
-      Loader {
-        id: loader
-
-        // centers inside the container
-        anchors.centerIn: parent
-
-        sourceComponent: infoBar.isVertical ? vertBarComponents : horiBarComponents
-      }
-    }
-
-    // MultiEffect {
-    //   source: barContainer
-    //   anchors.fill: barContainer
-    //   shadowBlur: 2.0
-    //   shadowEnabled: true
-    //   shadowColor: "white"
-    //   shadowVerticalOffset: 25
-    //   shadowHorizontalOffset: 21
-    // }
+    sourceComponent: root.isVertical ? vertBarComponents : horiBarComponents
   }
 }
+
+// MultiEffect {
+//   source: barContainer
+//   anchors.fill: barContainer
+//   shadowBlur: 2.0
+//   shadowEnabled: true
+//   shadowColor: "white"
+//   shadowVerticalOffset: 25
+//   shadowHorizontalOffset: 21
+// }

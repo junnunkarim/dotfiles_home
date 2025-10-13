@@ -3,7 +3,6 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import QtQuick.Layouts
 
 import qs.configs
 import qs.services
@@ -16,24 +15,28 @@ MContainer {
 
   property color fgColor: "#272e33"
   property color bgColor: "#7fbbb3"
+
+  property real textBoxSize: isVertical ? 26 : 22
   property int fontSize: Config.styles.fontSizes.regular
-  property real textBoxSize: isVertical ? 30 : 27
-  property real rounding: Config.styles.roundings.small
+  property string fontFamily: Config.styles.fontFamilies.sans
+
+  property real rounding: Config.styles.roundings.regular * 0.7
   property real separatorThickness: 2
   property real scale: 1
   property bool includeSeparator: true
+  property string orientation: Config.options.orientation
 
+  readonly property bool isVertical: orientation === "vertical"
   readonly property string dateFormat: Config.options.dateFormat
   readonly property list<string> dateComponents: Time.format(dateFormat).split(":")
-  readonly property bool isVertical: Config.options.orientation === "vertical"
 
-  // implicitHeight: loader.item.implicitHeight + (isVertical ? Config.styles.margins.small : Config.styles.margins.extraSmall)
-  // implicitWidth: loader.item.implicitWidth + (isVertical ? Config.styles.margins.extraSmall : Config.styles.margins.small)
-  implicitHeight: loader.item.implicitHeight + (Config.styles.margins.extraSmall * scale)
-  implicitWidth: loader.item.implicitWidth + ((isVertical ? Config.styles.margins.extraSmall : Config.styles.margins.small) * scale)
+  implicitHeight: Math.round(loader.item.implicitHeight + (Config.styles.paddings.extraSmall * scale))
+  implicitWidth: Math.round(loader.item.implicitWidth + ((isVertical ? Config.styles.paddings.extraSmall : Config.styles.paddings.small) * scale))
 
   color: bgColor
   radius: Config.options.useRounding ? rounding : 0
+
+  useAnimation: true
 
   // component declaration
   // ---------------------
@@ -41,26 +44,35 @@ MContainer {
   // because we need to reuse these components multiple times in this file
 
   component DateText: MTextBox {
-    boxHeight: dateBase.textBoxSize * Config.styles.unit * dateBase.scale
-    boxWidth: dateBase.textBoxSize * Config.styles.unit * dateBase.scale
+    boxHeight: Math.round(dateBase.textBoxSize * Config.styles.unit * dateBase.scale)
+    boxWidth: Math.round(dateBase.textBoxSize * Config.styles.unit * dateBase.scale)
 
     fgColor: dateBase.fgColor
     fontSize: dateBase.fontSize * dateBase.scale
-    fontFamily: Config.styles.fontFamilies.sans
-    fontWeight: 600
+    fontFamily: dateBase.fontFamily
+
+    fitMode: isVertical ? "vertical" : "vertical"
   }
 
-  component DateSeparator: MSeparator {
-    // [ISSUE]: doesn't show up if asynchronous is true
-    // asynchronous: true
+  component DateSeparator: Loader {
+    id: sepLoader
+
+    required property real length
+
+    asynchronous: true
     active: dateBase.includeSeparator
     visible: active
 
-    // no need to add margins because it's length is constraint by
-    // RowLayout/ColumnLayout not by the main MContainer, so we are
-    // getting automatic margin like behaviour as a side-effect
-    separatorColor: dateBase.fgColor
-    thickness: dateBase.separatorThickness
+    sourceComponent: MSeparator {
+      anchors.centerIn: parent
+
+      length: sepLoader.length
+      thickness: dateBase.separatorThickness * dateBase.scale
+      margins: Math.round(sepLoader.length * 0.05)
+      separatorColor: dateBase.fgColor
+      orientation: dateBase.orientation
+      opacity: 0.5
+    }
   }
 
   // using Component type for horiDateLayout and vertDateLayout because
@@ -70,29 +82,28 @@ MContainer {
   Component {
     id: horiDateLayout
 
-    RowLayout {
+    Row {
       anchors.centerIn: parent
 
-      spacing: 0
-      // spacing: (dateBase.fontSize * 0.4)
+      spacing: (dateBase.textBoxSize * 0.2)
 
       // day of the week
       DateText {
-        Layout.alignment: Qt.AlignVCenter
+        anchors.verticalCenter: parent.verticalCenter
 
-        implicitWidth: dateBase.textBoxSize * Config.styles.unit * dateBase.scale * 1.4
+        implicitWidth: Math.round(dateBase.textBoxSize * Config.styles.unit * dateBase.scale * 1.4)
 
         text: dateBase.dateComponents[0]
       }
       DateSeparator {
-        Layout.alignment: Qt.AlignVCenter
-        Layout.leftMargin: dateBase.fontSize * 0.2
-        Layout.rightMargin: dateBase.fontSize * 0.2
+        anchors.verticalCenter: parent.verticalCenter
+        length: parent.height
       }
       // day + month
       DateText {
-        Layout.alignment: Qt.AlignVCenter
-        implicitWidth: dateBase.textBoxSize * Config.styles.unit * dateBase.scale * 2.2
+        anchors.verticalCenter: parent.verticalCenter
+
+        implicitWidth: Math.round(dateBase.textBoxSize * Config.styles.unit * dateBase.scale * 2.2)
 
         text: dateBase.dateComponents[1] + "/" + dateBase.dateComponents[2]
       }
@@ -103,36 +114,34 @@ MContainer {
   Component {
     id: vertDateLayout
 
-    ColumnLayout {
+    Column {
       anchors.centerIn: parent
 
-      spacing: 0
-      // spacing: (dateBase.fontSize * 0.2)
+      // spacing: 0
+      spacing: Math.round(dateBase.textBoxSize * 0.1)
 
       // day of the week
       DateText {
-        Layout.alignment: Qt.AlignHCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        fitMode: "fit"
 
-        fontSize: dateBase.fontSize * dateBase.scale
         // [TODO]: check if clockComponents[2] contains only the name of the
         // week days;
-        // first two letters
         text: dateBase.dateComponents[0]
       }
       DateSeparator {
-        Layout.alignment: Qt.AlignHCenter
-        Layout.topMargin: dateBase.fontSize * 0.2
-        Layout.bottomMargin: dateBase.fontSize * 0.2
+        anchors.horizontalCenter: parent.horizontalCenter
+        length: parent.width
       }
       // day
       DateText {
-        Layout.alignment: Qt.AlignHCenter
+        anchors.horizontalCenter: parent.horizontalCenter
 
         text: dateBase.dateComponents[1]
       }
       // month
       DateText {
-        Layout.alignment: Qt.AlignHCenter
+        anchors.horizontalCenter: parent.horizontalCenter
 
         text: dateBase.dateComponents[2]
       }
@@ -144,7 +153,6 @@ MContainer {
 
     // centers inside the container
     anchors.centerIn: parent
-
     sourceComponent: dateBase.isVertical ? vertDateLayout : horiDateLayout
   }
 }

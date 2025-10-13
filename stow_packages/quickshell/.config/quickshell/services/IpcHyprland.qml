@@ -13,9 +13,9 @@ Singleton {
   property ListModel specialWsList: ListModel {}
   property var focusedWs: null
 
-  property ListModel windowList: ListModel {}
-  property ListModel focusedWsWindowList: ListModel {}
-  property var focusedWindow: null
+  property ListModel clientList: ListModel {}
+  property ListModel focusedWsClientList: ListModel {}
+  property var focusedClient: null
 
   Component.onCompleted: {
     if (Config.options.showInactiveWs) {
@@ -37,7 +37,7 @@ Singleton {
         ].includes(eventName)
       ) {
         hyprlandIpc.updateWsList()
-        hyprlandIpc.updateWindowList()
+        hyprlandIpc.updateClientList(true)
       }
       else if (
         [
@@ -52,6 +52,7 @@ Singleton {
       ) {
         // console.log(eventName, "fired")
         hyprlandIpc.updateWsList()
+        hyprlandIpc.updateClientList(true)
       }
       else if (
         [
@@ -62,7 +63,7 @@ Singleton {
         ].includes(eventName)
       ) {
         // console.log(eventName, "fired")
-        hyprlandIpc.updateWindowList()
+        hyprlandIpc.updateClientList(true)
       }
       else if (
         [
@@ -74,19 +75,19 @@ Singleton {
         ].includes(eventName)
       ) {
         hyprlandIpc.updateWsList()
-        hyprlandIpc.updateWindowList()
+        hyprlandIpc.updateClientList(true)
       }
     }
   }
 
-  function extractWindowData(window) {
-    if (!window) {
+  function extractClientData(client) {
+    if (!client) {
       return null
     }
 
     try {
-      let wsId = window.workspace?.id ?? 0
-      let addr = window.address ?? ""
+      let wsId = client.workspace?.id ?? 0
+      let addr = client.address ?? ""
 
       if (!wsId || !addr) {
         return null
@@ -95,15 +96,17 @@ Singleton {
       return {
         "workspaceId": wsId,
         "address": addr,
-        "title": window.title ?? "",
-        "monitorId": window.monitor?.id ?? 0,
-        "monitorName": window.monitor?.name ?? "",
-        "isActive": window.activated === true,
-        "isUrgent": window.urgent === true,
+        "title": client.title ?? "",
+        "appId": client.appId ?? "",
+        "monitorId": client.monitor?.id ?? 0,
+        "monitorName": client.monitor?.name ?? "",
+        "isActive": client.activated === true,
+        "isUrgent": client.urgent === true,
+        "insideSpecialWs": wsId < 0,
       }
     }
     catch (e) {
-      console.log("[Error] HyprlandIPC | Error extracting window data: ", e.message)
+      console.log("[Error] HyprlandIPC | Error extracting client data: ", e.message)
       console.log("[Stacktrace]:\n", e.stack)
     }
   }
@@ -115,7 +118,7 @@ Singleton {
 
     try {
       let toplevels = ws.toplevels?.values ?? null
-      let windowCount = toplevels?.length ?? 0
+      let clientCount = toplevels?.length ?? 0
 
       return {
         "id": ws.id,
@@ -124,7 +127,7 @@ Singleton {
         "monitorName": ws.monitor?.name ?? "",
         "isFocused": ws.focused === true,
         "isActive": ws.active === true,
-        "isOccupied": windowCount > 0,
+        "isOccupied": clientCount > 0,
         "isUrgent": ws.urgent === true,
         "isSpecialWs": ws.id < 0,
       }
@@ -230,58 +233,72 @@ Singleton {
   }
 
   // [TODO]: might need a better implementation
-  function updateWindowList() {
+  function updateClientList(focusedWsOnly = true) {
     try {
-      let hyprWindowList = Hyprland.toplevels?.values ?? null
+      let hyprClientList
 
-      if (!hyprWindowList) {
+      if (focusedWsOnly) {
+        hyprClientList = Hyprland.focusedWorkspace.toplevels?.values ?? null
+      }
+      else {
+        hyprClientList = Hyprland.toplevels?.values ?? null
+      }
+
+      if (!hyprClientList) {
         return
       }
 
-      let oldWindowList = hyprlandIpc.windowList
-      let newWindowList = []
+      let oldClientList
+      if (focusedWsOnly) {
+        oldClientList = hyprlandIpc.focusedWsClientList
+      }
+      else {
+        oldClientList = hyprlandIpc.clientList
+      }
 
-      // fetch the new window information and add that to the newWindowList
-      for(let i = 0; i < hyprWindowList.length; i++) {
-        const window = hyprWindowList[i]
-        if (!window) {
+      let newClientList = []
+
+      // fetch the new client information and add that to the newClientList
+      for(let i = 0; i < hyprClientList.length; i++) {
+        const client = hyprClientList[i]
+        if (!client) {
           continue
         }
 
-        const windowData = extractWindowData(window)
-        if (windowData) {
-          if (window.activated === true) {
-            hyprlandIpc.focusedWindow = windowData
+        const clientData = extractClientData(client)
+        if (clientData) {
+          if (client.activated === true) {
+            hyprlandIpc.focusedClient = clientData
           }
 
-          newWindowList.push(windowData)
+          newClientList.push(clientData)
         }
       }
 
-      // create hashmaps based on the "address" of each window for both
-      // newWindowList and oldWindowList for fast lookup
+      // create hashmaps based on the "address" of each client for both
+      // newClientList and oldClientList for fast lookup
       let uniqueProperty = "address"
-      let newWindowListMap = new Map(
-        newWindowList.map(obj => [obj[uniqueProperty], obj])
+      let newClientListMap = new Map(
+        newClientList.map(obj => [obj[uniqueProperty], obj])
       );
 
       let existingMap = new Map()
-      for (let i = 0; i < oldWindowList.count; i++) {
-        const item = oldWindowList.get(i)
+      for (let i = 0; i < oldClientList.count; i++) {
+        const item = oldClientList.get(i)
         existingMap.set(item[uniqueProperty], i)
       }
 
-      // mark the indices that are in oldWindowList but not in newWindowList
+      // mark the indices that are in oldClientList but not in newClientList
       // for removal
       let indicesToRemove = []
-      for (let i = 0; i < oldWindowList.count; i++) {
-        const propertyValue = oldWindowList.get(i)[uniqueProperty]
-        const newObj = newWindowListMap.get(propertyValue)
+      for (let i = 0; i < oldClientList.count; i++) {
+        const propertyValue = oldClientList.get(i)[uniqueProperty]
+        const newObj = newClientListMap.get(propertyValue)
 
-        // if an element of newWindowList already exists in oldWindowList,
+        // if an element of newClientList already exists in oldClientList,
         // update that element
         if (newObj) {
-          oldWindowList.set(i, newObj)
+          oldClientList.set(i, newObj)
         }
         else {
           // mark for removal
@@ -291,14 +308,14 @@ Singleton {
 
       // remove in reverse order to maintain indices
       for (let i = indicesToRemove.length - 1; i >= 0; i--) {
-        oldWindowList.remove(indicesToRemove[i])
+        oldClientList.remove(indicesToRemove[i])
       }
 
-      // append new window information from newWindowList that don't exist in
-      // the oldWindowList
-      for (const newObj of newWindowList) {
+      // append new client information from newClientList that don't exist in
+      // the oldClientList
+      for (const newObj of newClientList) {
         if (!existingMap.has(newObj[uniqueProperty])) {
-          oldWindowList.append(newObj)
+          oldClientList.append(newObj)
         }
       }
     } catch (e) {

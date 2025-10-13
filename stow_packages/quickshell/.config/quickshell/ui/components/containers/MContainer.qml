@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 
 import qs.configs
@@ -5,6 +7,8 @@ import qs.ui.components.animations
 
 Rectangle {
   id: root
+
+  property bool useAnimation: false
 
   color: "transparent"
 
@@ -14,9 +18,11 @@ Rectangle {
   // }
 
   Behavior on implicitHeight {
-    MSpringAnimation {}
+    enabled: root.useAnimation
+    MSmoothAnimation {}
   }
   Behavior on implicitWidth {
-    MSpringAnimation {}
+    enabled: root.useAnimation
+    MSmoothAnimation {}
   }
 }

@@ -10,34 +10,41 @@ Text {
   property string fontFamily: Config.styles.fontFamilies.sans
   property int fontSize: Config.styles.fontSizes.extraSmall
   property int fontWeight: 600
-  property bool animation: false
-  property string animationProperty: "scale"
-  property real animationFrom: 0
-  property real animationTo: 1
+  property string fitMode: "horizontal"
+  property bool useAnimation: true
   property int animationDuration: Config.styles.animation.durations.normal
 
-  // renderType: Text.CurveRendering
   renderType: Text.NativeRendering
+  // renderType: Text.CurveRendering
+  // renderType: Text.QtRendering
+  // renderTypeQuality: Text.VeryHighRenderTypeQuality
   textFormat: Text.PlainText
-  fontSizeMode: Text.Fit
+  fontSizeMode: fitMode === "fit" ? Text.Fit : (fitMode === "fixed" ? Text.FixedSize : (fitMode === "horizontal" ? Text.HorizontalFit : Text.VerticalFit))
 
   font.family: fontFamily
-  font.pointSize: fontSize
   font.weight: fontWeight
+  // font.bold: true
+
+  // should scale based on container constraints
+  // minimum font size
+  minimumPointSize: 1
+  // maximum font size
+  font.pointSize: fontSize
 
   // when there isn't enough space, truncate text by adding an ellipsis (...)
-  // elide: Text.ElideRight
+  elide: Text.ElideRight
   verticalAlignment: Text.AlignVCenter
   horizontalAlignment: Text.AlignHCenter
 
-  // Behavior on text {
-  //   NumberAnimation { 
-  //     target: textItem
-  //     properties: "opacity,scale"
-  //     from: 0.0
-  //     to: 1.0
-  //     duration: 400
-  //     easing.type: Easing.OutQuad
-  //   }
-  // }
+  Behavior on text {
+    enabled: textItem.useAnimation
+    NumberAnimation { 
+      target: textItem
+      properties: "opacity"
+      from: 0.0
+      to: 1.0
+      duration: textItem.animationDuration
+      easing.type: Easing.OutQuad
+    }
+  }
 }

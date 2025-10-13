@@ -7,7 +7,7 @@ JsonObject {
     property string themeName: "theme_type_1"
     property string colorscheme: "everforest"
     // vertical || horizontal
-    property string orientation: "vertical"
+    property string orientation: "horizontal"
     property string windowManager: "hyprland"
     property bool showInactiveWs: true
     property int wsCount: 9
@@ -22,6 +22,9 @@ JsonObject {
     // example: Sun:14:09
     property string dateFormat: "ddd:dd:MM"
 
+    property int lowChargeThreshold: 20
+
     property bool useRounding: true
+    property bool useAnimation: true
     property string themeMode: "dark"
 }
