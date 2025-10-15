@@ -5,25 +5,43 @@ import QtQuick
 import qs.configs
 
 Text {
-  id: textItem
+  id: root
 
-  property string fontFamily: Config.styles.fontFamilies.sans
   property int fontSize: Config.styles.fontSizes.extraSmall
+  property string fontFamily: Config.styles.fontFamilies.sans
+
+  property bool useBold: false
   property int fontWeight: 600
-  property string fitMode: "horizontal"
+
+  property string fitMode: "fixed"
+  property string orientation: "horizontal"
+  property string rotationDirection: "left"
+
   property bool useAnimation: true
   property int animationDuration: Config.styles.animation.durations.normal
 
+  readonly property bool isVertical: orientation == "vertical"
+
   renderType: Text.NativeRendering
-  // renderType: Text.CurveRendering
-  // renderType: Text.QtRendering
-  // renderTypeQuality: Text.VeryHighRenderTypeQuality
   textFormat: Text.PlainText
-  fontSizeMode: fitMode === "fit" ? Text.Fit : (fitMode === "fixed" ? Text.FixedSize : (fitMode === "horizontal" ? Text.HorizontalFit : Text.VerticalFit))
+  fontSizeMode: {
+    if (fitMode === "fit") {
+      return Text.Fit
+    }
+    else if (fitMode === "fixed") {
+      return Text.FixedSize
+    }
+    else if (fitMode === "horizontal") {
+      return Text.HorizontalFit
+    }
+    else {
+      return Text.VerticalFit
+    }
+  }
 
   font.family: fontFamily
   font.weight: fontWeight
-  // font.bold: true
+  font.bold: useBold
 
   // should scale based on container constraints
   // minimum font size
@@ -36,14 +54,28 @@ Text {
   verticalAlignment: Text.AlignVCenter
   horizontalAlignment: Text.AlignHCenter
 
+  rotation: {
+    if (root.isVertical) {
+      if (root.rotationDirection === "left") {
+        return 90
+      }
+      else {
+        return -90
+      }
+    }
+    else {
+      return 0
+    }
+  }
+
   Behavior on text {
-    enabled: textItem.useAnimation
+    enabled: root.useAnimation
     NumberAnimation { 
-      target: textItem
+      target: root
       properties: "opacity"
       from: 0.0
       to: 1.0
-      duration: textItem.animationDuration
+      duration: root.animationDuration
       easing.type: Easing.OutQuad
     }
   }

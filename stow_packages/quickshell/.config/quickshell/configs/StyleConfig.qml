@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import Quickshell.Io
 
@@ -12,35 +14,52 @@ JsonObject {
   property Transparency transparency: Transparency {}
   property Animation animation: Animation {}
 
+  property real refFontSize: 16
+  property FontMetrics fontMetrics: FontMetrics {
+    font.family: styleConfig.fontFamilies.sans
+    font.pointSize: styleConfig.refFontSize
+  }
+
   property real scale: 1
+  property int baseFontSize: 16
+  property int baseMargin: 18
+  property int basePadding: 18
+  property int baseRounding: 2
+
+  readonly property real unit: (baseFontSize / fontMetrics.height) * scale
+
+  Component.onCompleted: {
+    console.log(fontMetrics.height)
+    console.log(unit)
+  }
 
   component FontSize: JsonObject {
     property int extraSmall: 8 * styleConfig.scale
-    property int small: 13 * styleConfig.scale
-    property int regular: 17 * styleConfig.scale
+    property int small: 13 * styleConfig.baseFontSize
+    property int regular: styleConfig.baseFontSize
     property int large: 21 * styleConfig.scale
     property int extraLarge: 27 * styleConfig.scale
+
+    readonly property real scale: 1.25
+
+    property int sXXXS: Math.round(sXXS / scale)
+    property int sXXS: Math.round(sXS / scale)
+    property int sXS: Math.round(sS / scale)
+    property int sS: Math.round(sM / scale)
+    property int sM: styleConfig.baseFontSize
+    property int sL: Math.round(sM * scale)
+    property int sXL: Math.round(sL * scale)
+    property int sXXL: Math.round(sXL * scale)
+    property int sXXXL: Math.round(sXXL * scale * 2)
   }
 
   component FontFamily: JsonObject {
-    property string sans: "JetBrains Mono"
-    // property string sans: "Maple Mono"
+    // property string sans: "JetBrains Mono"
+    property string sans: "Maple Mono"
     // property string sans: "Iosevka Nerd Font Mono"
     property string mono: "Iosevka Nerd Font Mono"
     property string icon: "Symbols Nerd Font"
   }
-
-  // aspect ratio logic
-  readonly property real smallerDimensionSize: Math.min(Screen.height, Screen.width)
-  // dpi logic
-  // - manual calculation
-  // readonly property real referenceDPI: 128
-  // readonly property real screenDPI: Screen.pixelDensity * 25.4
-  // readonly property real dpiScale: screenDPI / referenceDPI
-  // - automatic
-  readonly property real dpiScale: Screen.devicePixelRatio
-  // final grid based unit to use everywhere
-  readonly property real unit: (smallerDimensionSize / 1080) * dpiScale * scale
 
   component Margin: JsonObject {
     property real extraSmall: 8 * styleConfig.unit
@@ -48,6 +67,18 @@ JsonObject {
     property real regular: 40 * styleConfig.unit
     property real large: 60 * styleConfig.unit
     property real extraLarge: 100 * styleConfig.unit
+
+    readonly property real scale: 1.25
+
+    property int sXXXS: Math.round(sXXS / scale / 2)
+    property int sXXS: Math.round(sXS / scale)
+    property int sXS: Math.round(sS / scale)
+    property int sS: Math.round(sM / scale)
+    property int sM: Math.round(styleConfig.baseMargin * styleConfig.unit)
+    property int sL: Math.round(sM * scale)
+    property int sXL: Math.round(sL * scale)
+    property int sXXL: Math.round(sXL * scale * 1.5)
+    property int sXXXL: Math.round(sXXL * scale * 1.5)
   }
 
   component Padding: JsonObject {
@@ -56,6 +87,18 @@ JsonObject {
     property real regular: 40 * styleConfig.unit
     property real large: 60 * styleConfig.unit
     property real extraLarge: 100 * styleConfig.unit
+
+    readonly property real scale: 1.25
+
+    property int sXXXS: Math.round(sXXS / scale / 2)
+    property int sXXS: Math.round(sXS / scale)
+    property int sXS: Math.round(sS / scale)
+    property int sS: Math.round(sM / scale)
+    property int sM: Math.round(styleConfig.basePadding * styleConfig.unit)
+    property int sL: Math.round(sM * scale)
+    property int sXL: Math.round(sL * scale)
+    property int sXXL: Math.round(sXL * scale * 1.5)
+    property int sXXXL: Math.round(sXXL * scale * 1.5)
   }
 
   component Rounding: JsonObject {
@@ -64,6 +107,16 @@ JsonObject {
     property real regular: 10
     property real large: 18
     property real full: 100
+
+    readonly property real scale: 2
+
+    property int sXXS: styleConfig.baseRounding
+    property int sXS: Math.round(sXXS * scale)
+    property int sS: Math.round(sXS * scale)
+    property int sM: Math.round(sS * scale)
+    property int sL: Math.round(sM * scale)
+    property int sXL: Math.round(sL * scale)
+    property int sXXL: 100
   }
 
   component Transparency: JsonObject {

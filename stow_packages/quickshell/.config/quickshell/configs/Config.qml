@@ -4,20 +4,20 @@ import Quickshell
 import Quickshell.Io
 
 Singleton {
-    id: root
+  id: root
 
-    property alias options: configAdaptor.options
-    property alias styles: configAdaptor.styles
+  property alias options: configAdaptor.options
+  property alias styles: configAdaptor.styles
 
-    FileView {
-        watchChanges: true
-        onFileChanged: this.reload()
+  FileView {
+    watchChanges: true
+    onFileChanged: this.reload()
 
-        adapter: JsonAdapter {
-            id: configAdaptor
+    adapter: JsonAdapter {
+      id: configAdaptor
 
-            property OptionConfig options: OptionConfig {}
-            property StyleConfig styles: StyleConfig {}
-        }
+      property OptionConfig options: OptionConfig {}
+      property StyleConfig styles: StyleConfig {}
     }
+  }
 }

@@ -29,17 +29,26 @@ MContainer {
   property color lowChargeColor: "#e67e80"
   property color chargingColor: "#dbbc7f"
 
-  property real scale: 1
-  property real boxSize: isVertical ? 28 : 22
-  property int fontSize: Config.styles.fontSizes.regular
+  property real scale: Config.styles.scale
+
+  property int fontSize: isVertical ? Config.styles.fontSizes.sM : Config.styles.fontSizes.sS
   property string fontFamily: Config.styles.fontFamilies.sans
+  property FontMetrics fontMetrics: FontMetrics {
+    font.family: root.fontFamily
+    font.pointSize: Math.round(root.fontSize * root.scale)
+  }
 
   property string orientation: Config.options.orientation
-  property real containerRounding: Config.styles.roundings.regular
-  property real pillRounding: Config.styles.roundings.small
+  property bool useRounding: Config.options.useRounding
+  property real containerRounding: Config.styles.roundings.sS
+  property real pillRounding: Config.styles.roundings.sS
 
   property bool useAnimation: Config.options.useAnimation
   property int animationDuration: Config.styles.animation.durations.normal
+
+  // no need to multiply "scale" because the calculation is done in fontMetrics
+  readonly property int boundHeight: Math.ceil(fontMetrics.height)
+  readonly property int boundWidth: fontMetrics.boundingRect("W").width
 
   readonly property bool isVertical: orientation === "vertical"
 
@@ -62,32 +71,25 @@ MContainer {
 
   // main container size
   implicitHeight: {
-    let horiPadding = Config.styles.paddings.extraSmall
-    let vertPadding = Config.styles.paddings.small
+    let horiPadding = Config.styles.paddings.sXXS
+    let vertPadding = Config.styles.paddings.sM
 
     let paddings = isVertical ? vertPadding : horiPadding
 
-    return Math.round(loader.item.implicitHeight + paddings * scale)
+    return Math.round(loader.item.implicitHeight + (paddings * scale))
   }
   implicitWidth: {
-    let horiPadding = Config.styles.paddings.small
-    let vertPadding = Config.styles.paddings.extraSmall
+    let horiPadding = Config.styles.paddings.sL
+    let vertPadding = Config.styles.paddings.sM
 
     let paddings = isVertical ? vertPadding : horiPadding
 
-    return Math.round(loader.item.implicitWidth + paddings * scale)
+    return Math.round(loader.item.implicitWidth + (paddings * scale))
   }
 
   // main container colors
-  Gradient {
-    id: contGradient
-    orientation: Gradient.Horizontal
-
-    GradientStop { position: 0.0; color: root.chargingContColor }
-    GradientStop { position: 0.7; color: root.containerColor }
-  }
   color: {
-    if (root.currentState === "charging") {
+    if (root.currentState === "charging" || root.currentState === "fullyCharged") {
       return root.chargingContColor
     }
     else if (root.percentage <= (Config.options.lowChargeThreshold / 100)) {
@@ -97,9 +99,8 @@ MContainer {
       return root.containerColor
     }
   }
-  gradient: root.currentState === "fullyCharged" ? contGradient : undefined
 
-  radius: containerRounding
+  radius: useRounding ? containerRounding * scale : 0
 
   IpcHandler {
     target: "battery"
@@ -120,8 +121,8 @@ MContainer {
 
   // battery percentage component
   component BatteryPercent: MTextBox {
-    boxHeight: Math.round(root.boxSize * root.scale * Config.styles.unit)
-    boxWidth: Math.round(root.boxSize * root.scale * Config.styles.unit)
+    boxHeight: root.boundHeight
+    boxWidth: root.boundWidth * 2
 
     fgColor: {
       if (root.currentState === "charging" || root.currentState === "fullyCharged") {
@@ -138,7 +139,7 @@ MContainer {
     fontSize: Math.round(root.fontSize * root.scale)
     fontFamily: root.fontFamily
 
-    fitMode: root.isVertical ? "horizontal" : "horizontal"
+    fitMode: "fit"
 
     useAnimation: root.useAnimation
   }
@@ -148,33 +149,33 @@ MContainer {
   component BatteryPill: MContainer {
     // sizes are set in the layout components
     color: root.pillContColor
-    radius: Math.round(root.pillRounding * root.scale)
+    radius: root.useRounding ? Math.round(root.pillRounding * root.scale) : 0
 
     useAnimation: root.useAnimation
 
     // inner pill container that changes size depending on battery percentage
     MContainer {
-      property int spacing: root.boxSize * 0.1
+      property int spacing: root.boundHeight * 0.1
 
-      // anchor it to the left of the outer pill container and add margins
-      anchors.top: parent.top
+      // if orientation is horizontal, anchor it to the left of the outer pill
+      // container, otherwise anchor it to the bottom
+      anchors.top: root.isVertical ? undefined : parent.top
+      anchors.right: root.isVertical ? parent.right : undefined
+
       anchors.left: parent.left
       anchors.bottom: parent.bottom
+
+      // add margins around the inner container
       anchors.margins: spacing
 
-      implicitHeight: Math.round(parent.height - (spacing * 2))
-      // battery percentage will increase/decrease the width of the pill
-      implicitWidth: Math.round((parent.width - (spacing * 2)) * root.percentage)
+      // if orientation is horizontal, battery percentage will
+      // increase/decrease the width of the pill, otherwise it will
+      // increase/decrease the height of the pill
+      implicitHeight: Math.round(parent.height - (spacing * 2)) * (root.isVertical ? root.percentage : 1)
+      implicitWidth: Math.round(parent.width - (spacing * 2)) * (root.isVertical ? 1 : root.percentage)
 
-      Gradient {
-        id: pillGradient
-        orientation: Gradient.Horizontal
-
-        GradientStop { position: 0.0; color: root.chargingColor }
-        GradientStop { position: 0.7; color: root.normalColor }
-      }
       color: {
-        if (root.currentState === "charging") {
+        if (root.currentState === "charging" || root.currentState === "fullyCharged") {
           return root.chargingColor
         }
         else if (root.percentage <= (Config.options.lowChargeThreshold / 100)) {
@@ -184,9 +185,8 @@ MContainer {
           return root.normalColor
         }
       }
-      gradient: root.currentState === "fullyCharged" ? pillGradient : undefined
 
-      radius: root.pillRounding * root.scale
+      radius: root.useRounding ? root.pillRounding * root.scale : 0
 
       useAnimation: root.useAnimation
 
@@ -213,7 +213,8 @@ MContainer {
     id: horiLayout
 
     Row {
-      spacing: Math.round(root.boxSize * 0.3)
+      anchors.centerIn: parent
+      spacing: Config.styles.margins.sXS * root.scale
 
       BatteryPercent {
         anchors.verticalCenter: parent.verticalCenter
@@ -223,9 +224,8 @@ MContainer {
 
       BatteryPill {
         anchors.verticalCenter: parent.verticalCenter
-
-        implicitHeight: Math.round(root.boxSize * root.scale * Config.styles.unit)
-        implicitWidth: Math.round((root.boxSize * 1.5) * root.scale * Config.styles.unit)
+        implicitHeight: parent.height
+        implicitWidth: Math.round(root.boundWidth * 3)
       }
     }
   }
@@ -235,19 +235,18 @@ MContainer {
     id: vertLayout
 
     Column {
-      spacing: Math.round(root.boxSize * 0.3)
+      anchors.centerIn: parent
+      spacing: Config.styles.margins.sXXS * root.scale
 
       BatteryPercent {
         anchors.horizontalCenter: parent.horizontalCenter
-        boxHeight: Math.round((root.boxSize * 0.8) * root.scale * Config.styles.unit)
 
         text: root.percentage * 100
       }
       BatteryPill {
         anchors.horizontalCenter: parent.horizontalCenter
-
-        implicitHeight: Math.round((root.boxSize * 0.7) * root.scale * Config.styles.unit)
-        implicitWidth: Math.round(root.boxSize * root.scale * Config.styles.unit)
+        implicitHeight: Math.round(root.boundWidth * 2.5)
+        implicitWidth: parent.width
       }
     }
   }
