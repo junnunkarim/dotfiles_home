@@ -146,8 +146,7 @@ class BkmrMenu:
             )
         else:
             tags = "\n".join(
-                f"{tag_info.split('(')[0].strip()}"
-                for tag_info in output.splitlines()
+                f"{tag_info.split('(')[0].strip()}" for tag_info in output.splitlines()
             )
 
         return tags
@@ -186,6 +185,7 @@ class BkmrMenu:
             prompt_name="Tags (comma separated): ",
         ).replace(" ", "")
 
+        # TODO: sort the tags
         # add ',' at the start and the end
         # bkmr needs this
         tags = tags.strip(",")

@@ -1,5 +1,3 @@
-import = ["~/.config/alacritty/colors.toml", "~/.config/alacritty/font.toml"]
-live_config_reload = true
 # "window.opacity" = 1.0
 
 [cursor]
@@ -27,3 +25,7 @@ lines = 25
 [window.padding]
 x = 10
 y = 10
+
+[general]
+live_config_reload = true
+import = ["~/.config/alacritty/colors.toml", "~/.config/alacritty/font.toml"]

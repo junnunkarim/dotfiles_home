@@ -1,7 +1,8 @@
 import QtQuick
+import QtQuick.Window
 import Quickshell
 
-import qs.configs
+import qs.logic.configs
 import qs.ui.components.containers
 import qs.ui.modules.info_bar_t1
 import qs.ui.modules.ws_bar_t1
@@ -18,7 +19,11 @@ Variants {
     required property var modelData
     screen: modelData
 
-    mask: Region {}
+    mask: Region {
+      // y: Math.max(infoBar.height, wsBar.height, clientBar.height)
+      height: Screen.height - infoBar.height
+      // intersection: Intersection.Xor
+    }
     exclusionMode: ExclusionMode.Ignore
 
     color: "transparent"
@@ -49,6 +54,7 @@ Variants {
         top: isVertical ? undefined : parent.top
         horizontalCenter: isVertical ? undefined : parent.horizontalCenter
       }
+      // scale: 1.04
 
       orientation: window.orientation
       contCornersToRound: isVertical ? [true, false, false, true] : [true, true, false, false]

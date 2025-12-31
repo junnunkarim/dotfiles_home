@@ -2,8 +2,8 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 
-import qs.configs
-import qs.services
+import qs.logic.configs
+import qs.logic.services
 import qs.ui.components
 import qs.ui.components.containers
 
@@ -64,7 +64,7 @@ MContainer {
   }
   implicitWidth: {
     let horiPadding = Config.styles.paddings.sL
-    let vertPadding = Config.styles.paddings.sM
+    let vertPadding = Config.styles.paddings.sL
 
     let paddings = isVertical ? vertPadding : horiPadding
 
@@ -95,6 +95,8 @@ MContainer {
     
     fitMode: "fit"
     // orientation: "vertical"
+
+    useAnimation: root.useAnimation
   }
 
   component DateSeparator: Loader {

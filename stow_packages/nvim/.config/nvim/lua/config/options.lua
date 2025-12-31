@@ -25,7 +25,7 @@ local ui_options = {
   -- enable 24-bit rgb color in the terminal
   termguicolors = true,
   -- height of the command line for messages
-  cmdheight = 0,
+  cmdheight = 1,
   -- enable mouse support in all modes
   mouse = "a",
   -- maximum number of items in the popup menu

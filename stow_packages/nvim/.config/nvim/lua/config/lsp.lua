@@ -17,11 +17,19 @@ vim.lsp.config("*", {
 
 vim.lsp.enable({
   "basedpyright",
+  "clangd",
   "cssls",
+  "dartls",
   "gopls",
   "html",
+  "hyprls",
+  -- "laravel_ls",
   "lua_ls",
+  -- "nim_langserver",
+  -- "nimls",
+  "qmlls",
   "rust-analyzer",
+  "racket_langserver",
   "svelte",
   "tailwindcss",
   "ts_ls",
@@ -135,6 +143,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
         noremap = true,
         silent = true,
         desc = "Toggle diagnostic lines/text",
+      }
+    )
+
+    vim.keymap.set(
+      "n",
+      "<leader>df",
+      function() vim.diagnostic.open_float() end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Open diagnostic in floating mode",
       }
     )
 

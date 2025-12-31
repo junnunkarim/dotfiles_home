@@ -3,37 +3,37 @@ set notification-error-fg       "#690005"
 set notification-warning-bg     "#ffb86c"
 set notification-warning-fg     "#44475a"
 set notification-bg             "#191c20"
-set notification-fg             "#c3c6cf"
+set notification-fg             "#c4c6d0"
 
 set completion-bg               "#191c20"
-set completion-fg               "#c3c6cf"
-set completion-group-bg         "#a5c8fe"
-set completion-group-fg         "#00315d"
-set completion-highlight-bg     "#bcc7dc"
-set completion-highlight-fg     "#263141"
+set completion-fg               "#c4c6d0"
+set completion-group-bg         "#aac7ff"
+set completion-group-fg         "#0a305f"
+set completion-highlight-bg     "#bec6dc"
+set completion-highlight-fg     "#283141"
 
 set index-bg                    "#1d2024"
-set index-fg                    "#c3c6cf"
-set index-active-bg             "#a5c8fe"
-set index-active-fg             "#00315d"
+set index-fg                    "#c4c6d0"
+set index-active-bg             "#aac7ff"
+set index-active-fg             "#0a305f"
 
 set inputbar-bg                 "#191c20"
-set inputbar-fg                 "#c3c6cf"
+set inputbar-fg                 "#c4c6d0"
 set statusbar-bg                "#191c20"
-set statusbar-fg                "#c3c6cf"
+set statusbar-fg                "#c4c6d0"
 
-set highlight-fg                rgba(225,226,233,1.0)
-set highlight-active-color      rgba(255,189,227,0.5)
-set highlight-color             rgba(217,180,171,0.5)
+set highlight-fg                rgba(226,226,233,1.0)
+set highlight-active-color      rgba(255,188,224,0.5)
+set highlight-color             rgba(221,180,171,0.5)
 
 set default-bg                  "#1d2024"
-set default-fg                  "#c3c6cf"
+set default-fg                  "#c4c6d0"
 
 set render-loading              true
 set render-loading-fg           "#1d2024"
-set render-loading-bg           "#c3c6cf"
+set render-loading-bg           "#c4c6d0"
 
 # Recolor mode settings
 set recolor                     true
 set recolor-lightcolor          "#1d2024"
-set recolor-darkcolor           "#c3c6cf"
+set recolor-darkcolor           "#c4c6d0"

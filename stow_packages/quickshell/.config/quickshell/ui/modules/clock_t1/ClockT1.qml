@@ -2,8 +2,8 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 
-import qs.configs
-import qs.services
+import qs.logic.configs
+import qs.logic.services
 import qs.ui.components
 import qs.ui.components.containers
 
@@ -57,7 +57,7 @@ MContainer {
   }
   implicitWidth: {
     let horiPadding = Config.styles.paddings.sL
-    let vertPadding = Config.styles.paddings.sM
+    let vertPadding = Config.styles.paddings.sL
 
     let paddings = isVertical ? vertPadding : horiPadding
 
@@ -79,7 +79,7 @@ MContainer {
   component ClockText: MTextBox {
     boxHeight: root.boundHeight
     // if orientation is horizontal, we need to set the width in each component
-    boxWidth: root.isVertical ? root.boundWidth * 2 : undefined
+    boxWidth: root.isVertical ? root.boundWidth * 2 : root.boundWidth
 
     fontColor: root.fgColor
 
@@ -88,6 +88,8 @@ MContainer {
     
     fitMode: "fit"
     // orientation: "vertical"
+
+    useAnimation: root.useAnimation
   }
 
   // only shown in 12-hour clock

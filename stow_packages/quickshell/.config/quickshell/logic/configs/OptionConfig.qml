@@ -8,7 +8,7 @@ JsonObject {
     property string colorscheme: "everforest"
     // vertical || horizontal
     property string orientation: "horizontal"
-    property string windowManager: "hyprland"
+    property string windowManager: "niri"
     property bool showInactiveWs: true
     property int wsCount: 9
     property list<string> defaultWsNames: ["term", "editor", "file", "browser", "media", "books", "social", "settings", "misc"]
@@ -24,7 +24,8 @@ JsonObject {
 
     property int lowChargeThreshold: 20
 
-    property bool useRounding: true
+    property bool useRounding: false
     property bool useAnimation: true
     property string themeMode: "dark"
+    readonly property bool useDarkMode: themeMode === "dark"
 }

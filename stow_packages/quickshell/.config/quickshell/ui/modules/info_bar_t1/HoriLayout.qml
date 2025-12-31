@@ -2,7 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 
-import qs.configs
+import qs.logic.configs
 import qs.ui.components
 import qs.ui.modules.clock_t1
 import qs.ui.modules.date_t1
@@ -83,6 +83,10 @@ Row {
     BatteryT1 {
       anchors.verticalCenter: parent.verticalCenter
       scale: root.config.scale
+    }
+
+    MSysTray {
+      anchors.verticalCenter: parent.verticalCenter
     }
   }
 }

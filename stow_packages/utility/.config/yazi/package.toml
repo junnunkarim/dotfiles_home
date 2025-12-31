@@ -9,9 +9,9 @@ rev = "2bf70d8"
 hash = "dd97eede8e20e59cd2604e8006e470e2"
 
 [[plugin.deps]]
-use = "boydaihungst/simple-mtpfs"
-rev = "614a2d2"
-hash = "daf919bc09c0ce5f052e9709aaf5ceba"
+use = "boydaihungst/gvfs"
+rev = "a145af9"
+hash = "6fcfdbee240edc056f3435a2869c3647"
 
 [flavor]
 deps = []

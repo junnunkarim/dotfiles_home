@@ -4,8 +4,9 @@ import QtQuick
 import Quickshell.Io
 import Quickshell.Services.UPower
 
-import qs.configs
+import qs.logic.configs
 import qs.ui.components
+import qs.ui.components.animations
 import qs.ui.components.containers
 
 MContainer {
@@ -80,7 +81,7 @@ MContainer {
   }
   implicitWidth: {
     let horiPadding = Config.styles.paddings.sL
-    let vertPadding = Config.styles.paddings.sM
+    let vertPadding = Config.styles.paddings.sL
 
     let paddings = isVertical ? vertPadding : horiPadding
 
@@ -110,14 +111,15 @@ MContainer {
 
   // components for reusability
   // --------------------------
+  //
   // animation components
   component Anim: NumberAnimation {
     duration: root.animationDuration
     easing.type: Easing.OutQuad
   }
-  component ColorAnim: ColorAnimation {
-    duration: root.animationDuration
-  }
+  // component ColorAnim: ColorAnimation {
+  //   duration: root.animationDuration
+  // }
 
   // battery percentage component
   component BatteryPercent: MTextBox {
@@ -150,8 +152,6 @@ MContainer {
     // sizes are set in the layout components
     color: root.pillContColor
     radius: root.useRounding ? Math.round(root.pillRounding * root.scale) : 0
-
-    useAnimation: root.useAnimation
 
     // inner pill container that changes size depending on battery percentage
     MContainer {
@@ -189,19 +189,12 @@ MContainer {
       radius: root.useRounding ? root.pillRounding * root.scale : 0
 
       useAnimation: root.useAnimation
+      animationDuration: Config.styles.animation.durations.slow
+      animationCurve: Config.styles.animation.curves.expressiveDefaultEffects
 
-      // animations
-      Behavior on implicitWidth {
-        enabled: root.useAnimation
-        Anim {}
-      }
-      Behavior on implicitHeight {
-        enabled: root.useAnimation
-        Anim {}
-      }
       Behavior on color {
         enabled: root.useAnimation
-        ColorAnim {}
+        MColorAnim {}
       }
     }
   }

@@ -3,7 +3,8 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Effects
 
-import qs.configs
+import qs.logic.configs
+import qs.ui.components
 import qs.ui.components.containers
 import qs.ui.modules.info_bar_t1
 
@@ -32,8 +33,8 @@ MContainer {
   property real barSepThickness: 3
   property real componentSepThickness: 2
 
-  property real scale: 1
-  property string orientation: "vertical"
+  property real scale: Config.styles.scale
+  property string orientation: "horizontal"
 
   readonly property bool isVertical: orientation === "vertical"
 
@@ -77,7 +78,7 @@ MContainer {
   }
   implicitWidth: {
     let horiPadding = Config.styles.paddings.sXXL
-    let vertPadding = Config.styles.paddings.sM
+    let vertPadding = Config.styles.paddings.sL
     let paddings = (root.isVertical ? vertPadding : horiPadding) * root.scale
 
     return Math.round(loader.item.implicitWidth + paddings)
@@ -118,13 +119,14 @@ MContainer {
     sourceComponent: root.isVertical ? vertLayout : horiLayout
   }
 
+  MouseArea {
+    anchors.fill: parent
+  }
+
   // shadow
-  RectangularShadow {
+  MElevation {
     anchors.fill: root
-    z: -1
-    blur: 20
-    opacity: 0.8
-    color: root.color
-    offset.y: 5
+    level: 4
+    radius: root.rounding
   }
 }

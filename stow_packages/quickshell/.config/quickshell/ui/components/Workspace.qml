@@ -2,21 +2,20 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 
-import qs.configs
+import qs.logic.configs
 import qs.ui.components.containers
-import qs.ui.components.animations
 
 MContainer {
-  id: workspaceItem
+  id: root
 
   // Individual workspace by itself is not useful, but a group of workspaces
   // can convey needed information, which is why no default property is set,
   // this duty is passed to the WorkspaceList component.
-  required property real wsItemHeight
-  required property real wsItemWidth
+  required property real itemHeight
+  required property real itemWidth
 
   required property color focusColor
-  required property color activeColor
+  required property color occupiedColor
   required property color inactiveColor
   required property color urgentColor
   required property color specialWsColor
@@ -28,11 +27,11 @@ MContainer {
 
   required property string orientation
   required property real focusedRounding
-  required property real activeRounding
+  required property real occupiedRounding
   required property real inactiveRounding
   // item height and width multiplier
   required property real focusedItemSizeM
-  required property real activeItemSizeM
+  required property real occupiedItemSizeM
   required property real inactiveItemSizeM
 
   readonly property bool isVertical: orientation == "vertical"
@@ -48,7 +47,7 @@ MContainer {
       return urgentColor
     }
     else if (isOccupied) {
-      return activeColor
+      return occupiedColor
     }
     else {
       return inactiveColor
@@ -60,20 +59,20 @@ MContainer {
 
     if (isVertical) {
       if (isFocused) {
-        value = wsItemHeight * focusedItemSizeM
+        value = itemHeight * focusedItemSizeM
       }
       else if (isSpecialWs) {
-        value = wsItemHeight * inactiveItemSizeM
+        value = itemHeight * inactiveItemSizeM
       }
       else if (isOccupied || isUrgent) {
-        value = wsItemHeight * activeItemSizeM
+        value = itemHeight * occupiedItemSizeM
       }
       else {
-        value = wsItemHeight * inactiveItemSizeM
+        value = itemHeight * inactiveItemSizeM
       }
     }
     else {
-      value = wsItemHeight
+      value = itemHeight
     }
 
     return value * Config.styles.unit
@@ -82,20 +81,20 @@ MContainer {
     var value = 1
 
     if (isVertical) {
-      value = wsItemHeight
+      value = itemWidth
     }
     else {
       if (isFocused) {
-        value = wsItemHeight * focusedItemSizeM
+        value = itemWidth * focusedItemSizeM
       }
       else if (isSpecialWs) {
-        value = wsItemHeight * inactiveItemSizeM
+        value = itemWidth * inactiveItemSizeM
       }
       else if (isOccupied || isUrgent) {
-        value = wsItemHeight * activeItemSizeM
+        value = itemWidth * occupiedItemSizeM
       }
       else {
-        value = wsItemHeight * inactiveItemSizeM
+        value = itemWidth * inactiveItemSizeM
       }
     }
 
@@ -107,7 +106,7 @@ MContainer {
         return focusedRounding
       }
       if (isOccupied) {
-        return activeRounding
+        return occupiedRounding
       }
       else {
         return inactiveRounding
@@ -119,18 +118,12 @@ MContainer {
   }
   color: getColor()
 
+  useAnimation: Config.options.useAnimation
+  animationDuration: Config.styles.animation.durations.normal
+  animationCurve: Config.styles.animation.curves.standard
+
   // [DEBUG]: this makes it easy to debug layout issues
   // border {
   //   color: "#dc143c"
   // }
-
-  Behavior on implicitWidth {
-    MSpringAnimation {}
-  }
-  Behavior on implicitHeight {
-    MSpringAnimation {}
-  }
-  Behavior on radius {
-    MSpringAnimation {}
-  }
 }

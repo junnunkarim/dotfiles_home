@@ -2,7 +2,7 @@ local keymaps = require("plugins.snacks.config.keymaps")
 
 local bigfile = require("plugins.snacks.bigfile")
 local dashboard = require("plugins.snacks.dashboard")
-local image = require("plugins.snacks.image")
+-- local image = require("plugins.snacks.image")
 local indent = require("plugins.snacks.indent")
 local input = require("plugins.snacks.input")
 local notifier = require("plugins.snacks.notifier")
@@ -18,7 +18,7 @@ return {
   opts = {
     bigfile = bigfile,
     dashboard = dashboard,
-    image = image,
+    -- image = image,
     indent = indent,
     input = input,
     picker = picker,

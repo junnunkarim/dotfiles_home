@@ -1,5 +1,5 @@
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/dwm/luastatus/colorscheme/?.lua"
 
-local color = require("catppuccin_macchiato")
+local color = require("rose_pine")
 
 return color

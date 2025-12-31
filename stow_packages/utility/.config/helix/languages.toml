@@ -1,0 +1,3 @@
+[[language]]
+name = "nim"
+language-servers = [ "nimlangserver" ]

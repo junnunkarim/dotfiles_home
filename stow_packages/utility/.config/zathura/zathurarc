@@ -1,6 +1,6 @@
-include colorschemes/matugen
+include colorschemes/everforest
 
-set font "Iosevka 18"
+set font "Iosevka Slab 18"
 
 set adjust-open width
 set recolor true

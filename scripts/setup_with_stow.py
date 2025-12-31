@@ -144,7 +144,6 @@ def main():
     stow_profiles = {
         "all": [
             "alacritty",
-            "assets",
             "awesome",
             "dwm",
             "home_scripts",
@@ -156,9 +155,10 @@ def main():
             "picom",
             "qtile",
             "utility",
+            "quickshell",
+            "resources",
         ],
         "dwm": [
-            "assets",
             "dwm",
             "home_scripts",
             "kitty",
@@ -166,10 +166,10 @@ def main():
             "matugen",
             "nvim",
             "picom",
+            "resources",
             "utility",
         ],
         "hyprland": [
-            "assets",
             "home_scripts",
             "hypr",
             "kitty",
@@ -177,9 +177,17 @@ def main():
             "matugen",
             "nvim",
             "utility",
+            "quickshell",
+            "resources",
         ],
         "hyprland_only": [
             "hypr",
+        ],
+        "quickshell_only": [
+            "quickshell",
+        ],
+        "resources_only": [
+            "resources",
         ],
         "termux": [
             "nvim",

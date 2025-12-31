@@ -8,3 +8,9 @@ normal_alt = { fg = "black", bg = "red" }
 
 unset_main = { fg = "black", bg = "yellow" }
 unset_alt = { fg = "black", bg = "red" }
+
+[tabs]
+active = { fg = "black", bg = "red" }
+inactive = { fg = "white", bg = "black" }
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }

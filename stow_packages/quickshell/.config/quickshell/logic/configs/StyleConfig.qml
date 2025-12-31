@@ -26,7 +26,7 @@ JsonObject {
   property int basePadding: 18
   property int baseRounding: 2
 
-  readonly property real unit: (baseFontSize / fontMetrics.height) * scale
+  readonly property real unit: (baseFontSize / fontMetrics.height)
 
   Component.onCompleted: {
     console.log(fontMetrics.height)
@@ -34,13 +34,7 @@ JsonObject {
   }
 
   component FontSize: JsonObject {
-    property int extraSmall: 8 * styleConfig.scale
-    property int small: 13 * styleConfig.baseFontSize
-    property int regular: styleConfig.baseFontSize
-    property int large: 21 * styleConfig.scale
-    property int extraLarge: 27 * styleConfig.scale
-
-    readonly property real scale: 1.25
+    readonly property real scale: 1.125
 
     property int sXXXS: Math.round(sXXS / scale)
     property int sXXS: Math.round(sXS / scale)
@@ -54,20 +48,12 @@ JsonObject {
   }
 
   component FontFamily: JsonObject {
-    // property string sans: "JetBrains Mono"
-    property string sans: "Maple Mono"
-    // property string sans: "Iosevka Nerd Font Mono"
-    property string mono: "Iosevka Nerd Font Mono"
+    property string sans: "Iosevka Slab"
+    property string mono: "Iosevka"
     property string icon: "Symbols Nerd Font"
   }
 
   component Margin: JsonObject {
-    property real extraSmall: 8 * styleConfig.unit
-    property real small: 15 * styleConfig.unit
-    property real regular: 40 * styleConfig.unit
-    property real large: 60 * styleConfig.unit
-    property real extraLarge: 100 * styleConfig.unit
-
     readonly property real scale: 1.25
 
     property int sXXXS: Math.round(sXXS / scale / 2)
@@ -82,12 +68,6 @@ JsonObject {
   }
 
   component Padding: JsonObject {
-    property real extraSmall: 7 * styleConfig.unit
-    property real small: 15 * styleConfig.unit
-    property real regular: 40 * styleConfig.unit
-    property real large: 60 * styleConfig.unit
-    property real extraLarge: 100 * styleConfig.unit
-
     readonly property real scale: 1.25
 
     property int sXXXS: Math.round(sXXS / scale / 2)
@@ -102,12 +82,6 @@ JsonObject {
   }
 
   component Rounding: JsonObject {
-    property real extraSmall: 2
-    property real small: 7
-    property real regular: 10
-    property real large: 18
-    property real full: 100
-
     readonly property real scale: 2
 
     property int sXXS: styleConfig.baseRounding
@@ -125,36 +99,86 @@ JsonObject {
     property real layers: 0.4
   }
 
+  // source: https://m3.material.io/styles/motion/overview/specs
   component AnimationCurves: JsonObject {
-    property list<real> emphasized: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82, 0.25, 1, 1, 1]
-    property list<real> emphasizedAccel: [0.3, 0, 0.8, 0.15, 1, 1]
-    property list<real> emphasizedDecel: [0.05, 0.7, 0.1, 1, 1, 1]
-    property list<real> standard: [0.2, 0, 0, 1, 1, 1]
-    property list<real> standardAccel: [0.3, 0, 1, 1, 1, 1]
-    property list<real> standardDecel: [0, 0, 0, 1, 1, 1]
-    property list<real> expressiveFastSpatial: [0.42, 1.67, 0.21, 0.9, 1, 1]
-    property list<real> expressiveDefaultSpatial: [0.38, 1.21, 0.22, 1, 1, 1]
-    property list<real> expressiveEffects: [0.34, 0.8, 0.34, 1, 1, 1]
+    // last points must be 1, 1
+    property list<real> emphasized: [
+      0.2, 0,
+      0, 1,
+      1, 1
+    ]
+    property list<real> emphasizedAccel: [
+      0.3, 0,
+      0.8, 0.15,
+      1, 1
+    ]
+    property list<real> emphasizedDecel: [
+      0.05, 0.7,
+      0.1, 1,
+      1, 1
+    ]
+    property list<real> standard: [
+      0.2, 0,
+      0, 1,
+      1, 1
+    ]
+    property list<real> standardAccel: [
+      0.3, 0,
+      1, 1,
+      1, 1
+    ]
+    property list<real> standardDecel: [
+      0, 0,
+      0, 1,
+      1, 1
+    ]
+    property list<real> standardSpatial: [
+      0.27, 1.06,
+      0.18, 1.00,
+      1, 1
+    ]
+    property list<real> expressiveFastSpatial: [
+      0.42, 1.67,
+      0.21, 0.9,
+      1, 1
+    ]
+    property list<real> expressiveDefaultSpatial: [
+      0.38, 1.21,
+      0.22, 1,
+      1, 1
+    ]
+    property list<real> expressiveSlowSpatial: [
+      0.39, 1.29,
+      0.35, 0.98,
+      1, 1
+    ]
+    property list<real> expressiveFastEffects: [
+      0.31, 0.94,
+      0.34, 1.00,
+      1, 1
+    ]
+    property list<real> expressiveDefaultEffects: [
+      0.34, 0.80,
+      0.34, 1.00,
+      1, 1
+    ]
+    property list<real> expressiveSlowEffects: [
+      0.34, 0.88,
+      0.34, 1.00,
+      1, 1
+    ]
   }
 
   component AnimationDurations: JsonObject {
-    property int veryFast: 100
-    property int fast: 200
+    property int veryFast: 150
+    property int fast: 350
     property int normal: 500
-    property int slow: 800
-    property int verySlow: 1000
+    property int slow: 650
+    property int verySlow: 750
   }
 
   component Animation: JsonObject {
     property AnimationCurves curves: AnimationCurves {}
     property AnimationDurations durations: AnimationDurations {}
   }
-
-  // debug
-  // Component.onCompleted: {
-  //   console.log(`[INFO] scale: ${scale}`)
-  //   console.log(`[INFO] screenDPI: ${Screen.pixelDensity * 25.4}`)
-  //   console.log(`[INFO] dpiScale: ${dpiScale}`)
-  //   console.log(`[INFO] unit: ${unit}`)
-  // }
 }

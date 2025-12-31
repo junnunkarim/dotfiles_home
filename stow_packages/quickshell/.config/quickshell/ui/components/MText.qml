@@ -2,7 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 
-import qs.configs
+import qs.logic.configs
 
 Text {
   id: root
@@ -17,8 +17,11 @@ Text {
   property string orientation: "horizontal"
   property string rotationDirection: "left"
 
-  property bool useAnimation: true
+  property bool useAnimation: Config.options.useAnimation
   property int animationDuration: Config.styles.animation.durations.normal
+  property real animateFrom: 0.3
+  property real animateTo: 1
+
 
   readonly property bool isVertical: orientation == "vertical"
 
@@ -68,15 +71,25 @@ Text {
     }
   }
 
+  component NumAnim: NumberAnimation { 
+    target: root
+    property: "scale"
+    duration: root.animationDuration / 2
+    easing.type: Easing.BezierSpline
+  }
+
   Behavior on text {
     enabled: root.useAnimation
-    NumberAnimation { 
-      target: root
-      properties: "opacity"
-      from: 0.0
-      to: 1.0
-      duration: root.animationDuration
-      easing.type: Easing.OutQuad
+    SequentialAnimation {
+      NumAnim {
+        to: root.animateFrom
+        easing.bezierCurve: Config.styles.animation.curves.emphasizedAccel
+      }
+      PropertyAction {}
+      NumAnim { 
+        to: root.animateTo
+        easing.bezierCurve: Config.styles.animation.curves.emphasizedDecel
+      }
     }
   }
 }

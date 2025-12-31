@@ -1,7 +1,7 @@
 import Quickshell
 
-import qs.ui.themes
+import qs.ui
 
 ShellRoot {
-  Theme {}
+  ThemeLoader {}
 }

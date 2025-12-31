@@ -48,7 +48,5 @@ MContainer {
     id: textItem
 
     anchors.fill: parent
-    // width: root.isVertical ? parent.height : parent.width
-    // height: root.isVertical ? parent.width : parent.height
   }
 }

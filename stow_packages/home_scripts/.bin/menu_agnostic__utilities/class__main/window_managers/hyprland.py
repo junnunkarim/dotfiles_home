@@ -158,7 +158,7 @@ class Hyprland(WindowManager):
             start_concat="$lockscreen_wall = ",
             end_concat="",
         )
-        wallpaper_path = "~/.config/wallpaper/" + wallpaper
+        wallpaper_path = "~/resources/wallpaper/" + wallpaper
 
         lock_wall.apply(wallpaper_path)
 

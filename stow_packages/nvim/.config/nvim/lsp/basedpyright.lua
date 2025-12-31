@@ -16,13 +16,12 @@ return {
       venvPath = "/mnt/main/system/.virtualenvs",
     },
     basedpyright = {
-      disableOrganizeImports = true,
+      -- disableOrganizeImports = true,
       analysis = {
         autoSearchPaths = true,
         autoImportCompletions = true,
-        useLibraryCodeForTypes = true,
         diagnosticMode = "openFilesOnly",
-        typeCheckingMode = "strict",
+        typeCheckingMode = "standard",
         inlayHints = {
           variableTypes = true,
           callArgumentNames = true,

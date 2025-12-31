@@ -1,8 +1,8 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=matugen
-Font=Iosevka,18,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+ColorScheme=everforest
+Font=Iosevka Slab,18,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 IgnoreWcWidth=true
 LineSpacing=0
 UseFontLineChararacters=true

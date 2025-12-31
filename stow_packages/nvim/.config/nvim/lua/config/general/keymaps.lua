@@ -115,6 +115,12 @@ if file_exists then
     { noremap = true, silent = true, desc = "Toggle Terminal (vertical)" }
   )
   vim.keymap.set(
+    { "n", "t" },
+    "<a-v>",
+    "<cmd>SelfTerm vertical<cr>",
+    { noremap = true, silent = true, desc = "Toggle Terminal (vertical)" }
+  )
+  vim.keymap.set(
     "n",
     "<leader>tc",
     "<cmd>SelfTerm hide_all<cr>",

@@ -20,7 +20,7 @@ return {
     desc = "Notification history",
   },
   {
-    "<leader>uk",
+    "<leader>?",
     function() Snacks.picker.keymaps() end,
     desc = "Show all keymaps",
   },

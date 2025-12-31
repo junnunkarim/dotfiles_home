@@ -1,13 +1,11 @@
-pragma Singleton
-
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 
-import qs.configs
+import qs.logic.configs
 
-Singleton {
-  id: hyprlandIpc
+Item {
+  id: root
 
   property ListModel wsList: ListModel {}
   property ListModel specialWsList: ListModel {}
@@ -19,7 +17,7 @@ Singleton {
 
   Component.onCompleted: {
     if (Config.options.showInactiveWs) {
-      hyprlandIpc.prefillWsList(Config.options.wsCount)
+      root.prefillWsList(Config.options.wsCount)
     }
   }
 
@@ -36,8 +34,8 @@ Singleton {
           "closelayer",
         ].includes(eventName)
       ) {
-        hyprlandIpc.updateWsList()
-        hyprlandIpc.updateClientList(true)
+        root.updateWsList()
+        root.updateClientList(true)
       }
       else if (
         [
@@ -51,8 +49,8 @@ Singleton {
         ].includes(eventName)
       ) {
         // console.log(eventName, "fired")
-        hyprlandIpc.updateWsList()
-        hyprlandIpc.updateClientList(true)
+        root.updateWsList()
+        root.updateClientList(true)
       }
       else if (
         [
@@ -63,7 +61,7 @@ Singleton {
         ].includes(eventName)
       ) {
         // console.log(eventName, "fired")
-        hyprlandIpc.updateClientList(true)
+        root.updateClientList(true)
       }
       else if (
         [
@@ -74,8 +72,8 @@ Singleton {
           "urgent",
         ].includes(eventName)
       ) {
-        hyprlandIpc.updateWsList()
-        hyprlandIpc.updateClientList(true)
+        root.updateWsList()
+        root.updateClientList(true)
       }
     }
   }
@@ -155,7 +153,7 @@ Singleton {
 
   function prefillWsList(count) {
     for (let i = 0; i < count; i++) {
-      hyprlandIpc.wsList.append(hyprlandIpc.getDummyWsData())
+      root.wsList.append(root.getDummyWsData())
     }
   }
 
@@ -181,7 +179,7 @@ Singleton {
 
         if (wsData) {
           if (ws.focused === true) {
-            hyprlandIpc.focusedWs = wsData
+            root.focusedWs = wsData
           }
 
           // if normal workspace
@@ -189,13 +187,13 @@ Singleton {
             // first workspace id is always 0, second is 1 and so on;
             // fill up the workspace list with dummy values until the length
             // is equal to the current workspace id
-            while (hyprlandIpc.wsList.count < ws.id) {
-              hyprlandIpc.wsList.append(hyprlandIpc.getDummyWsData())
+            while (root.wsList.count < ws.id) {
+              root.wsList.append(root.getDummyWsData())
             }
 
             // the index will be always available because the list is filled
             // with dummy values if necessary
-            hyprlandIpc.wsList.set(ws.id - 1, wsData)
+            root.wsList.set(ws.id - 1, wsData)
           }
           // if special workspace
           else if (ws.id < 0) {
@@ -209,11 +207,11 @@ Singleton {
             // fill up the special workspace list with dummy values until
             // the length is equal to the current
             // (normalized special workspace id + 1)
-            while (hyprlandIpc.specialWsList.count < (normalizedId + 1)) {
-              hyprlandIpc.specialWsList.append(hyprlandIpc.getDummyWsData())
+            while (root.specialWsList.count < (normalizedId + 1)) {
+              root.specialWsList.append(root.getDummyWsData())
             }
 
-            hyprlandIpc.specialWsList.set(normalizedId, wsData)
+            root.specialWsList.set(normalizedId, wsData)
           }
         }
       }
@@ -222,8 +220,8 @@ Singleton {
       // hyprlandIpc.specialWsList, that means there are inactive special
       // workspaces;
       // remove inactive special workspaces
-      while (activeSpcWsCount != hyprlandIpc.specialWsList.count) {
-        hyprlandIpc.specialWsList.remove(hyprlandIpc.specialWsList.count - 1)
+      while (activeSpcWsCount != root.specialWsList.count) {
+        root.specialWsList.remove(root.specialWsList.count - 1)
       }
     }
     catch (e) {
@@ -250,10 +248,10 @@ Singleton {
 
       let oldClientList
       if (focusedWsOnly) {
-        oldClientList = hyprlandIpc.focusedWsClientList
+        oldClientList = root.focusedWsClientList
       }
       else {
-        oldClientList = hyprlandIpc.clientList
+        oldClientList = root.clientList
       }
 
       let newClientList = []
@@ -268,7 +266,7 @@ Singleton {
         const clientData = extractClientData(client)
         if (clientData) {
           if (client.activated === true) {
-            hyprlandIpc.focusedClient = clientData
+            root.focusedClient = clientData
           }
 
           newClientList.push(clientData)

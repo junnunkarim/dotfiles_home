@@ -2,15 +2,14 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 
-import qs.configs
+import qs.logic.configs
 import qs.ui.components.containers
-import qs.ui.components.animations
 
 MContainer {
-  id: clientItem
+  id: root
 
-  required property real clientItemHeight
-  required property real clientItemWidth
+  required property real itemHeight
+  required property real itemWidth
 
   required property color focusColor
   required property color unfocusColor
@@ -50,14 +49,14 @@ MContainer {
 
     if (isVertical) {
       if (isFocused) {
-        value = clientItemHeight * focusedItemSizeM
+        value = itemHeight * focusedItemSizeM
       }
       else {
-        value = clientItemHeight * unfocusedItemSizeM
+        value = itemHeight * unfocusedItemSizeM
       }
     }
     else {
-      value = clientItemHeight
+      value = itemHeight
     }
 
     return value * Config.styles.unit
@@ -66,14 +65,14 @@ MContainer {
     var value = 1
 
     if (isVertical) {
-      value = clientItemHeight
+      value = itemWidth
     }
     else {
       if (isFocused) {
-        value = clientItemHeight * focusedItemSizeM
+        value = itemWidth * focusedItemSizeM
       }
       else {
-        value = clientItemHeight * unfocusedItemSizeM
+        value = itemWidth * unfocusedItemSizeM
       }
     }
 
@@ -94,18 +93,11 @@ MContainer {
   }
   color: getColor()
 
+  useAnimation: Config.options.useAnimation
+  animationCurve: Config.styles.animation.curves.standard
+
   // [DEBUG]: this makes it easy to debug layout issues
   // border {
   //   color: "#dc143c"
   // }
-
-  Behavior on implicitWidth {
-    MSmoothAnimation {}
-  }
-  Behavior on implicitHeight {
-    MSmoothAnimation {}
-  }
-  Behavior on radius {
-    MSmoothAnimation {}
-  }
 }

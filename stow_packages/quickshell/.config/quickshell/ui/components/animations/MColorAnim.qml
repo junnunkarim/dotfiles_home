@@ -1,6 +1,6 @@
 import QtQuick
 
-import qs.configs
+import qs.logic.configs
 
 ColorAnimation {
   duration: Config.styles.animation.durations.normal
