@@ -1,0 +1,23 @@
+// --- environment variables ---
+// -----------------------------
+
+environment {
+  // backend
+  GDK_BACKEND     "wayland"
+  QT_QPA_PLATFORM "wayland"
+  SDL_VIDEODRIVER "wayland"
+
+  // input method
+  GTK_IM_MODULE   "fcitx"
+  QT_IM_MODULE    "fcitx"
+  SDL_IM_MODULE   "fcitx"
+  XMODIFIERS      "@im=fcitx"
+  GLFW_IM_MODULE  "ibus"
+  INPUT_METHOD    "fcitx"
+
+  XDG_SCREENSHOTS_DIR "$HOME/pictures/screenshots/"
+  XDG_PICTURES_DIR    "$HOME/pictures/"
+
+  // remove variable
+  // DISPLAY null
+}

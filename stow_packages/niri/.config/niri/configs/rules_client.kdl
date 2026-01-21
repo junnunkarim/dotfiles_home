@@ -1,0 +1,27 @@
+// --- window/client rules ---
+// ---------------------------
+
+// wiki: https://yalter.github.io/niri/Configuration:-Window-Rules
+
+// rules for all windows
+window-rule {
+  clip-to-geometry true
+  // geometry-corner-radius 15
+  geometry-corner-radius 0
+}
+
+// firefox picture-in-picture player as floating
+window-rule {
+  match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+
+  open-floating true
+}
+
+// block out password managers from screen capture
+window-rule {
+  match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+  match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+  block-out-from "screen-capture"
+  // block-out-from "screencast" // visible on third-party screenshot tools
+}

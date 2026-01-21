@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 
-def change_wallpaper(wallpaper: str, directory: str = "~/.config/wallpaper/"):
+def change_wallpaper(wallpaper: str, directory: str = "~/resources/wallpaper/"):
     # add `/` at the end if not added by the user
     if directory[-1] != "/":
         directory = directory + "/"

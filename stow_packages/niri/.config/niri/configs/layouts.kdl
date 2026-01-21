@@ -1,0 +1,90 @@
+// --- layouts ---
+// ---------------
+
+// wiki: https://yalter.github.io/niri/Configuration:-Layout
+layout {
+  // transparent background to see the wallpaper in the overview layer
+  background-color "transparent"
+
+  // gaps around windows in logical pixels
+  gaps 10
+
+  // - "never", default, focusing an off-screen column will keep at the left
+  //   or right edge of the screen
+  // - "always", the focused column will always be centered
+  // - "on-overflow", focusing a column will center it if it doesn't fit
+  //   together with the previously focused column
+  center-focused-column "never"
+
+  // column width presets to switch between
+  preset-column-widths {
+    proportion 0.25
+    proportion 0.50
+    proportion 0.75
+    proportion 1.00
+  }
+
+  // window height presets to switch between
+  preset-window-heights {
+    proportion 0.25
+    proportion 0.50
+    proportion 0.75
+    proportion 1.00
+  }
+
+  // - default width of new windows/clients
+  // - if left empty, the windows/clients will decide their initial width
+  default-column-width {
+    proportion 0.90;
+  }
+
+  // only drawn around active window/client
+  focus-ring {
+    on
+    // off
+
+    width 3
+
+    // color on the active monitor
+    active-color "#d7827e"
+    // active-gradient from="#a7c080" to="#7fbbb3" angle=45
+
+    // - color of the ring on inactive monitors
+    // - only can be seen is on other monitors
+    inactive-color "#505050"
+    // inactive-gradient from="#505050" to="#808080" angle=45
+
+    urgent-color "#9b0000"
+  }
+
+  // drawn around all active windows/clients
+  border {
+    // on
+    off
+  }
+
+  // drop shadows for windows/clients
+  shadow {
+    // on
+    off
+  }
+
+  // appearance of the tab indicator that appears next to columns in tabbed
+  // display mode
+  tab-indicator {
+    on
+    // off
+    
+    gap 10
+    width 10
+    corner-radius 50
+    position "right"
+
+    place-within-column
+  }
+
+  insert-hint {
+    on
+    // off
+  }
+}

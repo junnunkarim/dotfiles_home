@@ -39,7 +39,7 @@ def disable_all_decorations():
                     keyword general:gaps_in 0;
                     keyword general:gaps_out 0;
                     keyword decoration:rounding 0;
-                    keyword decoration:active_opacity 0.95;
+                    keyword decoration:active_opacity 1.0;
                     keyword decoration:inactive_opacity 0.85"
                  """
     subprocess.run(shlex.split(batch_cmd))

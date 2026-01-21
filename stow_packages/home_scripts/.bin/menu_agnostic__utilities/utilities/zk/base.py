@@ -17,7 +17,7 @@ from class__main.zk.base import ZkMenu
 def zk(
     menu: str,
     terminal: str,
-    notebook_dir: str = "/mnt/main/work/notebook/",
+    notebook_dir: str = "/mnt/main/03__personal/notebook/",
 ) -> None:
     max_str_len = 100
 

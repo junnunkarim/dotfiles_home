@@ -154,7 +154,7 @@ class Dwm(WindowManager):
         self,
         wallpaper: str,
     ) -> None:
-        wallpaper_path = Path("~/.config/wallpaper/" + wallpaper).expanduser()
+        wallpaper_path = Path("~/resources/wallpaper/" + wallpaper).expanduser()
 
         command = ["feh", "--bg-fill", wallpaper_path]
 
@@ -164,7 +164,7 @@ class Dwm(WindowManager):
         self,
         wallpaper: str,
     ) -> None:
-        wallpaper_path = Path("~/.config/wallpaper/" + wallpaper).expanduser()
+        wallpaper_path = Path("~/resources/wallpaper/" + wallpaper).expanduser()
 
         command = ["betterlockscreen", "--fx", " ", "-u", wallpaper_path]
 

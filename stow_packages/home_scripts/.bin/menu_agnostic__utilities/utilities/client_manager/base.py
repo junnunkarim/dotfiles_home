@@ -39,7 +39,8 @@ def client_manager(menu: str, wm: str, only_minimize: bool) -> None:
 
 def main() -> None:
     menus = ["dmenu", "fuzzel"]
-    wms = ["dwm", "hyprland"]
+    # wms = ["dwm", "hyprland"]
+    wms = ["hyprland"]
     only_minimize = False
 
     arg_parser = argparse.ArgumentParser(description="client window manager")

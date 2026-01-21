@@ -1,0 +1,432 @@
+// --- keybindings ---
+// -------------------
+
+// NOTE: comments with "[desc]" are parsed by a script to show keybindings in
+//       dmenu or similar menu program;
+//       "|" are used as separator
+
+binds {
+  // applications (super + alt)
+  // --------------------------
+  //
+  // [desc] | super + alt + f | open tui file manager (yazi)
+  Mod+Alt+F \
+    hotkey-overlay-title="open tui file manager (yazi)" \
+    { spawn "kitty" "yazi"; }
+
+  // [desc] | super + alt + t | open file manager (thunar)
+  Mod+Alt+T \
+    hotkey-overlay-title="open file manager (thunar)" \
+    { spawn "thunar"; }
+
+  // [desc] | super + alt + b | open browser (firefox)
+  Mod+Alt+B \
+    hotkey-overlay-title="open browser (firefox)" \
+    { spawn "firefox"; }
+
+  // [desc] | super + alt + e | open email client (thunderbird)
+  Mod+Alt+E \
+    hotkey-overlay-title="open email client (thunderbird)" \
+    { spawn "thunderbird"; }
+
+  // [desc] | super + alt + m | open messenger (telegram)
+  Mod+Alt+M \
+    hotkey-overlay-title="open messenger (telegram)" \
+    { spawn "Telegram"; }
+
+  // [desc] | super + alt + v | open code editor (neovim)
+  Mod+Alt+V \
+    hotkey-overlay-title="open code editor (neovim)" \
+    { spawn "kitty" "nvim"; }
+
+
+  // special keys (including fn)
+  // ---------------------------
+  //
+  // [desc] | f1 | decrease brightness
+  F1 \
+    allow-when-locked=true \
+    { spawn "brightnessctl" "--class=backlight" "set" "2%-"; }
+  XF86MonBrightnessDown \
+    allow-when-locked=true \
+    { spawn "brightnessctl" "--class=backlight" "set" "2%-"; }
+
+  // [desc] | f2 | increase brightness
+  XF86MonBrightnessUp \
+    allow-when-locked=true \
+    { spawn "brightnessctl" "--class=backlight" "set" "+2%"; }
+  F2 \
+    allow-when-locked=true \
+    { spawn "brightnessctl" "--class=backlight" "set" "+2%"; }
+
+  // [desc] | f3 | decrease volume (system)
+  F3 \
+    allow-when-locked=true \
+    { spawn-sh "pulsemixer --change-volume -5 --max-volume 100"; }
+  XF86AudioLowerVolume \
+    allow-when-locked=true \
+    { spawn-sh "pulsemixer --change-volume -5 --max-volume 100"; }
+
+  // [desc] | f4 | increase volume (system)
+  F4 \
+    allow-when-locked=true \
+    { spawn-sh "pulsemixer --change-volume +5 --max-volume 100"; }
+  XF86AudioRaiseVolume \
+    allow-when-locked=true \
+    { spawn-sh "pulsemixer --change-volume +5 --max-volume 100"; }
+
+  // [desc] | f5 | mute volume (system)
+  F5 \
+    allow-when-locked=true \
+    { spawn-sh "pulsemixer --toggle-mute"; }
+  XF86AudioMute \
+    allow-when-locked=true \
+    { spawn-sh "pulsemixer --toggle-mute"; }
+
+  XF86AudioMicMute \
+    allow-when-locked=true \
+    { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+  // [desc] | f6 | toggle media play/pause
+  F6 \
+    allow-when-locked=true \
+    { spawn-sh "playerctl play-pause"; }
+  XF86AudioPlay \
+    allow-when-locked=true \
+    { spawn-sh "playerctl play-pause"; }
+
+  // [desc] | media stop | stop playing media
+  XF86AudioStop \
+    allow-when-locked=true \
+    { spawn-sh "playerctl stop"; }
+
+  // [desc] | media prev | play prev media
+  XF86AudioPrev \
+    allow-when-locked=true \
+    { spawn-sh "playerctl previous"; }
+
+  // [desc] | media next | play next media
+  XF86AudioNext \
+    allow-when-locked=true \
+    { spawn-sh "playerctl next"; }
+
+
+  // [desc] | print-screen | take fullscreen screenshot
+  Print \
+    { screenshot-screen show-pointer=false; }
+
+  // [desc] | super + print-screen | take screenshot of selected region
+  Mod+Print \
+    { screenshot show-pointer=false; }
+
+  // [desc] | super + shift + print-screen | take screenshot of focused window/client
+  Mod+Shift+Print \
+    { screenshot-window; }
+
+
+  // primary shortcuts (super / super + shift)
+  // -----------------------------------------
+  //
+  // [desc] | super + enter | open terminal (kitty)
+  Mod+Return \
+    hotkey-overlay-title="open terminal (kitty)" \
+    { spawn "kitty"; }
+
+  // [desc] | super + d | open application launcher (menu)
+  Mod+D \
+    hotkey-overlay-title="open application launcher (menu)" \
+    { spawn "fuzzel"; }
+
+  // [desc] | super + h | open clipboard (menu)
+  Mod+H \
+    hotkey-overlay-title="open clipboard (menu)" \
+    { spawn-sh "~/.bin/menu_agnostic__utilities/utilities.py clipboard -m fuzzel -d wayland"; }
+
+  // [desc] | super + l | lock the screen (hyprlock)
+  Mod+L \
+    hotkey-overlay-title="lock the screen (hyprlock)" \
+    { spawn "hyprlock"; }
+
+  // [desc] | super + n | open network-manager (menu)
+  Mod+N \
+    hotkey-overlay-title="open network-manager (menu)" \
+    { spawn "networkmanager_dmenu"; }
+
+  // [desc] | super + t | open colorscheme picker (menu)
+  Mod+T \
+    hotkey-overlay-title="open colorscheme-selector (menu)" \
+    { spawn-sh "~/.bin/menu_agnostic__utilities/utilities.py colorscheme_switcher -m fuzzel -w hyprland"; }
+
+  // [desc] | super + x | open powermenu (menu)
+  Mod+X \
+    hotkey-overlay-title="open powermenu (menu)" \
+    { spawn-sh "~/.bin/menu_agnostic__utilities/utilities.py powermenu -m fuzzel -w hyprland"; }
+
+  // [desc] | super + shift + b | open bookmark manager (menu, bkmr)
+  Mod+Shift+B \
+    hotkey-overlay-title="open bookmark manager (menu, bkmr)" \
+    { spawn-sh "~/.bin/menu_agnostic__utilities/utilities.py bookmark_manager -m fuzzel -b bkmr --online-status offline"; }
+
+  // [desc] | super + shift + c | open calculator (qalculate)
+  Mod+Shift+C \
+    hotkey-overlay-title="open calculator (qalculate)" \
+    { spawn "qalculate-gtk"; }
+
+  // [desc] | super + shift + h | open task manager (btop)
+  Mod+Shift+H \
+    hotkey-overlay-title="open task manager (btop)" \
+    { spawn "kitty" "btop"; }
+
+  // [desc] | super + shift + z | open notes manager (menu, zk)
+  Mod+Shift+Z \
+    hotkey-overlay-title="open notes manager (menu, zk)" \
+    { spawn-sh "~/.bin/menu_agnostic__utilities/utilities.py zk -m fuzzel -t kitty"; }
+
+
+  // [desc] | super + c | close focused window/client
+  Mod+C \
+    repeat=false \
+    { close-window; }
+
+  // [desc] | super + shift + q | quit compositor
+  Mod+Shift+Q \
+    { quit; }
+  Ctrl+Alt+Delete \
+    { quit; }
+
+  // [desc] | super + shift + r | reload compositor
+  Mod+Shift+R \
+    { spawn-sh "niri msg action load-config-file"; }
+
+  // [desc] | super + escape | escape key-press hijacking from windows/clients
+  Mod+Escape \
+    allow-inhibiting=false \
+    { toggle-keyboard-shortcuts-inhibit; }
+
+  // [desc] | super + shift + tab | show a list of important hotkeys
+  Mod+Shift+Tab \
+    { show-hotkey-overlay; }
+
+  // [desc] | super + a | cycle (backward) window/client focus on current workspace
+  Mod+A \
+    { focus-column-left-or-last; }
+
+  // [desc] | super + o | cycle (downward) window/client focus on current workspace
+  Mod+O \
+    { focus-window-down-or-top; }
+
+  // [desc] | super + e | cycle (upward) window/client focus on current workspace
+  Mod+E \
+    { focus-window-up-or-bottom; }
+
+  // [desc] | super + u | cycle (forward) window/client focus on current workspace
+  Mod+U \
+    { focus-column-right-or-first; }
+
+  // [desc] | super + home | focus first window/client on current workspace
+  Mod+Home \
+    { focus-column-first; }
+
+  // [desc] | super + end | focus last window/client on current workspace
+  Mod+End \
+    { focus-column-last; }
+
+
+  // [desc] | super + shift + a | move (backward) window/client on current workspace
+  Mod+Shift+A \
+    { move-column-left; }
+
+  // [desc] | super + shift + o | move (downward) window/client on current workspace
+  Mod+Shift+O \
+    { move-window-down; }
+
+  // [desc] | super + shift + e | move (upward) window/client on current workspace
+  Mod+Shift+E \
+    { move-window-up; }
+
+  // [desc] | super + shift + u | move (forward) window/client on current workspace
+  Mod+Shift+U \
+    { move-column-right; }
+
+  // [desc] | super + shift + home | move window/client to the first place in current workspace
+  Mod+Shift+Home \
+    { move-column-to-first; }
+
+  // [desc] | super + shift + end | move window/client to the last place in current workspace
+  Mod+Shift+End \
+    { move-column-to-last; }
+
+
+  // [desc] | super + comma (,) | move (backward) through active workspaces
+  Mod+Comma \
+    { focus-workspace-up; }
+
+  // [desc] | super + page up | move (backward) through active workspaces
+  Mod+Page_Up \
+    { focus-workspace-up; }
+
+  // [desc] | super + period (.) | move (forward) through active workspaces
+  Mod+Period \
+    { focus-workspace-down; }
+
+  // [desc] | super + page down | move (forward) through active workspaces
+  Mod+Page_Down \
+    { focus-workspace-down; }
+
+
+  // [desc] | super + shift + comma (,) | consume one window from the right to the bottom of the focused column
+  Mod+Shift+Comma \
+    { consume-window-into-column; }
+
+  // [desc] | super + shift + period (.) | remove the bottom window from the focused column to the right
+  Mod+Shift+Period \
+    { expel-window-from-column; }
+
+  // [desc] | super + apostrophe | toggle tabbed column mode of focused column
+  Mod+apostrophe \
+    { toggle-column-tabbed-display; }
+
+
+  // [desc] | super + backspace | return to previous workspace
+  Mod+BackSpace \
+    { focus-workspace-previous; }
+
+  // [desc] | super + tab | toggle workspace overview
+  Mod+Tab \
+    repeat=false \
+    { toggle-overview; }
+
+
+  // focus monitors
+  Mod+Left \
+    { focus-monitor-left; }
+
+  Mod+Down \
+    { focus-monitor-down; }
+
+  Mod+Up \
+    { focus-monitor-up; }
+
+  Mod+Right \
+    { focus-monitor-right; }
+
+
+  // [desc] | super + minus (-) | decrease window/client width
+  Mod+Minus \
+    { set-column-width "-10%"; }
+
+  // [desc] | super + shift + minus (-) | decrease window/client height
+  Mod+Shift+Minus \
+    { set-window-height "-10%"; }
+
+  // [desc] | super + equal (=) | increase window/client width
+  Mod+Equal \
+    { set-column-width "+10%"; }
+
+  // [desc] | super + shift + equal (=) | increase window/client height
+  Mod+Shift+Equal \
+    { set-window-height "+10%"; }
+
+
+  // switch through window size presets
+  // [desc] | super + left bracket ([) | cycle through width presets of focused window/client
+  Mod+bracketleft \
+    { switch-preset-column-width; }
+
+  // [desc] | super + shift + left bracket ([) | cycle through height presets of focused window/client
+  Mod+Shift+bracketleft \
+    { switch-preset-window-height; }
+
+  // [desc] | super + shift + ctrl + left bracket ([) | reset height preset of focused window/client
+  Mod+Shift+Ctrl+bracketleft \
+    { reset-window-height; }
+
+
+  // [desc] | super + f | toggle fullscreen state of focused window/client
+  Mod+F \
+    { fullscreen-window; }
+
+  // [desc] | super + shift + f | toggle windowed-fullscreen state of focused window/client
+  Mod+Shift+F \
+    { toggle-windowed-fullscreen; }
+
+  // [desc] | super + m | maximize focused column width
+  Mod+M \
+    { maximize-column; }
+
+  // [desc] | super + backslash (\) | toggle floating state of focused window/client
+  Mod+backslash \
+    { toggle-window-floating; }
+
+  // [desc] | super + shift + backslash (\) | switch focus between floating and tiling windows/clients
+  Mod+Shift+backslash \
+    { switch-focus-between-floating-and-tiling; }
+
+  // [desc] | super + shift + m | center focused column
+  Mod+Shift+M \
+    { center-column; }
+
+
+  // switch workspaces
+  // [desc] | super + [1-9] | move to corresponding tag
+  Mod+1  { focus-workspace 1; }
+  Mod+2  { focus-workspace 2; }
+  Mod+3  { focus-workspace 3; }
+  Mod+4  { focus-workspace 4; }
+  Mod+5  { focus-workspace 5; }
+  Mod+6  { focus-workspace 6; }
+  Mod+7  { focus-workspace 7; }
+  Mod+8  { focus-workspace 8; }
+  Mod+9  { focus-workspace 9; }
+
+  // move focused window/client to a workspace
+  // [desc] | super + shift + [1-9] | move focused window to corresponding tag
+  Mod+Shift+1                   { move-column-to-workspace 1; }
+  Mod+Shift+2                   { move-column-to-workspace 2; }
+  Mod+Shift+3                   { move-column-to-workspace 3; }
+  Mod+Shift+4                   { move-column-to-workspace 4; }
+  Mod+Shift+5                   { move-column-to-workspace 5; }
+  Mod+Shift+6                   { move-column-to-workspace 6; }
+  Mod+Shift+7                   { move-column-to-workspace 7; }
+  Mod+Shift+8                   { move-column-to-workspace 8; }
+  Mod+Shift+9                   { move-column-to-workspace 9; }
+
+
+  // other programs or scripts (super + ctrl)
+  // ----------------------------------------
+  //
+  // [desc] | super + ctrl + e | open emoji picker (menu)
+  Mod+Ctrl+E \
+    hotkey-overlay-title="open emoji picker (menu)" \
+    { spawn-sh "BEMOJI_PICKER_CMD='fuzzel -d -p Emoji:' bemoji"; }
+
+  // [desc] | super + ctrl + g | open color picker (hyprpicker)
+  Mod+Ctrl+G \
+    hotkey-overlay-title="open color picker (hyprpicker)" \
+    { spawn-sh "hyprpicker -a"; }
+
+
+  // [desc] | super + ctrl + b | use low preset for bluelight filter (sunsetr)
+  Mod+Ctrl+B \
+    hotkey-overlay-title="use low preset for bluelight filter (sunsetr)" \
+    { spawn-sh "sunsetr preset low"; }
+
+  // [desc] | super + ctrl + shift + b | turn off bluelight filter (sunsetr)
+  Mod+Ctrl+Shift+B \
+    hotkey-overlay-title="turn off bluelight filter (sunsetr)" \
+    { spawn-sh "sunsetr stop"; }
+
+
+  // [desc] | super + ctrl + p | take fullscreen screenshot
+  Mod+Ctrl+P \
+    { screenshot-screen show-pointer=false; }
+
+  // [desc] | super + ctrl + shift + p | take screenshot of selected region
+  Mod+Ctrl+Shift+P \
+    { screenshot show-pointer=false; }
+}
+
+switch-events {
+  lid-close \
+    { spawn "hyprlock"; }
+}

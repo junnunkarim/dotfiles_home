@@ -12,8 +12,22 @@ local options = {
   },
   float = {
     padding = 4,
+    border = "rounded",
+    get_win_title = function(winid)
+      local cwd = vim.fn.getcwd()
+      local buf = vim.api.nvim_win_get_buf(winid)
+
+      local oil_file_path = vim.api.nvim_buf_get_name(buf)
+      local file_path = string.gsub(oil_file_path, "oil://", "")
+      local relative_path = string.gsub(file_path, cwd, "")
+
+      -- return "  " .. file_path
+      return "  " .. ".." .. relative_path
+    end,
   },
   keymaps = {
+    ["<C-s>"] = { "actions.select", opts = { horizontal = true } },
+    ["<C-v>"] = { "actions.select", opts = { vertical = true } },
     ["q"] = { "actions.close", mode = "n" },
     ["gd"] = {
       callback = function()

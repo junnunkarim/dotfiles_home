@@ -19,7 +19,7 @@ def matugen_gen_color(wallpaper: str, scheme: str | None = None) -> str:
         "scheme-fruit-salad",
     ]
 
-    wallpaper_path = Path("~/.config/wallpaper/" + wallpaper).expanduser()
+    wallpaper_path = Path("~/resources/wallpaper/" + wallpaper).expanduser()
 
     command = [
         "matugen",

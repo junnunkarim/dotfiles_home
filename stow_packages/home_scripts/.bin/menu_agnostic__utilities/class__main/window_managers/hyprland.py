@@ -100,8 +100,8 @@ class Hyprland(WindowManager):
             end_concat='"',
         )
         nvim = ProgramColor(
-            file="~/.config/nvim/lua/config/colorscheme.lua",
-            start_concat='local color = "',
+            file="~/.config/nvim/lua/config/colorscheme_name.lua",
+            start_concat='colorscheme = "',
             end_concat='"',
             colorscheme_map={
                 "catppuccin_macchiato": "catppuccin-macchiato",
@@ -158,7 +158,7 @@ class Hyprland(WindowManager):
             start_concat="$lockscreen_wall = ",
             end_concat="",
         )
-        wallpaper_path = "~/.config/wallpaper/" + wallpaper
+        wallpaper_path = "~/resources/wallpaper/" + wallpaper
 
         lock_wall.apply(wallpaper_path)
 

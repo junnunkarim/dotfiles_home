@@ -1,172 +1,98 @@
--- neovim options
-
------------------------------------------------------------
--- file & backup settings
------------------------------------------------------------
-local file_options = {
-  -- disable creation of backup files
-  backup = false,
-  -- disable swap files
-  swapfile = false,
-  -- enable persistent undo
-  undofile = true,
-  -- prevent editing if the file is being changed by another program
-  writebackup = true,
-  -- file encoding used when writing files
-  fileencoding = "utf-8",
-}
-
------------------------------------------------------------
--- user interface settings
------------------------------------------------------------
-local ui_options = {
-  -- use dark background colors
-  background = "dark",
-  -- enable 24-bit rgb color in the terminal
-  termguicolors = true,
-  -- height of the command line for messages
-  cmdheight = 0,
-  -- enable mouse support in all modes
-  mouse = "a",
-  -- maximum number of items in the popup menu
-  pumheight = 10,
-  -- don't display the mode (e.g., -- insert --)
-  showmode = false,
-  -- disable the tabline
-  showtabline = 0,
-  -- use a global statusline
-  laststatus = 3,
-  -- always show the sign column to avoid text shifting
-  signcolumn = "yes",
-  -- this option helps to avoid all the |hit-enter| prompts caused by
-  -- fil messages, for example with CTRL-G, and to avoid some other messages.
-  shortmess = "ltToOCFsS",
-}
-
------------------------------------------------------------
--- search & highlight settings
------------------------------------------------------------
-local search_options = {
-  -- highlight all matches of previous search pattern
-  hlsearch = true,
-  -- show match while typing search
-  incsearch = true,
-  -- ignore case when searching
-  ignorecase = true,
-  -- enable smart case search (optional; uncomment if needed)
-  -- smartcase  = true,
-}
-
------------------------------------------------------------
--- fold settings
------------------------------------------------------------
-local fold_options = {
-  foldmethod = "expr",
-  foldexpr = "v:lua.vim.treesitter.foldexpr()",
-  foldenable = false,
-  foldcolumn = "0",
-  foldtext = "",
-  foldnestmax = 1,
-  foldlevel = 99,
-}
-
------------------------------------------------------------
--- indentation & tab settings
------------------------------------------------------------
-local indent_options = {
-  -- enable smart indentation
-  smartindent = true,
-  -- convert tabs to spaces
-  expandtab = true,
-  -- number of spaces to use for each step of (auto)indent
-  shiftwidth = 2,
-  -- number of spaces that a <tab> counts for
-  tabstop = 2,
-}
-
------------------------------------------------------------
--- window splitting settings
------------------------------------------------------------
-local split_options = {
-  -- keep the text on the same screen line
-  splitkeep = "screen",
-  -- force horizontal splits to open below current window
-  splitbelow = true,
-  -- force vertical splits to open to the right of current window
-  splitright = true,
-}
-
------------------------------------------------------------
--- miscellaneous settings
------------------------------------------------------------
-local misc_options = {
-  -- reveal markdown syntax (e.g., backticks remain visible)
-  conceallevel = 0,
-  -- time in milliseconds to wait for a mapped sequence to complete
-  timeoutlen = 500,
-  -- faster completion by reducing the time to trigger events
-  updatetime = 50,
-  -- use the system clipboard for copy/paste operations
-  clipboard = "unnamedplus",
-  -- enable line wrapping
-  wrap = true,
-  -- break lines at convenient points (do not break words)
-  linebreak = true,
-  -- highlight column 80 (helpful as a guide)
-  colorcolumn = "80",
-  -- enable absolute line numbers
-  number = true,
-  -- enable relative line numbers
-  relativenumber = true,
-  -- set the width of the number column
-  numberwidth = 2,
-  -- define characters that form part of a word
-  -- 44 -> comma
-  -- 46 -> period
-  -- 48-57 -> correspond to the digits 0-9
-  iskeyword = "_,-,+,=,<,>,(,),{,},[,],\",',:,;,\\,/,#,%,&,*,44,46,48-57",
-  cursorline = true,
-}
-
------------------------------------------------------------
--- merge all option groups into one table
------------------------------------------------------------
-local options = {}
-
-for _, group in ipairs({
-  file_options,
-  ui_options,
-  search_options,
-  fold_options,
-  indent_options,
-  split_options,
-  misc_options,
-}) do
-  for option, value in pairs(group) do
-    options[option] = value
-  end
-end
-
--- apply all options
-for option, value in pairs(options) do
-  vim.opt[option] = value
-end
-
------------------------------------------------------------
--- additional settings outside the options table
------------------------------------------------------------
-
--- remove the '~' symbols from empty lines
-vim.opt.fillchars:append({ eob = " " })
-
------------------------------------------------------------
--- global configurations
------------------------------------------------------------
+-- global
+---------
 vim.g.health = { style = "float" }
 
------------------------------------------------------------
--- neovide specific settings
------------------------------------------------------------
+-- stylua: ignore start
+--
+local opt = vim.opt
+
+-- file & backup
+----------------
+opt.backup = false -- creation of backup files
+opt.swapfile = true -- swap files
+opt.undofile = true -- persistent undo
+opt.writebackup = true -- make a backup before overwriting a file
+opt.fileencoding = "utf-8"
+
+-- user interface
+-----------------
+opt.background = "dark"
+opt.termguicolors = true -- 24-bit rgb color in the tui
+opt.cmdheight = 1 -- number of screen lines to use for the command-line
+opt.mouse = "a" -- mouse support; "a" -> all modes
+opt.pumheight = 10 -- maximum number of items to show in the popup menu
+opt.showmode = false -- mode information at the bottom
+opt.showtabline = 0 -- 0 -> never
+opt.laststatus = 3 -- 3 -> global statusline
+opt.signcolumn = "yes"
+opt.shortmess = "ltToOCFsS" -- This option helps to avoid all the |hit-enter|
+                            -- prompts caused by file messages for example
+                            -- with CTRL-G and to avoid some other messages
+
+-- search & highlight
+---------------------
+opt.hlsearch = true -- highlight all matches of previous search pattern
+opt.incsearch = true -- show match while typing a search command
+opt.ignorecase = true -- ignore case when searching
+-- opt.smartcase  = true -- enable smart case search
+
+-- fold settings
+----------------
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldenable = false
+opt.foldcolumn = "0"
+opt.foldtext = ""
+opt.foldnestmax = 1
+opt.foldlevel = 99
+
+-- indentation & tab
+--------------------
+-- opt.smartindent = true -- smart autoindenting when starting a new line
+opt.expandtab = true -- convert tabs to spaces
+opt.shiftwidth = 2 -- number of spaces to use for each step of (auto)indent
+opt.tabstop = 2 -- number of spaces that a <tab> counts for
+
+-- window splitting
+-------------------
+opt.splitkeep = "cursor" -- "cursor" -> keep the same relative cursor position
+                         -- "screen" -> keep the text on the same screen line
+opt.splitbelow = true -- force horizontal splits to open below current window
+opt.splitright = true -- force vertical splits to open to the right
+
+-- misc
+-------
+opt.timeoutlen = 500 -- milliseconds to wait for a mapped sequence to complete
+opt.updatetime = 750
+opt.clipboard = "unnamedplus" -- "unnamedplus" -> use system clipboard for
+                              -- copy/paste operations
+
+-- wrap
+-------
+opt.wrap = true -- line wrapping
+opt.linebreak = true -- break lines at convenient points (do not break words)
+opt.whichwrap:append "<>[]hl" -- go to previous/next line with h,l,left arrow
+                              -- and right arrow when cursor reaches
+                              -- end/beginning of line
+
+opt.colorcolumn = "80" -- highlight column 80 (acts as a guide)
+opt.cursorline = true
+opt.fillchars:append({ eob = " " }) -- remove '~' symbol from empty lines
+
+opt.number = true -- absolute line numbers
+opt.relativenumber = true -- relative line numbers
+opt.numberwidth = 2 -- width of the number column
+
+-- 44 -> comma
+-- 46 -> period
+-- 48-57 -> correspond to the digits 0-9
+opt.iskeyword = "_,-,+,=,<,>,(,),{,},[,],\",',:,;,\\,/,#,%,&,*,44,46,48-57"
+-- opt.iskeyword:append({'-', ';'}) -- define characters that form part of a word
+--
+-- stylua: ignore start
+
+-- neovide
+----------
 if vim.g.neovide then
   -- set gui font for neovide
   vim.o.guifont = "Iosevka Nerd Font Mono:h18"
@@ -181,7 +107,3 @@ if vim.g.neovide then
   -- padding on the left
   vim.g.neovide_padding_left = 10
 end
-
------------------------------------------------------------
--- additional global settings
------------------------------------------------------------

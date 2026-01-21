@@ -1,0 +1,9 @@
+[Unit]
+Description=GNOME Keyring Daemon
+
+[Service]
+ExecStart=/usr/bin/gnome-keyring-daemon --foreground --components=secrets,pkcs11,ssh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,21 @@
+// --- general ---
+// ---------------
+
+overview {
+  workspace-shadow {
+    // off
+    on
+  }
+}
+
+hotkey-overlay {
+  skip-at-startup
+}
+
+// - client side decoration
+// - ask the clients to omit their client-side decorations if possible
+// - if client specifically asks for csd, request will be accepted
+prefer-no-csd
+
+// path is formatted with strftime
+screenshot-path "~/pictures/screenshots/screenshot__%Y%m%d_%H%M%S.png"

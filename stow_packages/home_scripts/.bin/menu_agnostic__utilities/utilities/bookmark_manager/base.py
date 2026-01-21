@@ -13,8 +13,11 @@ from class__main.menus.dmenu import Dmenu
 from class__main.menus.fuzzel import Fuzzel
 from class__main.menus.rofi import Rofi
 
-from class__main.bookmark_manager.buku import BukuMenu
-from class__main.bookmark_manager.bkmr import BkmrMenu
+try:
+    from class__main.bookmark_manager.buku import BukuMenu
+    from class__main.bookmark_manager.bkmr import BkmrMenu
+except:
+    from class__main.bookmark_manager.bkmr import BkmrMenu
 
 
 def bookmark_manager(

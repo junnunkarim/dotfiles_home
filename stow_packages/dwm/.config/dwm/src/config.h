@@ -246,6 +246,7 @@ static const Rule rules[] = {
   RULE(.class = "KotatogramDesktop", .tags = 1 << 6, .switchtag = 1)
   RULE(.class = "TelegramDesktop", .tags = 1 << 6, .switchtag = 1)
   RULE(.class = "Session", .tags = 1 << 6, .switchtag = 1)
+  RULE(.class = "vesktop", .tags = 1 << 6, .switchtag = 1)
   
   // tag - 8
   RULE(.class = "Ryujinx", .tags = 1 << 7, .switchtag = 1, .isfloating = 1)
@@ -403,9 +404,9 @@ static const char *menu_zk_cmd[] = {
     NULL};
 
 static const char *app_file_cmd[]  = { "thunar", NULL };
-static const char *app_firefox_cmd[]  = { "firefox", NULL };
+static const char *app_firefox_cmd[]  = { "firefox-nightly", NULL };
 static const char *app_chromium_cmd[]  = { "chromium", NULL };
-static const char *app_message_cmd[]  = { "telegram-desktop", NULL };
+static const char *app_message_cmd[]  = { "Telegram", NULL };
 static const char *app_nvim_cmd[]  = { "neovide", NULL };
 
 static const char *cli_file_cmd[]  = { "kitty", "--class", "term_file_manager", "-e", "yazi", NULL };
@@ -447,10 +448,8 @@ static const Key keys[] = {
   { MODKEY|ALTKEY,              XK_t,          spawn,                  {.v = app_file_cmd } },
   //desc: super + alt + f | open cli file manager (felix)
   { MODKEY|ALTKEY,              XK_f,          spawn,                  {.v = cli_file_cmd } },
-  //desc: super + alt + b | open browser (chromium)
-  { MODKEY|ALTKEY,              XK_b,          spawn,                  {.v = app_chromium_cmd } },
-  //desc: super + alt + e | open browser (firefox)
-  { MODKEY|ALTKEY,              XK_e,          spawn,                  {.v = app_firefox_cmd } },
+  //desc: super + alt + b | open browser (firefox)
+  { MODKEY|ALTKEY,              XK_b,          spawn,                  {.v = app_firefox_cmd } },
   //desc: super + alt + m | open message (telegram)
   { MODKEY|ALTKEY,              XK_m,          spawn,                  {.v = app_message_cmd } },
   //desc: super + alt + v | open code editor (neovim)

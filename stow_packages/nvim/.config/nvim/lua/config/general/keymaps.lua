@@ -10,10 +10,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- navigate in insert and normal modes with alt + u/d
-vim.keymap.set("n", "<a-d>", "<C-d>zz")
-vim.keymap.set("i", "<a-d>", "<esc><C-d>zzi")
 vim.keymap.set("n", "<a-u>", "<C-u>zz")
+vim.keymap.set("n", "<a-d>", "<C-d>zz")
 vim.keymap.set("i", "<a-u>", "<esc><C-u>zzi")
+vim.keymap.set("i", "<a-d>", "<esc><C-d>zzi")
 
 -- edit
 vim.keymap.set(
@@ -21,6 +21,14 @@ vim.keymap.set(
   "<C-BS>",
   "<C-o>db",
   { desc = "Delete word with backspace" }
+)
+
+-- registers
+vim.keymap.set(
+  "x",
+  "<leader>p",
+  '"_dP',
+  { desc = "Paste selection without overwriting yank register" }
 )
 
 -- buffers
@@ -83,6 +91,7 @@ vim.keymap.set(
 local file_exists = vim.uv.fs_stat(
   vim.fn.expand("~/.config/nvim/plugin/term.lua")
 ) ~= nil
+
 if file_exists then
   vim.keymap.set(
     "n",
@@ -111,6 +120,12 @@ if file_exists then
   vim.keymap.set(
     "n",
     "<leader>tv",
+    "<cmd>SelfTerm vertical<cr>",
+    { noremap = true, silent = true, desc = "Toggle Terminal (vertical)" }
+  )
+  vim.keymap.set(
+    { "n", "t" },
+    "<a-v>",
     "<cmd>SelfTerm vertical<cr>",
     { noremap = true, silent = true, desc = "Toggle Terminal (vertical)" }
   )

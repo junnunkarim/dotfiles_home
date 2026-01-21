@@ -10,8 +10,27 @@ prepend_keymap = [
   # { on = "y", run = '''shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm''', desc = "copy to clipboard (x11)" },
   # { on = "y", run = '''shell 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' --confirm''', desc = "copy to clipboard (wayland)" },
 
+  # gvfs.yazi
   { on = "?", run = "help", desc = "open help" },
-  { on = "M", run = "plugin mount", desc = "open mount manager" },
+  { on = [
+    "M",
+    "m",
+  ], run = "plugin gvfs -- select-then-mount", desc = "Select device then mount" },
+  # This will remount device under cwd (e.g. cwd = /run/user/1000/gvfs/DEVICE_1/FOLDER_A, device mountpoint = /run/user/1000/gvfs/DEVICE_1)
+  { on = [
+    "M",
+    "R",
+  ], run = "plugin gvfs -- remount-current-cwd-device", desc = "Remount device under cwd" },
+  # Ejecting a device will unmount all paritions/volumes under it.
+  # Fallback to normal unmount if not supported by device.
+  { on = [
+    "M",
+    "u",
+  ], run = "plugin gvfs -- select-then-unmount --eject", desc = "Select device then eject" },
+  { on = [
+    "g",
+    "m",
+  ], run = "plugin gvfs -- jump-to-device", desc = "Select device then jump to its mount point" },
 
   { on = "Z", run = "plugin fzf", desc = "Jump to a file/directory via fzf" },
   { on = "z", run = "plugin zoxide", desc = "Jump to a directory via zoxide" },

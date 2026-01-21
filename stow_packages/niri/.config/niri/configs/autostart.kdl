@@ -1,0 +1,24 @@
+// --- autostart ---
+// -----------------
+
+// authentication agent
+spawn-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
+
+// wallpaper
+spawn-at-startup "swww-daemon"
+
+// screenshare
+spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots"
+
+// desktop shell
+spawn-at-startup "qs"
+
+// clipboard
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+
+// input method
+spawn-at-startup "fcitx5 -d"
+
+// bluelight filter
+spawn-sh-at-startup "sunsetr --background"

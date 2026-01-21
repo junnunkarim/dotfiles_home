@@ -1,0 +1,19 @@
+// --- main ---
+// ------------
+
+// configs
+include "configs/autostart.kdl"
+include "configs/env_vars.kdl"
+
+include "configs/inputs.kdl"
+include "configs/monitors.kdl"
+include "configs/layouts.kdl"
+
+include "configs/general.kdl"
+include "configs/workspaces.kdl"
+include "configs/animations.kdl"
+
+include "configs/rules_layer.kdl"
+include "configs/rules_client.kdl"
+
+include "configs/keybindings.kdl"

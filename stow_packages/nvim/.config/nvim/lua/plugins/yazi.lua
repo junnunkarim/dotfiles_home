@@ -8,7 +8,7 @@ local options = {
 local keys = {
   {
     "<leader>_",
-    mode = { "n", "v" },
+    mode = { "n" },
     "<cmd>Yazi<cr>",
     desc = "Open file picker at current buf dir (yazi)",
   },
