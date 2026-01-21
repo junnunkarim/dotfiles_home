@@ -11,14 +11,14 @@ import qs.ui.modules.info_bar_t1
 MContainer {
   id: root
 
-  property color barBgColor: "#272e33"
-  property color barSeparatorColor: "#9da9a0"
-  property color clockFgColor: "#272e33"
-  property color clockBgColor: "#a7c080"
-  property color clockBorderColor: "#a7c080"
-  property color dateFgColor: "#272e33"
-  property color dateBgColor: "#7fbbb3"
-  property color dateBorderColor: "#7fbbb3"
+  property color barBgColor: "#1f1d2e"
+  property color barSeparatorColor: "#6e6a86"
+  property color clockFgColor: "#1f1d2e"
+  property color clockBgColor: "#ebbcba"
+  property color clockBorderColor: "#ebbcba"
+  property color dateFgColor: "#1f1d2e"
+  property color dateBgColor: "#c4a7e7"
+  property color dateBorderColor: "#c4a7e7"
 
   property bool useClockBorder: false
   property bool useDateBorder: false

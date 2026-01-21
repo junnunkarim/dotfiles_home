@@ -13,22 +13,22 @@ MContainer {
   id: root
 
   // pill background container color
-  property color pillContColor: "#7a8478"
+  property color pillContColor: "#6e6a86"
 
   // label colors
-  property color textColor: "#a7c080"
-  property color lowChargeTextColor: "#e67e80"
-  property color chargingTextColor: "#dbbc7f"
+  property color textColor: "#9ccfd8"
+  property color lowChargeTextColor: "#eb6f92"
+  property color chargingTextColor: "#f6c177"
 
   // main container colors
-  property color containerColor: "#3c4841"
+  property color containerColor: "#214c54"
   property color lowChargeContColor: "#4c3743"
-  property color chargingContColor: "#45443c"
+  property color chargingContColor: "#500b1f"
 
   // pill container colors
-  property color normalColor: "#a7c080"
-  property color lowChargeColor: "#e67e80"
-  property color chargingColor: "#dbbc7f"
+  property color normalColor: "#9ccfd8"
+  property color lowChargeColor: "#eb6f92"
+  property color chargingColor: "#f6c177"
 
   property real scale: Config.styles.scale
 

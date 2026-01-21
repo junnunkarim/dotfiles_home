@@ -13,7 +13,7 @@ class ZkMenu:
     def __init__(
         self,
         menu: Menu,
-        notebook_dir: str = "/mnt/main/work/notebook/",
+        notebook_dir: str = "/mnt/main/03__personal/notebook/",
         editor_type: str = "gui",
         terminal: str = "kitty",
         editor: str = "nvim",

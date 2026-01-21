@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=everforest
+ColorScheme=rose_pine
 Font=Iosevka Slab,18,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 IgnoreWcWidth=true
 LineSpacing=0

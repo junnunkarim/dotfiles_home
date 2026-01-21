@@ -1,29 +1,52 @@
 [mgr]
 show_hidden = true
+ratio = [1, 5, 4]
 sort_by = "natural"
 sort_dir_first = true
 show_symlink = true
 
 [opener]
-play = [
-  { run = 'mpv --force-window "$@"', orphan = true, for = "unix", desc = "open in media player" },
-]
 edit = [
-  { run = '$EDITOR "$@"', block = true, for = "unix", desc = "open in editor" },
+  { run = "$EDITOR %s", block = true, for = "unix", desc = "open with default editor" },
 ]
-open = [{ run = 'handlr open "$@"', desc = "open in" }]
+open = [
+  { run = "handlr open %s", desc = "open with xdg-utils" },
+]
+# media
+open_mpv = [
+  { run = "mpv --force-window %s", orphan = true, for = "unix", desc = "open with mpv" },
+]
+# documents
+open_glow = [
+  { run = "konsole -e glow -t %s", orphan = true, desc = "open with glow" },
+]
+open_marktext = [
+  { run = "marktext %s", orphan = true, desc = "open with marktext" },
+]
+# ebook
+open_sioyek = [
+  { run = "sioyek %s", orphan = true, desc = "open with sioyek" },
+]
+open_zathura = [
+  { run = "zathura %s", orphan = true, desc = "open with zathura" },
+]
+open_foliate = [
+  { run = "foliate %s", orphan = true, desc = "open with foliate" },
+]
 
 [open]
 prepend_rules = [
-  { name = "*.mp4", use = ["play", "open"] },
-  { name = "*.mkv", use = ["play", "open"] },
-  { name = "*.mp3", use = ["play", "open"] },
-  { name = "*.ogg", use = ["play", "open"] },
-  { name = "*.json", use = ["edit", "open"] },
+  { mime = "video/*", use = ["open_mpv"] },
+  { mime = "audio/*", use = ["open_mpv"] },
 
-  # multiple openers for a single rule
-  { name = "*.html", use = ["edit", "open"] },
+  { url = "*.html", use = ["edit", "open"] },
+  { url = "*.json", use = ["edit", "open"] },
+  { url = "*.md", use = ["open_glow", "edit", "open_marktext", "open"] },
 
-  { name = "*.pdf", use = ["open", "edit"] },
+
+  { url = "*.pdf", use = ["open_sioyek", "open_zathura", "open"] },
+  { url = "*.epub", use = ["open_foliate", "open"] },
 ]
-append_rules = [{ name = "*", use = "my-fallback" }]
+
+# fallback
+append_rules = [{ name = "*", use = "open" }]

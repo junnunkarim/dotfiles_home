@@ -22,15 +22,15 @@ MContainer {
   property real clientItemHeight: size
   property real clientItemWidth: size
 
-  property color focusColor: "#7fbbb3"
-  property color unfocusColor: "#859289"
+  property color focusColor: "#ebbcba"
+  property color unfocusColor: "#908caa"
   property color urgentColor: "#e67e80"
-  property color specialWsColor: "#d699b6"
+  property color specialWsColor: "#c4a7e7"
 
-  property color labelColor: "#272e33"
+  property color labelColor: "#1f1d2e"
 
-  property color outContcolor: "#9da9a0"
-  property color inContColor: "#272e33"
+  property color outContcolor: "#ebbcba"
+  property color inContColor: "#1f1d2e"
 
   property bool showLabel: true
 
