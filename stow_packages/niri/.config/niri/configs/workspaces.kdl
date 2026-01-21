@@ -1,0 +1,13 @@
+// --- workspaces ---
+// ------------------
+
+// named workspaces
+workspace "term"
+workspace "editor"
+workspace "file"
+workspace "browser"
+workspace "media"
+workspace "books"
+workspace "social"
+workspace "settings"
+workspace "misc"

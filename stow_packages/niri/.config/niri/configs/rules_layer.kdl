@@ -1,0 +1,9 @@
+// --- layer rules ---
+// --------------------
+
+// put swww inside the overview backdrop to use as wallpaper
+layer-rule {
+  match namespace="^swww-daemon$"
+
+  place-within-backdrop true
+}

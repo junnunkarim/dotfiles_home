@@ -1,0 +1,14 @@
+// --- monitor ---
+// ---------------
+
+// wiki: https://yalter.github.io/niri/Configuration:-Outputs
+
+// find names by running `niri msg outputs`
+output "eDP-1" {
+  // off
+
+  // scale 2
+
+  // rotate the output counter-clockwise
+  // transform "normal"
+}

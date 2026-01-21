@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+SCREENSHOT_PATH=~/pictures/screenshots/screenshot__$(date '+%Y%m%d_%H%M%S').png
+
+case "$1" in
+  -a | --annotate)
+    grim -g "$(slurp)" -t ppm - | satty --filename - --fullscreen --output-filename "$SCREENSHOT_PATH"
+    ;;
+  -r | --region)
+    grim -g "$(slurp)" "$SCREENSHOT_PATH"
+    ;;
+  *)
+    grim "$SCREENSHOT_PATH"
+    ;;
+esac
+
+notify-send -a "grim" "screenshot taken" "saved to $SCREENSHOT_PATH"

@@ -1,0 +1,8 @@
+--output "%(channel)s__%(title).50B__%(upload_date)s.%(ext)s"
+--replace-in-metadata title " " "_"
+--replace-in-metadata channel " " "_"
+--write-info-json
+--write-subs
+--sub-lang "en.*"
+--embed-thumbnail
+--embed-metadata

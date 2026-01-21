@@ -1,0 +1,148 @@
+// --- animations ---
+// ------------------
+
+// wiki: https://yalter.github.io/niri/Configuration:-Animations
+animations {
+  // uncomment to turn off all animations
+  // off
+
+  // - slow down all animations by this factor
+  // - values below 1 speed them up instead
+  slowdown 1.0
+
+  overview-open-close {
+    spring damping-ratio=0.8 stiffness=200 epsilon=0.0001
+  }
+
+  exit-confirmation-open-close {
+    spring damping-ratio=0.6 stiffness=200 epsilon=0.0001
+  }
+
+  config-notification-open-close {
+    spring damping-ratio=0.6 stiffness=200 epsilon=0.0001
+  }
+
+  screenshot-ui-open {
+    spring damping-ratio=0.6 stiffness=200 epsilon=0.0001
+  }
+
+  horizontal-view-movement {
+    spring damping-ratio=0.8 stiffness=200 epsilon=0.0001
+  }
+
+  workspace-switch {
+    spring damping-ratio=0.8 stiffness=200 epsilon=0.0001
+  }
+
+  window-movement {
+    spring damping-ratio=0.8 stiffness=200 epsilon=0.0001
+  }
+
+  // credit: https://github.com/XansiVA/nirimation
+  window-open {
+    // duration-ms 750
+    // curve "ease-out-expo"
+
+    spring damping-ratio=1.0 stiffness=380 epsilon=0.0001
+
+    custom-shader "
+      vec4 fall_from_top(vec3 coords_geo, vec3 size_geo) {
+        float progress = niri_clamped_progress * niri_clamped_progress;
+
+        vec2 coords = (coords_geo.xy - vec2(0.5, 0.0)) * size_geo.xy;
+
+        coords.y += (1.0 - progress) * 1440.0;
+
+        float random = (niri_random_seed - 0.5) / 2.0;
+        random = sign(random) - random;
+        float max_angle = 0.5 * random;
+
+        float angle = (1.0 - progress) * max_angle;
+        mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+        coords = rotate * coords;
+
+        coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 0.0), 1.0);
+
+        vec3 coords_tex = niri_geo_to_tex * coords_geo;
+
+        return texture2D(niri_tex, coords_tex.st); 
+      }
+      vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+        return fall_from_top(coords_geo, size_geo);
+      }
+    "
+  }
+
+  // credit: https://github.com/XansiVA/nirimation
+  window-close {
+    // duration-ms 550
+    // curve "linear"
+
+    spring damping-ratio=1.0 stiffness=380 epsilon=0.0001
+
+    custom-shader r"
+      vec4 fall_and_rotate(vec3 coords_geo, vec3 size_geo) {
+        // simulate an accelerated fall: square the (linear) progress
+        float progress = niri_clamped_progress * niri_clamped_progress;
+
+        // get our rotation pivot point coordinates at the bottom center of the window
+        vec2 coords = (coords_geo.xy - vec2(0.5, 1.0)) * size_geo.xy;
+
+        // move the window down to simulate a fall
+        coords.y -= progress * 200.0;
+
+        // randomize rotation direction and maximum angle
+        float random = (niri_random_seed - 0.5) / 2.0;
+        random = sign(random) - random;
+        float max_angle = 0.05 * random;
+
+        // rotate the window around our pivot point
+        float angle = progress * max_angle;
+        mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+        coords = rotate * coords;
+
+        // transform the coordinates back
+        coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 1.0), 1.0);
+
+        // sample the window texture
+        vec3 coords_tex = niri_geo_to_tex * coords_geo;
+        vec4 color = texture2D(niri_tex, coords_tex.st);
+
+        // multiply by alpha to fade out
+        return color * (1.0 - niri_clamped_progress);
+      }
+
+      vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+        return fall_and_rotate(coords_geo, size_geo);
+      }
+    "
+  }
+
+  window-resize {
+    // duration-ms 550
+    // curve "linear"
+
+    spring damping-ratio=0.7 stiffness=100 epsilon=0.0001
+
+    custom-shader r"
+      vec4 crossfade(vec3 coords_curr_geo, vec3 size_curr_geo) {
+        // convert coordinates into the texture space for sampling
+        vec3 coords_tex_prev = niri_geo_to_tex_prev * coords_curr_geo;
+        vec4 color_prev = texture2D(niri_tex_prev, coords_tex_prev.st);
+
+        // convert coordinates into the texture space for sampling
+        vec3 coords_tex_next = niri_geo_to_tex_next * coords_curr_geo;
+        vec4 color_next = texture2D(niri_tex_next, coords_tex_next.st);
+
+        vec4 color = mix(color_prev, color_next, niri_clamped_progress);
+
+        return color;
+      }
+
+      // this is the function that must be defined
+      vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
+        return crossfade(coords_curr_geo, size_curr_geo);
+      }
+    "
+  }
+}

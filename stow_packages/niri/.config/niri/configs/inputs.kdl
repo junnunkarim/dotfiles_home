@@ -1,0 +1,32 @@
+// --- input ---
+// -------------
+
+// wiki: https://yalter.github.io/niri/Configuration:-Input
+input {
+  keyboard {
+    xkb {
+      layout "us,us"
+      variant "dvorak,"
+      options "caps:escape,grp:shifts_toggle,grp_led:caps"
+    }
+
+    // enable numlock on startup
+    numlock
+  }
+
+  // libinput settings
+  touchpad {
+    // off
+    tap
+    accel-speed 0.3
+  }
+
+  mouse {
+    // off
+  }
+
+  trackpoint {
+    // off
+    accel-speed 0.3
+  }
+}
