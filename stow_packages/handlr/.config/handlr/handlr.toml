@@ -1,0 +1,3 @@
+enable_selector = true
+# selector = "dmenu -i -F -p 'open with: '"
+selector = "fuzzel -d -p 'open with: '"

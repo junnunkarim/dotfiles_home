@@ -2,15 +2,15 @@ import Quickshell
 import QtQuick
 
 import qs.logic.configs
-import qs.ui.themes.theme_type_1
+import qs.ui.themes.elegant
 
 Loader {
   readonly property Component selectedTheme: {
     switch (Config.options.themeName) {
-      case "theme_type1":
-        return Qt.createComponent("./themes/theme_type_1/ThemeType1.qml", Component.Asynchronous);
+      case "elegant":
+        return Qt.createComponent("./themes/elegant/Elegant.qml", Component.Asynchronous);
       default:
-        return Qt.createComponent("./themes/theme_type_1/ThemeType1.qml", Component.Asynchronous);
+        return Qt.createComponent("./themes/elegant/Elegant.qml", Component.Asynchronous);
     }
   }
 

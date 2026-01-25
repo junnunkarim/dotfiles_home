@@ -5,15 +5,8 @@
 #include ".config/dmenu/xcolors_dmenu/rose_pine"
 
 ! fonts config !
-! Xft.dpi: 120
-! Xft.antialias: 1
-! Xft.hinting: 1
-! Xft.autohint: 0
-! Xft.hintstyle: hintslight
-! Xft.rgba: rgb
-! Xft.lcdfilter: lcddefault
-
 XTerm.vt100.background: black
 XTerm.vt100.foreground: grey
-xterm*faceName: Iosevka Nerd Font Mono
+
+xterm*faceName: Iosevka Slab
 xterm*faceSize: 18

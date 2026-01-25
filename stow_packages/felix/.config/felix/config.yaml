@@ -1,0 +1,13 @@
+# - default exec command when opening file
+# - if not set, will default to $EDITOR
+default: nvim
+
+# - key (the command you want to use when opening file): [values] (extensions)
+# - in the key, you can use arguments
+exec:
+  zathura: [pdf, epub]
+  qview: [jpg, jpeg, png, gif, svg, hdr]
+  mpv: [mp4, mkv, webm]
+  'mpv --audio-display=no': [mp3, m4a]
+
+ignore_case: true

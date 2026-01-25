@@ -9,8 +9,6 @@ gtk_theme = false
 dunst = false
 
 [config.custom_colors]
-# gray = { color = "#808080", blend = true }
-# light_gray = { color = "#cccccc", blend = true }
 red = { color = "#ff474c", blend = true }
 maroon = { color = "#c08080", blend = true }
 light_orange = { color = "#fdc47b", blend = true }
@@ -29,59 +27,61 @@ purple = { color = "#bf77f6", blend = true }
 magenta = { color = "#ffd1df", blend = true }
 
 
-# window managers / bars / widgets
-[templates.ags]
-input_path = '~/.config/matugen/templates/ags_colors.template'
-output_path = '~/.config/hypr/external_configs/ags_v1/themes/roundish_circle/styles/colorscheme_matugen.json'
+# templates
+# ---------
+#
+# [templates.ags]
+# input_path = '~/.config/matugen/templates/ags_colors'
+# output_path = '~/.config/hypr/external_configs/ags_v1/themes/roundish_circle/styles/colorscheme_matugen.json'
 
 [templates.dwm]
-input_path = '~/.config/matugen/templates/dwm_xresources_colors.template'
+input_path = '~/.config/matugen/templates/dwm_xresources_colors'
 output_path = '~/.config/dwm/xcolors_dwm/matugen'
 
 [templates.luastatus_colors]
-input_path = '~/.config/matugen/templates/luastatus_colors.template'
+input_path = '~/.config/matugen/templates/luastatus_colors'
 output_path = '~/.config/dwm/luastatus/colorscheme/helper/matugen_colors.lua'
 
 [templates.luastatus_modules]
-input_path = '~/.config/matugen/templates/luastatus_modules_colors.template'
+input_path = '~/.config/matugen/templates/luastatus_modules_colors'
 output_path = '~/.config/dwm/luastatus/colorscheme/matugen.lua'
 
 # menus
 [templates.dmenu]
-input_path = '~/.config/matugen/templates/dmenu_xresources_colors.template'
+input_path = '~/.config/matugen/templates/dmenu_xresources_colors'
 output_path = '~/.config/dmenu/xcolors_dmenu/matugen'
 
-[templates.rofi]
-input_path = '~/.config/matugen/templates/rofi_colors.template'
-output_path = '~/.config/qtile/external_configs/rofi/colorschemes/matugen.rasi'
+# [templates.rofi]
+# input_path = '~/.config/matugen/templates/rofi_colors'
+# output_path = '~/.config/qtile/external_configs/rofi/colorschemes/matugen.rasi'
 
 [templates.fuzzel]
-input_path = '~/.config/matugen/templates/fuzzel_colors.template'
+input_path = '~/.config/matugen/templates/fuzzel_colors'
 output_path = '~/.config/fuzzel/colors/matugen.ini'
 
 # gtk
 [templates.gtk3]
-input_path = '~/.config/matugen/templates/gtk_colors.template'
+input_path = '~/.config/matugen/templates/gtk_colors'
 output_path = '~/.config/gtk-3.0/gtk.css'
 
 [templates.gtk4]
-input_path = '~/.config/matugen/templates/gtk_colors.template'
+input_path = '~/.config/matugen/templates/gtk_colors'
 output_path = '~/.config/gtk-4.0/gtk.css'
 
 # terminals
 [templates.kitty]
-input_path = '~/.config/matugen/templates/kitty_colors.template'
+input_path = '~/.config/matugen/templates/kitty_colors'
 output_path = '~/.config/kitty/colorschemes/matugen.conf'
 
 [templates.konsole]
-input_path = '~/.config/matugen/templates/konsole_colors.template'
+input_path = '~/.config/matugen/templates/konsole_colors'
 output_path = '~/.local/share/konsole/matugen.colorscheme'
 
 # applications
 [templates.neovim]
-input_path = '~/.config/matugen/templates/neovim.template'
+input_path = '~/.config/matugen/templates/neovim'
 output_path = '~/.config/nvim/lua/colors/matugen.lua'
 
 [templates.zathura]
-input_path = '~/.config/matugen/templates/zathura.template'
+input_path = '~/.config/matugen/templates/zathura'
 output_path = '~/.config/zathura/colorschemes/matugen'

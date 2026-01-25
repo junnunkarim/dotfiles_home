@@ -48,8 +48,9 @@ JsonObject {
   }
 
   component FontFamily: JsonObject {
-    property string sans: "Iosevka Slab"
-    property string mono: "Iosevka"
+    property string sans: "Iosevka"
+    property string serif: "Iosevka Slab"
+    property string mono: "Iosevka Slab"
     property string icon: "Symbols Nerd Font"
   }
 

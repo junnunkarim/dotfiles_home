@@ -30,6 +30,7 @@ vim.lsp.enable({
   "qmlls",
   "rust-analyzer",
   "racket_langserver",
+  "slint_lsp",
   "svelte",
   "tailwindcss",
   "ts_ls",
