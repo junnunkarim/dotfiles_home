@@ -3,4 +3,9 @@ return {
   name = "rose_pine",
   lazy = true,
   -- priority = 1000,
+  opts = {
+    styles = {
+      italic = false,
+    },
+  },
 }

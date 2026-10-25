@@ -1,0 +1,295 @@
+pragma ComponentBehavior: Bound
+
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Window
+
+import Quickshell.Io
+
+import qs.logic.configs
+import qs.logic.services
+import qs.ui.components
+import qs.ui.components.containers
+import qs.ui.modules.ws_bar
+import qs.ui.components.animations
+
+MContainer {
+  id: root
+
+  property real fontSize: Config.styles.fontSizes.sXS
+  property string fontFamily: Config.styles.fontFamilies.sans
+
+  // state colors
+  property color defaultColor: "#403d52"
+  property color hoverColor: "#9ccfd8"
+  property color focusColor: "#ebbcba"
+  property color occupiedColor: "#c4a7e7"
+  property color urgentColor: "#eb6f92"
+  property color specialWsColor: "#c4a7e7"
+
+  // workspace name color
+  property color labelColor: "#1f1d2e"
+
+  // container colors
+  property color outContcolor: "#ebbcba"
+  property color inContColor: "#1f1d2e"
+
+  property bool useRounding: Config.options.useRounding
+  // outer-container rounding
+  property real outContRounding: Config.styles.roundings.sXXL
+  // in-container rounding
+  property real inContRounding: Config.styles.roundings.sXXL
+  property real focusedRounding: Config.styles.roundings.sXXL
+  property real occupiedRounding: Config.styles.roundings.sS
+  property real inactiveRounding: Config.styles.roundings.sXS
+  // container corner radius: bottomLeft, bottomRight, topRight, topLeft
+  property list<bool> contCornersToRound: [false, true, false, false]
+
+  // workspace-item height and width multiplier
+  property real focusedItemSizeRatio: 3
+  property real occupiedItemSizeRatio: 2
+  property real defaultItemSizeRatio: 1
+
+  property real scale: Config.styles.scale
+  property string orientation: Config.options.orientation
+
+  height: !isVertical
+      ? Math.round(Screen.desktopAvailableHeight * 0.015)
+      : Math.round(Screen.desktopAvailableHeight * 0.45)
+
+  width: {
+    if (!isVertical) {
+      return Math.round(Screen.desktopAvailableWidth * 0.45)
+    }
+
+    return Math.round(Screen.desktopAvailableWidth * 0.015)
+  }
+
+  readonly property bool isVertical: orientation === "vertical"
+
+  // outer-container corner radius
+  bottomLeftRadius: Config.options.useRounding ? (contCornersToRound[0] ? outContRounding : 0) : 0
+  bottomRightRadius: Config.options.useRounding ? (contCornersToRound[1] ? outContRounding : 0) : 0
+  topRightRadius: Config.options.useRounding ? (contCornersToRound[2] ? outContRounding : 0) : 0
+  topLeftRadius: Config.options.useRounding ? (contCornersToRound[3] ? outContRounding : 0) : 0
+
+  color: (isVertical) ? "transparent" : outContcolor
+
+  useAnimation: Config.options.useAnimation
+
+  // workspace-item component
+  component WsItem: Loader {
+    id: wsItemLoader
+
+    required property var modelData // get data from Repeater
+    required property int availableHeight
+    required property int availableWidth
+
+    Layout.preferredWidth: {
+      if (wsItemLoader.modelData?.isFocused) {
+        return root.focusedItemSizeRatio
+      }
+      else if (wsItemLoader.modelData?.isOccupied) {
+        return root.occupiedItemSizeRatio
+      }
+
+      return root.defaultItemSizeRatio
+    }
+
+    Behavior on Layout.preferredWidth {
+      enabled: root.useAnimation
+      MSpringAnim {}
+    }
+    Behavior on Layout.preferredHeight {
+      enabled: root.useAnimation
+      MSpringAnim {}
+    }
+
+    // to check if we should show inactive workspaces depending on the
+    // "showInactiveWs" option
+    active: {
+      if (Config.options.showInactiveWs || modelData.isFocused) {
+        return true
+      }
+      else {
+        // if there are no toplevel in a workspace, return false;
+        // effectively not showing inactive workspaces
+        return (modelData?.isOccupied ?? false)
+      }
+    }
+    visible: active
+
+    sourceComponent: Component {
+      Workspace {
+
+        defaultColor: root.defaultColor
+        hoverColor: root.hoverColor
+        focusColor: root.focusColor
+        occupiedColor: root.occupiedColor
+        urgentColor: root.urgentColor
+        specialWsColor: root.specialWsColor
+
+        isFocused: wsItemLoader.modelData?.isFocused ?? false
+        isOccupied: wsItemLoader.modelData?.isOccupied ?? false
+        isUrgent: wsItemLoader.modelData?.isUrgent ?? false
+        isSpecialWs: wsItemLoader.modelData?.isSpecialWs ?? false
+
+        focusedRounding: root.focusedRounding
+        occupiedRounding: root.occupiedRounding
+        inactiveRounding: root.inactiveRounding
+      }
+    }
+  }
+
+  // horizontal layout of the workspace-bar
+  Component {
+    id: horiLayout
+
+    MContainer {
+      id: horiInnerCont
+
+      implicitHeight: root.height
+      implicitWidth: root.width
+
+      // inner-container corner radius
+      bottomLeftRadius: Config.options.useRounding ? (root.contCornersToRound[0] ? root.outContRounding : 0) : 0
+      bottomRightRadius: Config.options.useRounding ? (root.contCornersToRound[1] ? root.outContRounding : 0) : 0
+      topRightRadius: Config.options.useRounding ? (root.contCornersToRound[2] ? root.outContRounding : 0) : 0
+      topLeftRadius: Config.options.useRounding ? (root.contCornersToRound[3] ? root.outContRounding : 0) : 0
+
+      color: root.inContColor
+
+      useAnimation: root.useAnimation
+
+      RowLayout {
+        id: horiRow
+
+        anchors.fill: parent
+
+        anchors.leftMargin: 20
+        anchors.rightMargin: 20
+        anchors.topMargin: 5
+        anchors.bottomMargin: 5
+
+        spacing: Config.styles.margins.sXS
+
+        // normal workspaces
+        Repeater {
+          model: IpcCompositor.compositor.wsList
+
+          WsItem {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            availableHeight: Math.round(horiRow.height)
+            availableWidth: Math.round(horiRow.width)
+          }
+        }
+
+        // scratch/special workspaces
+        Repeater {
+          model: IpcCompositor.compositor.specialWsList
+
+          WsItem {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            availableHeight: Math.round(horiRow.height)
+            availableWidth: Math.round(horiRow.width)
+          }
+        }
+      }
+    }
+  }
+
+  // vertical layout of the workspace-bar
+  Component {
+    id: vertLayout
+
+    MContainer {
+      id: vertInnerCont
+
+      implicitHeight: root.height
+      implicitWidth: root.width
+
+      // inner-container corner radius
+      bottomLeftRadius: Config.options.useRounding ? (root.contCornersToRound[0] ? root.outContRounding : 0) : 0
+      bottomRightRadius: Config.options.useRounding ? (root.contCornersToRound[1] ? root.outContRounding : 0) : 0
+      topRightRadius: Config.options.useRounding ? (root.contCornersToRound[2] ? root.outContRounding : 0) : 0
+      topLeftRadius: Config.options.useRounding ? (root.contCornersToRound[3] ? root.outContRounding : 0) : 0
+
+      color: root.inContColor
+
+      useAnimation: root.useAnimation
+
+      RowLayout {
+        id: vertColumn
+
+        anchors.fill: parent
+
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
+        anchors.topMargin: 20
+        anchors.bottomMargin: 20
+
+        spacing: Config.styles.margins.sXS
+
+        // normal workspaces
+        Repeater {
+          model: IpcCompositor.compositor.wsList
+
+          WsItem {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            availableHeight: Math.round(vertColumn.height)
+            availableWidth: Math.round(vertColumn.width)
+          }
+        }
+
+        // scratch/special workspaces
+        Repeater {
+          model: IpcCompositor.compositor.specialWsList
+
+          WsItem {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            availableHeight: Math.round(horiRow.height)
+            availableWidth: Math.round(horiRow.width)
+          }
+        }
+      }
+    }
+  }
+
+  // load horizontal or vertical layout depending on preference
+  Loader {
+    id: layoutLoader
+
+    // align the inner-container to the left side of the outer-container;
+    // need this for label animation
+    anchors.left: parent.left
+
+    sourceComponent: root.isVertical ? vertLayout : horiLayout
+  }
+
+  // shadow
+  MElevation {
+    anchors.fill: root
+    level: 3
+    radius: root.outContRounding
+  }
+
+  // MouseArea {
+  //   anchors.fill: parent
+  //
+  //   hoverEnabled: true
+  //   onEntered: {
+  //     root.height = Math.round(Screen.desktopAvailableHeight * 0.02)
+  //   }
+  //   onExited: {
+  //     root.height = Math.round(Screen.desktopAvailableHeight * 0.015)
+  //   }
+  // }
+}

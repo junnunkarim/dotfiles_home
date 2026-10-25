@@ -6,11 +6,42 @@
 // rules for all windows
 window-rule {
   clip-to-geometry true
-  // geometry-corner-radius 15
-  geometry-corner-radius 0
+  geometry-corner-radius 10
+
+  opacity 0.90
+
+  background-effect {
+    blur true
+  }
 }
 
-// firefox picture-in-picture player as floating
+// opacity exceptions
+window-rule {
+  match app-id=r#"aradict$"#
+  match app-id=r#"chromium$"#
+  match app-id=r#"Epiphany$"#
+  match app-id=r#"firefox$"#
+  match app-id=r#"Foliate"#
+  match app-id=r#"krita$"#
+  match app-id=r#"love"#
+  match app-id=r#"qView"#
+  match app-id=r#"com.example"#
+  match app-id=r#"zed"#
+
+  match app-id=r#"Tiny Glade"#
+
+  opacity 1.00
+}
+
+window-rule {
+  match app-id=r#"aradict$"#
+
+  min-width 360
+  // max-width 360
+  // min-height 680
+  // max-height 680
+}
+
 window-rule {
   match app-id=r#"firefox$"# title="^Picture-in-Picture$"
 

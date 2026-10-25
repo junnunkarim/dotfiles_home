@@ -18,7 +18,8 @@ end
 
 local default_colorscheme = "base16-gruvbox-dark"
 local colorscheme = default_colorscheme
-local filename = vim.fn.expand('~') .. "/.config/nvim/lua/config/colorscheme_name.lua"
+local filename = vim.fn.expand("~")
+  .. "/.config/nvim/lua/config/colorscheme_name.lua"
 
 local file_exists = false
 local colorscheme_found = false

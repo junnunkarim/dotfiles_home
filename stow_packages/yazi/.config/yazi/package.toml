@@ -1,17 +1,17 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "03cdd4b"
-hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+rev = "bbac5e7"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "03cdd4b"
-hash = "e2d4bfccf31e5ab05f46fee4797c5215"
+rev = "bbac5e7"
+hash = "e3260d0b1feded8c8e3ae3afa1169e30"
 
 [[plugin.deps]]
 use = "boydaihungst/gvfs"
-rev = "9046dd8"
-hash = "3d31be8146da9555d48b1a731bf195dd"
+rev = "c5a0bb9"
+hash = "480fde69fef0bcaeb2c21a726f94412c"
 
 [flavor]
 deps = []

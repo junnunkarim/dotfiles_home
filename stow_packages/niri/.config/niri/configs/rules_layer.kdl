@@ -1,9 +1,17 @@
 // --- layer rules ---
 // --------------------
 
-// put swww inside the overview backdrop to use as wallpaper
+// put awww inside the overview backdrop to use as wallpaper
 layer-rule {
-  match namespace="^swww-daemon$"
+  match namespace="^awww-daemon$"
 
   place-within-backdrop true
+}
+
+layer-rule {
+  match namespace="^launcher$"
+
+  background-effect {
+    blur true
+  }
 }

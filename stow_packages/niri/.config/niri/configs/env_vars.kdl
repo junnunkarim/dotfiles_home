@@ -8,8 +8,9 @@ environment {
   SDL_VIDEODRIVER "wayland"
 
   // input method
-  GTK_IM_MODULE   "fcitx"
+  // GTK_IM_MODULE   "fcitx"
   QT_IM_MODULE    "fcitx"
+  QT_IM_MODULES   "wayland;fcitx;ibus"
   SDL_IM_MODULE   "fcitx"
   XMODIFIERS      "@im=fcitx"
   GLFW_IM_MODULE  "ibus"

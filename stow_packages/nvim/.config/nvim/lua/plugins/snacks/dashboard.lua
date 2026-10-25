@@ -1,7 +1,7 @@
 return {
   enabled = true,
   preset = {
-    header = "Someone at Somewhere doing Something",
+    header = "someone at somewhere doing something",
   },
   sections = {
     { section = "header" },

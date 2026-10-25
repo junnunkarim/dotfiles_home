@@ -1,30 +1,117 @@
+local function set_keymap(mode, key, action, opts)
+  local options = { noremap = true, silent = true }
+  if opts then options = vim.tbl_extend("force", options, opts) end
+
+  vim.keymap.set(mode, key, action, options)
+end
+
 -- set `spacebar` as the leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
---- better window management
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
+-- window management
+set_keymap("n", "<C-h>", "<C-w>h")
+set_keymap("n", "<C-j>", "<C-w>j")
+set_keymap("n", "<C-k>", "<C-w>k")
+set_keymap("n", "<C-l>", "<C-w>l")
+set_keymap("n", "<C-l>", "<C-w>l")
 
--- navigate in insert and normal modes with alt + u/d
-vim.keymap.set("n", "<a-u>", "<C-u>zz")
-vim.keymap.set("n", "<a-d>", "<C-d>zz")
-vim.keymap.set("i", "<a-u>", "<esc><C-u>zzi")
-vim.keymap.set("i", "<a-d>", "<esc><C-d>zzi")
-
--- edit
-vim.keymap.set(
-  "i",
-  "<C-BS>",
-  "<C-o>db",
-  { desc = "Delete word with backspace" }
+-- surround word/selection --
+-- ----------------------- --
+-- with ()
+set_keymap(
+  "n",
+  "<leader>(",
+  'ciw(<C-r>")<Esc>',
+  { desc = "surround word with ()" }
+)
+set_keymap(
+  "v", --
+  "<leader>(",
+  'c(<C-r>")<Esc>',
+  { desc = "surround selection with ()" }
+)
+-- with []
+set_keymap(
+  "n",
+  "<leader>[",
+  'ciw[<C-r>"]<Esc>',
+  { desc = "surround word with []" }
+)
+set_keymap(
+  "v", --
+  "<leader>[",
+  'c[<C-r>"]<Esc>',
+  { desc = "surround selection with []" }
+)
+-- with {}
+set_keymap(
+  "n",
+  "<leader>{",
+  'ciw{<C-r>"}<Esc>',
+  { desc = "surround word with {}" }
+)
+set_keymap(
+  "v", --
+  "<leader>{",
+  'c{<C-r>"}<Esc>',
+  { desc = "surround selection with {}" }
+)
+-- with <>
+set_keymap(
+  "n",
+  "<leader><",
+  'ciw<<C-r>"><Esc>',
+  { desc = "surround word with <>" }
+)
+set_keymap(
+  "v", --
+  "<leader><",
+  'c<<C-r>"><Esc>',
+  { desc = "surround selection with <>" }
+)
+-- with ""
+set_keymap(
+  "n",
+  "<leader>\"",
+  'ciw\"<C-r>"\"<Esc>',
+  { desc = 'surround word with ""' }
+)
+set_keymap(
+  "v", --
+  "<leader>\"",
+  'c\"<C-r>"\"<Esc>',
+  { desc = 'surround selection with ""' }
+)
+-- with ''
+set_keymap(
+  "n",
+  "<leader>\'",
+  'ciw\'<C-r>"\'<Esc>',
+  { desc = "surround word with ''" }
+)
+set_keymap(
+  "v", --
+  "<leader>\'",
+  'c\'<C-r>"\'<Esc>',
+  { desc = "surround selection with ''" }
 )
 
+-- vertical motion
+-- set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+-- set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+
+-- navigate in insert and normal modes with alt + u/d
+set_keymap("n", "<a-u>", "<C-u>zz")
+set_keymap("n", "<a-d>", "<C-d>zz")
+set_keymap("i", "<a-u>", "<esc><C-u>zzi")
+set_keymap("i", "<a-d>", "<esc><C-d>zzi")
+
+-- edit
+set_keymap("i", "<C-BS>", "<C-o>db", { desc = "Delete word with backspace" })
+
 -- registers
-vim.keymap.set(
+set_keymap(
   "x",
   "<leader>p",
   '"_dP',
@@ -32,39 +119,24 @@ vim.keymap.set(
 )
 
 -- buffers
-vim.keymap.set(
-  "n",
-  "gp",
-  "<cmd>bprevious<cr>",
-  { noremap = true, silent = true, desc = "Goto previous buffer" }
-)
-vim.keymap.set(
-  "n",
-  "gn",
-  "<cmd>bnext<cr>",
-  { noremap = true, silent = true, desc = "Goto next buffer" }
-)
-vim.keymap.set(
-  "n",
-  "gl",
-  "<cmd>blast<cr>",
-  { noremap = true, silent = true, desc = "Goto last buffer" }
-)
+set_keymap("n", "gp", "<cmd>bprevious<cr>", { desc = "Goto previous buffer" })
+set_keymap("n", "gn", "<cmd>bnext<cr>", { desc = "Goto next buffer" })
+set_keymap("n", "gl", "<cmd>blast<cr>", { desc = "Goto last buffer" })
 
 -- error/debug
-vim.keymap.set(
+set_keymap(
   "n",
   "<leader>el",
   function() vim.print(vim.lsp.get_clients()[1].server_capabilities) end,
   { desc = "Show capabilities of current attached LSP" }
 )
-vim.keymap.set(
+set_keymap(
   "n",
   "<leader>ech",
   "<cmd>checkhealth<cr>",
   { desc = "Run all healthchecks" }
 )
-vim.keymap.set(
+set_keymap(
   "n",
   "<leader>ecl",
   "<cmd>checkhealth lsp<cr>",
@@ -72,19 +144,19 @@ vim.keymap.set(
 )
 
 -- ui
-vim.keymap.set(
+set_keymap(
   "n",
   "<leader>wr",
   "<cmd>source ~/.config/nvim/lua/config/colorscheme.lua<cr>",
-  { noremap = true, silent = true, desc = "Reload colorscheme" }
+  { desc = "Reload colorscheme" }
 )
 
 -- misc
-vim.keymap.set(
+set_keymap(
   "n",
   "<leader>mc",
   "<cmd>noh<cr>",
-  { noremap = true, silent = true, desc = "Remove search highlights" }
+  { desc = "Remove search highlights" }
 )
 
 -- terminal
@@ -93,58 +165,58 @@ local file_exists = vim.uv.fs_stat(
 ) ~= nil
 
 if file_exists then
-  vim.keymap.set(
+  set_keymap(
     "n",
     "<leader>tt",
     "<cmd>SelfTerm float<cr>",
-    { noremap = true, silent = true, desc = "Toggle Terminal (float)" }
+    { desc = "Toggle Terminal (float)" }
   )
-  vim.keymap.set(
+  set_keymap(
     { "n", "t" },
     "<a-t>",
     "<cmd>SelfTerm float<cr>",
-    { noremap = true, silent = true, desc = "Toggle Terminal (float)" }
+    { desc = "Toggle Terminal (float)" }
   )
-  vim.keymap.set(
+  set_keymap(
     "n",
     "<leader>th",
     "<cmd>SelfTerm horizontal<cr>",
-    { noremap = true, silent = true, desc = "Toggle Terminal (horizontal)" }
+    { desc = "Toggle Terminal (horizontal)" }
   )
-  vim.keymap.set(
+  set_keymap(
     { "n", "t" },
     "<a-h>",
     "<cmd>SelfTerm horizontal<cr>",
-    { noremap = true, silent = true, desc = "Toggle Terminal (horizontal)" }
+    { desc = "Toggle Terminal (horizontal)" }
   )
-  vim.keymap.set(
+  set_keymap(
     "n",
     "<leader>tv",
     "<cmd>SelfTerm vertical<cr>",
-    { noremap = true, silent = true, desc = "Toggle Terminal (vertical)" }
+    { desc = "Toggle Terminal (vertical)" }
   )
-  vim.keymap.set(
+  set_keymap(
     { "n", "t" },
     "<a-v>",
     "<cmd>SelfTerm vertical<cr>",
-    { noremap = true, silent = true, desc = "Toggle Terminal (vertical)" }
+    { desc = "Toggle Terminal (vertical)" }
   )
-  vim.keymap.set(
+  set_keymap(
     "n",
     "<leader>tc",
     "<cmd>SelfTerm hide_all<cr>",
-    { noremap = true, silent = true, desc = "Hide all terminal" }
+    { desc = "Hide all terminal" }
   )
-  vim.keymap.set(
+  set_keymap(
     { "n", "t" },
     "<a-c>",
     "<cmd>SelfTerm hide_all<cr>",
-    { noremap = true, silent = true, desc = "Hide all terminal" }
+    { desc = "Hide all terminal" }
   )
-  vim.keymap.set(
+  set_keymap(
     "n",
     "<leader>tk",
     "<cmd>SelfTerm kill_all<cr>",
-    { noremap = true, silent = true, desc = "Kill all terminal" }
+    { desc = "Kill all terminal" }
   )
 end

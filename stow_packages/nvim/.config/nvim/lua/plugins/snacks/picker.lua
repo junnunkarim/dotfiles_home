@@ -1,7 +1,7 @@
 local sources = require("plugins.snacks.pickers")
 local layouts = require("plugins.snacks.config.layouts")
 
-  -- default layout
+-- default layout
 local default_layout = {
   preset = "custom_dropdown",
 }
@@ -59,4 +59,5 @@ return {
   layouts = layouts,
   sources = sources,
   win = win,
+  exclude = { ".git", ".svelte-kit", "build", "dist", "node_modules" },
 }

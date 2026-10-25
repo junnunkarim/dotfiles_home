@@ -23,6 +23,5 @@ run "fcitx5" -d
 
 run "picom" --daemon
 run "greenclip" daemon
-redshift -P -O 5000
 
-run "emacs" --daemon
+redshift -P -O 5000

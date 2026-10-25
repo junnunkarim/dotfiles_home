@@ -1,7 +1,18 @@
 import Quickshell
+import QtQuick
 
-import qs.ui
+PanelWindow {
+  anchors {
+    top: true
+    left: true
+    right: true
+  }
 
-ShellRoot {
-  ThemeLoader {}
+  implicitHeight: 30
+
+  Text {
+    anchors.centerIn: parent
+
+    text: "hello world"
+  }
 }

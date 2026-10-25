@@ -2,31 +2,31 @@
 prepend_keymap = [
   { on = "<Enter>", run = "plugin smart-enter", desc = "enter the child directory, or open the file" },
 
-  { on = [
-    "m",
-    "n",
-  ], run = '''shell 'ripdrag "$@" -x 2>/dev/null &' --confirm''', desc = "drag and drop files (ripdrag)" },
+  {
+    on = ["m", "n"],
+    run = "shell -- ripdrag -x %s 2>/dev/null &",
+    desc = "drag and drop files (ripdrag)",
+  },
 
-  # { on = "y", run = '''shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm''', desc = "copy to clipboard (x11)" },
-  # { on = "y", run = '''shell 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' --confirm''', desc = "copy to clipboard (wayland)" },
-
-  # gvfs.yazi
   { on = "?", run = "help", desc = "open help" },
+
+  # -- gvfs.yazi --
   { on = [
     "M",
     "m",
-  ], run = "plugin gvfs -- select-then-mount", desc = "Select device then mount" },
-  # This will remount device under cwd (e.g. cwd = /run/user/1000/gvfs/DEVICE_1/FOLDER_A, device mountpoint = /run/user/1000/gvfs/DEVICE_1)
-  { on = [
-    "M",
-    "R",
-  ], run = "plugin gvfs -- remount-current-cwd-device", desc = "Remount device under cwd" },
-  # Ejecting a device will unmount all paritions/volumes under it.
-  # Fallback to normal unmount if not supported by device.
+  ], run = "plugin gvfs -- select-then-mount --jump", desc = "select device, mount and jump to mountpoint" },
   { on = [
     "M",
     "u",
-  ], run = "plugin gvfs -- select-then-unmount --eject", desc = "Select device then eject" },
+  ], run = "plugin gvfs -- select-then-unmount --eject", desc = "select device then eject" },
+  { on = [
+    "M",
+    "R",
+  ], run = "plugin gvfs -- remount-current-cwd-device", desc = "remount device under cwd" },
+  { on = [
+    "M",
+    "a",
+  ], run = "plugin gvfs -- add-mount", desc = "Add a GVFS mount URI" },
   { on = [
     "g",
     "m",

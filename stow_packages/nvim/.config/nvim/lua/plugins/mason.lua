@@ -30,15 +30,13 @@
 --   --]
 -- }
 
-local mason__keys = {
-  { "<leader>sm", mode = { "n" }, '<cmd>Mason<cr>', desc = "Open Mason", }
+local keymaps = {
+  { "<leader>sm", mode = { "n" }, "<cmd>Mason<cr>", desc = "Open Mason" },
 }
 
 return {
-  {
-    "williamboman/mason.nvim",
-    opts = {},
-    keys = mason__keys,
-    event = { "BufReadPre", "BufNewFile" },
-  },
+  "mason-org/mason.nvim",
+  opts = {},
+  keys = keymaps,
+  event = { "BufReadPre", "BufNewFile" },
 }

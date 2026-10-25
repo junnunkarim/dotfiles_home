@@ -1,0 +1,283 @@
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Window
+
+import Quickshell
+import Quickshell.Io
+
+import qs.logic.configs
+import qs.ui.components.containers
+import qs.ui.modules.info_bar
+import qs.ui.modules.ws_bar
+import qs.ui.modules.client_bar
+
+Variants {
+  // contains list of all available screens
+  model: Quickshell.screens
+
+  PanelWindow {
+    id: root
+
+    // individual data from the "model" property can be accessed as "modelData"
+    required property var modelData
+    screen: modelData
+
+    color: "transparent"
+    // color: "#aa202020"
+
+    // span across whole screen
+    anchors {
+      top: true
+      bottom: true
+      left: true
+      right: true
+    }
+    // don't reserve space because individual components reserve their own space
+    exclusionMode: ExclusionMode.Ignore
+
+    // make everything click-through except specified regions
+    mask: Region {
+      id: clickableMaskRegion
+
+      // everything is masked/click-through
+      x: 0
+      y: 0
+      height: root.height
+      width: root.width
+
+      intersection: Intersection.Xor
+
+      // only include regions that are actually needed
+      regions: [infoBarMaskRegion, wsBarMaskRegion]
+
+      // substract area from mask
+      Region {
+        id: infoBarMaskRegion
+
+        x: infoBar.x
+        y: infoBar.y
+
+        height: infoBar.height
+        width: infoBar.width
+
+        intersection: Intersection.Subtract
+      }
+
+      // substract area from mask
+      Region {
+        id: wsBarMaskRegion
+
+        x: wsBar.x
+        y: wsBar.y
+
+        height: wsBar.height
+        width: wsBar.width
+
+        intersection: Intersection.Subtract
+      }
+    }
+
+    // --- helper functions ---
+    // ------------------------
+    //
+    function resetAnchors(component: Item): void {
+      component.anchors.top = undefined
+      component.anchors.bottom = undefined
+      component.anchors.left = undefined
+      component.anchors.right = undefined
+    }
+
+    function setAnchor(
+      component: Item,
+      compParent: Item,
+      position: string,
+    ): void {
+      root.resetAnchors(component)
+
+      switch (position) {
+      case "top":
+        component.anchors.top = compParent.top
+        component.anchors.left = compParent.left
+        break;
+      case "bottom":
+        component.anchors.bottom = compParent.bottom
+        component.anchors.left = compParent.left
+        break;
+      case "left":
+        component.anchors.left = compParent.left
+        component.anchors.top = compParent.top
+        break;
+      case "right":
+        component.anchors.right = compParent.right
+        component.anchors.top = compParent.top
+        break;
+      default:
+        console.log(`[error] in function "setAnchor": "${position}" is not a valid position`)
+      }
+    }
+
+    Item {
+      id: mainContainer
+
+      // color: "#11ff474c"
+
+      anchors.fill: parent
+
+      // --- info bar ---
+      // ----------------
+      //
+      readonly property string infoBarPosition: "top"
+      property bool isInfoBarVertical: infoBarOrientation === "vertical"
+      property string infoBarOrientation: "horizontal"
+      readonly property bool isInfoBarFloating: false
+      readonly property real infoBarMarginHori: 5.0
+      readonly property real infoBarMarginVert: 5.0
+
+      // MExclusionArea {
+      //   id: infoBarExclusionArea
+      //
+      //   exclusiveZone: !mainContainer.isInfoBarVertical
+      //       ? infoBar.height
+      //       : infoBar.width
+      //
+      //   // if horizontal
+      //   anchors.top: !mainContainer.isInfoBarVertical
+      //       ? true
+      //       : false
+      //
+      //   // if vertical
+      //   anchors.right: !mainContainer.isInfoBarVertical
+      //       ? false
+      //       : true
+      // }
+      //
+      // InfoBarT1 {
+      //   id: infoBar
+      //
+      //   anchors {
+      //     // if horizontal
+      //     top: !mainContainer.isInfoBarVertical
+      //         ? parent.top
+      //         : undefined
+      //     horizontalCenter: !mainContainer.isInfoBarVertical
+      //         ? parent.horizontalCenter
+      //         : undefined
+      //
+      //     // if vertical
+      //     right: !mainContainer.isInfoBarVertical
+      //         ? undefined
+      //         : parent.right
+      //     verticalCenter: !mainContainer.isInfoBarVertical
+      //         ? undefined
+      //         : parent.verticalCenter
+      //   }
+      //
+      //   orientation: mainContainer.infoBarOrientation
+      //   contCornersToRound: !mainContainer.isInfoBarVertical
+      //       ? [true, true, false, false]
+      //       : [true, false, false, true]
+      // }
+
+      // --- ws bar ---
+      // --------------
+      //
+      property string wsBarPosition: "bottom"
+      readonly property bool isWsBarVertical: (mainContainer.wsBarPosition === "left")
+          || (mainContainer.wsBarPosition == "right")
+
+      readonly property real wsBarHeight: Math.round(
+          Screen.height * (mainContainer.isWsBarVertical ? 0.45 : 0.016))
+      readonly property real wsBarWidth: Math.round(
+          Screen.width * (mainContainer.isWsBarVertical ? 0.0085 : 0.45))
+
+      // area to preserve for ws bar
+      MExclusionArea {
+        id: wsBarExclusionArea
+
+        exclusiveZone: {
+          switch (mainContainer.wsBarPosition !== mainContainer.infoBarPosition) {
+          case true:
+            switch (mainContainer.isWsBarVertical) {
+            case true:
+              return mainContainer.wsBarWidth;
+            default:
+              return mainContainer.wsBarHeight;
+            }
+          default:
+            return 0;
+          }
+        }
+
+        anchors {
+          top: mainContainer.wsBarPosition === "top"
+          bottom: mainContainer.wsBarPosition === "bottom"
+          left: mainContainer.wsBarPosition === "left"
+          right: mainContainer.wsBarPosition === "right"
+        }
+      }
+
+      RowLayout {
+        WsBarLean {
+          id: wsBar
+
+          Layout.fillWidth: true
+
+          // required properties
+          baseHeight: mainContainer.wsBarHeight
+          baseWidth: mainContainer.wsBarWidth
+          position: mainContainer.wsBarPosition
+          isVertical: mainContainer.isWsBarVertical
+
+          // signals
+          // onPositionChanged: {
+          //   root.setAnchor(
+          //     wsBar,
+          //     mainContainer,
+          //     wsBar.position,
+          //   )
+          // }
+        }
+      }
+
+      IpcHandler {
+        target: "wsBar"
+        function setPosition(position: string): void {
+          switch (position) {
+            case "top":
+            case "bottom":
+            case "left":
+            case "right":
+              mainContainer.wsBarPosition = position
+              break;
+            default:
+              console.log(`[error] "${position}" is not a valid position`)
+          }
+        }
+      }
+
+      // --- clientbar ---
+      // -----------------
+      //
+      // readonly property string clientBarPosition: "left"
+      // property bool isClientBarVertical: clientBarOrientation === "vertical"
+      // readonly property bool isClientBarFloating: false
+      // readonly property real clientBarMarginHori: 5.0
+      // readonly property real clientBarMarginVert: 5.0
+      // property string clientBarOrientation: infoBar === "horizontal"
+      //     ? "horizontal"
+      //     : "horizontal"
+
+      // ClientBarT1 {
+      //   id: clientBar
+      //
+      //   anchors {
+      //     right: parent.right
+      //     top: parent.top
+      //   }
+      //
+      //   orientation: "horizontal"
+      //   contCornersToRound: isVertical ? [false, false, true, false] : [true, false, false, false]
+      // }
+    }
+  }
+}

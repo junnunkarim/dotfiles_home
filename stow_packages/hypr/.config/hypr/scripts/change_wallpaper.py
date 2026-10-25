@@ -15,7 +15,7 @@ def change_wallpaper(wallpaper: str, directory: str = "~/resources/wallpaper/"):
     wall_directory = Path(directory + wallpaper).expanduser()
 
     cmd = [
-        "swww",
+        "awww",
         "img",
         "--transition-type",
         "any",
@@ -30,7 +30,7 @@ def change_wallpaper(wallpaper: str, directory: str = "~/resources/wallpaper/"):
 
 # main function to handle the cli arguments
 def main():
-    parser = argparse.ArgumentParser(description="Change wallpaper with swww.")
+    parser = argparse.ArgumentParser(description="Change wallpaper with awww.")
     parser.add_argument(
         "-w", "--wallpaper", help="Wallpaper name (with extension)", required=True
     )

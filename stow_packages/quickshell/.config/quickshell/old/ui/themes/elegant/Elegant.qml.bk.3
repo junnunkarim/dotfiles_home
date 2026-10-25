@@ -1,0 +1,268 @@
+pragma ComponentBehavior: Bound
+
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
+
+import Quickshell
+import Quickshell.Io
+
+import qs.logic.configs
+import qs.ui.components.containers
+import qs.ui.modules.info_bar
+import qs.ui.modules.ws_bar
+import qs.ui.modules.client_bar
+
+Variants {
+  // contains list of all available screens
+  model: Quickshell.screens
+
+  PanelWindow {
+    id: mainWindow
+
+    // - data about outputs/screens
+    // - get data from Variants
+    required property var modelData
+
+    color: "transparent"
+
+    screen: modelData
+    // span across whole screen
+    anchors {
+      top: true
+      bottom: true
+      left: true
+      right: true
+    }
+    // don't reserve space because individual components reserve their own space
+    exclusionMode: ExclusionMode.Ignore
+
+    // make everything click-through except specified regions
+    mask: Region {
+      id: clickableMaskRegion
+
+      // everything is masked/click-through
+      x: 0
+      y: 0
+      height: mainWindow.height
+      width: mainWindow.width
+
+      intersection: Intersection.Xor
+
+      // only include regions that are actually needed
+      regions: [barMaskRegion]
+
+      // substract bar area from mask
+      Region {
+        id: barMaskRegion
+
+        x: layoutLoader.x
+        y: layoutLoader.y
+
+        height: root.isBarVertical ? layoutLoader.height : root.barLength
+        width: root.isBarVertical ? root.barLength : layoutLoader.width
+
+        intersection: Intersection.Subtract
+      }
+    }
+
+    // --- helper functions ---
+    // ------------------------
+    //
+    function resetAnchors(component: Item): void {
+      component.anchors.top = undefined
+      component.anchors.bottom = undefined
+      component.anchors.left = undefined
+      component.anchors.right = undefined
+    }
+
+    function setAnchor(
+      component: Item,
+      compParent: Item,
+      position: string,
+    ): void {
+      mainWindow.resetAnchors(component)
+
+      switch (position) {
+      case "top":
+        component.anchors.top = compParent.top
+        component.anchors.left = compParent.left
+        component.anchors.right = compParent.right
+        break;
+      case "bottom":
+        component.anchors.bottom = compParent.bottom
+        component.anchors.left = compParent.left
+        component.anchors.right = compParent.right
+        break;
+      case "left":
+        component.anchors.top = compParent.top
+        component.anchors.bottom = compParent.bottom
+        component.anchors.left = compParent.left
+        break;
+      case "right":
+        component.anchors.top = compParent.top
+        component.anchors.bottom = compParent.bottom
+        component.anchors.right = compParent.right
+        break;
+      default:
+        console.log(`[error] in function "setAnchor": "${position}" is not a valid position`)
+      }
+    }
+
+    Item {
+      id: root
+
+      property string barPosition: "bottom"
+      readonly property bool isBarVertical: (root.barPosition === "left")
+          || (root.barPosition == "right")
+      // if bar is in horizontal position, this is used as the bar height, and
+      // in vertical position, this is used as the bar width
+      readonly property real barLength: 18
+
+      anchors.fill: parent
+
+      component WsBar: WsBarLean {
+        id: wsBar
+
+        position: root.barPosition
+        isVertical: root.isBarVertical
+      }
+
+      Component {
+        id: horiLayout
+
+        Row {
+          spacing: 32
+
+          // components
+          WsBar {
+            id: horiWsBar
+            horiLength: (Screen.width - (2*32)) / 3.0
+            vertLength: root.barLength
+
+            Connections {
+              target: horiInfoBar
+              function onWidthChanged() {
+                if(horiWsBar.horiLength < horiInfoBar.width) {
+                  horiWsBar.horiLength = horiWsBar.horiLength - ((horiInfoBar.width - horiWsBar.horiLength) / 2)
+                }
+              }
+            }
+          }
+
+          MContainer {
+            id: horiInfoBar
+            height: root.barLength
+            width: (Screen.width - (2*32)) / 3.0
+            color: "#404040"
+            radius: 12
+            anchors.bottom: parent.bottom
+
+            IpcHandler {
+              target: "infoBar"
+              function test(): void {
+                if (horiInfoBar.width > ((Screen.width - (2*32)) / 3.0)) {
+                  horiInfoBar.width = (Screen.width - (2*32)) / 3.0;
+                } else {
+                  horiInfoBar.width = horiInfoBar.width * 2
+                }
+              }
+            } // IpcHandler
+          }
+
+          MContainer {
+            height: root.barLength
+            width: (Screen.width - (2*32)) / 3.0
+            color: "#404040"
+            radius: 12
+            anchors.bottom: parent.bottom
+          }
+        }
+      }
+
+      Component {
+        id: vertLayout
+
+        ColumnLayout {
+          spacing: 32
+
+          // components
+          WsBar {}
+
+          MContainer {
+            Layout.fillHeight: true
+            implicitWidth: root.barLength
+            color: "#404040"
+            radius: 12
+          }
+
+          MContainer {
+            Layout.fillHeight: true
+            implicitWidth: root.barLength
+            color: "#404040"
+            radius: 12
+          }
+        }
+      }
+
+      // area to preserve for bars
+      MExclusionArea {
+        id: barExclusionArea
+
+        exclusiveZone: root.barLength
+
+        anchors {
+          top: root.barPosition === "top"
+          bottom: root.barPosition === "bottom"
+          left: root.barPosition === "left"
+          right: root.barPosition === "right"
+        }
+      }
+
+      Loader {
+        id: layoutLoader
+
+        // height: root.isBarVertical ? Screen.height : 24
+        // width: root.isBarVertical ? 24 : Screen.width
+        onLoaded: {
+          mainWindow.setAnchor(
+            layoutLoader,
+            root,
+            root.barPosition,
+          )
+        }
+
+        Connections {
+          target: root
+
+          function onBarPositionChanged() {
+            mainWindow.setAnchor(
+              layoutLoader,
+              root,
+              root.barPosition,
+            )
+          }
+        }
+
+        sourceComponent: root.isBarVertical ? vertLayout : horiLayout
+      }
+
+      IpcHandler {
+        target: "bar"
+        function setPosition(position: string): void {
+          switch (position) {
+            case "top":
+            case "bottom":
+            case "left":
+            case "right":
+              root.barPosition = position
+              break;
+            default:
+              console.log(`[error] "${position}" is not a valid position`)
+          }
+        }
+      } // IpcHandler
+    } // Item
+  } // PanelWindow
+} // Variants

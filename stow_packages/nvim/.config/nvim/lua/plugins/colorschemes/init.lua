@@ -2,6 +2,7 @@ local ashen = require("plugins.colorschemes.ashen")
 local ayu = require("plugins.colorschemes.ayu")
 local base16_nvim = require("plugins.colorschemes.base16_nvim")
 local catppuccin = require("plugins.colorschemes.catppuccin")
+local cendre = require("plugins.colorschemes.cendre")
 local dracula = require("plugins.colorschemes.dracula")
 local e_ink = require("plugins.colorschemes.e_ink")
 local everblush = require("plugins.colorschemes.everblush")
@@ -26,6 +27,7 @@ return {
   ayu,
   base16_nvim,
   catppuccin,
+  cendre,
   dracula,
   e_ink,
   everblush,

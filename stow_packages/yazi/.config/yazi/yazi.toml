@@ -6,27 +6,24 @@ sort_dir_first = true
 show_symlink = true
 
 [opener]
+# -- generic --
 edit = [
   { run = "$EDITOR %s", block = true, for = "unix", desc = "open with default editor" },
 ]
-open = [
-  { run = "handlr open %s", desc = "open with xdg-utils" },
-]
-# media
+open = [{ run = "handlr open %s", desc = "open with xdg-utils" }]
+# -- media --
 open_mpv = [
   { run = "mpv --force-window %s", orphan = true, for = "unix", desc = "open with mpv" },
 ]
-# documents
+# -- documents --
 open_glow = [
   { run = "konsole -e glow -t %s", orphan = true, desc = "open with glow" },
 ]
 open_marktext = [
   { run = "marktext %s", orphan = true, desc = "open with marktext" },
 ]
-# ebook
-open_sioyek = [
-  { run = "sioyek %s", orphan = true, desc = "open with sioyek" },
-]
+# -- ebook --
+open_sioyek = [{ run = "sioyek %s", orphan = true, desc = "open with sioyek" }]
 open_zathura = [
   { run = "zathura %s", orphan = true, desc = "open with zathura" },
 ]
@@ -36,12 +33,16 @@ open_foliate = [
 
 [open]
 prepend_rules = [
+  # krita
+  { url = "*.kra", use = ["open"] },
+  { url = "*.krz", use = ["open"] },
+
   { mime = "video/*", use = ["open_mpv"] },
   { mime = "audio/*", use = ["open_mpv"] },
 
   { url = "*.html", use = ["edit", "open"] },
   { url = "*.json", use = ["edit", "open"] },
-  { url = "*.md", use = ["open_glow", "edit", "open_marktext", "open"] },
+  { url = "*.md", use = ["edit", "open_glow", "open_marktext", "open"] },
 
 
   { url = "*.pdf", use = ["open_sioyek", "open_zathura", "open"] },
@@ -49,4 +50,4 @@ prepend_rules = [
 ]
 
 # fallback
-append_rules = [{ name = "*", use = "open" }]
+append_rules = [{ url = "*", use = "open" }]

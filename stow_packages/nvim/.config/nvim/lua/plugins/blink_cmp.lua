@@ -4,8 +4,8 @@ local options = {
 
     ["<CR>"] = { "accept", "fallback" },
     ["<Esc>"] = { "fallback" },
-    ['<Tab>'] = { "select_next", "fallback" },
-    ['<S-Tab>'] = { "select_prev", "fallback" },
+    ["<Tab>"] = { "select_next", "fallback" },
+    ["<S-Tab>"] = { "select_prev", "fallback" },
 
     ["<A-n>"] = { "scroll_documentation_down", "fallback" },
     ["<A-p>"] = { "scroll_documentation_up", "fallback" },
@@ -23,6 +23,7 @@ local options = {
     accept = {
       auto_brackets = {
         enabled = true,
+        default_brackets = { "(", ")" },
       },
     },
     documentation = {
@@ -45,19 +46,16 @@ local options = {
       border = "rounded",
       draw = {
         columns = {
-          { "kind_icon", "label",       "label_description", gap = 1 },
-          { "kind",      "source_name", gap = 1 },
+          { "kind_icon", "label", "label_description", gap = 1 },
+          { "kind", "source_name", gap = 1 },
         },
         treesitter = { "lsp" },
       },
     },
   },
+
   signature = {
     enabled = true,
-    triger = {
-      enabled = true,
-      show_on_insert = false,
-    },
     window = {
       border = "single",
       show_documentation = true,
@@ -111,7 +109,7 @@ return {
   dependencies = { "rafamadriz/friendly-snippets" },
 
   -- use a release tag to download pre-built binaries
-  version = "*",
+  version = "1.*",
 
   opts = options,
   opts_extend = { "sources.default" },

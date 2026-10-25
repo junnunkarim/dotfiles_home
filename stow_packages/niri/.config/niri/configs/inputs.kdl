@@ -30,3 +30,9 @@ input {
     accel-speed 0.3
   }
 }
+
+gestures {
+  hot-corners {
+    off
+  }
+}

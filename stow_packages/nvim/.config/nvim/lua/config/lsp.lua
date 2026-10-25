@@ -1,41 +1,3 @@
--- https://cmp.saghen.dev/installation#merging-lsp-capabilities
-local capabilities = {
-  textDocument = {
-    foldingRange = {
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    },
-  },
-}
-
-capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-
-vim.lsp.config("*", {
-  capabilities = capabilities,
-  root_markers = { ".git" },
-})
-
-vim.lsp.enable({
-  "basedpyright",
-  "clangd",
-  "cssls",
-  "dartls",
-  "gopls",
-  "html",
-  "hyprls",
-  -- "laravel_ls",
-  "lua_ls",
-  -- "nim_langserver",
-  -- "nimls",
-  "qmlls",
-  "rust-analyzer",
-  "racket_langserver",
-  "slint_lsp",
-  "svelte",
-  "tailwindcss",
-  "ts_ls",
-})
-
 vim.diagnostic.config({
   virtual_text = true,
   virtual_lines = false,
@@ -114,6 +76,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.definition,
       { noremap = true, silent = true, desc = "Goto symbol definition" }
     )
+
+    vim.keymap.set("n", "gh", function()
+      vim.cmd("split")
+      vim.lsp.buf.definition()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Goto symbol definition (horizontal split)",
+    })
+
+    vim.keymap.set("n", "gv", function()
+      vim.cmd("vsplit")
+      vim.lsp.buf.definition()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Goto symbol definition (horizontal split)",
+    })
 
     vim.keymap.set(
       "n",

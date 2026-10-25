@@ -1,0 +1,298 @@
+pragma ComponentBehavior: Bound
+
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Window
+
+import qs.logic.configs
+import qs.logic.services
+import qs.ui.components
+import qs.ui.components.animations
+import qs.ui.components.containers
+import qs.ui.modules.ws_bar
+
+Item {
+  id: root
+
+  required property int baseHeight
+  required property int baseWidth
+  required property string position
+  required property bool isVertical
+
+  property real fontSize: Config.styles.fontSizes.sXS
+  property string fontFamily: Config.styles.fontFamilies.serif
+
+  property color contColor: "#1f1d2e" // main container color
+  property color baseColor: "#403d52" // workspace base color
+  property color specialWsColor: "#c4a7e7" // special workspace color
+  property color occupiedColor: "#908caa" // occupied workspace color
+  property color focusColor: "#ebbcba" // focused workspace color
+  property color urgentColor: "#eb6f92" // urgent workspace color
+  property color hoverColor: "#9ccfd8" // workspace hover color
+  property color labelColor: "#1f1d2e" // workspace label color
+
+  property bool useRounding: Config.options.useRounding
+  property real contRounding: Config.styles.roundings.normal
+  property real baseRounding: Config.styles.roundings.extraSmall
+  property real occupiedRounding: Config.styles.roundings.normal
+  property real focusedRounding: Config.styles.roundings.full
+
+  // workspace-item height and width multiplier
+  property real baseItemRatio: 1
+  property real occupiedItemRatio: 2
+  property real focusedItemRatio: 7
+
+  property real scale: 1.0
+
+  property int horiMargin: 20
+  property int vertMargin: 5
+
+  function getContainerRadius(
+    radiusPosition: string,
+    position: string,
+    radius: double,
+  ): double {
+    switch (radiusPosition) {
+    case "topRight":
+      switch (position) {
+      case "bottom":
+        return radius;
+      default:
+        return 0;
+      }
+    case "bottomLeft":
+      switch (position) {
+      case "right":
+        return radius;
+      default:
+        return 0;
+      }
+    case "bottomRight":
+      switch (true) {
+      case position === "top":
+      case position === "left":
+        return radius;
+      default:
+        return 0;
+      }
+    default:
+      return 0;
+    }
+  }
+
+  height: wsContainer.implicitHeight
+  width: wsContainer.implicitWidth
+
+  MContainer {
+    id: wsContainer
+
+    implicitHeight: root.baseHeight
+    implicitWidth: root.baseWidth
+
+    color: root.contColor
+
+    topLeftRadius: 0
+    topRightRadius: root.getContainerRadius(
+      "topRight",
+      root.position,
+      root.contRounding,
+    )
+    bottomLeftRadius: root.getContainerRadius(
+      "bottomLeft",
+      root.position,
+      root.contRounding,
+    )
+    bottomRightRadius: root.getContainerRadius(
+      "bottomRight",
+      root.position,
+      root.contRounding,
+    )
+
+    useAnimation: Config.options.useAnimation
+
+    // workspace-item component
+    component WsItem: Loader {
+      id: wsItemLoader
+
+      required property var modelData // get data from Repeater
+      required property int availableHeight
+      required property int availableWidth
+
+      // show inactive workspaces depending on the "showInactiveWs" property
+      active: {
+        if (Config.options.showInactiveWs || modelData.isFocused) {
+          return true
+        } else {
+          // if there are no toplevel in a workspace, return false;
+          // effectively not showing inactive workspaces
+          return (modelData?.isOccupied || false)
+        }
+      }
+      visible: active
+
+      sourceComponent: Component {
+        Workspace {
+          id: ws
+
+          implicitHeight: {
+            // if vertical
+            if (root.isVertical) {
+              if (ws.isFocused) {
+                return wsItemLoader.availableHeight * root.focusedItemRatio
+              }
+              else if (ws.isOccupied) {
+                return wsItemLoader.availableHeight * root.occupiedItemRatio
+              }
+            }
+
+            // if horizontal
+            return wsItemLoader.availableHeight * root.baseItemRatio
+          }
+          implicitWidth: {
+            // if horizontal
+            if (!root.isVertical) {
+              if (ws.isFocused) {
+                return wsItemLoader.availableWidth * root.focusedItemRatio
+              }
+              else if (isOccupied) {
+                return wsItemLoader.availableWidth * root.occupiedItemRatio
+              }
+            }
+
+            // if vertical
+            return wsItemLoader.availableWidth * root.baseItemRatio
+          }
+
+          baseColor: root.baseColor
+          hoverColor: root.hoverColor
+          focusColor: root.focusColor
+          occupiedColor: root.occupiedColor
+          urgentColor: root.urgentColor
+          specialWsColor: root.specialWsColor
+
+          isFocused: wsItemLoader.modelData?.isFocused || false
+          isOccupied: wsItemLoader.modelData?.isOccupied || false
+          isUrgent: wsItemLoader.modelData?.isUrgent || false
+          isSpecialWs: wsItemLoader.modelData?.isSpecialWs || false
+
+          baseRounding: root.baseRounding
+          focusedRounding: root.focusedRounding
+          occupiedRounding: root.occupiedRounding
+
+          useRounding: root.useRounding
+        }
+      }
+    }
+
+    // horizontal layout of the workspace-bar
+    Component {
+      id: horiLayout
+
+      RowLayout {
+        id: horiRow
+
+        spacing: Config.styles.margins.sXS
+
+        // normal workspaces
+        Repeater {
+          model: IpcCompositor.compositor.wsList
+
+          WsItem {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            availableHeight: Math.round(horiRow.height)
+            availableWidth: Math.round(horiRow.width)
+          }
+        }
+
+        // scratch/special workspaces
+        Repeater {
+          model: IpcCompositor.compositor.specialWsList
+
+          WsItem {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            availableHeight: Math.round(horiRow.height)
+            availableWidth: Math.round(horiRow.width)
+          }
+        }
+      } // RowLayout
+    }
+
+    // vertical layout of the workspace-bar
+    Component {
+      id: vertLayout
+
+      ColumnLayout {
+        id: vertColumn
+
+        spacing: Config.styles.margins.sXS
+
+        // normal workspaces
+        Repeater {
+          model: IpcCompositor.compositor.wsList
+
+          WsItem {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            availableHeight: Math.round(vertColumn.height)
+            availableWidth: Math.round(vertColumn.width)
+          }
+        }
+
+        // scratch/special workspaces
+        Repeater {
+          model: IpcCompositor.compositor.specialWsList
+
+          WsItem {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            availableHeight: Math.round(vertColumn.height)
+            availableWidth: Math.round(vertColumn.width)
+          }
+        }
+      } // ColumnLayout
+    }
+
+    // load horizontal/vertical layout depending on preference
+    Loader {
+      id: layoutLoader
+
+      anchors.fill: wsContainer
+      // margins
+      anchors.leftMargin: !root.isVertical ? root.horiMargin : root.vertMargin
+      anchors.rightMargin: !root.isVertical ? root.horiMargin : root.vertMargin
+      anchors.topMargin: !root.isVertical ? root.vertMargin : root.horiMargin
+      anchors.bottomMargin: !root.isVertical ? root.vertMargin : root.horiMargin
+
+      sourceComponent: root.isVertical ? vertLayout : horiLayout
+    }
+
+    // shadow
+    MElevation {
+      anchors.fill: parent
+      level: 3
+      radius: root.contRounding
+    }
+
+    MouseArea {
+      anchors.fill: parent
+
+      hoverEnabled: true
+      onEntered: {
+        // root.height = root.baseHeight * 4
+        wsContainer.implicitHeight = root.baseHeight * 4
+      }
+      onExited: {
+        // root.height = root.baseHeight
+        wsContainer.implicitHeight = root.baseHeight
+      }
+
+      // z: -1
+    }
+  }
+}

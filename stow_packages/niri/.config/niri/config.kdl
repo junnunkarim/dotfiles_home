@@ -11,7 +11,7 @@ include "configs/layouts.kdl"
 
 include "configs/general.kdl"
 include "configs/workspaces.kdl"
-include "configs/animations.kdl"
+include "configs/appearance.kdl"
 
 include "configs/rules_layer.kdl"
 include "configs/rules_client.kdl"

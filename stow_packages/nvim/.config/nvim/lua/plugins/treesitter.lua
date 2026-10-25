@@ -1,71 +1,80 @@
-local options = {
-  -- A list of parser names, or "all"
-  ensure_installed = {
-    "bash",
-    "c",
-    "cpp",
-    "cmake",
-    "css",
-    "csv",
-    "desktop",
-    "editorconfig",
-    "fish",
-    "git_config",
-    "gitcommit",
-    "gitignore",
-    "go",
-    "html",
-    "hyprlang",
-    "ini",
-    "javascript",
-    "json",
-    "jsonc",
-    "latex",
-    "lua",
-    "make",
-    "markdown",
-    "markdown_inline",
-    "python",
-    "query",
-    "r",
-    "rust",
-    "scss",
-    "sql",
-    "svelte",
-    "toml",
-    "tsx",
-    "typescript",
-    "vim",
-    "vimdoc",
-    "xml",
-    "yaml",
-  },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  highlight = {
-    enable = true,
-    -- disable = { "markdown" }, -- list of language that will be disabled
-    -- additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true,
-  },
-}
-
 return {
   "nvim-treesitter/nvim-treesitter",
-  lazy = true,
-  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  branch = "main",
+  lazy = false,
+  -- event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   build = ":TSUpdate",
-  config = function()
-    local configs = require("nvim-treesitter.configs")
+  init = function()
+    local ensure_installed = {
+      "bash",
+      "c",
+      "c3",
+      "cpp",
+      "cmake",
+      "css",
+      "csv",
+      "desktop",
+      "dart",
+      "editorconfig",
+      "fish",
+      "git_config",
+      "gitcommit",
+      "gitignore",
+      "go",
+      "html",
+      "hyprlang",
+      "ini",
+      "javascript",
+      "json",
+      "kdl",
+      "kotlin",
+      -- "jsonc",
+      "latex",
+      "lua",
+      "make",
+      "markdown",
+      "markdown_inline",
+      "nim",
+      "python",
+      "qmljs",
+      "query",
+      "r",
+      "racket",
+      "rust",
+      "scss",
+      "sql",
+      "svelte",
+      "swift",
+      "toml",
+      "tsx",
+      "typescript",
+      "vim",
+      "vimdoc",
+      "xml",
+      "yaml",
+    }
 
-    configs.setup(options)
-  end
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = ensure_installed,
+      callback = function()
+        -- highlighting
+        vim.treesitter.start()
+        -- folds
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo.foldmethod = "expr"
+        -- indentation
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
+
+    local already_installed = require("nvim-treesitter.config").get_installed()
+    local parsers_to_install = vim
+      .iter(ensure_installed)
+      :filter(
+        function(parser) return not vim.tbl_contains(already_installed, parser) end
+      )
+      :totable()
+
+    require("nvim-treesitter").install(parsers_to_install)
+  end,
 }
